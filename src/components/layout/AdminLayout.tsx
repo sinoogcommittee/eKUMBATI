@@ -55,7 +55,7 @@ export const AdminLayout: React.FC = () => {
               {mobileSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
             <div>
-              <h1 className="text-sm font-extrabold text-white tracking-tight">
+              <h1 className="text-sm font-semibold text-white tracking-tight">
                 KUMBATI District Management Console
               </h1>
               <p className="text-[11px] text-slate-400">

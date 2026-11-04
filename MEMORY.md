@@ -59,3 +59,8 @@
     - Linked environment configuration via `.env` pointing to live Supabase endpoint.
   - Confirmed 100% clean production build with live Supabase client (`tsc && vite build` built in 15.32s with 0 warnings/errors).
   - All tasks completed across all 5 phases in `TASKS.md`.
+  - Installed and applied Damir Sokolovsky's `unslop` skill methodology:
+    - Directed visual character toward grounded Boholano civic craft (terracotta orange `#F97316`, Bohol ivory `#FFFDF9`, quiet dark slate `#0F172A`, 4px grid spacing, `font-medium`/`font-semibold`, tabular numbers for tallies).
+    - Removed AI slop tells: radial blurred background blobs, colored alpha glows (`shadow-kumbati`), multi-stop linear gradients, `font-black` (900-weight) headings, forced uppercase tracked labels, bouncy looping pulses, and `Sparkles` badges.
+    - Standardized all 8 public and 8 admin pages, layout shells (`Header`, `Footer`, `StickyHotlineBar`, `AdminSidebar`), atoms (`Button`, `Badge`, `StatCounter`), and `DistrictLeafletMap` (static 24px solid pins instead of infinite ping pulses).
+    - Verified production compilation (`npm run build`) succeeded with exit code 0.

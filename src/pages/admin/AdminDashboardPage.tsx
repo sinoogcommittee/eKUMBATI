@@ -16,7 +16,7 @@ import {
   Image as ImageIcon,
   ArrowUpRight,
   ShieldCheck,
-  Sparkles,
+  Building2,
 } from 'lucide-react';
 
 const LOCAL_STORAGE_SUBMISSIONS_KEY = 'kumbati_constituent_submissions';
@@ -103,14 +103,14 @@ export const AdminDashboardPage: React.FC = () => {
   return (
     <div className="space-y-8">
       {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xl">
+      <div className="bg-slate-900 p-6 sm:p-8 rounded-xl border border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="space-y-1.5">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-orange-500/20 text-orange-400 text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-slate-800 text-orange-400 text-xs font-medium">
+            <Building2 className="w-3.5 h-3.5" />
             <span>Congressional Operations Console</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-            Welcome, {user?.email?.split('@')[0] || 'Staff'}!
+          <h2 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight">
+            Welcome, {user?.email?.split('@')[0] || 'Staff'}
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
             3rd Congressional District of Bohol &bull; Office of Congresswoman Alexie Besas Tutor
@@ -132,81 +132,81 @@ export const AdminDashboardPage: React.FC = () => {
       {/* 4 Stat Overview Tiles */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Stat 1: Submissions */}
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex items-center justify-between">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex items-center justify-between">
           <div>
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+            <span className="text-xs font-medium text-slate-400 block">
               Action Center Tickets
             </span>
-            <div className="text-3xl font-black text-white mt-1">
+            <div className="text-3xl font-semibold text-white tracking-tight tabular-nums mt-1">
               {submissions.length}
             </div>
-            <span className="text-[11px] text-orange-400 font-semibold mt-1 inline-block">
+            <span className="text-xs text-orange-400 font-medium mt-1 inline-block">
               {pendingCount} Pending Review
             </span>
           </div>
-          <div className="w-12 h-12 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center">
-            <Inbox className="w-6 h-6" />
+          <div className="w-11 h-11 rounded-lg bg-orange-500/10 text-orange-400 flex items-center justify-center">
+            <Inbox className="w-5 h-5" />
           </div>
         </div>
 
         {/* Stat 2: Active Flagship Programs */}
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex items-center justify-between">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex items-center justify-between">
           <div>
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+            <span className="text-xs font-medium text-slate-400 block">
               Active Programs
             </span>
-            <div className="text-3xl font-black text-white mt-1">
+            <div className="text-3xl font-semibold text-white tracking-tight tabular-nums mt-1">
               {INITIAL_PROGRAMS.length}
             </div>
-            <span className="text-[11px] text-emerald-400 font-semibold mt-1 inline-block">
+            <span className="text-xs text-emerald-400 font-medium mt-1 inline-block">
               All 7 Flagship Live
             </span>
           </div>
-          <div className="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
-            <Layers className="w-6 h-6" />
+          <div className="w-11 h-11 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+            <Layers className="w-5 h-5" />
           </div>
         </div>
 
         {/* Stat 3: 2025 Core Metrics */}
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex items-center justify-between">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex items-center justify-between">
           <div>
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+            <span className="text-xs font-medium text-slate-400 block">
               Verified Metrics
             </span>
-            <div className="text-3xl font-black text-white mt-1">
+            <div className="text-3xl font-semibold text-white tracking-tight tabular-nums mt-1">
               {INITIAL_METRICS.length}
             </div>
-            <span className="text-[11px] text-blue-400 font-semibold mt-1 inline-block">
+            <span className="text-xs text-blue-400 font-medium mt-1 inline-block">
               Pabahay, PTV, Clinic
             </span>
           </div>
-          <div className="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center">
-            <ShieldCheck className="w-6 h-6" />
+          <div className="w-11 h-11 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center">
+            <ShieldCheck className="w-5 h-5" />
           </div>
         </div>
 
         {/* Stat 4: Cataloged Media Assets */}
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex items-center justify-between">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex items-center justify-between">
           <div>
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+            <span className="text-xs font-medium text-slate-400 block">
               Gallery Media
             </span>
-            <div className="text-3xl font-black text-white mt-1">
+            <div className="text-3xl font-semibold text-white tracking-tight tabular-nums mt-1">
               {INITIAL_GALLERY_MEDIA.length}
             </div>
-            <span className="text-[11px] text-purple-400 font-semibold mt-1 inline-block">
+            <span className="text-xs text-purple-400 font-medium mt-1 inline-block">
               In {INITIAL_ALBUMS.length} Albums
             </span>
           </div>
-          <div className="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center">
-            <ImageIcon className="w-6 h-6" />
+          <div className="w-11 h-11 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center">
+            <ImageIcon className="w-5 h-5" />
           </div>
         </div>
       </div>
 
       {/* Quick Access Modules Navigation */}
       <div>
-        <h3 className="text-sm font-black uppercase tracking-wider text-slate-400 mb-4">
+        <h3 className="text-xs font-medium text-slate-400 mb-3">
           Quick Management Modules
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -259,25 +259,25 @@ export const AdminDashboardPage: React.FC = () => {
               <Link
                 key={idx}
                 to={item.to}
-                className="group p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-orange-500/50 hover:bg-slate-850 transition-all flex flex-col justify-between"
+                className="group p-5 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 hover:bg-slate-850 transition-colors flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <div className="w-9 h-9 rounded-xl bg-slate-800 text-orange-400 flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                    <div className="w-8 h-8 rounded-lg bg-slate-850 text-orange-400 flex items-center justify-center group-hover:bg-orange-600 group-hover:text-white transition-colors">
                       <Icon className="w-4 h-4" />
                     </div>
-                    <span className="text-[10px] font-bold text-slate-400 bg-slate-800 px-2 py-0.5 rounded-full">
+                    <span className="text-[11px] font-medium text-slate-400 bg-slate-800 px-2 py-0.5 rounded-md">
                       {item.badge}
                     </span>
                   </div>
-                  <h4 className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors">
+                  <h4 className="text-sm font-semibold text-white group-hover:text-orange-400 transition-colors">
                     {item.title}
                   </h4>
                   <p className="text-xs text-slate-400 mt-1 leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
-                <div className="text-xs font-bold text-orange-400 pt-4 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                <div className="text-xs font-medium text-orange-400 pt-4 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
                   <span>Open Module</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </div>
@@ -288,10 +288,10 @@ export const AdminDashboardPage: React.FC = () => {
       </div>
 
       {/* Recent Action Center Submissions Table */}
-      <div className="bg-slate-900 rounded-3xl border border-slate-800 p-6 shadow-sm">
+      <div className="bg-slate-900 rounded-xl border border-slate-800 p-6 shadow-sm">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h3 className="text-base font-black text-white tracking-tight">
+            <h3 className="text-sm font-semibold text-white tracking-tight">
               Recent Action Center Activity
             </h3>
             <p className="text-xs text-slate-400">
@@ -300,7 +300,7 @@ export const AdminDashboardPage: React.FC = () => {
           </div>
           <Link
             to="/admin/submissions"
-            className="text-xs font-bold text-orange-400 hover:text-orange-300 flex items-center gap-1"
+            className="text-xs font-medium text-orange-400 hover:text-orange-300 flex items-center gap-1"
           >
             <span>View All Tickets ({submissions.length})</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -309,25 +309,25 @@ export const AdminDashboardPage: React.FC = () => {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-950 text-slate-400 uppercase font-black tracking-wider text-[11px] border-b border-slate-800">
+            <thead className="bg-slate-950 text-slate-400 font-medium text-[11px] border-b border-slate-800">
               <tr>
-                <th className="py-3 px-4">Tracking Code</th>
-                <th className="py-3 px-4">Constituent</th>
-                <th className="py-3 px-4">Municipality</th>
-                <th className="py-3 px-4">Subject</th>
-                <th className="py-3 px-4">Status</th>
-                <th className="py-3 px-4 text-right">Quick Action</th>
+                <th className="py-3 px-4 font-medium">Tracking Code</th>
+                <th className="py-3 px-4 font-medium">Constituent</th>
+                <th className="py-3 px-4 font-medium">Municipality</th>
+                <th className="py-3 px-4 font-medium">Subject</th>
+                <th className="py-3 px-4 font-medium">Status</th>
+                <th className="py-3 px-4 text-right font-medium">Quick Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800">
+            <tbody className="divide-y divide-slate-800/80">
               {submissions.slice(0, 5).map((ticket) => (
                 <tr key={ticket.id} className="hover:bg-slate-850/50 transition-colors">
-                  <td className="py-3 px-4 font-mono font-bold text-orange-400">
+                  <td className="py-3 px-4 font-mono font-medium text-orange-400 tabular-nums">
                     {ticket.reference_code}
                   </td>
-                  <td className="py-3 px-4 font-bold text-white">
+                  <td className="py-3 px-4 font-medium text-white">
                     {ticket.full_name}
-                    <span className="block text-[11px] text-slate-500 font-normal">
+                    <span className="block text-[11px] text-slate-500 font-normal tabular-nums">
                       {ticket.contact_number}
                     </span>
                   </td>
@@ -346,7 +346,7 @@ export const AdminDashboardPage: React.FC = () => {
                     {ticket.status !== 'resolved' && (
                       <button
                         onClick={() => handleUpdateStatus(ticket.id, 'resolved')}
-                        className="px-2 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500 hover:text-white font-bold text-[10px] transition-colors"
+                        className="px-2 py-1 rounded-md bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500 hover:text-white font-medium text-[11px] transition-colors"
                         title="Mark Resolved"
                       >
                         Resolve
@@ -355,7 +355,7 @@ export const AdminDashboardPage: React.FC = () => {
                     {ticket.status === 'pending' && (
                       <button
                         onClick={() => handleUpdateStatus(ticket.id, 'in_review')}
-                        className="px-2 py-1 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500 hover:text-white font-bold text-[10px] transition-colors"
+                        className="px-2 py-1 rounded-md bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-white font-medium text-[11px] transition-colors"
                         title="Mark In Review"
                       >
                         Review

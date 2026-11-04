@@ -44,16 +44,17 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ onCloseMobile }) => 
     <aside className="w-64 bg-slate-950 text-slate-300 flex flex-col justify-between h-full border-r border-slate-800">
       {/* Top Header */}
       <div>
-        <div className="p-6 border-b border-slate-800 flex items-center justify-between">
+        <div className="p-5 border-b border-slate-800 flex items-center justify-between">
           <Link to="/admin/dashboard" className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-orange-500 flex items-center justify-center text-white font-black text-lg shadow-kumbati">
-              K
+            <div className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-700/80 flex items-center justify-center text-white font-semibold text-sm relative">
+              <span>K</span>
+              <div className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-orange-500 ring-2 ring-slate-950" />
             </div>
             <div>
-              <span className="text-base font-black text-white tracking-tight block">
+              <span className="text-sm font-semibold text-white tracking-tight block">
                 e-KUMBATI
               </span>
-              <span className="text-[10px] text-orange-400 font-bold uppercase tracking-wider">
+              <span className="text-[11px] text-slate-400">
                 Staff Admin CMS
               </span>
             </div>
@@ -61,7 +62,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ onCloseMobile }) => 
         </div>
 
         {/* Backend Connectivity Status Pill */}
-        <div className="px-5 py-3 border-b border-slate-850 bg-slate-900/60">
+        <div className="px-5 py-2.5 border-b border-slate-800/80 bg-slate-900/50">
           <div className="flex items-center justify-between text-[11px]">
             <span className="text-slate-400 flex items-center gap-1.5">
               {isSupabaseConfigured ? (
@@ -78,7 +79,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ onCloseMobile }) => 
         </div>
 
         {/* Navigation Items */}
-        <nav className="p-4 space-y-1">
+        <nav className="p-3 space-y-1">
           {navLinks.map((item) => {
             const Icon = item.icon;
             return (
@@ -87,9 +88,9 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ onCloseMobile }) => 
                 to={item.to}
                 onClick={onCloseMobile}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                  `flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
                     isActive
-                      ? 'bg-orange-500 text-white font-black shadow-kumbati'
+                      ? 'bg-orange-600 text-white'
                       : 'text-slate-400 hover:text-white hover:bg-slate-900'
                   }`
                 }
@@ -103,14 +104,14 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ onCloseMobile }) => 
       </div>
 
       {/* User Info & Footer Actions */}
-      <div className="p-4 border-t border-slate-800 space-y-3 bg-slate-900/40">
+      <div className="p-4 border-t border-slate-800 space-y-2.5 bg-slate-900/40">
         {/* User Card */}
-        <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-orange-500/20 text-orange-400 flex items-center justify-center font-bold text-xs">
-            <Shield className="w-4 h-4" />
+        <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800 flex items-center gap-2.5">
+          <div className="w-7 h-7 rounded-md bg-orange-500/10 text-orange-400 flex items-center justify-center font-medium text-xs">
+            <Shield className="w-3.5 h-3.5" />
           </div>
           <div className="overflow-hidden">
-            <div className="text-xs font-bold text-white truncate">
+            <div className="text-xs font-medium text-white truncate">
               {user?.email || 'admin@kumbati.gov.ph'}
             </div>
             <div className="text-[10px] text-slate-500 truncate">
@@ -123,7 +124,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ onCloseMobile }) => 
         <Link
           to="/"
           target="_blank"
-          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white bg-slate-900/70 hover:bg-slate-850 border border-slate-800 transition-colors"
+          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-850 border border-slate-800 transition-colors"
         >
           <ExternalLink className="w-3.5 h-3.5" />
           <span>View Public Portal</span>
@@ -132,7 +133,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ onCloseMobile }) => 
         {/* Sign Out Button */}
         <button
           onClick={handleSignOut}
-          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-red-400 hover:text-red-300 bg-red-950/20 hover:bg-red-950/40 border border-red-900/40 transition-colors"
+          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-red-400 hover:text-red-300 bg-red-950/20 hover:bg-red-950/40 border border-red-900/30 transition-colors"
         >
           <LogOut className="w-3.5 h-3.5" />
           <span>Sign Out</span>

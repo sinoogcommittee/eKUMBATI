@@ -9,7 +9,6 @@ import {
   Briefcase,
   GraduationCap,
   Activity,
-  CheckCircle2,
   LucideIcon,
 } from 'lucide-react';
 import { Badge, getCategoryBadgeVariant } from './Badge';
@@ -47,7 +46,7 @@ export const StatCounter: React.FC<StatCounterProps> = ({
   descriptionCeb,
   category = 'Flagship',
   iconName = 'Activity',
-  duration = 1500,
+  duration = 1200,
   className = '',
 }) => {
   const { t } = useLanguage();
@@ -83,52 +82,50 @@ export const StatCounter: React.FC<StatCounterProps> = ({
 
   return (
     <div
-      className={`group relative bg-white rounded-2xl p-6 border border-orange-100/80 shadow-sm hover:shadow-kumbati-hover hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden ${className}`}
+      className={`bg-white rounded-xl p-5 border border-slate-200/90 shadow-card flex flex-col justify-between ${className}`}
     >
-      {/* Decorative Warm Gradient Ambient Corner */}
-      <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-orange-100/50 via-amber-50/20 to-transparent rounded-bl-full pointer-events-none transition-transform group-hover:scale-110" />
-
       <div>
-        {/* Header: Category Badge & Icon */}
-        <div className="flex items-center justify-between mb-4 relative z-10">
+        {/* Header: Category Badge & Quiet Icon */}
+        <div className="flex items-center justify-between mb-3">
           <Badge variant={categoryVariant} size="sm" dot>
             {category}
           </Badge>
-          <div className="w-10 h-10 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-600 group-hover:bg-orange-500 group-hover:text-white transition-colors duration-300 shadow-sm">
-            <IconComponent className="w-5 h-5" />
+          <div className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200/60 flex items-center justify-center text-slate-600">
+            <IconComponent className="w-4 h-4" />
           </div>
         </div>
 
-        {/* Big Tabular Counter */}
-        <div className="flex items-baseline gap-1 mb-2 relative z-10">
-          <span className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight font-sans">
+        {/* Counter Display with tabular figures */}
+        <div className="flex items-baseline gap-0.5 mt-2">
+          <span className="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900 tabular-nums">
             {displayValue.toLocaleString()}
           </span>
           {suffix && (
-            <span className="text-3xl sm:text-4xl font-extrabold text-orange-600">
+            <span className="text-xl sm:text-2xl font-medium text-orange-600">
               {suffix}
             </span>
           )}
         </div>
 
-        {/* Title */}
-        <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-orange-600 transition-colors leading-snug mb-2 relative z-10">
+        {/* Localized Title */}
+        <h3 className="text-sm font-medium text-slate-800 mt-1 line-clamp-1">
           {t(titleEn, titleCeb)}
         </h3>
-      </div>
 
-      {/* Description / Subtext */}
-      {(descriptionEn || descriptionCeb) && (
-        <div className="border-t border-slate-100 pt-3 mt-3 relative z-10">
-          <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">
+        {/* Localized Subtext / Description */}
+        {(descriptionEn || descriptionCeb) && (
+          <p className="text-xs text-slate-500 mt-1.5 leading-relaxed line-clamp-2">
             {t(descriptionEn || '', descriptionCeb || '')}
           </p>
-          <div className="mt-2 flex items-center gap-1.5 text-[11px] font-semibold text-emerald-600">
-            <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
-            <span>{t('2025 Verified Milestone', 'Beripikadong Talaan 2025')}</span>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
+
+      {/* Quiet Audit Footnote */}
+      <div className="border-t border-slate-100 pt-3 mt-4 flex items-center justify-between text-[11px] text-slate-400">
+        <span className="tabular-nums">2025 District Tally</span>
+        <span className="text-slate-300">&bull;</span>
+        <span className="text-slate-500">Official</span>
+      </div>
     </div>
   );
 };

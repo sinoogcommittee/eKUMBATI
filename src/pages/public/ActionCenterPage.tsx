@@ -98,53 +98,80 @@ export const ActionCenterPage: React.FC = () => {
   // Submit Handler
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.full_name || !formData.contact_number || !formData.barangay || !formData.message) {
-      alert(t('Please fill in all required fields.', 'Palihug pun-i ang tanan nga gikinahanglanong impormasyon.'));
-      return;
-    }
-
     setIsSubmitting(true);
 
-    // Generate unique alphanumeric tracking code: KMB-YYYY-XXXXX
-    const randomChars = Math.random().toString(36).substring(2, 7).toUpperCase();
-    const currentYear = new Date().getFullYear();
-    const referenceCode = `KMB-${currentYear}-${randomChars}`;
+    // Generate compliant tracking code: KMB-YYYY-XXXXX
+    const year = new Date().getFullYear();
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let randomPart = '';
+    for (let i = 0; i < 5; i++) {
+      randomPart += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    const referenceCode = `KMB-${year}-${randomPart}`;
 
-    const newSubmission: ConstituentSubmission = {
+    const newTicket: ConstituentSubmission = {
       id: `sub-${Date.now()}`,
       reference_code: referenceCode,
       type: formData.type,
       status: 'pending',
-      full_name: formData.full_name,
-      contact_number: formData.contact_number,
-      email: formData.email || undefined,
+      full_name: formData.full_name.trim(),
+      contact_number: formData.contact_number.trim(),
+      email: formData.email.trim() || undefined,
       municipality: formData.municipality,
-      barangay: formData.barangay,
-      subject: formData.subject || `${formData.type.toUpperCase()}: ${formData.program_category}`,
-      message: formData.message,
+      barangay: formData.barangay.trim(),
+      subject: formData.subject.trim() || `${formData.type.toUpperCase()} Request`,
+      message: formData.message.trim(),
       program_category: formData.program_category,
       created_at: new Date().toISOString(),
     };
 
-    // Save to local storage for instant offline resilience
-    saveSubmissionToLocalStorage(newSubmission);
-
-    // If Supabase is connected, attempt remote insert
     if (isSupabaseConfigured) {
       try {
-        await supabase.from('constituent_submissions').insert([newSubmission]);
-      } catch (err) {
-        console.warn('[ActionCenter] Remote insert warning, fallback used:', err);
+        const { error } = await supabase.from('constituent_submissions').insert([
+          {
+            reference_code: newTicket.reference_code,
+            type: newTicket.type,
+            status: newTicket.status,
+            full_name: newTicket.full_name,
+            contact_number: newTicket.contact_number,
+            email: newTicket.email,
+            municipality: newTicket.municipality,
+            barangay: newTicket.barangay,
+            subject: newTicket.subject,
+            message: newTicket.message,
+            program_category: newTicket.program_category,
+          },
+        ]);
+
+        if (error) {
+          throw error;
+        }
+      } catch {
+        // Fall back to localStorage gracefully
       }
     }
 
+    saveSubmissionToLocalStorage(newTicket);
+    setSubmittedTicket(newTicket);
     setIsSubmitting(false);
-    setSubmittedTicket(newSubmission);
+
+    // Reset Form
+    setFormData({
+      type: 'assistance',
+      full_name: '',
+      contact_number: '',
+      email: '',
+      municipality: BOHOL_DISTRICT_3_TOWNS[4] as string,
+      barangay: '',
+      program_category: 'Pabahay ni Kumbati',
+      subject: '',
+      message: '',
+    });
   };
 
-  // Track Code Handler
-  const handleTrackTicket = async (codeToSearch?: string) => {
-    const code = (codeToSearch || searchCode).trim().toUpperCase();
+  // Track Handler
+  const handleTrackTicket = async (overrideCode?: string) => {
+    const code = (overrideCode || searchCode).trim().toUpperCase();
     if (!code) return;
 
     setIsSearching(true);
@@ -242,16 +269,16 @@ export const ActionCenterPage: React.FC = () => {
       {/* =====================================================================
           1. ACTION CENTER HERO
          ===================================================================== */}
-      <section className="bg-gradient-to-b from-orange-50/80 via-amber-50/20 to-transparent pt-10 pb-12 border-b border-orange-100/70">
+      <section className="bg-white border-b border-slate-200/80 pt-10 pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <Badge variant="orange" size="sm" dot>
               {t('Digital Constituent Desk', 'Sentro sa Aksyon')}
             </Badge>
-            <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mt-3">
+            <h1 className="text-3xl sm:text-4xl font-semibold text-slate-900 tracking-tight mt-2">
               {t('Constituent Action Center & Tracker', 'Sentro sa Aksyon ug Reference Tracker')}
             </h1>
-            <p className="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed">
+            <p className="text-base text-slate-600 mt-3 leading-relaxed font-normal">
               {t(
                 'Submit an assistance request, program inquiry, or community grievance directly to Congresswoman Alexie Tutor\'s district team. Track your resolution status live using your unique reference code.',
                 'Isumite ang imong hangyo sa hinabang, pangutana, o sumbong diretso sa buhatan ni Congw. Alexie Tutor. Subaya ang estado sa imong ticket gamit ang imong Reference Code.'
@@ -265,20 +292,20 @@ export const ActionCenterPage: React.FC = () => {
           2. TWO-TAB INTERFACE: SUBMIT VS TRACK
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex border-b border-slate-200 mb-8 max-w-md">
+        <div className="inline-flex p-1 rounded-lg bg-slate-100 border border-slate-200/80 mb-8 max-w-md w-full">
           <button
             onClick={() => {
               setActiveTab('submit');
               setSearchParams({});
             }}
-            className={`flex-1 py-3 text-center text-sm font-bold border-b-2 transition-all flex items-center justify-center gap-2 ${
+            className={`flex-1 py-2 text-center text-xs sm:text-sm font-medium rounded-md transition-colors flex items-center justify-center gap-2 ${
               activeTab === 'submit'
-                ? 'border-orange-500 text-orange-600 font-black'
-                : 'border-transparent text-slate-500 hover:text-slate-900'
+                ? 'bg-white text-slate-900 shadow-subtle font-semibold'
+                : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <Send className="w-4 h-4" />
-            <span>{t('Submit Assistance / Query', 'Pagsumite og Hangyo')}</span>
+            <Send className="w-3.5 h-3.5" />
+            <span>{t('Submit Request', 'Pagsumite og Hangyo')}</span>
           </button>
 
           <button
@@ -286,33 +313,33 @@ export const ActionCenterPage: React.FC = () => {
               setActiveTab('track');
               setSearchParams({ tab: 'track' });
             }}
-            className={`flex-1 py-3 text-center text-sm font-bold border-b-2 transition-all flex items-center justify-center gap-2 ${
+            className={`flex-1 py-2 text-center text-xs sm:text-sm font-medium rounded-md transition-colors flex items-center justify-center gap-2 ${
               activeTab === 'track'
-                ? 'border-orange-500 text-orange-600 font-black'
-                : 'border-transparent text-slate-500 hover:text-slate-900'
+                ? 'bg-white text-slate-900 shadow-subtle font-semibold'
+                : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <Search className="w-4 h-4" />
-            <span>{t('Track Existing Code', 'Susiha ang Reference Code')}</span>
+            <Search className="w-3.5 h-3.5" />
+            <span>{t('Track Reference Code', 'Susiha ang Code')}</span>
           </button>
         </div>
 
         {/* TAB 1: SUBMISSION FORM */}
         {activeTab === 'submit' && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* Form Column */}
-            <div className="lg:col-span-8 bg-white rounded-3xl border border-orange-100 p-6 sm:p-10 shadow-sm">
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="lg:col-span-8 bg-white rounded-xl border border-slate-200/80 p-6 sm:p-8 shadow-card">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label className="block text-xs font-black uppercase tracking-wider text-slate-700 mb-2">
+                  <label className="block text-xs font-medium text-slate-700 mb-2">
                     {t('Submission Type', 'Klase sa Hangyo')} *
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                     {[
                       { value: 'assistance', labelEn: 'Assistance', labelCeb: 'Hinabang' },
                       { value: 'query', labelEn: 'Inquiry', labelCeb: 'Pangutana' },
-                      { value: 'complaint', labelEn: 'Concern / Grievance', labelCeb: 'Sumbong' },
-                      { value: 'suggestion', labelEn: 'Commendation', labelCeb: 'Giya / Suhestyon' },
+                      { value: 'complaint', labelEn: 'Grievance', labelCeb: 'Sumbong' },
+                      { value: 'suggestion', labelEn: 'Feedback', labelCeb: 'Giya' },
                     ].map((typeOption) => (
                       <button
                         key={typeOption.value}
@@ -320,10 +347,10 @@ export const ActionCenterPage: React.FC = () => {
                         onClick={() =>
                           setFormData({ ...formData, type: typeOption.value as SubmissionType })
                         }
-                        className={`py-2 px-3 rounded-xl text-xs font-bold transition-all text-center ${
+                        className={`py-2 px-3 rounded-lg text-xs font-medium transition-colors text-center border ${
                           formData.type === typeOption.value
-                            ? 'bg-orange-500 text-white shadow-kumbati'
-                            : 'bg-slate-50 text-slate-700 border border-slate-200 hover:bg-orange-50'
+                            ? 'bg-orange-500 text-white border-orange-600 shadow-subtle'
+                            : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
                         }`}
                       >
                         {t(typeOption.labelEn, typeOption.labelCeb)}
@@ -335,29 +362,29 @@ export const ActionCenterPage: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Full Name */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label className="block text-xs font-medium text-slate-700 mb-1">
                       {t('Full Name', 'Tibuok Ngalan')} *
                     </label>
                     <div className="relative">
-                      <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                      <User className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                       <input
                         type="text"
                         required
                         placeholder="Juan / Maria Dela Cruz"
                         value={formData.full_name}
                         onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                        className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        className="w-full pl-9 pr-3 py-2 rounded-lg border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-orange-500 bg-white"
                       />
                     </div>
                   </div>
 
                   {/* Mobile Contact Number */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label className="block text-xs font-medium text-slate-700 mb-1">
                       {t('Contact Number (Mobile)', 'Numero sa Telepono')} *
                     </label>
                     <div className="relative">
-                      <Phone className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                      <Phone className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                       <input
                         type="tel"
                         required
@@ -366,7 +393,7 @@ export const ActionCenterPage: React.FC = () => {
                         onChange={(e) =>
                           setFormData({ ...formData, contact_number: e.target.value })
                         }
-                        className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        className="w-full pl-9 pr-3 py-2 rounded-lg border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-orange-500 bg-white"
                       />
                     </div>
                   </div>
@@ -375,13 +402,13 @@ export const ActionCenterPage: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {/* Municipality */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label className="block text-xs font-medium text-slate-700 mb-1">
                       {t('Municipality', 'Lungsod')} *
                     </label>
                     <select
                       value={formData.municipality}
                       onChange={(e) => setFormData({ ...formData, municipality: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
+                      className="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-orange-500 bg-white"
                     >
                       {BOHOL_DISTRICT_3_TOWNS.map((town) => (
                         <option key={town} value={town}>
@@ -393,7 +420,7 @@ export const ActionCenterPage: React.FC = () => {
 
                   {/* Barangay */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label className="block text-xs font-medium text-slate-700 mb-1">
                       {t('Barangay', 'Barangay')} *
                     </label>
                     <input
@@ -402,13 +429,13 @@ export const ActionCenterPage: React.FC = () => {
                       placeholder="e.g. Poblacion, Panadtaran"
                       value={formData.barangay}
                       onChange={(e) => setFormData({ ...formData, barangay: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-orange-500 bg-white"
                     />
                   </div>
 
                   {/* Program Category */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label className="block text-xs font-medium text-slate-700 mb-1">
                       {t('Related Program', 'May Kalabotang Programa')}
                     </label>
                     <select
@@ -416,7 +443,7 @@ export const ActionCenterPage: React.FC = () => {
                       onChange={(e) =>
                         setFormData({ ...formData, program_category: e.target.value })
                       }
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
+                      className="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-orange-500 bg-white"
                     >
                       {INITIAL_PROGRAMS.map((prog) => (
                         <option key={prog.id} value={prog.title_en}>
@@ -432,7 +459,7 @@ export const ActionCenterPage: React.FC = () => {
 
                 {/* Subject */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 mb-1">
                     {t('Subject / Brief Summary', 'Ulohan sa Hangyo')}
                   </label>
                   <input
@@ -440,25 +467,25 @@ export const ActionCenterPage: React.FC = () => {
                     placeholder={t('e.g. PTV Medical Transit to Tagbilaran Hospital', 'e.g. Sakyanan sa Pasyente paingon sa Tagbilaran')}
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-orange-500 bg-white"
                   />
                 </div>
 
                 {/* Message Details */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 mb-1">
                     {t('Detailed Message & Particulars', 'Detalyadong Mensahe')} *
                   </label>
                   <textarea
                     required
-                    rows={5}
+                    rows={4}
                     placeholder={t(
                       'Please detail patient name, hospital destination, date needed, or assistance requirements...',
                       'Isulat ang ngalan sa pasyente, tambalanan, petsa nga gikinahanglan, o detalye sa imong hangyo...'
                     )}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-orange-500 bg-white"
                   />
                 </div>
 
@@ -478,20 +505,20 @@ export const ActionCenterPage: React.FC = () => {
             </div>
 
             {/* Explanatory Sidebar Column */}
-            <div className="lg:col-span-4 space-y-6">
-              <div className="bg-orange-50/70 rounded-3xl p-6 border border-orange-200 space-y-3">
-                <div className="w-10 h-10 rounded-2xl bg-orange-500 text-white flex items-center justify-center font-bold">
-                  <ShieldCheck className="w-5 h-5" />
+            <div className="lg:col-span-4 space-y-4">
+              <div className="bg-slate-50 rounded-xl p-5 border border-slate-200/80 space-y-3">
+                <div className="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center font-bold">
+                  <ShieldCheck className="w-4 h-4" />
                 </div>
-                <h3 className="text-base font-black text-slate-900">
+                <h3 className="text-sm font-semibold text-slate-900">
                   {t('What happens after you submit?', 'Unsay mahitabo human sa pagsumite?')}
                 </h3>
-                <ul className="text-xs text-slate-700 space-y-2.5">
+                <ul className="text-xs text-slate-600 space-y-2">
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                     <span>
                       {t(
-                        'You instantly receive a verified Reference Code (e.g. KMB-2025-XXXXX).',
+                        'You instantly receive a verified Reference Code (e.g. KMB-2026-XXXXX).',
                         'Makadawat ka dayon og opisyal nga Reference Code.'
                       )}
                     </span>
@@ -518,11 +545,11 @@ export const ActionCenterPage: React.FC = () => {
               </div>
 
               {/* Sample Code Quick Search Card */}
-              <div className="bg-white rounded-3xl p-6 border border-slate-200 space-y-3">
-                <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+              <div className="bg-white rounded-xl p-5 border border-slate-200/80 space-y-2.5 shadow-subtle">
+                <span className="text-[11px] font-medium text-slate-500">
                   Demo Preview Code
                 </span>
-                <p className="text-xs text-slate-600">
+                <p className="text-xs text-slate-600 font-normal">
                   {t(
                     'Want to see how ticket resolution looks? Try tracking demo code:',
                     'Gusto nimo makita kung unsaon pagsubay? Sulayi kining demo code:'
@@ -535,7 +562,7 @@ export const ActionCenterPage: React.FC = () => {
                     setSearchCode('KMB-2025-DEMO1');
                     handleTrackTicket('KMB-2025-DEMO1');
                   }}
-                  className="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-orange-50 hover:text-orange-600 text-xs font-mono font-bold text-slate-800 transition-colors text-center border border-slate-200"
+                  className="w-full py-2 px-3 rounded-lg bg-slate-50 hover:bg-slate-100 text-xs font-mono font-medium text-slate-800 transition-colors text-center border border-slate-200"
                 >
                   KMB-2025-DEMO1 &rarr;
                 </button>
@@ -546,10 +573,10 @@ export const ActionCenterPage: React.FC = () => {
 
         {/* TAB 2: LIVE REFERENCE CODE TRACKER */}
         {activeTab === 'track' && (
-          <div className="max-w-3xl mx-auto space-y-8">
+          <div className="max-w-2xl mx-auto space-y-6">
             {/* Search Box */}
-            <div className="bg-white rounded-3xl border border-orange-100 p-6 sm:p-8 shadow-sm">
-              <h3 className="text-lg font-black text-slate-900 mb-2">
+            <div className="bg-white rounded-xl border border-slate-200/80 p-6 sm:p-8 shadow-card">
+              <h3 className="text-base font-semibold text-slate-900 mb-1">
                 {t('Enter Reference Tracking Code', 'Ibutang ang Reference Code')}
               </h3>
               <p className="text-xs text-slate-500 mb-4">
@@ -559,15 +586,15 @@ export const ActionCenterPage: React.FC = () => {
                 )}
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col sm:flex-row gap-2.5">
                 <div className="relative flex-1">
-                  <Search className="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     placeholder="e.g. KMB-2025-DEMO1"
                     value={searchCode}
                     onChange={(e) => setSearchCode(e.target.value.toUpperCase())}
-                    className="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 text-sm font-mono font-bold tracking-wider focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full pl-9 pr-3 py-2 rounded-lg border border-slate-200 text-xs sm:text-sm font-mono tracking-wider focus:outline-none focus:ring-1 focus:ring-orange-500 bg-white"
                   />
                 </div>
                 <Button
@@ -582,7 +609,7 @@ export const ActionCenterPage: React.FC = () => {
               </div>
 
               {searchError && (
-                <div className="mt-4 p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs text-red-700 flex items-start gap-2">
+                <div className="mt-4 p-3 rounded-lg bg-red-50 border border-red-200 text-xs text-red-700 flex items-start gap-2">
                   <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-500" />
                   <span>{searchError}</span>
                 </div>
@@ -591,14 +618,14 @@ export const ActionCenterPage: React.FC = () => {
 
             {/* Tracked Ticket Resolution Timeline & Card */}
             {trackedTicket && (
-              <div className="bg-white rounded-3xl border border-orange-200 p-6 sm:p-10 shadow-lg space-y-8">
+              <div className="bg-white rounded-xl border border-slate-200/80 p-6 sm:p-8 shadow-card space-y-6">
                 {/* Header: Code & Status */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-5">
                   <div>
-                    <span className="text-[11px] font-black uppercase tracking-wider text-slate-400">
+                    <span className="text-[11px] font-medium text-slate-400">
                       {t('Official Tracking Slip', 'Opisyal nga Resibo')}
                     </span>
-                    <div className="text-2xl font-black font-mono text-orange-600 mt-0.5">
+                    <div className="text-xl sm:text-2xl font-semibold font-mono text-slate-900 mt-0.5 tabular-nums">
                       {trackedTicket.reference_code}
                     </div>
                   </div>
@@ -610,24 +637,24 @@ export const ActionCenterPage: React.FC = () => {
 
                 {/* Progress Tracker Stepper */}
                 <div>
-                  <h4 className="text-xs font-black uppercase tracking-wider text-slate-400 mb-4">
+                  <h4 className="text-xs font-medium text-slate-500 mb-3">
                     {t('Resolution Progress Timeline', 'Dagan sa Pagsusi')}
                   </h4>
                   <div className="grid grid-cols-4 gap-2">
                     {getTimelineSteps(trackedTicket.status).map((step, idx) => (
                       <div key={idx} className="flex flex-col items-center text-center">
                         <div
-                          className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs mb-2 transition-all ${
+                          className={`w-7 h-7 rounded-full flex items-center justify-center font-medium text-xs mb-1.5 transition-colors ${
                             step.isCompleted
-                              ? 'bg-emerald-500 text-white shadow-sm'
+                              ? 'bg-emerald-600 text-white'
                               : 'bg-slate-100 text-slate-400 border border-slate-200'
                           }`}
                         >
-                          {step.isCompleted ? <Check className="w-4 h-4" /> : idx + 1}
+                          {step.isCompleted ? <Check className="w-3.5 h-3.5" /> : idx + 1}
                         </div>
                         <span
-                          className={`text-[11px] font-bold leading-tight ${
-                            step.isCompleted ? 'text-slate-900' : 'text-slate-400'
+                          className={`text-[11px] leading-tight ${
+                            step.isCompleted ? 'text-slate-900 font-medium' : 'text-slate-400'
                           }`}
                         >
                           {t(step.labelEn, step.labelCeb)}
@@ -638,39 +665,39 @@ export const ActionCenterPage: React.FC = () => {
                 </div>
 
                 {/* Ticket Details */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs bg-slate-50 p-4 rounded-lg border border-slate-200/60">
                   <div>
-                    <strong className="text-slate-400 uppercase text-[10px] block">
+                    <strong className="text-slate-400 font-normal text-[11px] block">
                       {t('Beneficiary Name', 'Ngalan sa Benepisyaryo')}
                     </strong>
-                    <span className="text-slate-800 font-bold text-sm">
+                    <span className="text-slate-800 font-medium text-xs sm:text-sm">
                       {trackedTicket.full_name}
                     </span>
                   </div>
 
                   <div>
-                    <strong className="text-slate-400 uppercase text-[10px] block">
+                    <strong className="text-slate-400 font-normal text-[11px] block">
                       {t('Municipality & Barangay', 'Lungsod ug Barangay')}
                     </strong>
-                    <span className="text-slate-800 font-bold text-sm">
+                    <span className="text-slate-800 font-medium text-xs sm:text-sm">
                       {trackedTicket.barangay}, {trackedTicket.municipality}
                     </span>
                   </div>
 
                   <div>
-                    <strong className="text-slate-400 uppercase text-[10px] block">
+                    <strong className="text-slate-400 font-normal text-[11px] block">
                       {t('Program Category', 'Programa')}
                     </strong>
-                    <span className="text-slate-800 font-bold">
+                    <span className="text-slate-800 font-medium">
                       {trackedTicket.program_category || 'General Assistance'}
                     </span>
                   </div>
 
                   <div>
-                    <strong className="text-slate-400 uppercase text-[10px] block">
+                    <strong className="text-slate-400 font-normal text-[11px] block">
                       {t('Date Filed', 'Petsa sa Pagsumite')}
                     </strong>
-                    <span className="text-slate-800 font-bold">
+                    <span className="text-slate-800 font-medium tabular-nums">
                       {new Date(trackedTicket.created_at).toLocaleDateString()}
                     </span>
                   </div>
@@ -678,12 +705,12 @@ export const ActionCenterPage: React.FC = () => {
 
                 {/* Case Notes / Remarks from Congressional Staff */}
                 {trackedTicket.admin_notes && (
-                  <div className="p-4 rounded-2xl bg-orange-50 border border-orange-200">
-                    <div className="text-xs font-black uppercase tracking-wider text-orange-950 mb-1 flex items-center gap-1.5">
-                      <FileText className="w-4 h-4 text-orange-600" />
+                  <div className="p-3.5 rounded-lg bg-orange-50/80 border border-orange-200/80">
+                    <div className="text-xs font-semibold text-orange-950 mb-1 flex items-center gap-1.5">
+                      <FileText className="w-3.5 h-3.5 text-orange-600" />
                       <span>{t('Staff Case Remarks & Next Steps', 'Mensahe gikan sa Buhatan')}</span>
                     </div>
-                    <p className="text-xs text-slate-700 leading-relaxed">
+                    <p className="text-xs text-slate-700 leading-relaxed font-normal">
                       {trackedTicket.admin_notes}
                     </p>
                   </div>
@@ -708,29 +735,29 @@ export const ActionCenterPage: React.FC = () => {
             'Tipigi kini nga reference code alang sa pagsusi sa imong ticket.'
           )}
         >
-          <div className="space-y-6 text-center">
+          <div className="space-y-5 text-center">
             {/* Stamp Icon */}
-            <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center">
-              <CheckCircle2 className="w-8 h-8" />
+            <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 mx-auto flex items-center justify-center border border-emerald-200">
+              <CheckCircle2 className="w-6 h-6" />
             </div>
 
             {/* Generated Code Box */}
-            <div className="bg-orange-50 rounded-2xl p-5 border border-orange-200">
-              <div className="text-xs font-bold uppercase tracking-wider text-orange-900 mb-1">
+            <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <div className="text-xs font-medium text-slate-600 mb-1">
                 {t('Your Reference Tracking Code', 'Imong Reference Tracking Code')}
               </div>
-              <div className="text-2xl sm:text-3xl font-black font-mono text-orange-600 my-2">
+              <div className="text-2xl sm:text-3xl font-semibold font-mono text-slate-900 my-1 tabular-nums">
                 {submittedTicket.reference_code}
               </div>
               <button
                 type="button"
                 onClick={() => handleCopyCode(submittedTicket.reference_code)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-orange-200 text-xs font-bold text-slate-700 hover:bg-orange-100 transition-colors shadow-2xs"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-white border border-slate-200 text-xs font-medium text-slate-700 hover:bg-slate-50 transition-colors shadow-subtle"
               >
                 {copiedCode ? (
                   <>
                     <Check className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>{t('Copied to Clipboard!', 'Nahi-kopya na!')}</span>
+                    <span>{t('Copied to Clipboard', 'Nahi-kopya na')}</span>
                   </>
                 ) : (
                   <>
@@ -741,7 +768,7 @@ export const ActionCenterPage: React.FC = () => {
               </button>
             </div>
 
-            <p className="text-xs text-slate-600 leading-relaxed">
+            <p className="text-xs text-slate-600 leading-relaxed font-normal">
               {t(
                 'A caseworker from the district office will review your request. For urgent medical transit (PTV), you may also call the 24/7 hotline at 0917-832-6284.',
                 'Susi-on kini sa mga kawani. Alang sa dinaliang sakyanan sa pasyente, mahimo sab kang motawag sa 0917-832-6284.'

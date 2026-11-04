@@ -28,20 +28,17 @@ const createCustomPin = (category: LocationCategory) => {
   const color = colorMap[category] || '#F97316';
 
   const svgHtml = `
-    <div style="position: relative; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">
-      <div style="position: absolute; width: 32px; height: 32px; border-radius: 50%; background-color: ${color}33; animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;"></div>
-      <div style="width: 24px; height: 24px; border-radius: 50%; background: ${color}; border: 3px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;">
-        <div style="width: 6px; height: 6px; border-radius: 50%; background: white;"></div>
-      </div>
+    <div style="width: 24px; height: 24px; border-radius: 50%; background: ${color}; border: 2px solid white; box-shadow: 0 2px 4px rgba(15,23,42,0.25); display: flex; align-items: center; justify-content: center;">
+      <div style="width: 6px; height: 6px; border-radius: 50%; background: white;"></div>
     </div>
   `;
 
   return L.divIcon({
     html: svgHtml,
     className: 'kumbati-custom-map-pin',
-    iconSize: [32, 32],
-    iconAnchor: [16, 16],
-    popupAnchor: [0, -16],
+    iconSize: [24, 24],
+    iconAnchor: [12, 12],
+    popupAnchor: [0, -12],
   });
 };
 
@@ -81,7 +78,7 @@ export const DistrictLeafletMap: React.FC<DistrictLeafletMapProps> = ({
       {/* Filter Bar with Category Pills & Town Dropdown */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-          <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 uppercase tracking-wider shrink-0 pr-1">
+          <div className="flex items-center gap-1.5 text-xs font-medium text-slate-500 shrink-0 pr-1">
             <Filter className="w-3.5 h-3.5 text-orange-600" />
             <span>{t('Filter', 'Salain')}:</span>
           </div>
@@ -89,10 +86,10 @@ export const DistrictLeafletMap: React.FC<DistrictLeafletMapProps> = ({
             <button
               key={cat.value}
               onClick={() => setSelectedCategory(cat.value)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors shrink-0 ${
                 selectedCategory === cat.value
-                  ? 'bg-orange-500 text-white shadow-kumbati scale-102'
-                  : 'bg-white border border-slate-200 text-slate-700 hover:bg-orange-50/70 hover:border-orange-200'
+                  ? 'bg-slate-900 text-white'
+                  : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300'
               }`}
             >
               {t(cat.labelEn, cat.labelCeb)}
@@ -105,7 +102,7 @@ export const DistrictLeafletMap: React.FC<DistrictLeafletMapProps> = ({
           <select
             value={selectedTown}
             onChange={(e) => setSelectedTown(e.target.value)}
-            className="w-full sm:w-auto px-3.5 py-1.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 bg-white hover:border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer"
+            className="w-full sm:w-auto px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs font-medium text-slate-700 bg-white hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer"
           >
             <option value="all">{t('All 19 Towns', 'Tanan nga 19 ka Lungsod')}</option>
             {BOHOL_DISTRICT_3_TOWNS.map((town) => (
@@ -119,7 +116,7 @@ export const DistrictLeafletMap: React.FC<DistrictLeafletMapProps> = ({
 
       {/* Map Container */}
       <div
-        className="w-full rounded-3xl overflow-hidden border border-orange-200 shadow-md relative"
+        className="w-full rounded-xl overflow-hidden border border-slate-200/80 shadow-card relative"
         style={{ height }}
       >
         <MapContainer
@@ -147,12 +144,12 @@ export const DistrictLeafletMap: React.FC<DistrictLeafletMapProps> = ({
                     <Badge variant={loc.category === 'clinic' ? 'red' : 'orange'} size="sm">
                       {loc.municipality}
                     </Badge>
-                    <span className="text-[10px] uppercase font-bold text-slate-400">
+                    <span className="text-[10px] capitalize font-medium text-slate-400">
                       {loc.category.replace('_', ' ')}
                     </span>
                   </div>
 
-                  <h4 className="text-sm font-extrabold text-slate-900 leading-snug">
+                  <h4 className="text-sm font-semibold text-slate-900 leading-snug">
                     {t(loc.title_en, loc.title_ceb)}
                   </h4>
 
@@ -178,10 +175,10 @@ export const DistrictLeafletMap: React.FC<DistrictLeafletMapProps> = ({
                     <div className="pt-2">
                       <a
                         href={`tel:${loc.phone.replace(/[^0-9+]/g, '')}`}
-                        className="inline-flex items-center justify-center gap-1.5 w-full py-1.5 px-3 rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs transition-colors shadow-2xs"
+                        className="inline-flex items-center justify-center gap-1.5 w-full py-1.5 px-3 rounded-lg bg-orange-600 hover:bg-orange-700 text-white font-medium text-xs transition-colors"
                       >
                         <Phone className="w-3 h-3" />
-                        <span>{loc.phone}</span>
+                        <span className="tabular-nums">{loc.phone}</span>
                       </a>
                     </div>
                   )}
