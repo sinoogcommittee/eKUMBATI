@@ -93,7 +93,13 @@
 
 ---
 
-### Phase 5: Verification & Production Build
+### Phase 5: Verification, Supabase Remote Deployment & Production Build
 - [x] **5.1 Type-check & lint validation**: `npm run build` succeeds without errors
 - [x] **5.2 Offline resilience test**: Full navigation functions when Supabase is disconnected
 - [x] **5.3 Deployment readiness check**: Verification against Render & Supabase requirements
+- [x] **5.4 Remote Supabase Project Setup (`kduwtvwebpggsdrkskgu`)**:
+  - [x] All 8 database tables created via PostgreSQL DDL
+  - [x] Row Level Security (RLS) enabled and verified across all 8 tables
+  - [x] Supabase Storage bucket `kumbati-media` created with public read access
+  - [x] Seed data migrations applied (7 metrics, 7 programs, albums, media, directory, map pins)
+  - [x] Local `.env` linked to live Supabase endpoint and verified in bundle build
