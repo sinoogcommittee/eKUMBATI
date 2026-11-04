@@ -150,11 +150,11 @@ export const AdminProgramsPage: React.FC = () => {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-slate-800 text-orange-400 text-xs font-medium mb-1">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-orange-500/20 text-orange-400 text-xs font-bold uppercase tracking-wider mb-1">
             <Layers className="w-3.5 h-3.5" />
             <span>Advocacy Programs Manager</span>
           </div>
-          <h2 className="text-2xl font-semibold text-white tracking-tight">
+          <h2 className="text-2xl font-black text-white tracking-tight">
             Flagship Programs & Checklists
           </h2>
           <p className="text-xs text-slate-400">
@@ -164,7 +164,7 @@ export const AdminProgramsPage: React.FC = () => {
 
         <div className="flex items-center gap-3">
           {saveSuccessNotice && (
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-medium">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold">
               <CheckCircle2 className="w-4 h-4 text-emerald-400" />
               <span>Program Updated!</span>
             </div>
@@ -181,20 +181,20 @@ export const AdminProgramsPage: React.FC = () => {
       </div>
 
       {/* Program Cards Grid */}
-      <div className="space-y-3">
+      <div className="space-y-4">
         {programs.map((prog, index) => (
           <div
             key={prog.id}
-            className="bg-slate-900 rounded-xl border border-slate-800 p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 hover:border-slate-700 transition-colors shadow-sm"
+            className="bg-slate-900 rounded-3xl border border-slate-800 p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-slate-700 transition-all shadow-sm"
           >
             <div className="flex items-center gap-4">
-              <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-slate-800 shrink-0">
+              <div className="relative w-20 h-20 rounded-2xl overflow-hidden bg-slate-800 shrink-0">
                 <img
                   src={prog.cover_image_url}
                   alt={prog.title_en}
                   className="w-full h-full object-cover"
                 />
-                <span className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-slate-950/80 text-white font-mono text-[9px] font-medium">
+                <span className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/70 text-white font-mono text-[9px] font-bold">
                   #{index + 1}
                 </span>
               </div>
@@ -204,29 +204,29 @@ export const AdminProgramsPage: React.FC = () => {
                   <Badge variant={getCategoryBadgeVariant(prog.category)} size="sm">
                     {prog.category}
                   </Badge>
-                  <span className="text-[11px] font-mono text-slate-400">
+                  <span className="text-[11px] font-mono text-slate-500">
                     /{prog.slug}
                   </span>
                 </div>
-                <h4 className="text-sm font-semibold text-white leading-snug">
+                <h4 className="text-base font-bold text-white leading-snug">
                   {prog.title_en}
                 </h4>
                 <p className="text-xs text-slate-400 line-clamp-1 max-w-xl">
                   {prog.summary_en}
                 </p>
-                <div className="text-[11px] text-orange-400 font-medium flex items-center gap-1 pt-0.5">
+                <div className="text-[11px] text-orange-400 font-semibold flex items-center gap-1 pt-0.5">
                   <FileText className="w-3 h-3" />
                   <span>{prog.requirements_en.length} Required Documents Listed</span>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-2.5 shrink-0 self-end md:self-center">
+            <div className="flex items-center gap-3 shrink-0 self-end md:self-center">
               <button
                 onClick={() => handleToggleActive(prog.id)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors ${
                   prog.is_active
-                    ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
+                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
                     : 'bg-slate-800 text-slate-500'
                 }`}
               >
@@ -235,7 +235,7 @@ export const AdminProgramsPage: React.FC = () => {
 
               <button
                 onClick={() => handleOpenEdit(prog)}
-                className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+                className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
                 title="Edit Program"
               >
                 <Edit className="w-4 h-4" />
@@ -243,7 +243,7 @@ export const AdminProgramsPage: React.FC = () => {
 
               <button
                 onClick={() => handleDelete(prog.id)}
-                className="p-2 rounded-lg bg-slate-800 hover:bg-red-950/60 text-slate-500 hover:text-red-400 transition-colors"
+                className="p-2 rounded-xl bg-slate-800 hover:bg-red-950/60 text-slate-500 hover:text-red-400 transition-colors"
                 title="Delete Program"
               >
                 <Trash2 className="w-4 h-4" />
@@ -262,10 +262,10 @@ export const AdminProgramsPage: React.FC = () => {
           title={editingProgram.title_en}
           subtitle="Configure Program Details, Bilingual Descriptions & Document Checklists"
         >
-          <form onSubmit={handleSaveModal} className="space-y-5">
+          <form onSubmit={handleSaveModal} className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-bold text-slate-700 mb-1">
                   Program Title (English) *
                 </label>
                 <input
@@ -275,12 +275,12 @@ export const AdminProgramsPage: React.FC = () => {
                   onChange={(e) =>
                     setEditingProgram({ ...editingProgram, title_en: e.target.value })
                   }
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-bold text-slate-700 mb-1">
                   Program Title (Cebuano) *
                 </label>
                 <input
@@ -290,14 +290,14 @@ export const AdminProgramsPage: React.FC = () => {
                   onChange={(e) =>
                     setEditingProgram({ ...editingProgram, title_ceb: e.target.value })
                   }
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-bold text-slate-700 mb-1">
                   Category *
                 </label>
                 <select
@@ -308,7 +308,7 @@ export const AdminProgramsPage: React.FC = () => {
                       category: e.target.value as ProgramCategory,
                     })
                   }
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white cursor-pointer"
+                  className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
                 >
                   <option value="Health">Health</option>
                   <option value="Housing">Housing</option>
@@ -320,7 +320,7 @@ export const AdminProgramsPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-bold text-slate-700 mb-1">
                   URL Slug *
                 </label>
                 <input
@@ -330,12 +330,12 @@ export const AdminProgramsPage: React.FC = () => {
                   onChange={(e) =>
                     setEditingProgram({ ...editingProgram, slug: e.target.value })
                   }
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-bold text-slate-700 mb-1">
                   Cover Image URL
                 </label>
                 <input
@@ -347,14 +347,14 @@ export const AdminProgramsPage: React.FC = () => {
                       cover_image_url: e.target.value,
                     })
                   }
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-bold text-slate-700 mb-1">
                   Summary (English)
                 </label>
                 <textarea
@@ -363,12 +363,12 @@ export const AdminProgramsPage: React.FC = () => {
                   onChange={(e) =>
                     setEditingProgram({ ...editingProgram, summary_en: e.target.value })
                   }
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-bold text-slate-700 mb-1">
                   Summary (Cebuano)
                 </label>
                 <textarea
@@ -377,14 +377,14 @@ export const AdminProgramsPage: React.FC = () => {
                   onChange={(e) =>
                     setEditingProgram({ ...editingProgram, summary_ceb: e.target.value })
                   }
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
               </div>
             </div>
 
             {/* Checklist Manager */}
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
-              <label className="block text-xs font-medium text-slate-900">
+            <div className="p-4 rounded-2xl bg-orange-50/70 border border-orange-200 space-y-3">
+              <label className="block text-xs font-black uppercase tracking-wider text-orange-950">
                 Required Documents Checklist ({editingProgram.requirements_en.length})
               </label>
 
@@ -414,19 +414,19 @@ export const AdminProgramsPage: React.FC = () => {
                   placeholder="Requirement (English)"
                   value={newReqEn}
                   onChange={(e) => setNewReqEn(e.target.value)}
-                  className="flex-1 px-3 py-1.5 rounded-lg border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
+                  className="flex-1 px-3 py-1.5 rounded-lg border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
                 />
                 <input
                   type="text"
                   placeholder="Requirement (Cebuano)"
                   value={newReqCeb}
                   onChange={(e) => setNewReqCeb(e.target.value)}
-                  className="flex-1 px-3 py-1.5 rounded-lg border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
+                  className="flex-1 px-3 py-1.5 rounded-lg border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
                 />
                 <button
                   type="button"
                   onClick={handleAddRequirement}
-                  className="px-3 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-700 text-white font-medium text-xs transition-colors"
+                  className="px-3 py-1.5 rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs"
                 >
                   Add
                 </button>
@@ -437,7 +437,7 @@ export const AdminProgramsPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="px-4 py-2 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 transition-colors"
+                className="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100"
               >
                 Cancel
               </button>

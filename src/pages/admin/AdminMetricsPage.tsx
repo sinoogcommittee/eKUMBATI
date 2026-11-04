@@ -78,11 +78,11 @@ export const AdminMetricsPage: React.FC = () => {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-slate-800 text-orange-400 text-xs font-medium mb-1">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-orange-500/20 text-orange-400 text-xs font-bold uppercase tracking-wider mb-1">
             <BarChart2 className="w-3.5 h-3.5" />
             <span>Audited Governance Counters</span>
           </div>
-          <h2 className="text-2xl font-semibold text-white tracking-tight">
+          <h2 className="text-2xl font-black text-white tracking-tight">
             The 7 Flagship 2025 Impact Metrics
           </h2>
           <p className="text-xs text-slate-400">
@@ -92,7 +92,7 @@ export const AdminMetricsPage: React.FC = () => {
 
         <div className="flex items-center gap-3">
           {saveSuccess && (
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-medium">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold">
               <CheckCircle2 className="w-4 h-4 text-emerald-400" />
               <span>Metrics Saved!</span>
             </div>
@@ -114,23 +114,23 @@ export const AdminMetricsPage: React.FC = () => {
           {metrics.map((item, index) => (
             <div
               key={item.id}
-              className="bg-slate-900 rounded-xl border border-slate-800 p-6 shadow-sm space-y-4"
+              className="bg-slate-900 rounded-3xl border border-slate-800 p-6 shadow-sm space-y-4"
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
                 <div className="flex items-center gap-2.5">
-                  <span className="w-7 h-7 rounded-md bg-slate-800 text-orange-400 font-mono font-medium text-xs flex items-center justify-center tabular-nums">
+                  <span className="w-7 h-7 rounded-lg bg-orange-500/20 text-orange-400 font-mono font-bold text-xs flex items-center justify-center">
                     #{index + 1}
                   </span>
                   <Badge variant="orange" size="sm">
                     {item.category}
                   </Badge>
-                  <span className="text-xs font-mono text-slate-400">
+                  <span className="text-xs font-mono text-slate-500 font-semibold">
                     key: {item.metric_key}
                   </span>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <label className="flex items-center gap-2 text-xs font-medium text-slate-300 cursor-pointer">
+                  <label className="flex items-center gap-2 text-xs font-bold text-slate-300 cursor-pointer">
                     <input
                       type="checkbox"
                       checked={item.is_active}
@@ -145,7 +145,7 @@ export const AdminMetricsPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => handleDeleteMetric(item.id)}
-                    className="p-1.5 rounded-md text-slate-500 hover:text-red-400 hover:bg-slate-800 transition-colors"
+                    className="p-1.5 rounded-lg text-slate-500 hover:text-red-400 hover:bg-slate-800 transition-colors"
                     title="Delete Metric"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -156,7 +156,7 @@ export const AdminMetricsPage: React.FC = () => {
               {/* Value & Suffix Row */}
               <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
                 <div className="sm:col-span-4">
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                  <label className="block text-xs font-bold text-slate-300 mb-1">
                     Audited Numeric Value
                   </label>
                   <input
@@ -166,30 +166,30 @@ export const AdminMetricsPage: React.FC = () => {
                     onChange={(e) =>
                       handleUpdate(item.id, 'value_numeric', parseInt(e.target.value) || 0)
                     }
-                    className="w-full px-3.5 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white font-mono text-base font-semibold tabular-nums focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white font-mono text-lg font-black focus:outline-none focus:ring-2 focus:ring-orange-500"
                   />
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                  <label className="block text-xs font-bold text-slate-300 mb-1">
                     Suffix (e.g. +)
                   </label>
                   <input
                     type="text"
                     value={item.suffix}
                     onChange={(e) => handleUpdate(item.id, 'suffix', e.target.value)}
-                    className="w-full px-3.5 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white font-mono text-base font-semibold focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white font-mono text-lg font-black focus:outline-none focus:ring-2 focus:ring-orange-500"
                   />
                 </div>
 
                 <div className="sm:col-span-3">
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                  <label className="block text-xs font-bold text-slate-300 mb-1">
                     Category Tag
                   </label>
                   <select
                     value={item.category}
                     onChange={(e) => handleUpdate(item.id, 'category', e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-800 text-white text-xs font-medium focus:outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs font-bold focus:outline-none focus:ring-2 focus:ring-orange-500"
                   >
                     <option value="Health">Health</option>
                     <option value="Housing">Housing</option>
@@ -200,14 +200,14 @@ export const AdminMetricsPage: React.FC = () => {
                 </div>
 
                 <div className="sm:col-span-3">
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                  <label className="block text-xs font-bold text-slate-300 mb-1">
                     Icon Name (Lucide)
                   </label>
                   <input
                     type="text"
                     value={item.icon_name}
                     onChange={(e) => handleUpdate(item.id, 'icon_name', e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-800 text-white text-xs font-mono focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs font-mono focus:outline-none focus:ring-2 focus:ring-orange-500"
                   />
                 </div>
               </div>
@@ -215,7 +215,7 @@ export const AdminMetricsPage: React.FC = () => {
               {/* Bilingual Titles & Descriptions */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                  <label className="block text-xs font-bold text-slate-300 mb-1">
                     Title (English)
                   </label>
                   <input
@@ -223,12 +223,12 @@ export const AdminMetricsPage: React.FC = () => {
                     required
                     value={item.title_en}
                     onChange={(e) => handleUpdate(item.id, 'title_en', e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                  <label className="block text-xs font-bold text-slate-300 mb-1">
                     Title (Cebuano / Binisaya)
                   </label>
                   <input
@@ -236,14 +236,14 @@ export const AdminMetricsPage: React.FC = () => {
                     required
                     value={item.title_ceb}
                     onChange={(e) => handleUpdate(item.id, 'title_ceb', e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                  <label className="block text-xs font-bold text-slate-300 mb-1">
                     Description (English)
                   </label>
                   <textarea
@@ -252,12 +252,12 @@ export const AdminMetricsPage: React.FC = () => {
                     onChange={(e) =>
                       handleUpdate(item.id, 'description_en', e.target.value)
                     }
-                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                  <label className="block text-xs font-bold text-slate-300 mb-1">
                     Description (Cebuano / Binisaya)
                   </label>
                   <textarea
@@ -266,7 +266,7 @@ export const AdminMetricsPage: React.FC = () => {
                     onChange={(e) =>
                       handleUpdate(item.id, 'description_ceb', e.target.value)
                     }
-                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
                   />
                 </div>
               </div>
@@ -279,9 +279,9 @@ export const AdminMetricsPage: React.FC = () => {
           <Button
             type="submit"
             variant="primary"
-            size="md"
+            size="lg"
             loading={saving}
-            icon={<Save className="w-4 h-4" />}
+            icon={<Save className="w-5 h-5" />}
           >
             Save All Metrics
           </Button>

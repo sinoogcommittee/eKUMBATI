@@ -173,11 +173,11 @@ export const AdminGalleryPage: React.FC = () => {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-slate-800 text-orange-400 text-xs font-medium mb-1">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-orange-500/20 text-orange-400 text-xs font-bold uppercase tracking-wider mb-1">
             <ImageIcon className="w-3.5 h-3.5" />
             <span>Multimedia Content Manager</span>
           </div>
-          <h2 className="text-2xl font-semibold text-white tracking-tight">
+          <h2 className="text-2xl font-black text-white tracking-tight">
             Gallery Albums & Client-side WebP Optimization
           </h2>
           <p className="text-xs text-slate-400">
@@ -196,16 +196,16 @@ export const AdminGalleryPage: React.FC = () => {
       </div>
 
       {/* Album Selector & Uploader Panel */}
-      <div className="bg-slate-900 rounded-xl border border-slate-800 p-6 sm:p-8 space-y-6">
+      <div className="bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-8 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
           <div className="flex items-center gap-3">
-            <span className="text-xs font-medium text-slate-400">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
               Active Album:
             </span>
             <select
               value={selectedAlbumId}
               onChange={(e) => setSelectedAlbumId(e.target.value)}
-              className="px-3.5 py-2 rounded-lg bg-slate-950 border border-slate-700 text-white font-medium text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer"
+              className="px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white font-bold text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
             >
               {albums.map((album) => (
                 <option key={album.id} value={album.id}>
@@ -216,12 +216,12 @@ export const AdminGalleryPage: React.FC = () => {
           </div>
 
           <Badge variant="orange" size="sm">
-            <span className="tabular-nums">{currentAlbumMedia.length}</span> Photos in Album
+            {currentAlbumMedia.length} Photos in Album
           </Badge>
         </div>
 
         {/* Drag & Drop WebP Uploader Zone */}
-        <div className="border border-dashed border-slate-700 hover:border-slate-500 rounded-xl p-8 text-center transition-colors bg-slate-950/60 relative">
+        <div className="border-2 border-dashed border-slate-700 hover:border-orange-500/80 rounded-2xl p-8 text-center transition-colors bg-slate-950/60 relative">
           <input
             type="file"
             multiple
@@ -232,12 +232,12 @@ export const AdminGalleryPage: React.FC = () => {
           />
 
           <div className="flex flex-col items-center justify-center space-y-3 pointer-events-none">
-            <div className="w-12 h-12 rounded-lg bg-orange-500/10 text-orange-400 flex items-center justify-center border border-orange-500/20">
-              <Upload className="w-6 h-6" />
+            <div className="w-14 h-14 rounded-2xl bg-orange-500/10 text-orange-400 flex items-center justify-center border border-orange-500/30">
+              <Upload className="w-7 h-7" />
             </div>
 
             <div>
-              <p className="text-sm font-medium text-white">
+              <p className="text-sm font-bold text-white">
                 {isCompressing
                   ? 'Compressing images to WebP via web worker...'
                   : 'Click or drag high-res photos here to batch upload'}
@@ -251,8 +251,8 @@ export const AdminGalleryPage: React.FC = () => {
 
         {/* Compression Statistics Feedback */}
         {compressionLogs.length > 0 && (
-          <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
-            <div className="text-xs font-medium text-emerald-400 flex items-center gap-1.5">
+          <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+            <div className="text-xs font-black uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4" />
               <span>WebP Compression Savings Report:</span>
             </div>
@@ -260,12 +260,12 @@ export const AdminGalleryPage: React.FC = () => {
               {compressionLogs.map((log, idx) => (
                 <div
                   key={idx}
-                  className="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-[11px] text-slate-300 flex items-center justify-between"
+                  className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] text-slate-300 flex items-center justify-between"
                 >
                   <span className="truncate pr-2 font-mono">{log.fileName}</span>
-                  <div className="shrink-0 text-right tabular-nums">
+                  <div className="shrink-0 text-right">
                     <span className="text-slate-400">{formatBytes(log.originalBytes)}</span>
-                    <span className="text-emerald-400 font-medium ml-1">
+                    <span className="text-emerald-400 font-bold ml-1">
                       &rarr; {formatBytes(log.compressedBytes)} (-{log.savingsPercentage}%)
                     </span>
                   </div>
@@ -276,7 +276,7 @@ export const AdminGalleryPage: React.FC = () => {
         )}
 
         {uploadNotice && (
-          <div className="p-3 rounded-lg bg-emerald-500/20 text-emerald-300 text-xs font-medium border border-emerald-500/40">
+          <div className="p-3 rounded-xl bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/40">
             {uploadNotice}
           </div>
         )}
@@ -285,10 +285,10 @@ export const AdminGalleryPage: React.FC = () => {
       {/* Album Photos Grid */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-white">
+          <h3 className="text-base font-black text-white">
             Photos in &quot;{currentAlbum?.title_en}&quot;
           </h3>
-          <span className="text-xs text-slate-400 tabular-nums">
+          <span className="text-xs text-slate-400">
             {currentAlbumMedia.length} Media items cataloged
           </span>
         </div>
@@ -297,7 +297,7 @@ export const AdminGalleryPage: React.FC = () => {
           {currentAlbumMedia.map((media) => (
             <div
               key={media.id}
-              className="group relative bg-slate-900 rounded-xl border border-slate-800 overflow-hidden shadow-sm"
+              className="group relative bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden shadow-sm"
             >
               <div className="relative h-44 w-full bg-slate-950">
                 <img
@@ -307,26 +307,26 @@ export const AdminGalleryPage: React.FC = () => {
                 />
                 <button
                   onClick={() => handleDeleteMedia(media.id)}
-                  className="absolute top-2 right-2 p-1.5 rounded-md bg-slate-950/80 hover:bg-red-600 text-white transition-colors opacity-0 group-hover:opacity-100"
+                  className="absolute top-2 right-2 p-1.5 rounded-lg bg-black/70 hover:bg-red-600 text-white transition-colors opacity-0 group-hover:opacity-100"
                   title="Delete Photo"
                 >
                   <Trash2 className="w-3.5 h-3.5" />
                 </button>
               </div>
               <div className="p-3">
-                <p className="text-xs font-medium text-slate-200 line-clamp-2">
+                <p className="text-xs font-semibold text-slate-200 line-clamp-2">
                   {media.caption_en}
                 </p>
-                <div className="text-[11px] text-slate-500 mt-1 flex items-center justify-between">
+                <div className="text-[10px] text-slate-500 mt-1 flex items-center justify-between">
                   <span>WebP Optimized</span>
-                  <span className="text-orange-400 font-mono tabular-nums">#{media.display_order}</span>
+                  <span className="text-orange-400 font-mono">#{media.display_order}</span>
                 </div>
               </div>
             </div>
           ))}
 
           {currentAlbumMedia.length === 0 && (
-            <div className="col-span-full py-12 text-center text-xs text-slate-500 bg-slate-900 rounded-xl border border-slate-800">
+            <div className="col-span-full py-12 text-center text-xs text-slate-500 bg-slate-900 rounded-3xl border border-slate-800">
               No photos currently uploaded to this album. Drag files into the box above to add photos.
             </div>
           )}
@@ -344,7 +344,7 @@ export const AdminGalleryPage: React.FC = () => {
         >
           <form onSubmit={handleCreateAlbum} className="space-y-4">
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-bold text-slate-700 mb-1">
                 Album Title (English) *
               </label>
               <input
@@ -355,12 +355,12 @@ export const AdminGalleryPage: React.FC = () => {
                 onChange={(e) =>
                   setNewAlbumData({ ...newAlbumData, title_en: e.target.value })
                 }
-                className="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-bold text-slate-700 mb-1">
                 Album Title (Cebuano)
               </label>
               <input
@@ -370,13 +370,13 @@ export const AdminGalleryPage: React.FC = () => {
                 onChange={(e) =>
                   setNewAlbumData({ ...newAlbumData, title_ceb: e.target.value })
                 }
-                className="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-bold text-slate-700 mb-1">
                   Category
                 </label>
                 <select
@@ -384,7 +384,7 @@ export const AdminGalleryPage: React.FC = () => {
                   onChange={(e) =>
                     setNewAlbumData({ ...newAlbumData, category: e.target.value })
                   }
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white cursor-pointer"
+                  className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
                 >
                   <option value="Housing">Housing</option>
                   <option value="Health">Health</option>
@@ -396,7 +396,7 @@ export const AdminGalleryPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-bold text-slate-700 mb-1">
                   Municipality
                 </label>
                 <select
@@ -404,7 +404,7 @@ export const AdminGalleryPage: React.FC = () => {
                   onChange={(e) =>
                     setNewAlbumData({ ...newAlbumData, municipality: e.target.value })
                   }
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white cursor-pointer"
+                  className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
                 >
                   <option value="District-wide">District-wide</option>
                   {BOHOL_DISTRICT_3_TOWNS.map((town) => (
@@ -418,7 +418,7 @@ export const AdminGalleryPage: React.FC = () => {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-bold text-slate-700 mb-1">
                   Event Date
                 </label>
                 <input
@@ -427,12 +427,12 @@ export const AdminGalleryPage: React.FC = () => {
                   onChange={(e) =>
                     setNewAlbumData({ ...newAlbumData, event_date: e.target.value })
                   }
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-bold text-slate-700 mb-1">
                   Cover Photo URL
                 </label>
                 <input
@@ -441,7 +441,7 @@ export const AdminGalleryPage: React.FC = () => {
                   onChange={(e) =>
                     setNewAlbumData({ ...newAlbumData, cover_image_url: e.target.value })
                   }
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
               </div>
             </div>
@@ -450,7 +450,7 @@ export const AdminGalleryPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsNewAlbumModalOpen(false)}
-                className="px-4 py-2 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 transition-colors"
+                className="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100"
               >
                 Cancel
               </button>

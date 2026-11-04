@@ -19,38 +19,38 @@ export const Badge: React.FC<BadgeProps> = ({
   className = '',
 }) => {
   const sizeClasses = {
-    sm: 'text-[11px] px-2 py-0.5 gap-1.5',
+    sm: 'text-[11px] px-2 py-0.5 gap-1',
     md: 'text-xs px-2.5 py-1 gap-1.5',
   };
 
   const variantClasses: Record<BadgeVariant, { container: string; dot: string }> = {
     orange: {
-      container: 'bg-orange-50 text-orange-800 border-orange-200/60',
+      container: 'bg-orange-50 text-orange-700 border-orange-200/70',
       dot: 'bg-orange-500',
     },
     emerald: {
-      container: 'bg-emerald-50 text-emerald-800 border-emerald-200/60',
-      dot: 'bg-emerald-600',
+      container: 'bg-emerald-50 text-emerald-700 border-emerald-200/70',
+      dot: 'bg-emerald-500',
     },
     amber: {
-      container: 'bg-amber-50 text-amber-800 border-amber-200/60',
+      container: 'bg-amber-50 text-amber-700 border-amber-200/70',
       dot: 'bg-amber-500',
     },
     red: {
-      container: 'bg-red-50 text-red-800 border-red-200/60',
+      container: 'bg-red-50 text-red-700 border-red-200/70',
       dot: 'bg-red-500',
     },
     blue: {
-      container: 'bg-blue-50 text-blue-800 border-blue-200/60',
-      dot: 'bg-blue-600',
+      container: 'bg-blue-50 text-blue-700 border-blue-200/70',
+      dot: 'bg-blue-500',
     },
     slate: {
-      container: 'bg-slate-100 text-slate-700 border-slate-200/80',
+      container: 'bg-slate-100 text-slate-700 border-slate-200/70',
       dot: 'bg-slate-500',
     },
     purple: {
-      container: 'bg-purple-50 text-purple-800 border-purple-200/60',
-      dot: 'bg-purple-600',
+      container: 'bg-purple-50 text-purple-700 border-purple-200/70',
+      dot: 'bg-purple-500',
     },
   };
 
@@ -58,9 +58,9 @@ export const Badge: React.FC<BadgeProps> = ({
 
   return (
     <span
-      className={`inline-flex items-center font-medium rounded-md border ${sizeClasses[size]} ${currentVariant.container} ${className}`}
+      className={`inline-flex items-center font-bold uppercase tracking-wider rounded-lg border ${sizeClasses[size]} ${currentVariant.container} ${className}`}
     >
-      {dot && <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${currentVariant.dot}`} />}
+      {dot && <span className={`w-1.5 h-1.5 rounded-full ${currentVariant.dot}`} />}
       <span>{children}</span>
     </span>
   );
@@ -99,9 +99,10 @@ export function getCategoryBadgeVariant(category: ProgramCategory | string): Bad
     case 'Livelihood':
       return 'emerald';
     case 'Community':
-      return 'slate';
+    case 'Infrastructure':
+      return 'purple';
     default:
-      return 'orange';
+      return 'slate';
   }
 }
 

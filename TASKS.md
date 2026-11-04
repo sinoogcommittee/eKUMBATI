@@ -101,34 +101,14 @@
 
 ---
 
-### Phase 6: Visual Unslopping & Civic Design Craft (Damir Sokolovsky `unslop` Methodology)
-- [x] **6.1 Direction & Token Grounding**:
-  - [x] Replaced colored alpha glow shadows (`shadow-kumbati`) with neutral crisp elevation (`shadow-card`, `shadow-card-hover`, `shadow-subtle`) in `tailwind.config.js`.
-  - [x] Established strict 4px grid spacing, 8-10px control radius (`rounded-lg`), 12-16px card radius (`rounded-xl`), and `tabular-nums` for all constituent tallies.
-- [x] **6.2 Shared UI Atoms & Layout Shells Unslopped**:
-  - [x] `Button.tsx`: Removed multi-stop gradients, neon borders, and pulsing animations; standardized to solid terracotta `#F97316`, `font-medium`, and `rounded-lg`.
-  - [x] `Badge.tsx`: Eliminated forced `uppercase tracking-wider font-bold`; switched to calm sentence-case `font-medium` with quiet hairlines.
-  - [x] `StatCounter.tsx`: Removed floating gradient corner blobs and bouncy translations; enforced `tabular-nums` and quiet official tally footers.
-  - [x] `Header.tsx`: Replaced tri-color top bar with quiet slate `#0F172A`, replaced gradient tile logo with flat geometric seal `K`, and silenced bounce animations.
-  - [x] `Footer.tsx`: Converted to flat seal mark `K`, quiet typography, and structured 19-town directory columns.
-  - [x] `StickyHotlineBar.tsx`: Removed linear gradients, `font-black`, and `animate-bounce` on emergency dialers.
-  - [x] `AdminSidebar.tsx`: Flat seal mark `K`, quiet active link states, and clean status indicators.
-  - [x] `DistrictLeafletMap.tsx` & `index.css`: Eliminated infinite `@keyframes ping` pulses across map pins; rendered crisp 24px solid circular markers with 2px white borders.
-- [x] **6.3 8 Public Pages Unslopped**:
-  - [x] `HomePage.tsx`: Removed ambient hue gradients and blurred blobs; framed representative portrait in natural light without rotated gradients; converted headings to `font-semibold`.
-  - [x] `ImpactPage.tsx`: Removed `Sparkles` badges; standardized municipal breakdown tables with `tabular-nums` and quiet headers.
-  - [x] `ActionCenterPage.tsx`: Segmented quiet tab switcher, crisp 8px input controls, quiet tracking cards, and monospace reference codes.
-  - [x] `ProgramsPage.tsx`: White hero banner, calm category filters, and quiet document checklist containers.
-  - [x] `AboutPage.tsx`: Natural portrait presentation, clean manifesto cards, and quiet legislative timeline.
-  - [x] `DirectoryPage.tsx`: Quiet dark slate 24/7 priority emergency dispatch cards and tabular phone chips.
-  - [x] `MapPage.tsx`: Crisp facility filters, quiet alert banners, and structured POI cards.
-  - [x] `GalleryPage.tsx`: Eliminated hover scale-105 zoom jitter; quieted category filters and lightbox modal.
-- [x] **6.4 8 Admin CMS Pages Unslopped**:
-  - [x] `AdminLoginPage.tsx`, `AdminDashboardPage.tsx`, `AdminMetricsPage.tsx`, `AdminProgramsPage.tsx`, `AdminGalleryPage.tsx`, `AdminSubmissionsPage.tsx`, `AdminLocationsPage.tsx`, `AdminSettingsPage.tsx`:
-  - [x] Converted all oversized `rounded-3xl` cards to quiet `rounded-xl border border-slate-800 bg-slate-900`.
-  - [x] Removed all AI tells (`Sparkles` badges, `font-black`, uppercase tracked labels).
-  - [x] Enforced `tabular-nums` on ticket counters, GPS coordinates, and phone numbers.
-- [x] **6.5 Build & Type Verification**:
+### Phase 6: Brand Design & Navigation Hierarchy
+- [x] **6.1 Original Vibrant Brand Integrity**:
+  - [x] Restored the official KUMBATI design system (vibrant orange `#F97316`, deep red-orange, warm ivory `#FFFDF9`, `shadow-kumbati`, high-energy cards, and dynamic badges) as preferred by stakeholder.
+  - [x] Maintained Leaflet interactive map with custom SVG pins and town filter.
+- [x] **6.2 Navigation Flow Refinement**:
+  - [x] Reordered primary constituent flow across desktop navbar (`Header.tsx`), mobile drawer (`MobileNav.tsx`), footer sitemap (`Footer.tsx`), and router (`App.tsx`).
+  - [x] Placed the **About** page directly after the **Action Center** (`Home` → `Programs` → `Impact` → `Gallery` → `19 Towns` → `District Map` → `Action Center` → `About`).
+- [x] **6.3 Build & Type Verification**:
   - [x] `npm run build` passes with exit code 0 and zero TypeScript or Vite bundle errors.
 - [x] **5.4 Remote Supabase Project Setup (`kduwtvwebpggsdrkskgu`)**:
   - [x] All 8 database tables created via PostgreSQL DDL

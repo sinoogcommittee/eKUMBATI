@@ -10,7 +10,7 @@ import {
   AlertCircle,
   Database,
   CloudOff,
-  KeyRound,
+  Sparkles,
 } from 'lucide-react';
 
 export const AdminLoginPage: React.FC = () => {
@@ -55,20 +55,19 @@ export const AdminLoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-center items-center p-4 sm:p-6 selection:bg-orange-500 selection:text-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100 flex flex-col justify-center items-center p-4 sm:p-6 selection:bg-orange-500 selection:text-white">
       <div className="w-full max-w-md">
         {/* Brand Header */}
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-3 group mb-4">
-            <div className="w-10 h-10 rounded-lg bg-slate-900 border border-slate-700/80 flex items-center justify-center text-white font-semibold text-lg relative">
-              <span>K</span>
-              <div className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-orange-500 ring-2 ring-slate-950" />
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-orange-600 to-orange-400 flex items-center justify-center text-white font-black text-2xl shadow-kumbati group-hover:scale-105 transition-transform">
+              K
             </div>
             <div className="text-left">
-              <span className="text-lg font-semibold text-white tracking-tight block">
+              <span className="text-2xl font-black text-white tracking-tight block">
                 e-KUMBATI
               </span>
-              <span className="text-xs text-slate-400">
+              <span className="text-xs text-orange-400 font-bold uppercase tracking-wider">
                 Staff Admin Portal
               </span>
             </div>
@@ -82,9 +81,9 @@ export const AdminLoginPage: React.FC = () => {
         </div>
 
         {/* Login Card */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 sm:p-8 shadow-card space-y-6">
+        <div className="bg-slate-900/90 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
           {/* Connectivity Status Banner */}
-          <div className="p-3 rounded-lg bg-slate-950 border border-slate-800 flex items-center justify-between text-xs">
+          <div className="p-3 rounded-xl bg-slate-950/70 border border-slate-800 flex items-center justify-between text-xs">
             <span className="text-slate-400 flex items-center gap-2">
               {isSupabaseConfigured ? (
                 <Database className="w-4 h-4 text-emerald-400" />
@@ -94,7 +93,7 @@ export const AdminLoginPage: React.FC = () => {
               <span>{isSupabaseConfigured ? 'Live Supabase Cloud' : 'Offline / Sandbox Mode'}</span>
             </span>
             <span
-              className={`text-[11px] font-medium px-2 py-0.5 rounded-md ${
+              className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-full ${
                 isSupabaseConfigured
                   ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
                   : 'bg-amber-500/10 text-amber-400 border border-amber-500/30'
@@ -105,7 +104,7 @@ export const AdminLoginPage: React.FC = () => {
           </div>
 
           {errorMessage && (
-            <div className="p-3.5 rounded-lg bg-red-950/50 border border-red-800 text-xs text-red-300 flex items-start gap-2.5">
+            <div className="p-3.5 rounded-xl bg-red-950/50 border border-red-800 text-xs text-red-300 flex items-start gap-2.5">
               <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
               <span>{errorMessage}</span>
             </div>
@@ -114,7 +113,7 @@ export const AdminLoginPage: React.FC = () => {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1.5">
+              <label className="block text-xs font-bold text-slate-300 mb-1.5 uppercase tracking-wider">
                 Email Address
               </label>
               <div className="relative">
@@ -125,13 +124,13 @@ export const AdminLoginPage: React.FC = () => {
                   placeholder="staff@kumbati.bohol3.gov.ph"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent placeholder-slate-600"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent placeholder-slate-600"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1.5">
+              <label className="block text-xs font-bold text-slate-300 mb-1.5 uppercase tracking-wider">
                 Password
               </label>
               <div className="relative">
@@ -142,7 +141,7 @@ export const AdminLoginPage: React.FC = () => {
                   placeholder="••••••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent placeholder-slate-600"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent placeholder-slate-600"
                 />
               </div>
             </div>
@@ -163,7 +162,7 @@ export const AdminLoginPage: React.FC = () => {
           {/* Divider */}
           <div className="relative flex py-1 items-center">
             <div className="flex-grow border-t border-slate-800" />
-            <span className="shrink-0 mx-3 text-slate-500 text-[11px] font-medium">
+            <span className="shrink-0 mx-3 text-slate-500 text-[11px] font-bold uppercase tracking-wider">
               Or Instant Sandbox Access
             </span>
             <div className="flex-grow border-t border-slate-800" />
@@ -174,9 +173,9 @@ export const AdminLoginPage: React.FC = () => {
             <button
               type="button"
               onClick={handleDemoLogin}
-              className="w-full py-2.5 px-4 rounded-lg bg-slate-950 hover:bg-slate-850 border border-slate-800 hover:border-slate-700 text-slate-200 font-medium text-xs flex items-center justify-center gap-2 transition-colors active:scale-[0.99]"
+              className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 hover:from-amber-500/30 hover:to-orange-500/30 border border-orange-500/40 text-orange-300 font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-sm active:scale-95"
             >
-              <KeyRound className="w-4 h-4 text-orange-400" />
+              <Sparkles className="w-4 h-4 text-orange-400" />
               <span>1-Click Demo Administrator Access</span>
             </button>
             <p className="text-[11px] text-slate-500 text-center leading-normal">
@@ -189,7 +188,7 @@ export const AdminLoginPage: React.FC = () => {
         <div className="text-center mt-6">
           <Link
             to="/"
-            className="text-xs font-medium text-slate-400 hover:text-orange-400 transition-colors inline-flex items-center gap-1.5"
+            className="text-xs font-bold text-slate-400 hover:text-orange-400 transition-colors inline-flex items-center gap-1.5"
           >
             <span>&larr; Return to Public Web Portal</span>
           </Link>
