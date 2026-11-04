@@ -1,4 +1,5 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { Database } from '../types/database.types';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
@@ -16,11 +17,11 @@ export const isSupabaseConfigured: boolean = Boolean(
 );
 
 /**
- * Resilient Supabase client instance.
+ * Resilient Supabase client instance typed with PostgreSQL schema.
  * If credentials are not configured, uses a safe fallback placeholder URL
  * so imports do not throw, and application services can gracefully switch to constants.ts.
  */
-export const supabase: SupabaseClient = createClient(
+export const supabase: SupabaseClient<Database> = createClient<Database>(
   isSupabaseConfigured ? (supabaseUrl as string) : 'https://fallback-placeholder.supabase.co',
   isSupabaseConfigured ? (supabaseAnonKey as string) : 'fallback-anon-key-placeholder',
   {
