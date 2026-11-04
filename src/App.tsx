@@ -34,13 +34,13 @@ export const App: React.FC = () => {
           {/* Public Portal Routes */}
           <Route element={<PublicLayout />}>
             <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
             <Route path="/programs" element={<ProgramsPage />} />
             <Route path="/impact" element={<ImpactPage />} />
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/directory" element={<DirectoryPage />} />
             <Route path="/map" element={<MapPage />} />
             <Route path="/action-center" element={<ActionCenterPage />} />
+            <Route path="/about" element={<AboutPage />} />
           </Route>
 
           {/* Admin Login Route (Standalone) */}

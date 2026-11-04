@@ -23,13 +23,13 @@ export const Header: React.FC<HeaderProps> = ({
 
   const navLinks = [
     { to: '/', labelEn: 'Home', labelCeb: 'Balay' },
-    { to: '/about', labelEn: 'About', labelCeb: 'Mahitungod' },
     { to: '/programs', labelEn: 'Programs', labelCeb: 'Mga Programa' },
     { to: '/impact', labelEn: 'Impact', labelCeb: 'Kalampusan' },
     { to: '/gallery', labelEn: 'Gallery', labelCeb: 'Galeriya' },
     { to: '/directory', labelEn: '19 Towns', labelCeb: '19 ka Lungsod' },
     { to: '/map', labelEn: 'District Map', labelCeb: 'Mapa sa Distrito' },
     { to: '/action-center', labelEn: 'Action Center', labelCeb: 'Sentro sa Aksyon' },
+    { to: '/about', labelEn: 'About', labelCeb: 'Mahitungod' },
   ];
 
   return (

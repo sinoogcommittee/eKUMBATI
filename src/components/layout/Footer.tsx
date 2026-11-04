@@ -124,11 +124,6 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="hover:text-white transition-colors">
-                  {t('About Congw. Alexie Tutor', 'Mahitungod kang Congw. Alexie')}
-                </Link>
-              </li>
-              <li>
                 <Link to="/programs" className="hover:text-white transition-colors">
                   {t('7 Flagship Programs', '7 ka mga Nag-unang Programa')}
                 </Link>
@@ -159,6 +154,11 @@ export const Footer: React.FC = () => {
                   className="text-orange-400 hover:text-orange-300 transition-colors font-medium"
                 >
                   {t('Action Center (Submit or Track Ticket)', 'Sentro sa Aksyon (Track Ticket)')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:text-white transition-colors">
+                  {t('About Congw. Alexie Tutor', 'Mahitungod kang Congw. Alexie')}
                 </Link>
               </li>
             </ul>

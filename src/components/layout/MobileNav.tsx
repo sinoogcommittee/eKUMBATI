@@ -34,13 +34,13 @@ export const MobileNav: React.FC<MobileNavProps> = ({
 
   const navItems = [
     { to: '/', labelEn: 'Home', labelCeb: 'Balay', icon: Home },
-    { to: '/about', labelEn: 'About Congw. Alexie', labelCeb: 'Mahitungod', icon: Info },
     { to: '/programs', labelEn: '7 Flagship Programs', labelCeb: '7 ka Programa', icon: Layers },
     { to: '/impact', labelEn: '2025 Impact Metrics', labelCeb: 'Kalampusan', icon: BarChart3 },
     { to: '/gallery', labelEn: 'Photo Gallery', labelCeb: 'Galeriya', icon: Image },
     { to: '/directory', labelEn: '19 Towns Directory', labelCeb: '19 ka Lungsod', icon: MapPin },
     { to: '/map', labelEn: 'Interactive Map', labelCeb: 'Mapa sa Distrito', icon: Map },
     { to: '/action-center', labelEn: 'Action Center & Tracker', labelCeb: 'Sentro sa Aksyon', icon: FileText },
+    { to: '/about', labelEn: 'About Congw. Alexie', labelCeb: 'Mahitungod', icon: Info },
   ];
 
   return (
