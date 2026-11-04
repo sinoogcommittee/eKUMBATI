@@ -63,4 +63,5 @@
     - Directed visual character toward grounded Boholano civic craft (terracotta orange `#F97316`, Bohol ivory `#FFFDF9`, quiet dark slate `#0F172A`, 4px grid spacing, `font-medium`/`font-semibold`, tabular numbers for tallies).
     - Removed AI slop tells: radial blurred background blobs, colored alpha glows (`shadow-kumbati`), multi-stop linear gradients, `font-black` (900-weight) headings, forced uppercase tracked labels, bouncy looping pulses, and `Sparkles` badges.
     - Standardized all 8 public and 8 admin pages, layout shells (`Header`, `Footer`, `StickyHotlineBar`, `AdminSidebar`), atoms (`Button`, `Badge`, `StatCounter`), and `DistrictLeafletMap` (static 24px solid pins instead of infinite ping pulses).
+    - Reordered public navigation across Header, MobileNav, Footer, and App router placing the About page after the Action Center.
     - Verified production compilation (`npm run build`) succeeded with exit code 0.
