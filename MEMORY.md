@@ -43,7 +43,7 @@
 
 ## 5. Progress History
 - **2026-11-04**: Workspace initialized from scratch.
-  - Authored 8 foundational blueprint files (`PRD.md`, `ARCHITECTURE.md`, `RULES.md`, `DESIGN.md`, `DATABASE.md`, `TASKS.md`, `MEMORY.md`, `DEPLOYMENT.md`).
+  - Authored foundational blueprint files (`PRD.md`, `ARCHITECTURE.md`, `RULES.md`, `DESIGN.md`, `DATABASE.md`, `TASKS.md`, `MEMORY.md`, `DEPLOYMENT.md`, `AGENTS.md`).
   - Generated project root configurations (`package.json`, `tsconfig.json`, `vite.config.ts`, `tailwind.config.js`, `postcss.config.js`, `index.html`, `.env.example`, `src/index.css`, `src/vite-env.d.ts`).
   - Authored Phase 1 core modules: `kumbati.types.ts`, `constants.ts`, `supabaseClient.ts`, `imageCompression.ts`, `LanguageContext.tsx`, `AuthContext.tsx`.
   - Installed dependencies via npm and confirmed a 100% clean production build (`npm run build` completed with code 0).

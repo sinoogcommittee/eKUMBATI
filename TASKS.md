@@ -27,6 +27,7 @@
   - [x] `TASKS.md`: Project roadmap & checklist
   - [x] `MEMORY.md`: Project state tracker
   - [x] `DEPLOYMENT.md`: Static site hosting & Supabase setup guide
+  - [x] `AGENTS.md`: Operational manual for autonomous AI coding agents
 - [x] **1.2 Project Configuration Files**
   - [x] `package.json`: Vite, React 18, Tailwind, Lucide, Framer Motion, Leaflet, Supabase
   - [x] `tsconfig.json` & `tsconfig.node.json`: Strict TypeScript settings
