@@ -25,6 +25,7 @@ interface StatCounterProps {
   iconName?: string;
   duration?: number;
   className?: string;
+  showDetails?: boolean;
 }
 
 const ICON_MAP: Record<string, LucideIcon> = {
@@ -49,6 +50,7 @@ export const StatCounter: React.FC<StatCounterProps> = ({
   iconName = 'Activity',
   duration = 1500,
   className = '',
+  showDetails = true,
 }) => {
   const { t } = useLanguage();
   const [displayValue, setDisplayValue] = useState<number>(0);
@@ -118,7 +120,7 @@ export const StatCounter: React.FC<StatCounterProps> = ({
       </div>
 
       {/* Description / Subtext & Inner Milestone Box */}
-      {(descriptionEn || descriptionCeb) && (
+      {showDetails && (descriptionEn || descriptionCeb) && (
         <div className="border-t border-orange-100/70 pt-3 mt-3 relative z-10">
           <p className="text-xs text-slate-500 leading-relaxed line-clamp-2 mb-2.5">
             {t(descriptionEn || '', descriptionCeb || '')}

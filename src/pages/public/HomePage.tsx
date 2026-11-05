@@ -10,16 +10,12 @@ import {
 import StatCounter from '../../components/common/StatCounter';
 import Button from '../../components/common/Button';
 import Badge from '../../components/common/Badge';
-import DistrictLeafletMap from '../../components/maps/DistrictLeafletMap';
 import HotlineModal from '../../components/common/HotlineModal';
 import {
   PhoneCall,
   ShieldCheck,
   ChevronRight,
-  Sparkles,
   ExternalLink,
-  MapPin,
-  CheckCircle,
   FileText,
   Heart,
   Facebook,
@@ -47,8 +43,7 @@ export const HomePage: React.FC = () => {
             {/* Left Column: Copy & Primary CTAs */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               {/* Pill Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-orange-200 text-orange-800 text-xs font-bold shadow-2xs">
-                <Sparkles className="w-4 h-4 text-orange-500" />
+              <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-white border border-orange-200 text-orange-800 text-xs font-bold shadow-2xs">
                 <span>
                   {t(
                     'Official Constituent Portal • 3rd District of Bohol',
@@ -100,28 +95,6 @@ export const HomePage: React.FC = () => {
                   </Button>
                 </Link>
               </div>
-
-              {/* Social Proof / Key Highlights Bar */}
-              <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-500">
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0" />
-                  <span className="font-semibold text-slate-700">
-                    {t('19 Municipalities Covered', '19 ka Lungsod Gialagaran')}
-                  </span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0" />
-                  <span className="font-semibold text-slate-700">
-                    {t('24/7 Patient Transport (PTV)', '24/7 Sakyanan sa Pasyente')}
-                  </span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0" />
-                  <span className="font-semibold text-slate-700">
-                    {t('Dialysis Tambayan Haven', 'Tambayan sa Dialysis Tagbilaran')}
-                  </span>
-                </div>
-              </div>
             </div>
 
             {/* Right Column: Representative Spotlight Card */}
@@ -150,13 +123,6 @@ export const HomePage: React.FC = () => {
                     </div>
                   </div>
 
-                  <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                    {t(
-                      'Licensed physical therapist, law graduate, and author of landmark healthcare, civil service, and housing bills for the third district.',
-                      'Lisensyadong physical therapist, gradwado sa balaod, ug tagsulat sa mahinungdanong balaod sa panglawas, serbisyo sibil, ug pabalay sa Ikatulong Distrito.'
-                    )}
-                  </p>
-
                   <div className="flex items-center justify-between border-t border-orange-100/70 pt-3 text-xs">
                     <Link
                       to="/about"
@@ -182,8 +148,7 @@ export const HomePage: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-3 py-1 rounded-full border border-orange-200 mb-2">
-              <Sparkles className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-3 py-1 rounded-full border border-orange-200 mb-2">
               <span>{t('Audit-Verified Governance', 'Matinud-anong Pag-alagad')}</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
@@ -213,36 +178,31 @@ export const HomePage: React.FC = () => {
               suffix={metric.suffix}
               titleEn={metric.title_en}
               titleCeb={metric.title_ceb}
-              descriptionEn={metric.description_en}
-              descriptionCeb={metric.description_ceb}
               category={metric.category}
               iconName={metric.icon_name}
+              showDetails={false}
             />
           ))}
 
           {/* District 3 Summary Block as the 8th Tile */}
           <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-sinoog border border-slate-800 border-t-slate-700 hover:border-orange-500/50 hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300">
             <div>
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center justify-between mb-4">
                 <Badge variant="orange" size="sm">
                   {t('District-wide', 'Tibuok Distrito')}
                 </Badge>
-                <div className="w-9 h-9 rounded-xl bg-slate-800/90 border border-slate-700/80 flex items-center justify-center shadow-sinoog-inner">
-                  <Heart className="w-4 h-4 text-red-500 fill-red-500" />
+                <div className="w-11 h-11 rounded-2xl bg-slate-800/90 border border-slate-700/80 flex items-center justify-center shadow-sinoog-inner">
+                  <Heart className="w-5 h-5 text-red-500 fill-red-500" />
                 </div>
               </div>
-              <div className="text-4xl font-black tracking-tight text-white mb-1">
-                19 / 19
+              <div className="flex items-baseline gap-1 mb-2">
+                <span className="text-4xl sm:text-5xl font-black text-white tracking-tight font-sans">
+                  19 / 19
+                </span>
               </div>
-              <h3 className="text-base font-bold text-orange-400 mb-2">
+              <h3 className="text-base sm:text-lg font-bold text-orange-400 leading-snug">
                 {t('Municipalities United', 'Mga Lungsod nga Nahiusa')}
               </h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                {t(
-                  'From inland Chocolate Hills in Carmen to coastal havens in Anda and Jagna, every Boholano is counted.',
-                  'Gikan sa Carmen hangtod sa Anda ug Jagna, ang tanang Boholano giatiman ug gipaluyohan.'
-                )}
-              </p>
             </div>
 
             <div className="border-t border-slate-800 pt-3 mt-4">
@@ -263,7 +223,7 @@ export const HomePage: React.FC = () => {
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <Badge variant="orange" size="sm" dot>
+          <Badge variant="orange" size="sm">
             {t('Core Initiatives', 'Mga Nag-unang Proyekto')}
           </Badge>
           <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-2">
@@ -391,42 +351,12 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* =====================================================================
-          5. INTERACTIVE DISTRICT MAP PREVIEW
-         ===================================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-          <div>
-            <Badge variant="orange" size="sm" dot>
-              {t('Geospatial Directory', 'Mapa sa Distrito')}
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-1">
-              {t('Facilities & Offices Across District 3', 'Mga Pasilidad ug Buhatan sa Distrito 3')}
-            </h2>
-            <p className="text-sm text-slate-600 mt-1">
-              {t(
-                'Locate congressional headquarters, Kumbati clinics, PTV dispatch points, and municipal halls.',
-                'Pangitaa ang mga opisina sa distrito, klinika, sakyanan sa pasyente, ug mga munisipyo.'
-              )}
-            </p>
-          </div>
-
-          <Link to="/map" className="shrink-0">
-            <Button variant="outline" size="sm" icon={<MapPin className="w-4 h-4" />}>
-              {t('Open Full Interactive Map', 'Ablihi ang Tibuok Mapa')}
-            </Button>
-          </Link>
-        </div>
-
-        <DistrictLeafletMap height="480px" />
-      </section>
-
-      {/* =====================================================================
-          6. MULTIMEDIA PHOTO HIGHLIGHTS PREVIEW
+          5. MULTIMEDIA PHOTO HIGHLIGHTS PREVIEW
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-end justify-between gap-4 mb-8">
           <div>
-            <Badge variant="orange" size="sm" dot>
+            <Badge variant="orange" size="sm">
               {t('Visual Documentation', 'Dokumentasyon')}
             </Badge>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-1">
@@ -481,7 +411,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* =====================================================================
-          7. OFFICIAL FACEBOOK CHANNELS STRIP
+          6. OFFICIAL FACEBOOK CHANNELS STRIP
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-3xl p-8 sm:p-10 border border-slate-800 shadow-sinoog relative overflow-hidden">

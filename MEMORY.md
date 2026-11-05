@@ -224,3 +224,10 @@
   - Updated Footer Column 2 to display both official channels.
   - Updated Admin Settings (`AdminSettingsPage.tsx`) to manage both official URLs.
   - Updated `constants.ts`, `kumbati.types.ts`, `AGENTS.md`, and `TASKS.md`.
+- **2026-11-05**: Homepage Cleanup & Streamlining:
+  - Removed hero social proof highlight pills (`19 Municipalities Covered`, `24/7 Patient Transport (PTV)`, `Dialysis Tambayan Haven`).
+  - Removed representative bio snippet (`Licensed physical therapist, law graduate, and author...`) from hero card.
+  - Removed star/sparkle icons from badge labels across Homepage.
+  - Streamlined Homepage metric cards by omitting details and `2027 Verified Milestone` badges (`showDetails={false}`), reserving in-depth metrics and verification exclusively for the `/impact` page.
+  - Removed redundant Geospatial Directory / Leaflet map preview section from Homepage (interactive mapping housed on dedicated `/map` page).
+  - Production build verified (`npm run build` completed with code 0).

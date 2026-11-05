@@ -466,6 +466,22 @@
 - [x] **22.3 Architecture & Type Safety**:
   - [x] Updated `src/types/kumbati.types.ts`, `src/lib/constants.ts`, `AGENTS.md`, and `MEMORY.md`.
 
+---
+
+### Phase 23: Homepage Cleanup & Decluttering
+- [x] **23.1 Hero Section Decluttering**:
+  - [x] Removed the 3 highlight pills under hero action buttons (`19 Municipalities Covered`, `24/7 Patient Transport (PTV)`, `Dialysis Tambayan Haven`).
+  - [x] Removed representative bio snippet (`Licensed physical therapist, law graduate, and author...`) from spotlight card.
+  - [x] Removed star/sparkle icons from badge labels (`<Sparkles ... />`).
+- [x] **23.2 Streamlined Metrics Cards**:
+  - [x] Enabled `showDetails={false}` for Homepage metrics cards to remove description text and the `2027 Verified Milestone` badge (retaining full descriptions and milestone verification exclusively on `/impact`).
+  - [x] Adjusted 8th summary card layout to match the uniform metric card height.
+- [x] **23.3 Redundant Geospatial Map Removal**:
+  - [x] Removed Section 5 (`Geospatial Directory / Facilities & Offices Across District 3` interactive Leaflet map preview), keeping interactive mapping exclusively within the dedicated `/map` page.
+  - [x] Reduced Homepage JS bundle from 24.6 kB to 21.9 kB.
+- [x] **23.4 Verification & Production Build**:
+  - [x] Verified `npm run build` completed with code 0 (1980 modules transformed in 25.95s).
+
 
 
 
