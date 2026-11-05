@@ -112,3 +112,18 @@
     - Progressive disclosure pagination ("Show More Measures" / "Show All") with instant feedback.
     - Official portrait integration with user-provided asset `/images/cong_alexie.jpg` in both `AboutPage.tsx` and `HomePage.tsx`.
   - Confirmed 100% clean production build (`npm run build` passed in 9.84s with exit code 0).
+- **2026-11-05**: Material Design 3 Design System from Sinoog 2027:
+  - Architected full Material 3 token layer in `src/styles/m3/`:
+    - `tokens.css`: Typography scales (`--md-sys-typescale-*`), corner radii (`--md-sys-shape-corner-*`), spacing scale (`--md-space-*`), target sizes (`44px` min / `48px` comfortable), M3 elevation levels 0–5, motion easing curves, state layers (`--md-sys-state-*`), focus ring, scrim, and Sinoog 3-layer pop shadows (`--sinoog-shadow-card`, `--sinoog-shadow-card-hover`, `--sinoog-shadow-card-raised`).
+    - `light-theme.css`: Material 3 color roles mapped to KUMBATI's vibrant orange (`#ea580c`), emergency red (`#dc2626`), amber (`#d97706`), warm ivory (`#fffdf9`), and dark slate (`#0f172a`), with surface container tiers (lowest to highest) and semantic status colors.
+    - `dark-theme.css`: Material 3 dark mode color roles for high contrast and dark surfaces.
+    - `components.css`: `.m3-button` (filled, tonal, outlined, text, danger), `.m3-icon-button`, `.m3-card` (filled, elevated, outlined with backdrop blur and pop shadows), `.m3-chip` (assist, filter, is-selected), `.m3-dialog`, `.m3-progress-circular`, `.m3-progress-linear`, `.m3-segmented-control`, `.m3-state-layer`.
+    - `fields.css`: `.m3-field` (label, input, select, textarea, icon, support/error, 52px height, no-jump focus border), `.m3-search` (rounded pill search bar with icon and clear action), `.m3-check` (custom M3 checkbox), `.m3-switch` (custom M3 toggle switch).
+    - `index.css`: Main M3 entry point imported directly in `src/index.css`.
+  - Built full React M3 component suite in `src/components/m3/`: `Card.tsx`, `Button.tsx`, `IconButton.tsx`, `Chip.tsx`, `TextField.tsx`, `TextArea.tsx`, `SelectField.tsx`, `SearchBar.tsx`, `Checkbox.tsx`, `Switch.tsx`, `Dialog.tsx`, and `index.ts`.
+  - Upgraded public pages to M3 components:
+    - `AboutPage.tsx`: M3 `SearchBar` for measures, M3 `Chip` for sector filters, M3 `Card` for measures.
+    - `NewsPage.tsx`: M3 `SearchBar` for bulletins, M3 `Chip` for category tabs, M3 `Card` for news cards.
+    - `DirectoryPage.tsx`: M3 `SearchBar` for town directory, M3 `Chip` for emergency lines toggle, M3 `Card` for 19 town directory cards.
+    - `ActionCenterPage.tsx`: M3 `Chip` for submission types, M3 `SearchBar` for reference code tracking, M3 `Card` for tracking slip.
+  - Confirmed 100% clean production build (`npm run build` passed in 16.30s with exit code 0).

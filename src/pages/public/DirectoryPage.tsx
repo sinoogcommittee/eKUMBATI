@@ -6,9 +6,9 @@ import {
   INITIAL_HOTLINES,
 } from '../../lib/constants';
 import Badge from '../../components/common/Badge';
+import { Card, SearchBar, Chip } from '../../components/m3';
 import {
   Phone,
-  Search,
   MapPin,
   AlertCircle,
   Copy,
@@ -164,29 +164,24 @@ export const DirectoryPage: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Search & Toggle Bar */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8">
-          <div className="relative flex-1 max-w-md">
-            <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
-            <input
-              type="text"
+          <div className="flex-1 max-w-md">
+            <SearchBar
+              label={t('Search municipality', 'Pangitaa ang lungsod')}
               placeholder={t('Search municipality (e.g. Carmen, Jagna, Anda)...', 'Pangitaa ang lungsod (e.g. Carmen, Jagna, Anda)...')}
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-11 pr-4 py-3 rounded-full border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white shadow-2xs"
+              onValueChange={(val) => setSearchTerm(val)}
             />
           </div>
 
           <div className="flex items-center gap-3">
-            <button
+            <Chip
+              variant="filter"
+              selected={emergencyOnly}
               onClick={() => setEmergencyOnly(!emergencyOnly)}
-              className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 cursor-pointer min-h-[44px] ${
-                emergencyOnly
-                  ? 'bg-red-600 text-white shadow-sinoog'
-                  : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 shadow-2xs'
-              }`}
+              leadingIcon={<ShieldAlert className="w-4 h-4" />}
             >
-              <ShieldAlert className="w-4 h-4" />
-              <span>{t('Emergency Lines Only', 'Emergency Lines Lamang')}</span>
-            </button>
+              {t('Emergency Lines Only', 'Emergency Lines Lamang')}
+            </Chip>
           </div>
         </div>
 
@@ -196,9 +191,11 @@ export const DirectoryPage: React.FC = () => {
             const hotlines = getTownHotlines(town);
 
             return (
-              <div
+              <Card
                 key={town}
-                className="bg-white/95 rounded-3xl border border-orange-200/70 p-6 sm:p-7 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md"
+                as="article"
+                variant="filled"
+                className="p-6 sm:p-7 flex flex-col justify-between"
               >
                 <div>
                   {/* Town Header */}
@@ -298,7 +295,7 @@ export const DirectoryPage: React.FC = () => {
                     <ChevronRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
-              </div>
+              </Card>
             );
           })}
         </div>

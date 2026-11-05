@@ -10,6 +10,7 @@ import {
 } from '../../lib/legislativeData';
 import Badge from '../../components/common/Badge';
 import Button from '../../components/common/Button';
+import { Card, Chip, SearchBar } from '../../components/m3';
 import {
   Award,
   BookOpen,
@@ -29,10 +30,8 @@ import {
   Building2,
   Sparkles,
   Globe,
-  Search,
   Filter,
   Calendar,
-  X,
   ChevronDown,
 } from 'lucide-react';
 
@@ -534,32 +533,19 @@ export const AboutPage: React.FC = () => {
 
         {/* Search & Sector Filters Bar */}
         <div className="bg-white/95 rounded-3xl p-5 sm:p-6 border border-orange-200/80 shadow-sinoog space-y-4 mb-8 backdrop-blur-md">
-          {/* Search Input */}
-          <div className="relative">
-            <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              placeholder={t(
-                'Search by bill number (e.g., HB 831, HR 301), keyword, or committee referral...',
-                'Pangita pinaagi sa numero sa balaod (e.g. HB 831, HR 301), pulong, o komitiba...'
-              )}
-              value={measureSearch}
-              onChange={(e) => {
-                setMeasureSearch(e.target.value);
-                setVisibleCount(10);
-              }}
-              className="w-full pl-11 pr-10 py-3 rounded-full border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 shadow-2xs font-medium"
-            />
-            {measureSearch && (
-              <button
-                type="button"
-                onClick={() => setMeasureSearch('')}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
-              >
-                <X className="w-4 h-4" />
-              </button>
+          {/* M3 Search Bar */}
+          <SearchBar
+            label={t('Search measures', 'Pangita og balaod')}
+            placeholder={t(
+              'Search by bill number (e.g., HB 831, HR 301), keyword, or committee referral...',
+              'Pangita pinaagi sa numero sa balaod (e.g. HB 831, HR 301), pulong, o komitiba...'
             )}
-          </div>
+            value={measureSearch}
+            onValueChange={(val) => {
+              setMeasureSearch(val);
+              setVisibleCount(10);
+            }}
+          />
 
           {/* Sector Category Pills */}
           <div className="flex flex-wrap items-center gap-2 pt-1">
@@ -568,20 +554,17 @@ export const AboutPage: React.FC = () => {
               <span>{t('Sector:', 'Sektor:')}</span>
             </div>
             {sectorCategories.map((cat) => (
-              <button
+              <Chip
                 key={cat.id}
+                variant="filter"
+                selected={billCategory === cat.id}
                 onClick={() => {
                   setBillCategory(cat.id);
                   setVisibleCount(10);
                 }}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                  billCategory === cat.id
-                    ? 'bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-sinoog font-black'
-                    : 'bg-slate-100 hover:bg-orange-50 text-slate-600 hover:text-orange-600 border border-slate-200'
-                }`}
               >
                 {t(cat.labelEn, cat.labelCeb)}
-              </button>
+              </Chip>
             ))}
           </div>
 
@@ -626,9 +609,11 @@ export const AboutPage: React.FC = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {displayedMeasures.map((measure, mIdx) => (
-              <div
+              <Card
                 key={mIdx}
-                className="p-6 sm:p-7 rounded-3xl bg-white border border-orange-200/70 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+                as="article"
+                variant="filled"
+                className="p-6 sm:p-7 flex flex-col justify-between"
               >
                 <div>
                   {/* Top Badges */}
@@ -700,7 +685,7 @@ export const AboutPage: React.FC = () => {
                     </div>
                   )}
                 </div>
-              </div>
+              </Card>
             ))}
           </div>
         )}

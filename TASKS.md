@@ -232,3 +232,33 @@
   - [x] Cleaned up temporary dump and scratch files from workspace root.
   - [x] Verified production build (`npm run build`) passes cleanly with exit code 0.
 
+---
+
+### Phase 11: Material Design 3 Design System from Sinoog 2027
+- [x] **11.1 M3 Design Tokens Architecture (`src/styles/m3/`)**:
+  - [x] `tokens.css`: Typography roles (`--md-sys-typescale-*`), corner radii (`--md-sys-shape-corner-*`), spacing scale (`--md-space-*`), target sizes (`44px` min / `48px` comfortable), elevation levels 0–5, motion easing curves, state layers (`--md-sys-state-*`), focus ring, scrim, and Sinoog 3-layer pop shadows (`--sinoog-shadow-card`, `--sinoog-shadow-card-hover`, `--sinoog-shadow-card-raised`).
+  - [x] `light-theme.css`: Material 3 color roles mapped to KUMBATI's vibrant orange (`#ea580c`), emergency red (`#dc2626`), amber (`#d97706`), warm ivory (`#fffdf9`), and dark slate (`#0f172a`), with surface container tiers (lowest to highest) and semantic extensions.
+  - [x] `dark-theme.css`: Material 3 dark mode color roles for high contrast and dark surfaces.
+  - [x] `components.css`: `.m3-button` (filled, tonal, outlined, text, danger), `.m3-icon-button`, `.m3-card` (filled, elevated, outlined with backdrop blur and pop shadows), `.m3-chip` (assist, filter, is-selected), `.m3-dialog`, `.m3-progress-circular`, `.m3-progress-linear`, `.m3-segmented-control`, `.m3-state-layer`.
+  - [x] `fields.css`: `.m3-field` (label, input, select, textarea, icon, support/error, 52px height, no-jump focus border), `.m3-search` (rounded pill search bar with icon and clear action), `.m3-check` (custom M3 checkbox), `.m3-switch` (custom M3 toggle switch).
+  - [x] `index.css`: Main M3 entry point imported directly in `src/index.css`.
+- [x] **11.2 M3 React Component Suite (`src/components/m3/`)**:
+  - [x] `Card.tsx`: M3 Card supporting `variant="filled" | "elevated" | "outlined"`, `as="div" | "article" | "section" | "li"`.
+  - [x] `Button.tsx`: M3 Button with `variant="filled" | "tonal" | "outlined" | "text" | "danger"`, `size="default" | "small"`, `leadingIcon`, `loading`, `to` (React Router Link).
+  - [x] `IconButton.tsx`: 44px/48px accessible icon button with tooltip and ARIA labels.
+  - [x] `Chip.tsx`: M3 Chip with `variant="assist" | "filter"`, `selected`, `leadingIcon`.
+  - [x] `TextField.tsx`: Outlined persistent-label text field with error announcements and support text.
+  - [x] `TextArea.tsx`: Multi-line text field with floating label and validation states.
+  - [x] `SelectField.tsx`: Accessible dropdown with custom chevron and helper text.
+  - [x] `SearchBar.tsx`: Rounded pill search bar with leading Search icon and clear button.
+  - [x] `Checkbox.tsx` & `Switch.tsx`: Accessible form toggles with native semantic inputs.
+  - [x] `Dialog.tsx`: Accessible modal overlay with backdrop scrim, Escape key handler, focus trap.
+  - [x] `index.ts`: Barrel export.
+- [x] **11.3 Public Page Upgrades**:
+  - [x] `AboutPage.tsx`: Integrated M3 `SearchBar` for measures search, M3 `Chip` for sector category filters, and M3 `Card` for measures cards.
+  - [x] `NewsPage.tsx`: Integrated M3 `SearchBar` for announcements search, M3 `Chip` for category tabs, and M3 `Card` for announcement cards.
+  - [x] `DirectoryPage.tsx`: Integrated M3 `SearchBar` for town search, M3 `Chip` for emergency filter, and M3 `Card` for 19 town cards.
+  - [x] `ActionCenterPage.tsx`: Integrated M3 `Chip` for submission types, M3 `SearchBar` for code tracker, and M3 `Card` for tracking slip.
+- [x] **11.4 Verification**:
+  - [x] Clean production build verified via `npm run build` (1979 modules transformed, code 0).
+

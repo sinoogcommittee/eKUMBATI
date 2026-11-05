@@ -26,7 +26,7 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   // Base classes implementing Sinoog 2027 M3 styling: Pill shape, elevation, and state layer
   const baseClasses =
-    'relative inline-flex items-center justify-center font-bold rounded-full overflow-hidden transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-[0.98] disabled:opacity-55 disabled:cursor-not-allowed disabled:active:scale-100 cursor-pointer tracking-wide select-none';
+    'm3-button relative inline-flex items-center justify-center font-bold rounded-full overflow-hidden transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-[0.98] disabled:opacity-55 disabled:cursor-not-allowed disabled:active:scale-100 cursor-pointer tracking-wide select-none';
 
   // Sizing from Sinoog 2027 touch-target scales (40px, 48px, 52px)
   const sizeClasses: Record<ButtonSize, string> = {

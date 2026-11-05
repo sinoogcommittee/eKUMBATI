@@ -19,11 +19,11 @@ export const Card: React.FC<CardProps> = ({
   ...props
 }) => {
   const variantClasses: Record<CardVariant, string> = {
-    default: 'sinoog-card',
-    filled: 'sinoog-card sinoog-card--filled',
-    elevated: 'sinoog-card sinoog-card--elevated',
-    outlined: 'sinoog-card border-orange-200/80 bg-white/95 shadow-xs',
-    dark: 'sinoog-card sinoog-card--dark',
+    default: 'm3-card sinoog-card',
+    filled: 'm3-card m3-card--filled sinoog-card sinoog-card--filled',
+    elevated: 'm3-card m3-card--elevated sinoog-card sinoog-card--elevated',
+    outlined: 'm3-card m3-card--outlined sinoog-card border-orange-200/80 bg-white/95 shadow-xs',
+    dark: 'm3-card sinoog-card sinoog-card--dark',
   };
 
   const hoverClass = hoverable

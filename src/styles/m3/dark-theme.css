@@ -1,0 +1,59 @@
+/*
+ * e-KUMBATI — Material 3 Colour Roles (Dark)
+ * High-contrast dark surfaces for dark mode and dark cards.
+ */
+[data-theme="dark"] {
+  --md-sys-color-primary: #fb923c;
+  --md-sys-color-on-primary: #431407;
+  --md-sys-color-primary-container: #7c2d12;
+  --md-sys-color-on-primary-container: #ffedd5;
+
+  --md-sys-color-secondary: #f87171;
+  --md-sys-color-on-secondary: #450a0a;
+  --md-sys-color-secondary-container: #7f1d1d;
+  --md-sys-color-on-secondary-container: #fee2e2;
+
+  --md-sys-color-tertiary: #fbbf24;
+  --md-sys-color-on-tertiary: #451a03;
+  --md-sys-color-tertiary-container: #78350f;
+  --md-sys-color-on-tertiary-container: #fef3c7;
+
+  --md-sys-color-error: #f87171;
+  --md-sys-color-on-error: #450a0a;
+  --md-sys-color-error-container: #7f1d1d;
+  --md-sys-color-on-error-container: #fee2e2;
+
+  --md-sys-color-surface: #0f172a;
+  --md-sys-color-on-surface: #f8fafc;
+  --md-sys-color-surface-bright: #334155;
+  --md-sys-color-surface-dim: #020617;
+  --md-sys-color-surface-container-lowest: #020617;
+  --md-sys-color-surface-container-low: #0f172a;
+  --md-sys-color-surface-container: #1e293b;
+  --md-sys-color-surface-container-high: #334155;
+  --md-sys-color-surface-container-highest: #475569;
+  --md-sys-color-on-surface-variant: #cbd5e1;
+  --md-sys-color-outline: #64748b;
+  --md-sys-color-outline-variant: #334155;
+
+  --md-sys-color-inverse-surface: #f8fafc;
+  --md-sys-color-inverse-on-surface: #0f172a;
+  --md-sys-color-inverse-primary: #ea580c;
+  --md-sys-color-surface-tint: #fb923c;
+  --md-sys-color-scrim: #000000;
+
+  --md-ext-color-success: #4ade80;
+  --md-ext-color-on-success: #052e16;
+  --md-ext-color-success-container: #14532d;
+  --md-ext-color-on-success-container: #dcfce7;
+
+  --md-ext-color-warning: #fbbf24;
+  --md-ext-color-on-warning: #451a03;
+  --md-ext-color-warning-container: #78350f;
+  --md-ext-color-on-warning-container: #fef3c7;
+
+  --md-ext-color-info: #38bdf8;
+  --md-ext-color-on-info: #082f49;
+  --md-ext-color-info-container: #075985;
+  --md-ext-color-on-info-container: #e0f2fe;
+}

@@ -1,0 +1,9 @@
+/*
+ * e-KUMBATI — Material 3 Design System (Import Entry Point)
+ * Adapted from Sinoog 2027 Material Design 3 Implementation.
+ */
+@import "./tokens.css";
+@import "./light-theme.css";
+@import "./dark-theme.css";
+@import "./components.css";
+@import "./fields.css";

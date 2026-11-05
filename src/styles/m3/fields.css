@@ -1,0 +1,258 @@
+/*
+ * e-KUMBATI — Material 3 Form Controls
+ * Adapted from Sinoog 2027 Material Design 3 Implementation.
+ */
+
+/* ---------- Text / select / textarea field (outlined, persistent label) ---------- */
+.m3-field {
+  display: block;
+  min-width: 0;
+}
+.m3-field .m3-field__label {
+  display: block;
+  margin: 0 0 var(--md-space-1);
+  color: var(--md-sys-color-on-surface);
+  font-size: var(--md-sys-typescale-label-large-size);
+  line-height: var(--md-sys-typescale-label-large-line);
+  font-weight: 700;
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
+}
+.m3-field__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.m3-field .m3-field__input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  margin: 0;
+  padding: 0 var(--md-space-4);
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-surface-container-lowest);
+  color: var(--md-sys-color-on-surface);
+  font-family: var(--md-ref-typeface-plain);
+  font-size: 1rem;
+  line-height: 1.5rem;
+  transition:
+    border-color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard),
+    box-shadow var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+}
+.m3-field .m3-field__input::placeholder {
+  color: var(--md-sys-color-on-surface-variant);
+  opacity: 0.7;
+}
+.m3-field .m3-field__input:hover:not(:disabled) {
+  border-color: var(--md-sys-color-on-surface);
+}
+.m3-field .m3-field__input:focus,
+.m3-field .m3-field__input:focus-visible {
+  outline: none;
+  border-color: var(--md-sys-color-primary);
+  box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.25);
+}
+.m3-field__control.has-icon .m3-field__input {
+  padding-inline-start: 44px;
+}
+.m3-field__icon {
+  position: absolute;
+  inset-inline-start: var(--md-space-3);
+  display: inline-flex;
+  color: var(--md-sys-color-on-surface-variant);
+  pointer-events: none;
+}
+.m3-field__icon > svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Select */
+.m3-field .m3-field__select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-inline-end: 44px;
+  cursor: pointer;
+}
+.m3-field__chevron {
+  position: absolute;
+  inset-inline-end: var(--md-space-3);
+  color: var(--md-sys-color-on-surface-variant);
+  pointer-events: none;
+}
+
+/* Textarea */
+.m3-field .m3-field__textarea {
+  min-height: 96px;
+  padding: var(--md-space-3) var(--md-space-4);
+  resize: vertical;
+}
+
+/* Helper / error text */
+.m3-field .m3-field__support {
+  margin: var(--md-space-1) var(--md-space-2) 0;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: var(--md-sys-typescale-body-small-size);
+  line-height: var(--md-sys-typescale-body-small-line);
+}
+.m3-field.is-error .m3-field__input {
+  border-color: var(--md-sys-color-error);
+}
+.m3-field.is-error .m3-field__input:focus,
+.m3-field.is-error .m3-field__input:focus-visible {
+  border-color: var(--md-sys-color-error);
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.25);
+}
+.m3-field.is-error .m3-field__label,
+.m3-field.is-error .m3-field__support {
+  color: var(--md-sys-color-error);
+}
+
+.m3-field .m3-field__input:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background: var(--md-sys-color-surface-dim);
+}
+
+/* ---------- Search bar (Rounded Pill) ---------- */
+.m3-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: #ffffff;
+  border: 1px solid var(--md-sys-color-outline);
+  color: var(--md-sys-color-on-surface-variant);
+  box-shadow: var(--sinoog-shadow-card);
+  transition:
+    border-color var(--md-sys-motion-duration-short) ease,
+    box-shadow var(--md-sys-motion-duration-short) ease;
+}
+.m3-search:focus-within {
+  border-color: var(--md-sys-color-primary);
+  box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.25), var(--sinoog-shadow-card-hover);
+}
+.m3-search__icon {
+  position: absolute;
+  inset-inline-start: var(--md-space-4);
+  color: var(--md-sys-color-primary);
+  pointer-events: none;
+}
+.m3-search .m3-search__input {
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 52px;
+  padding: 0 48px 0 48px;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  color: var(--md-sys-color-on-surface);
+  font-family: var(--md-ref-typeface-plain);
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.m3-search .m3-search__input:focus,
+.m3-search .m3-search__input:focus-visible {
+  outline: none;
+}
+.m3-search .m3-search__input::placeholder {
+  color: var(--md-sys-color-on-surface-variant);
+  opacity: 0.75;
+}
+.m3-search .m3-search__clear {
+  position: absolute;
+  inset-inline-end: var(--md-space-2);
+}
+
+/* ---------- Checkbox + Switch ---------- */
+.m3-check,
+.m3-switch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--md-space-3);
+  min-height: var(--md-target-min);
+  color: var(--md-sys-color-on-surface);
+  font-size: var(--md-sys-typescale-body-large-size);
+  cursor: pointer;
+}
+.m3-check .m3-check__input,
+.m3-switch .m3-switch__input {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 50%;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(-50%);
+  cursor: inherit;
+}
+.m3-check .m3-check__input {
+  width: 24px;
+  height: 24px;
+}
+.m3-switch .m3-switch__input {
+  width: 52px;
+  height: 32px;
+}
+
+/* Checkbox box */
+.m3-check__box {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--md-sys-color-outline);
+  border-radius: var(--md-sys-shape-corner-extra-small);
+  background: transparent;
+  transition:
+    background-color var(--md-sys-motion-duration-short) ease,
+    border-color var(--md-sys-motion-duration-short) ease;
+}
+.m3-check__input:checked + .m3-check__box {
+  background: var(--md-sys-color-primary);
+  border-color: var(--md-sys-color-primary);
+}
+.m3-check__input:checked + .m3-check__box::after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) translate(3px, -2px);
+}
+
+/* Switch track */
+.m3-switch__track {
+  position: relative;
+  flex: 0 0 auto;
+  width: 48px;
+  height: 28px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-surface-container-high);
+  border: 2px solid var(--md-sys-color-outline);
+  transition:
+    background-color var(--md-sys-motion-duration-short) ease,
+    border-color var(--md-sys-motion-duration-short) ease;
+}
+.m3-switch__thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--md-sys-color-outline);
+  transition: transform var(--md-sys-motion-duration-short) ease, background-color var(--md-sys-motion-duration-short) ease;
+}
+.m3-switch__input:checked + .m3-switch__track {
+  background: var(--md-sys-color-primary);
+  border-color: var(--md-sys-color-primary);
+}
+.m3-switch__input:checked + .m3-switch__track .m3-switch__thumb {
+  transform: translateX(20px);
+  background: #ffffff;
+}

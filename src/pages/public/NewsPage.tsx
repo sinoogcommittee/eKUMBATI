@@ -7,9 +7,9 @@ import Badge from '../../components/common/Badge';
 import Button from '../../components/common/Button';
 import Modal from '../../components/common/Modal';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
+import { Card, Chip, SearchBar } from '../../components/m3';
 import {
   Bell,
-  Search,
   Filter,
   Calendar,
   User,
@@ -274,28 +274,17 @@ export const NewsPage: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white/95 rounded-3xl p-6 sm:p-7 border border-orange-200/80 shadow-sinoog space-y-4 backdrop-blur-md">
           <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
-            {/* Search Input */}
-            <div className="relative flex-1">
-              <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
+            {/* M3 Search Bar */}
+            <div className="flex-1">
+              <SearchBar
+                label={t('Search announcements', 'Pangitaa ang mga pahibalo')}
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onValueChange={(val) => setSearchQuery(val)}
                 placeholder={t(
                   'Search announcements, payouts, medical missions, or keywords...',
                   'Pangitaa ang mga pahibalo, payout, medical mission, o pulong...'
                 )}
-                className="w-full pl-11 pr-4 py-3 rounded-full border border-slate-200 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500 bg-slate-50/50 shadow-2xs"
               />
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400 hover:text-slate-600 cursor-pointer"
-                >
-                  ✕
-                </button>
-              )}
             </div>
 
             {/* Municipality Filter Dropdown */}
@@ -323,17 +312,14 @@ export const NewsPage: React.FC = () => {
               <span>{t('Category', 'Kategoriya')}:</span>
             </span>
             {categories.map((cat) => (
-              <button
+              <Chip
                 key={cat.id}
+                variant="filter"
+                selected={selectedCategory === cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-2 rounded-full text-xs font-bold transition-all shrink-0 cursor-pointer ${
-                  selectedCategory === cat.id
-                    ? 'bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-sinoog font-black'
-                    : 'bg-slate-100 hover:bg-orange-50 text-slate-700 shadow-2xs'
-                }`}
               >
                 {t(cat.labelEn, cat.labelCeb)}
-              </button>
+              </Chip>
             ))}
           </div>
         </div>
@@ -380,9 +366,11 @@ export const NewsPage: React.FC = () => {
               const catLabel = getCategoryLabel(post.category);
 
               return (
-                <div
+                <Card
                   key={post.id}
-                  className="bg-white/95 rounded-3xl border border-orange-200/70 overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group backdrop-blur-md"
+                  as="article"
+                  variant="filled"
+                  className="overflow-hidden p-0 flex flex-col justify-between group"
                 >
                   <div>
                     {/* Featured Image */}
@@ -466,7 +454,7 @@ export const NewsPage: React.FC = () => {
                       <ChevronRight className="w-4 h-4 text-orange-400 group-hover/btn:text-white transition-colors" />
                     </button>
                   </div>
-                </div>
+                </Card>
               );
             })}
           </div>

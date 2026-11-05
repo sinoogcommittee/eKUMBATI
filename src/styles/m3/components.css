@@ -1,0 +1,466 @@
+/*
+ * e-KUMBATI — Material 3 Shared Components (Button, IconButton, Card, Chip, Dialog, Progress)
+ * Adapted from Sinoog 2027 Material Design 3 Implementation.
+ */
+
+/* ---------- State layer (hover / focus / pressed) ---------- */
+.m3-state-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+}
+.m3-button:hover:not(:disabled) > .m3-state-layer,
+.m3-icon-button:hover:not(:disabled) > .m3-state-layer,
+.m3-chip:hover:not(:disabled) > .m3-state-layer {
+  opacity: var(--md-sys-state-hover-opacity);
+}
+.m3-button:focus-visible > .m3-state-layer,
+.m3-icon-button:focus-visible > .m3-state-layer,
+.m3-chip:focus-visible > .m3-state-layer {
+  opacity: var(--md-sys-state-focus-opacity);
+}
+.m3-button:active:not(:disabled) > .m3-state-layer,
+.m3-icon-button:active:not(:disabled) > .m3-state-layer,
+.m3-chip:active:not(:disabled) > .m3-state-layer {
+  opacity: var(--md-sys-state-pressed-opacity);
+}
+
+/* ---------- Shared focus ring ---------- */
+.m3-button:focus-visible,
+.m3-icon-button:focus-visible,
+.m3-chip:focus-visible {
+  outline: var(--md-focus-ring-width) solid var(--md-focus-ring-color);
+  outline-offset: var(--md-focus-ring-offset);
+}
+
+/* ---------- Button ---------- */
+.m3-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--md-space-2);
+  min-height: var(--md-target-comfortable);
+  min-width: var(--md-target-comfortable);
+  padding: var(--md-space-2) var(--md-space-6);
+  border: 1px solid transparent;
+  border-radius: var(--md-sys-shape-corner-full);
+  overflow: hidden;
+  font-family: var(--md-ref-typeface-plain);
+  font-size: var(--md-sys-typescale-label-large-size);
+  line-height: var(--md-sys-typescale-label-large-line);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
+  text-decoration: none;
+  text-align: center;
+  white-space: normal;
+  max-width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform var(--md-sys-motion-duration-short) ease,
+    box-shadow var(--md-sys-motion-duration-medium) var(--md-sys-motion-easing-standard),
+    background-color var(--md-sys-motion-duration-medium) var(--md-sys-motion-easing-standard),
+    border-color var(--md-sys-motion-duration-short) ease;
+}
+.m3-button--small {
+  min-height: var(--md-target-min);
+  padding: var(--md-space-1) var(--md-space-4);
+  font-size: var(--md-sys-typescale-label-medium-size);
+}
+.m3-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+}
+.m3-button__icon > svg {
+  width: 18px;
+  height: 18px;
+}
+.m3-button__label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--md-space-2);
+}
+
+/* Button Variants: Sinoog 2027 Pop Gradient Aesthetics (KUMBATI Orange & Red) */
+.m3-button--filled {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #c2410c 100%);
+  border: 1px solid #fb923c;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 3px 10px rgba(234, 88, 12, 0.32), 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+.m3-button--filled:hover:not(:disabled) {
+  background: linear-gradient(135deg, #fb923c 0%, #f97316 50%, #ea580c 100%);
+  border-color: #fdba74;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.42), 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.m3-button--tonal {
+  background: var(--md-sys-color-primary-container);
+  border: 1px solid color-mix(in srgb, var(--md-sys-color-primary) 35%, transparent);
+  color: var(--md-sys-color-on-primary-container);
+  font-weight: 700;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.m3-button--tonal:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--md-sys-color-primary-container) 80%, white);
+  transform: translateY(-1px);
+}
+
+.m3-button--outlined {
+  background: #ffffff;
+  border: 1px solid var(--md-sys-color-outline);
+  color: var(--md-sys-color-primary);
+  font-weight: 700;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+.m3-button--outlined:hover:not(:disabled) {
+  background: var(--md-sys-color-surface-container);
+  border-color: var(--md-sys-color-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(234, 88, 12, 0.15);
+}
+
+.m3-button--text {
+  background: transparent;
+  border-color: transparent;
+  color: var(--md-sys-color-primary);
+}
+.m3-button--text:hover:not(:disabled) {
+  background: var(--md-sys-color-surface-container);
+}
+
+.m3-button--danger {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
+  border: 1px solid #f87171;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 3px 10px rgba(220, 38, 38, 0.32), 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+.m3-button--danger:hover:not(:disabled) {
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 50%, #dc2626 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.42);
+}
+
+.m3-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Spinner for button loading */
+.m3-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: m3-spin 600ms linear infinite;
+  margin-right: 6px;
+}
+@keyframes m3-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Icon Button ---------- */
+.m3-icon-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--md-target-min);
+  height: var(--md-target-min);
+  border: 1px solid transparent;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: transparent;
+  color: var(--md-sys-color-on-surface-variant);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform var(--md-sys-motion-duration-short) ease,
+    background-color var(--md-sys-motion-duration-short) ease,
+    border-color var(--md-sys-motion-duration-short) ease;
+}
+.m3-icon-button:hover:not(:disabled) {
+  background: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface);
+}
+.m3-icon-button--filled {
+  background: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+}
+.m3-icon-button--filled:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--md-sys-color-primary) 85%, white);
+}
+.m3-icon-button--tonal {
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+}
+.m3-icon-button--outlined {
+  border-color: var(--md-sys-color-outline);
+  background: #ffffff;
+}
+
+/* ---------- Card ---------- */
+/* Sinoog pop-shadow system: layered orange/slate lifts */
+.m3-card {
+  display: block;
+  box-sizing: border-box;
+  padding: var(--md-space-4);
+  border-radius: var(--md-sys-shape-corner-large);
+  color: var(--md-sys-color-on-surface);
+  background: color-mix(in srgb, var(--md-sys-color-surface-container-lowest) 94%, #fffaf5);
+  border: var(--sinoog-border-card);
+  box-shadow: var(--sinoog-shadow-card);
+  -webkit-backdrop-filter: blur(10px) saturate(112%);
+  backdrop-filter: blur(10px) saturate(112%);
+  transition:
+    transform 180ms var(--sinoog-ease-card),
+    box-shadow 180ms var(--sinoog-ease-card),
+    border-color 180ms ease;
+}
+@media (min-width: 840px) {
+  .m3-card {
+    padding: var(--md-space-6);
+  }
+}
+.m3-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sinoog-shadow-card-hover);
+  border: var(--sinoog-border-card-hover);
+}
+
+.m3-card--filled {
+  background: color-mix(in srgb, var(--md-sys-color-surface-container) 88%, white);
+}
+.m3-card--elevated {
+  background: #ffffff;
+  box-shadow: var(--sinoog-shadow-card-raised);
+}
+.m3-card--outlined {
+  background: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline);
+}
+
+/* ---------- Chip ---------- */
+.m3-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--md-space-2);
+  min-height: var(--md-target-min);
+  padding: 0 var(--md-space-4);
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: var(--md-sys-shape-corner-full);
+  overflow: hidden;
+  background: var(--md-sys-color-surface-container-lowest, #ffffff);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  color: var(--md-sys-color-on-surface-variant);
+  font-family: var(--md-ref-typeface-plain);
+  font-size: var(--md-sys-typescale-label-large-size);
+  line-height: var(--md-sys-typescale-label-large-line);
+  font-weight: 600;
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform var(--md-sys-motion-duration-short) ease,
+    background var(--md-sys-motion-duration-short) ease,
+    color var(--md-sys-motion-duration-short) ease,
+    box-shadow var(--md-sys-motion-duration-short) ease;
+}
+.m3-chip__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+}
+.m3-chip__icon > svg {
+  width: 18px;
+  height: 18px;
+}
+.m3-chip__label {
+  position: relative;
+}
+
+.m3-chip--assist {
+  color: var(--md-sys-color-on-surface);
+}
+.m3-chip--filter {
+  background: transparent;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-full);
+  color: var(--md-sys-color-on-surface-variant);
+  font-weight: 600;
+  box-shadow: none;
+}
+.m3-chip--filter:hover:not(:disabled) {
+  background: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-primary);
+  border-color: var(--md-sys-color-outline);
+}
+.m3-chip--filter.is-selected {
+  background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 50%, #f97316 100%);
+  border: 1px solid #ea580c;
+  color: #7c2d12;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(234, 88, 12, 0.28);
+}
+
+/* ---------- Dialog (Native <dialog> reset + scrim) ---------- */
+.m3-dialog {
+  margin: auto;
+  padding: 0;
+  border: none;
+  border-radius: var(--md-sys-shape-corner-extra-large);
+  background: transparent;
+  color: var(--md-sys-color-on-surface);
+  max-width: calc(100vw - var(--md-space-8));
+  max-height: calc(100dvh - var(--md-space-8));
+  overflow: visible;
+}
+.m3-dialog::backdrop {
+  background: var(--md-sys-color-scrim);
+  opacity: 0.45;
+  backdrop-filter: blur(4px);
+}
+.m3-dialog__card {
+  display: flex;
+  flex-direction: column;
+  min-width: 280px;
+  max-width: 560px;
+  max-height: calc(100dvh - var(--md-space-12));
+  background: #ffffff;
+  border-radius: inherit;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: var(--sinoog-shadow-card-raised);
+  overflow: hidden;
+}
+.m3-dialog__title {
+  padding: var(--md-space-6) var(--md-space-6) var(--md-space-4);
+  font-size: var(--md-sys-typescale-headline-small-size);
+  line-height: var(--md-sys-typescale-headline-small-line);
+  font-weight: 700;
+  color: var(--md-sys-color-on-surface);
+  margin: 0;
+}
+.m3-dialog__content {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 0 var(--md-space-6) var(--md-space-4);
+  color: var(--md-sys-color-on-surface-variant);
+}
+.m3-dialog__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--md-space-2);
+  flex-wrap: wrap;
+  padding: var(--md-space-4) var(--md-space-6) var(--md-space-6);
+  background: var(--md-sys-color-surface-container-low);
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+}
+
+/* ---------- Progress Indicators ---------- */
+.m3-progress-circular {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--md-sys-color-surface-container-high);
+  border-top-color: var(--md-sys-color-primary);
+  border-radius: 50%;
+  animation: m3-spin 800ms linear infinite;
+  flex-shrink: 0;
+}
+.m3-progress-circular--small {
+  width: 24px;
+  height: 24px;
+  border-width: 2.5px;
+}
+.m3-progress-linear {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background: var(--md-sys-color-surface-container-high);
+  border-radius: var(--md-sys-shape-corner-full);
+  overflow: hidden;
+}
+.m3-progress-linear::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: var(--md-sys-color-primary);
+  border-radius: inherit;
+  animation: m3-linear-progress 1.5s ease-in-out infinite;
+}
+@keyframes m3-linear-progress {
+  0%   { left: -60%; }
+  50%  { left: 40%; }
+  100% { left: 110%; }
+}
+
+/* ---------- Segmented Control (Pill Switcher) ---------- */
+.m3-segmented-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-surface-container);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  box-sizing: border-box;
+}
+.m3-segmented-control button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 0 var(--md-space-4);
+  border: 0;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: #ffffff;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  color: var(--md-sys-color-on-surface-variant);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  font-family: var(--md-ref-typeface-plain);
+  font-size: var(--md-sys-typescale-label-large-size);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background var(--md-sys-motion-duration-short) ease,
+    color var(--md-sys-motion-duration-short) ease,
+    box-shadow var(--md-sys-motion-duration-short) ease;
+}
+.m3-segmented-control button:hover {
+  background: var(--md-sys-color-surface-container-highest);
+  color: var(--md-sys-color-on-surface);
+}
+.m3-segmented-control button.is-active,
+.m3-segmented-control button[aria-selected="true"] {
+  background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 50%, #f97316 100%);
+  border: 1px solid #ea580c;
+  color: #7c2d12;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(234, 88, 12, 0.28);
+}

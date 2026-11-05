@@ -11,6 +11,7 @@ import { supabase, isSupabaseConfigured } from '../../lib/supabaseClient';
 import Badge, { getStatusBadgeVariant } from '../../components/common/Badge';
 import Button from '../../components/common/Button';
 import Modal from '../../components/common/Modal';
+import { Card, Chip, SearchBar } from '../../components/m3';
 import {
   ShieldCheck,
   Send,
@@ -309,27 +310,23 @@ export const ActionCenterPage: React.FC = () => {
                   <label className="block text-xs font-black uppercase tracking-wider text-slate-700 mb-2">
                     {t('Submission Type', 'Klase sa Hangyo')} *
                   </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  <div className="flex flex-wrap gap-2">
                     {[
                       { value: 'assistance', labelEn: 'Assistance', labelCeb: 'Hinabang' },
                       { value: 'query', labelEn: 'Inquiry', labelCeb: 'Pangutana' },
                       { value: 'complaint', labelEn: 'Concern / Grievance', labelCeb: 'Sumbong' },
                       { value: 'suggestion', labelEn: 'Commendation', labelCeb: 'Giya / Suhestyon' },
                     ].map((typeOption) => (
-                      <button
+                      <Chip
                         key={typeOption.value}
-                        type="button"
+                        variant="filter"
+                        selected={formData.type === typeOption.value}
                         onClick={() =>
                           setFormData({ ...formData, type: typeOption.value as SubmissionType })
                         }
-                        className={`py-2.5 px-3.5 rounded-full text-xs font-bold transition-all text-center cursor-pointer ${
-                          formData.type === typeOption.value
-                            ? 'bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-sinoog font-black'
-                            : 'bg-slate-50 text-slate-700 border border-slate-200 hover:bg-orange-50/50 shadow-2xs'
-                        }`}
                       >
                         {t(typeOption.labelEn, typeOption.labelCeb)}
-                      </button>
+                      </Chip>
                     ))}
                   </div>
                 </div>
@@ -561,15 +558,13 @@ export const ActionCenterPage: React.FC = () => {
                 )}
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3">
-                <div className="relative flex-1">
-                  <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="text"
+              <div className="flex flex-col sm:flex-row gap-3 items-center">
+                <div className="flex-1 w-full">
+                  <SearchBar
+                    label={t('Track Reference Code', 'Subaya ang Reference Code')}
                     placeholder="e.g. KMB-2027-DEMO1"
                     value={searchCode}
-                    onChange={(e) => setSearchCode(e.target.value.toUpperCase())}
-                    className="w-full pl-11 pr-4 py-3 rounded-full border border-slate-200 text-sm font-mono font-bold tracking-wider focus:outline-none focus:ring-2 focus:ring-orange-500 shadow-2xs"
+                    onValueChange={(val) => setSearchCode(val.toUpperCase())}
                   />
                 </div>
                 <Button
@@ -577,7 +572,7 @@ export const ActionCenterPage: React.FC = () => {
                   size="md"
                   loading={isSearching}
                   onClick={() => handleTrackTicket()}
-                  className="shrink-0"
+                  className="shrink-0 w-full sm:w-auto"
                 >
                   {t('Track Status', 'Subaya ang Estado')}
                 </Button>
@@ -593,7 +588,7 @@ export const ActionCenterPage: React.FC = () => {
 
             {/* Tracked Ticket Resolution Timeline & Card */}
             {trackedTicket && (
-              <div className="bg-white/95 rounded-3xl border border-orange-200/80 p-6 sm:p-10 shadow-sinoog space-y-8 backdrop-blur-md">
+              <Card variant="filled" className="space-y-8 p-6 sm:p-10">
                 {/* Header: Code & Status */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-6">
                   <div>
@@ -690,7 +685,7 @@ export const ActionCenterPage: React.FC = () => {
                     </p>
                   </div>
                 )}
-              </div>
+              </Card>
             )}
           </div>
         )}

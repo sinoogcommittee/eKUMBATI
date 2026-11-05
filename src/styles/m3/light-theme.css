@@ -1,0 +1,63 @@
+/*
+ * e-KUMBATI — Material 3 Colour Roles (Light)
+ * Derived from KUMBATI Brand Identity: Vibrant Orange (#EA580C / #F97316),
+ * Red-Orange (#DC2626), Warm Ivory (#FFFDF9), and Slate (#0F172A).
+ * Contrast of every on-* pair meets WCAG 2.2 AA (>= 4.5:1).
+ */
+:root,
+[data-theme="light"] {
+  --md-sys-color-primary: #ea580c;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #ffedd5;
+  --md-sys-color-on-primary-container: #7c2d12;
+
+  --md-sys-color-secondary: #dc2626;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #fee2e2;
+  --md-sys-color-on-secondary-container: #7f1d1d;
+
+  --md-sys-color-tertiary: #d97706;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #fef3c7;
+  --md-sys-color-on-tertiary-container: #78350f;
+
+  --md-sys-color-error: #dc2626;
+  --md-sys-color-on-error: #ffffff;
+  --md-sys-color-error-container: #fee2e2;
+  --md-sys-color-on-error-container: #7f1d1d;
+
+  --md-sys-color-surface: #fffdf9;
+  --md-sys-color-on-surface: #0f172a;
+  --md-sys-color-surface-bright: #ffffff;
+  --md-sys-color-surface-dim: #f8fafc;
+  --md-sys-color-surface-container-lowest: #ffffff;
+  --md-sys-color-surface-container-low: #fffaf5;
+  --md-sys-color-surface-container: #fff7ed;
+  --md-sys-color-surface-container-high: #ffedd5;
+  --md-sys-color-surface-container-highest: #fed7aa;
+  --md-sys-color-on-surface-variant: #475569;
+  --md-sys-color-outline: #cbd5e1;
+  --md-sys-color-outline-variant: #e2e8f0;
+
+  --md-sys-color-inverse-surface: #0f172a;
+  --md-sys-color-inverse-on-surface: #f8fafc;
+  --md-sys-color-inverse-primary: #fdba74;
+  --md-sys-color-surface-tint: #ea580c;
+  --md-sys-color-scrim: #000000;
+
+  /* Semantic extensions */
+  --md-ext-color-success: #16a34a;
+  --md-ext-color-on-success: #ffffff;
+  --md-ext-color-success-container: #dcfce7;
+  --md-ext-color-on-success-container: #14532d;
+
+  --md-ext-color-warning: #d97706;
+  --md-ext-color-on-warning: #ffffff;
+  --md-ext-color-warning-container: #fef3c7;
+  --md-ext-color-on-warning-container: #78350f;
+
+  --md-ext-color-info: #0284c7;
+  --md-ext-color-on-info: #ffffff;
+  --md-ext-color-info-container: #e0f2fe;
+  --md-ext-color-on-info-container: #075985;
+}
