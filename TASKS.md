@@ -484,20 +484,24 @@
 
 ---
 
-### Phase 25: 2-Column Responsive Mobile Grid for 7 Flagship Metrics Cards
-- [x] **25.1 2-Column Mobile Grid Implementation**:
-  - [x] Updated `src/pages/public/HomePage.tsx` metrics grid from `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4` to `grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5`.
-  - [x] Updated `src/pages/public/ImpactPage.tsx` metrics grid from `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4` to `grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6`.
-- [x] **25.2 Mobile Sizing & Content Fitting Optimization**:
-  - [x] Card padding: Scaled to `p-3.5 sm:p-6 lg:p-7` with `rounded-2xl sm:rounded-3xl` so cards have ample internal breathing room without shrinking content area.
-  - [x] Header: Adjusted category badge (`text-[10px] sm:text-[11px] px-1.5 py-0.5 sm:px-2 sm:py-0.5 shrink truncate max-w-[85px]`) and icon box (`w-8 h-8 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl` with `w-4 h-4 sm:w-5 sm:h-5` icon) with `gap-1 mb-2.5 sm:mb-4`.
-  - [x] Tabular Counter Numbers: Scaled to `text-2xl sm:text-4xl lg:text-5xl font-black` with suffix `text-xl sm:text-3xl lg:text-4xl` so large numbers (e.g. `3,200+`, `4,500+`) fit cleanly on a single line with zero truncation or wrapping.
-  - [x] Titles: Adjusted to `text-xs sm:text-base lg:text-lg font-bold leading-tight sm:leading-snug break-words` ensuring full bilingual titles are readable without overflow.
-  - [x] 8th Summary Card ("19/19 Municipalities"): Synchronized padding, font sizes, badge truncation, and link sizes to match the 2-column mobile cards.
-  - [x] Details & Milestone Badge on ImpactPage: Optimized subtext to `text-[11px] sm:text-xs` and milestone pill to `text-[9px] sm:text-[11px] px-2 py-0.5` with icon `w-3 h-3 sm:w-3.5 sm:h-3.5` and `truncate`.
-- [x] **25.3 Verification & Production Build**:
-  - [x] Verified zero horizontal overflow on small mobile viewports (320px–414px).
-  - [x] Verified `npm run build` completed with code 0 (1980 modules transformed in 21.95s).
+### Phase 26: Orange Main Header & White 24/7 Hotline Bar with Mobile PTV Dispatch Dialing
+- [x] **26.1 White 24/7 Hotline Bar (Top Micro-Bar)**:
+  - [x] Changed top bar background to crisp white (`bg-white border-b border-orange-200/80 shadow-2xs`).
+  - [x] Adjusted font and badge colors for white background (`text-slate-800`, `bg-orange-100 text-orange-700 border-orange-200`, `text-slate-600 hover:text-orange-600`).
+  - [x] Clickable phone number styled with high-contrast `text-orange-600 hover:text-orange-700 hover:underline font-black`.
+- [x] **26.2 Mobile View PTV Emergency Dispatch & Number Visibility**:
+  - [x] Created dedicated mobile view layout showing `PTV Emergency Dispatch: 0917-832-6284` with pulsing emergency phone icon.
+  - [x] Removed text truncation and excessive prefix labels on mobile so the phone number is 100% visible and directly tappable (`tel:09178326284`) even on 320px screens.
+- [x] **26.3 Vibrant KUMBATI Orange Main Navbar**:
+  - [x] Set main navbar background to `bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 border-b border-orange-700/40`.
+  - [x] Updated brand title and subtitle colors to high-contrast white and warm ivory (`text-white`, `text-orange-100/90`).
+  - [x] Updated active desktop nav pill to crisp white with orange text (`bg-white text-orange-600 font-black shadow-sm`) and inactive items to `text-white/90 hover:text-white hover:bg-white/15`.
+  - [x] Styled desktop and mobile language toggle to `border-white/30 text-white bg-white/15 hover:bg-white/25`.
+  - [x] Transformed Hotlines CTA button to high-contrast white button with red emergency styling (`bg-white text-red-600 hover:bg-red-50 font-black shadow-md`).
+  - [x] Updated mobile hamburger menu button to `text-white hover:bg-white/20`.
+- [x] **26.4 Verification & Production Build**:
+  - [x] Verified `npm run build` completed with code 0 (1980 modules transformed in 11.58s).
+
 
 
 

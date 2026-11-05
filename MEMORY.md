@@ -244,3 +244,8 @@
     - Titles adapted to `text-xs sm:text-base lg:text-lg font-bold leading-tight sm:leading-snug break-words`.
     - Milestone badges and descriptions on Impact page formatted to prevent overflowing on screens as narrow as 320px.
   - Verified `npm run build` completed with code 0.
+- **2026-11-05**: Orange Main Header & White 24/7 Hotline Bar with Mobile PTV Dispatch Dialing:
+  - Top 24/7 Hotline micro-bar: Set to crisp white background (`bg-white border-b border-orange-200/80`) with dark slate typography and orange hotline numbers.
+  - Mobile Emergency Dispatch: Refactored mobile view to display `PTV Emergency Dispatch: 0917-832-6284` with pulsing phone icon, eliminating truncation and making the phone number 100% visible and directly tappable.
+  - Main Navbar: Set to vibrant KUMBATI orange gradient (`bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 border-b border-orange-700/40`) with crisp white brand title (`e-KUMBATI`), warm ivory subtext, white active navigation pills, translucent language toggle, and high-visibility white/red emergency Hotlines button.
+  - Verified `npm run build` completed with code 0.
