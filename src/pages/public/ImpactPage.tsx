@@ -104,7 +104,7 @@ export const ImpactPage: React.FC = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
           {INITIAL_METRICS.map((metric) => (
             <StatCounter
               key={metric.id}
@@ -120,32 +120,36 @@ export const ImpactPage: React.FC = () => {
           ))}
 
           {/* 8th Card: 100% Towns Served */}
-          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-sinoog border border-slate-800 border-t-slate-700 hover:border-orange-500/50 hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300">
+          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-7 flex flex-col justify-between shadow-sinoog border border-slate-800 border-t-slate-700 hover:border-orange-500/50 hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300">
             <div>
-              <div className="flex items-center justify-between mb-3">
-                <Badge variant="emerald" size="sm">
+              <div className="flex items-center justify-between gap-1 mb-2.5 sm:mb-3">
+                <Badge
+                  variant="emerald"
+                  size="sm"
+                  className="text-[10px] sm:text-[11px] px-1.5 py-0.5 sm:px-2 sm:py-0.5 shrink truncate max-w-[85px] sm:max-w-none"
+                >
                   {t('Coverage', 'Kasangkaran')}
                 </Badge>
-                <div className="w-9 h-9 rounded-xl bg-slate-800/90 border border-slate-700/80 flex items-center justify-center shadow-sinoog-inner">
-                  <Sparkles className="w-4 h-4 text-amber-400" />
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-800/90 border border-slate-700/80 flex items-center justify-center shadow-sinoog-inner shrink-0">
+                  <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" />
                 </div>
               </div>
-              <div className="text-4xl font-black text-white mb-1">
+              <div className="text-2xl sm:text-4xl font-black text-white mb-1">
                 19 / 19
               </div>
-              <div className="text-sm font-bold text-orange-400 mb-2">
+              <div className="text-xs sm:text-sm font-bold text-orange-400 mb-1 sm:mb-2 leading-tight sm:leading-normal break-words">
                 {t('Active Municipal Beneficiaries', 'Mga Lungsod nga Nakapahimulos')}
               </div>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <p className="text-[11px] sm:text-xs text-slate-400 leading-snug sm:leading-relaxed line-clamp-2">
                 {t(
                   'No town left behind. Resources and medical transport are dispatched equally across all 19 LGUs.',
                   'Walay lungsod nga gipasagdan. Ang pondo ug ambulansya giapod-apod sa patas nga pag-alagad.'
                 )}
               </p>
             </div>
-            <div className="border-t border-slate-800 pt-3 mt-4 text-[11px] text-emerald-400 font-bold flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
-              <span>{t('100% District Geographic Reach', '100% Naabot sa Tibuok Distrito')}</span>
+            <div className="border-t border-slate-800 pt-2 sm:pt-3 mt-2 sm:mt-4 text-[9px] sm:text-[11px] text-emerald-400 font-bold flex items-center gap-1 sm:gap-1.5">
+              <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
+              <span className="truncate">{t('100% District Geographic Reach', '100% Naabot sa Tibuok Distrito')}</span>
             </div>
           </div>
         </div>

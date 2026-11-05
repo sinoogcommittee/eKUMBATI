@@ -468,19 +468,37 @@
 
 ---
 
-### Phase 23: Homepage Cleanup & Decluttering
-- [x] **23.1 Hero Section Decluttering**:
-  - [x] Removed the 3 highlight pills under hero action buttons (`19 Municipalities Covered`, `24/7 Patient Transport (PTV)`, `Dialysis Tambayan Haven`).
-  - [x] Removed representative bio snippet (`Licensed physical therapist, law graduate, and author...`) from spotlight card.
-  - [x] Removed star/sparkle icons from badge labels (`<Sparkles ... />`).
-- [x] **23.2 Streamlined Metrics Cards**:
-  - [x] Enabled `showDetails={false}` for Homepage metrics cards to remove description text and the `2027 Verified Milestone` badge (retaining full descriptions and milestone verification exclusively on `/impact`).
-  - [x] Adjusted 8th summary card layout to match the uniform metric card height.
-- [x] **23.3 Redundant Geospatial Map Removal**:
-  - [x] Removed Section 5 (`Geospatial Directory / Facilities & Offices Across District 3` interactive Leaflet map preview), keeping interactive mapping exclusively within the dedicated `/map` page.
-  - [x] Reduced Homepage JS bundle from 24.6 kB to 21.9 kB.
-- [x] **23.4 Verification & Production Build**:
-  - [x] Verified `npm run build` completed with code 0 (1980 modules transformed in 25.95s).
+### Phase 24: Standardize "Pabahay ni Kumbati" to "Pabahay"
+- [x] **24.1 Universal Name Standardization**:
+  - [x] Standardized flagship metric title to **"Pabahay Beneficiaries"** (EN) / **"Benepisyaryo sa Pabahay"** (CEB).
+  - [x] Standardized program title to **"Pabahay Socialized Housing"** (EN) / **"Pabahay Desenteng Panimalay"** (CEB).
+  - [x] Updated gallery album to **"Pabahay 300th Home Turnover Ceremonies"**.
+  - [x] Updated map location to **"Pabahay Village - Candijay Site"**.
+  - [x] Updated news bulletin to **"Pabahay Phase 4 Site Assessment"**.
+  - [x] Updated public Action Center form category defaults, subjects, and tracking samples.
+  - [x] Updated Admin Dashboard and Submissions ticket categories and subjects.
+  - [x] Updated About Page governance doctrine text.
+- [x] **24.2 Integrity & Zero Placeholder Verification**:
+  - [x] Verified 0 remaining occurrences of `"Pabahay ni Kumbati"` across entire repository.
+  - [x] `npm run build` completed with code 0.
+
+---
+
+### Phase 25: 2-Column Responsive Mobile Grid for 7 Flagship Metrics Cards
+- [x] **25.1 2-Column Mobile Grid Implementation**:
+  - [x] Updated `src/pages/public/HomePage.tsx` metrics grid from `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4` to `grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5`.
+  - [x] Updated `src/pages/public/ImpactPage.tsx` metrics grid from `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4` to `grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6`.
+- [x] **25.2 Mobile Sizing & Content Fitting Optimization**:
+  - [x] Card padding: Scaled to `p-3.5 sm:p-6 lg:p-7` with `rounded-2xl sm:rounded-3xl` so cards have ample internal breathing room without shrinking content area.
+  - [x] Header: Adjusted category badge (`text-[10px] sm:text-[11px] px-1.5 py-0.5 sm:px-2 sm:py-0.5 shrink truncate max-w-[85px]`) and icon box (`w-8 h-8 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl` with `w-4 h-4 sm:w-5 sm:h-5` icon) with `gap-1 mb-2.5 sm:mb-4`.
+  - [x] Tabular Counter Numbers: Scaled to `text-2xl sm:text-4xl lg:text-5xl font-black` with suffix `text-xl sm:text-3xl lg:text-4xl` so large numbers (e.g. `3,200+`, `4,500+`) fit cleanly on a single line with zero truncation or wrapping.
+  - [x] Titles: Adjusted to `text-xs sm:text-base lg:text-lg font-bold leading-tight sm:leading-snug break-words` ensuring full bilingual titles are readable without overflow.
+  - [x] 8th Summary Card ("19/19 Municipalities"): Synchronized padding, font sizes, badge truncation, and link sizes to match the 2-column mobile cards.
+  - [x] Details & Milestone Badge on ImpactPage: Optimized subtext to `text-[11px] sm:text-xs` and milestone pill to `text-[9px] sm:text-[11px] px-2 py-0.5` with icon `w-3 h-3 sm:w-3.5 sm:h-3.5` and `truncate`.
+- [x] **25.3 Verification & Production Build**:
+  - [x] Verified zero horizontal overflow on small mobile viewports (320px–414px).
+  - [x] Verified `npm run build` completed with code 0 (1980 modules transformed in 21.95s).
+
 
 
 

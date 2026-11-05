@@ -231,3 +231,16 @@
   - Streamlined Homepage metric cards by omitting details and `2027 Verified Milestone` badges (`showDetails={false}`), reserving in-depth metrics and verification exclusively for the `/impact` page.
   - Removed redundant Geospatial Directory / Leaflet map preview section from Homepage (interactive mapping housed on dedicated `/map` page).
   - Production build verified (`npm run build` completed with code 0).
+- **2026-11-05**: Standardize "Pabahay ni Kumbati" to "Pabahay":
+  - Standardized all user-facing, data constants, form options, and documentation instances of "Pabahay ni Kumbati" to "Pabahay".
+  - Verified 0 remaining occurrences across entire codebase and docs.
+- **2026-11-05**: 2-Column Responsive Mobile Grid for 7 Flagship Metrics:
+  - Transformed the 7 Flagship 2027 KUMBATI Impact Metrics grid from 1 column on mobile to a balanced 2-column grid (`grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5` on Homepage, `grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6` on Impact page).
+  - Proportionally optimized internal content sizing inside `StatCounter.tsx` and the 8th summary block:
+    - Card padding scaled to `p-3.5 sm:p-6 lg:p-7` with `rounded-2xl sm:rounded-3xl`.
+    - Tabular numbers scaled to `text-2xl sm:text-4xl lg:text-5xl font-black` with `text-xl sm:text-3xl lg:text-4xl` suffixes to prevent horizontal wrapping or clipping.
+    - Category badges made compact (`text-[10px] sm:text-[11px]`) with truncation protection.
+    - Elevated icon boxes scaled to `w-8 h-8 sm:w-11 sm:h-11` with `w-4 h-4 sm:w-5 sm:h-5` icons.
+    - Titles adapted to `text-xs sm:text-base lg:text-lg font-bold leading-tight sm:leading-snug break-words`.
+    - Milestone badges and descriptions on Impact page formatted to prevent overflowing on screens as narrow as 320px.
+  - Verified `npm run build` completed with code 0.

@@ -146,15 +146,15 @@ export const HomePage: React.FC = () => {
           2. THE 7 VERIFIED 2027 KUMBATI IMPACT METRICS
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-10">
           <div>
             <div className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-3 py-1 rounded-full border border-orange-200 mb-2">
               <span>{t('Audit-Verified Governance', 'Matinud-anong Pag-alagad')}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
               {t('7 Flagship 2027 KUMBATI Impact Metrics', '7 ka mga Nag-unang Sukod sa Kalampusan sa KUMBATI 2027')}
             </h2>
-            <p className="text-sm text-slate-600 mt-1">
+            <p className="text-xs sm:text-sm text-slate-600 mt-1">
               {t(
                 'Direct tangible assistance delivered across the 19 municipalities of Bohol District 3.',
                 'Diretsong hinabang ug serbisyo nga naabot sa 19 ka mga lungsod sa Ikatulong Distrito.'
@@ -162,7 +162,7 @@ export const HomePage: React.FC = () => {
             </p>
           </div>
 
-          <Link to="/impact" className="shrink-0">
+          <Link to="/impact" className="shrink-0 self-start sm:self-auto">
             <Button variant="outline" size="sm" icon={<ChevronRight className="w-4 h-4" />} iconPosition="right">
               {t('View Detailed Impact Report', 'Tan-awa ang Tibuok Ulat')}
             </Button>
@@ -170,7 +170,7 @@ export const HomePage: React.FC = () => {
         </div>
 
         {/* Dynamic Responsive 7 Metrics Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
           {INITIAL_METRICS.map((metric) => (
             <StatCounter
               key={metric.id}
@@ -185,33 +185,37 @@ export const HomePage: React.FC = () => {
           ))}
 
           {/* District 3 Summary Block as the 8th Tile */}
-          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-sinoog border border-slate-800 border-t-slate-700 hover:border-orange-500/50 hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300">
+          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-7 flex flex-col justify-between shadow-sinoog border border-slate-800 border-t-slate-700 hover:border-orange-500/50 hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300">
             <div>
-              <div className="flex items-center justify-between mb-4">
-                <Badge variant="orange" size="sm">
+              <div className="flex items-center justify-between gap-1 mb-2.5 sm:mb-4">
+                <Badge
+                  variant="orange"
+                  size="sm"
+                  className="text-[10px] sm:text-[11px] px-1.5 py-0.5 sm:px-2 sm:py-0.5 shrink truncate max-w-[85px] sm:max-w-none"
+                >
                   {t('District-wide', 'Tibuok Distrito')}
                 </Badge>
-                <div className="w-11 h-11 rounded-2xl bg-slate-800/90 border border-slate-700/80 flex items-center justify-center shadow-sinoog-inner">
-                  <Heart className="w-5 h-5 text-red-500 fill-red-500" />
+                <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-slate-800/90 border border-slate-700/80 flex items-center justify-center shadow-sinoog-inner shrink-0">
+                  <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-red-500 fill-red-500" />
                 </div>
               </div>
-              <div className="flex items-baseline gap-1 mb-2">
-                <span className="text-4xl sm:text-5xl font-black text-white tracking-tight font-sans">
+              <div className="flex items-baseline gap-0.5 sm:gap-1 mb-1 sm:mb-2">
+                <span className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight font-sans">
                   19 / 19
                 </span>
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-orange-400 leading-snug">
+              <h3 className="text-xs sm:text-base lg:text-lg font-bold text-orange-400 leading-tight sm:leading-snug break-words">
                 {t('Municipalities United', 'Mga Lungsod nga Nahiusa')}
               </h3>
             </div>
 
-            <div className="border-t border-slate-800 pt-3 mt-4">
+            <div className="border-t border-slate-800 pt-2 sm:pt-3 mt-2 sm:mt-4">
               <Link
                 to="/directory"
-                className="text-xs font-bold text-orange-400 hover:text-orange-300 inline-flex items-center gap-1.5 transition-colors"
+                className="text-[11px] sm:text-xs font-bold text-orange-400 hover:text-orange-300 inline-flex items-center gap-1 sm:gap-1.5 transition-colors"
               >
-                <span>{t('Browse 19 Municipalities', 'Susiha ang 19 ka Lungsod')}</span>
-                <ChevronRight className="w-3.5 h-3.5" />
+                <span className="truncate">{t('Browse 19 Municipalities', 'Susiha ang 19 ka Lungsod')}</span>
+                <ChevronRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
               </Link>
             </div>
           </div>
