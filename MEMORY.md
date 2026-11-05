@@ -142,3 +142,9 @@
 - **2026-11-05**: Official Portrait Asset Upgraded to WebP (`cong_alexie.webp`):
   - Replaced `/images/cong_alexie.jpg` with the new optimized portrait `/images/cong_alexie.webp` across `HomePage.tsx` (spotlight hero card) and `AboutPage.tsx` (legislative biography card).
   - Confirmed 100% clean production build (`npm run build` passed in 17.23s with exit code 0).
+- **2026-11-05**: Desktop Hero Call-to-Action Single-Line Layout:
+  - Enabled `twMerge` in `src/components/common/Button.tsx` for clean specificity overrides.
+  - Adjusted Hero 3 action buttons in `HomePage.tsx` to `lg:flex-nowrap` on desktop viewports.
+  - Sized buttons to `size="md"` with responsive padding (`px-3.5 sm:px-4 lg:px-3.5 xl:px-5 py-2.5 sm:py-3 text-xs sm:text-xs xl:text-sm whitespace-nowrap min-h-[44px] xl:min-h-[48px] shrink-0`).
+  - Confirmed all 3 buttons (`PTV 24/7 Hotline`, `Action Center (Tracker)`, `7 Flagship Programs`) render strictly on one line on desktop view with zero overflow.
+  - Confirmed 100% clean production build (`npm run build` passed in 10.53s with exit code 0).

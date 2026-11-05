@@ -1,5 +1,6 @@
 import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 import { Loader2 } from 'lucide-react';
+import { twMerge } from 'tailwind-merge';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'emergency' | 'outline' | 'ghost' | 'white';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -53,7 +54,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className={`${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
+      className={twMerge(baseClasses, sizeClasses[size], variantClasses[variant], className)}
       disabled={disabled || loading}
       {...props}
     >

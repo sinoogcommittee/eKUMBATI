@@ -43,7 +43,7 @@ export const HomePage: React.FC = () => {
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-tr from-orange-200/30 via-amber-100/20 to-transparent blur-3xl pointer-events-none rounded-full" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
             {/* Left Column: Copy & Primary CTAs */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               {/* Pill Badge */}
@@ -67,29 +67,35 @@ export const HomePage: React.FC = () => {
                 {t(INITIAL_SITE_SETTINGS.hero_subtext_en, INITIAL_SITE_SETTINGS.hero_subtext_ceb)}
               </p>
 
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 pt-2">
+              {/* Action Buttons: strictly 1 line on desktop, wrapping on mobile/tablet */}
+              <div className="flex flex-wrap lg:flex-nowrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3 xl:gap-3.5 pt-2">
                 <Button
                   variant="emergency"
-                  size="lg"
+                  size="md"
                   onClick={() => setIsHotlineModalOpen(true)}
-                  icon={<PhoneCall className="w-5 h-5 animate-bounce" />}
+                  icon={<PhoneCall className="w-4 h-4 sm:w-4.5 sm:h-4.5 animate-bounce shrink-0" />}
+                  className="px-3.5 sm:px-4 lg:px-3.5 xl:px-5 py-2.5 sm:py-3 text-xs sm:text-xs xl:text-sm whitespace-nowrap min-h-[44px] xl:min-h-[48px] shrink-0"
                 >
                   {t('PTV 24/7 Hotline', 'PTV 24/7 Hotline')}
                 </Button>
 
-                <Link to="/action-center">
+                <Link to="/action-center" className="shrink-0">
                   <Button
                     variant="primary"
-                    size="lg"
-                    icon={<ShieldCheck className="w-5 h-5" />}
+                    size="md"
+                    icon={<ShieldCheck className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />}
+                    className="px-3.5 sm:px-4 lg:px-3.5 xl:px-5 py-2.5 sm:py-3 text-xs sm:text-xs xl:text-sm whitespace-nowrap min-h-[44px] xl:min-h-[48px] shrink-0"
                   >
                     {t('Action Center (Tracker)', 'Sentro sa Aksyon (Tracker)')}
                   </Button>
                 </Link>
 
-                <Link to="/programs">
-                  <Button variant="white" size="lg">
+                <Link to="/programs" className="shrink-0">
+                  <Button
+                    variant="white"
+                    size="md"
+                    className="px-3.5 sm:px-4 lg:px-3.5 xl:px-5 py-2.5 sm:py-3 text-xs sm:text-xs xl:text-sm whitespace-nowrap min-h-[44px] xl:min-h-[48px] shrink-0"
+                  >
                     {t('7 Flagship Programs', '7 ka Programa')}
                   </Button>
                 </Link>

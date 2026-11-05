@@ -294,5 +294,20 @@
 - [x] **13.2 Build Verification**:
   - [x] Verified production build (`npm run build`) completed with code 0 (1979 modules transformed).
 
+---
+
+### Phase 14: Desktop Hero Call-to-Action Single-Line Layout
+- [x] **14.1 Button Component Class Merging (`Button.tsx`)**:
+  - [x] Integrated `twMerge` from `tailwind-merge` into `src/components/common/Button.tsx`.
+  - [x] Enabled custom responsive padding and font overrides passed via `className` to cleanly override base styles without specificity collisions.
+- [x] **14.2 Hero Actions Sizing & Layout (`HomePage.tsx`)**:
+  - [x] Updated hero action button container to `flex flex-wrap lg:flex-nowrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3 xl:gap-3.5 pt-2`.
+  - [x] Optimized button sizes to `size="md"` with responsive padding (`px-3.5 sm:px-4 lg:px-3.5 xl:px-5 py-2.5 sm:py-3 text-xs sm:text-xs xl:text-sm whitespace-nowrap min-h-[44px] xl:min-h-[48px] shrink-0`).
+  - [x] Scaled icons to `w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0` and added `shrink-0` to React Router `<Link>` wrappers.
+  - [x] Ensured all 3 hero buttons (`PTV 24/7 Hotline`, `Action Center (Tracker)`, `7 Flagship Programs`) render strictly on a single horizontal line on desktop viewports while preserving mobile wrapping.
+- [x] **14.3 Build Verification**:
+  - [x] Verified production build (`npm run build`) passed with exit code 0 (1980 modules transformed).
+
+
 
 
