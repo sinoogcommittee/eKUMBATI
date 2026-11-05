@@ -139,3 +139,6 @@
       - Compacted spacing to `px-2.5 2xl:px-3 py-1.5` and made action buttons responsive (`EN`/`CEB` compact pill on `xl`, full "Track Ticket" button on `2xl`).
       - Added `min-w-0` and `truncate` to the top emergency micro-bar and logo tagline to eliminate subpixel overflow.
   - Confirmed 100% clean production build (`npm run build` passed in 18.79s with exit code 0).
+- **2026-11-05**: Official Portrait Asset Upgraded to WebP (`cong_alexie.webp`):
+  - Replaced `/images/cong_alexie.jpg` with the new optimized portrait `/images/cong_alexie.webp` across `HomePage.tsx` (spotlight hero card) and `AboutPage.tsx` (legislative biography card).
+  - Confirmed 100% clean production build (`npm run build` passed in 17.23s with exit code 0).

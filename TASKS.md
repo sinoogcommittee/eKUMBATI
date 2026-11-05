@@ -284,4 +284,15 @@
   - [x] Verified zero horizontal overflow on desktop and mobile viewports.
   - [x] Production build verified via `npm run build` (1979 modules transformed, 18.79s, exit code 0).
 
+---
+
+### Phase 13: Official Portrait Asset Upgrade (`cong_alexie.webp`)
+- [x] **13.1 Asset Replacement & Integration**:
+  - [x] Integrated user-provided WebP image asset: `public/images/cong_alexie.webp`.
+  - [x] Updated image path in `src/pages/public/AboutPage.tsx` from `/images/cong_alexie.jpg` to `/images/cong_alexie.webp`.
+  - [x] Updated image path in `src/pages/public/HomePage.tsx` from `/images/cong_alexie.jpg` to `/images/cong_alexie.webp`.
+- [x] **13.2 Build Verification**:
+  - [x] Verified production build (`npm run build`) completed with code 0 (1979 modules transformed).
+
+
 

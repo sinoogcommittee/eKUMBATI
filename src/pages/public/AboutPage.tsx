@@ -213,7 +213,7 @@ export const AboutPage: React.FC = () => {
               <div className="absolute -inset-2 bg-gradient-to-tr from-orange-500 to-amber-400 rounded-3xl blur-md opacity-30 shadow-sinoog" />
               <div className="relative bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-7 border border-orange-200/80 shadow-sinoog hover:shadow-sinoog-hover transition-all duration-300 overflow-hidden">
                 <img
-                  src="/images/cong_alexie.jpg"
+                  src="/images/cong_alexie.webp"
                   alt={INITIAL_SITE_SETTINGS.congresswoman_name}
                   className="w-full h-80 object-cover object-top rounded-2xl mb-5 shadow-sm"
                 />

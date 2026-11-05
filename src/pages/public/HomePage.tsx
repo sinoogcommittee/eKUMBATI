@@ -127,7 +127,7 @@ export const HomePage: React.FC = () => {
                 <div className="bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-7 border border-orange-200/80 shadow-sinoog hover:shadow-sinoog-hover transition-all duration-300 overflow-hidden">
                   <div className="relative h-72 sm:h-80 w-full rounded-2xl overflow-hidden mb-5 bg-slate-100">
                     <img
-                      src="/images/cong_alexie.jpg"
+                      src="/images/cong_alexie.webp"
                       alt={INITIAL_SITE_SETTINGS.congresswoman_name}
                       className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
                     />
