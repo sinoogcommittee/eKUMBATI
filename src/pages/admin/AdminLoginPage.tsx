@@ -60,9 +60,13 @@ export const AdminLoginPage: React.FC = () => {
         {/* Brand Header */}
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-3 group mb-4">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-orange-600 to-orange-400 flex items-center justify-center text-white font-black text-2xl shadow-kumbati group-hover:scale-105 transition-transform">
-              K
-            </div>
+            <img
+              src="/images/kumbati_logo.webp"
+              alt="e-KUMBATI Official Logo"
+              className="w-12 h-12 object-contain drop-shadow-lg group-hover:scale-105 transition-transform shrink-0"
+              width={48}
+              height={48}
+            />
             <div className="text-left">
               <span className="text-2xl font-black text-white tracking-tight block">
                 e-KUMBATI

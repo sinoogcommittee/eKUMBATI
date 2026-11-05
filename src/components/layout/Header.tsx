@@ -63,9 +63,13 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2 lg:gap-3 2xl:gap-4 w-full min-w-0">
         {/* Brand Logo & Representative Tagline */}
         <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0 min-w-0">
-          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center text-white font-black text-xl sm:text-2xl shadow-kumbati group-hover:scale-105 transition-transform duration-300 shrink-0">
-            K
-          </div>
+          <img
+            src="/images/kumbati_logo_sm.webp"
+            alt="e-KUMBATI Official Logo"
+            className="w-10 h-10 sm:w-11 sm:h-11 object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-300 shrink-0"
+            width={44}
+            height={44}
+          />
           <div className="flex flex-col min-w-0">
             <span className="text-lg sm:text-xl font-black tracking-tight text-slate-900 group-hover:text-orange-600 transition-colors leading-tight">
               e-KUMBATI

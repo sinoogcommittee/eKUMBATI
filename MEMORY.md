@@ -162,3 +162,17 @@
     - **Right Interactive Leaflet Map**: 100% height Google Maps viewport with dynamic `flyTo` camera panning, custom SVG pulsing markers, and active pin indicator.
   - Bidirectional interactivity: clicking any pin highlights its facility in the sidebar and opens the spotlight card; clicking any card flies the camera and opens its pin popup.
   - Confirmed 100% clean production build (`npm run build` passed in 10.20s with exit code 0).
+- **2026-11-05**: Official Kumbati Brand Logo & High-DPI Favicon Integration:
+  - Optimized user-provided high-res logo master `kumbati_logo.png` (4619x4619, 11.94 MB):
+    - Master file safely backed up locally to `public/images/kumbati_logo_orig.png` and ignored in `.gitignore` to avoid git repository bloat.
+    - Compressed and generated production WebP logos: `kumbati_logo.webp` (512x512, 84 KB) and `kumbati_logo_sm.webp` (192x192, 25 KB) via ffmpeg Lanczos resampling (99.3% file size reduction).
+    - Generated optimized PNG fallback: `kumbati_logo.png` (512x512, 266 KB).
+    - Generated multi-resolution browser favicon suite: `public/favicon.ico` (9.6 KB), `public/favicon.png` (10.2 KB), and `public/apple-touch-icon.png` (49.2 KB).
+  - Configured `<link rel="icon">` and `<link rel="apple-touch-icon">` tags in `index.html`.
+  - Replaced generic letter 'K' box across the website with the official Kumbati logo:
+    - Main Header (`Header.tsx`): `kumbati_logo_sm.webp` with hover scale animation.
+    - Mobile Navigation Drawer (`MobileNav.tsx`): `kumbati_logo_sm.webp`.
+    - Main Footer (`Footer.tsx`): `kumbati_logo.webp`.
+    - Admin CMS Sidebar (`AdminSidebar.tsx`): `kumbati_logo_sm.webp`.
+    - Admin Login Page (`AdminLoginPage.tsx`): `kumbati_logo.webp`.
+  - Verified 100% clean production build (`npm run build` passed in 16.99s with exit code 0).

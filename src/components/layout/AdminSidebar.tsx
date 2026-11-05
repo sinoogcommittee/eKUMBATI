@@ -48,9 +48,13 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ onCloseMobile }) => 
       <div>
         <div className="p-6 border-b border-slate-800 flex items-center justify-between">
           <Link to="/admin/dashboard" className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-orange-500 flex items-center justify-center text-white font-black text-lg shadow-kumbati">
-              K
-            </div>
+            <img
+              src="/images/kumbati_logo_sm.webp"
+              alt="e-KUMBATI Official Logo"
+              className="w-9 h-9 object-contain drop-shadow-md shrink-0"
+              width={36}
+              height={36}
+            />
             <div>
               <span className="text-base font-black text-white tracking-tight block">
                 e-KUMBATI

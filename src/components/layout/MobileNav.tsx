@@ -71,9 +71,13 @@ export const MobileNav: React.FC<MobileNavProps> = ({
             <div>
               <div className="p-5 flex items-center justify-between border-b border-orange-100 bg-white">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl bg-orange-500 flex items-center justify-center text-white font-black text-lg shadow-sm">
-                    K
-                  </div>
+                  <img
+                    src="/images/kumbati_logo_sm.webp"
+                    alt="e-KUMBATI Official Logo"
+                    className="w-9 h-9 object-contain drop-shadow-sm shrink-0"
+                    width={36}
+                    height={36}
+                  />
                   <div>
                     <span className="text-base font-black text-slate-900 block leading-tight">
                       e-KUMBATI
