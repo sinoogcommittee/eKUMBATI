@@ -113,7 +113,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 border-b border-orange-700/40">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2 lg:gap-3 2xl:gap-4 w-full min-w-0">
           {/* Brand Logo & Representative Tagline */}
-          <Link to="/" viewTransition className="flex items-center gap-2.5 sm:gap-3 group shrink-0 min-w-0">
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0 min-w-0">
             <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white p-1 shadow-md border-2 border-white/95 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:shadow-lg transition-all duration-300 ring-2 ring-black/5">
               <img
                 src="/images/kumbati_logo_sm.webp"
@@ -142,7 +142,6 @@ export const Header: React.FC<HeaderProps> = ({
               <NavLink
                 key={item.to}
                 to={item.to}
-                viewTransition
                 className={({ isActive }) =>
                   `px-2.5 2xl:px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-200 whitespace-nowrap shrink-0 ${
                     isActive
@@ -190,7 +189,6 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Action Center Tracker Shortcut - Shown on 2xl */}
             <Link
               to="/action-center"
-              viewTransition
               className="hidden 2xl:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-white/30 text-xs font-bold text-white bg-white/15 hover:bg-white/25 hover:border-white/50 shadow-xs hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[38px] whitespace-nowrap backdrop-blur-xs"
             >
               <ShieldCheck className="w-4 h-4 text-amber-200 shrink-0" />
@@ -249,7 +247,11 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* Hamburger Menu Toggle (Visible on all screens below xl) */}
             <button
-              onClick={onOpenMobileMenu}
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onOpenMobileMenu();
+              }}
               className="p-2 rounded-xl text-white hover:bg-white/20 transition-colors focus:outline-none cursor-pointer"
               aria-label="Open navigation menu"
             >

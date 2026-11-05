@@ -399,3 +399,28 @@
   - **Form Input Consistency**: Refined inputs, selects, and textareas across `ActionCenterPage.tsx`, `AdminLoginPage.tsx`, and `AdminSubmissionsPage.tsx` to `rounded-2xl min-h-[44px]` with warm border highlights matching Sinoog 2027 Material Design 3 tokens.
   - **TypeScript 6.0+ `baseUrl` Migration**: Removed deprecated `"baseUrl": "."` compiler option from `tsconfig.json` and transitioned path aliases to modern root-relative resolution (`"@/*": ["./src/*"]`), resolving the deprecation warning and future-proofing the build against TypeScript 7.0.
   - Verified `npm run build` completed with code 0 (1985 modules transformed in 7.97s).
+- **2026-11-06**: Mobile Navigation Sidebar & Route Transition Fix:
+  - **Elimination of React.lazy / View Transition Deadlock**: Removed the experimental `viewTransition` prop from `<NavLink>` and `<Link>` in both `MobileNav.tsx` and `Header.tsx`. Resolved a fatal React 18 deadlock where `ReactDOM.flushSync()` synchronously rendered lazy routes within `startViewTransition()`, triggering uncaught suspense errors, freezing navigation, and locking user clicks behind browser transition overlays.
+  - **Mobile Drawer Layering & Event Isolation**: Upgraded backdrop to `z-[60]` and drawer to `z-[70]`, with `e.stopPropagation()` and `e.preventDefault()` on both the `X` close button and backdrop click targets, guaranteeing immediate and responsive closing.
+  - **Public & Admin Layout Hardening**: Wrapped drawer toggle callbacks in `useCallback` in `PublicLayout.tsx`. Added mobile close button to `AdminSidebar.tsx` and automatic route change closure in `AdminLayout.tsx`.
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 7.18s).
+- **2026-11-06**: Mobile Hamburger Immediate Auto-Close Bug Resolution & Interaction Verification:
+  - **Premature Auto-Close Root Cause**: Diagnosed and eliminated an effect race condition in `MobileNav.tsx`: `useEffect` listed `[location.pathname, handleClose, isOpen]`, and executed `if (isOpen) handleClose()`. Consequently, when the constituent tapped the hamburger icon and `isOpen` flipped to `true`, the effect immediately triggered on the very same render tick, executing `handleClose()` and instantaneously slamming the drawer shut before it could even be perceived.
+  - **Guarded Path Ref Pattern**: Replaced the faulty effect with a `prevPathnameRef = useRef(location.pathname)` guard:
+    ```tsx
+    const prevPathnameRef = React.useRef(location.pathname);
+    useEffect(() => {
+      if (prevPathnameRef.current !== location.pathname) {
+        prevPathnameRef.current = location.pathname;
+        if (isOpen) {
+          handleClose();
+        }
+      }
+    }, [location.pathname, isOpen, handleClose]);
+    ```
+    When the hamburger icon is tapped, `location.pathname` does not change, meaning `prevPathnameRef.current !== location.pathname` is false and `handleClose()` is NEVER called. The effect now cleanly executes exclusively on genuine route transitions (e.g. browser back/forward or programmatic navigation).
+  - **Drawer Event Isolation**: Added `onClick={(e) => e.stopPropagation()}` on the `<aside>` drawer container to ensure total click event isolation between the drawer content and the semi-transparent backdrop overlay.
+  - **Hamburger Toggle Hardening**: Updated the hamburger button in `Header.tsx` to explicit `type="button"` with `e.stopPropagation()` in its `onClick` callback.
+  - **20-Scenario Lifecycle Test Suite**: Executed `verify_lifecycle.mjs` verifying that hamburger open keeps the drawer open indefinitely across multiple renders, navigation items trigger immediate route rendering and drawer closing, the `X` button closes the drawer and releases body scroll lock, the backdrop click closes the drawer, and browser history transitions cleanly dismiss the drawer (20/20 test assertions passed with 100% success rate).
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 7.85s).
+

@@ -15,6 +15,7 @@ import {
   Database,
   CloudOff,
   Bell,
+  X,
 } from 'lucide-react';
 import { Badge } from '../common/Badge';
 
@@ -47,7 +48,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ onCloseMobile }) => 
       {/* Top Header */}
       <div>
         <div className="p-6 border-b border-slate-800 flex items-center justify-between">
-          <Link to="/admin/dashboard" className="flex items-center gap-3">
+          <Link to="/admin/dashboard" onClick={onCloseMobile} className="flex items-center gap-3">
             <img
               src="/images/kumbati_logo_sm.webp"
               alt="e-KUMBATI Official Logo"
@@ -64,6 +65,17 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ onCloseMobile }) => 
               </span>
             </div>
           </Link>
+
+          {onCloseMobile && (
+            <button
+              type="button"
+              onClick={onCloseMobile}
+              className="p-1.5 -mr-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors md:hidden cursor-pointer"
+              aria-label="Close admin menu"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          )}
         </div>
 
         {/* Backend Connectivity Status Pill */}

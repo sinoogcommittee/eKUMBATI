@@ -3,7 +3,7 @@
  * Hybrid Offline-First Architecture & Asset Caching
  */
 
-const CACHE_NAME = 'ekumbati-cache-v1';
+const CACHE_NAME = 'ekumbati-cache-v2';
 
 // Critical core assets cached immediately upon installation
 const PRECACHE_ASSETS = [

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
@@ -14,6 +14,11 @@ export const PublicLayout: React.FC = () => {
   const [isHotlineModalOpen, setIsHotlineModalOpen] = useState(false);
   const location = useLocation();
 
+  const handleOpenMobileMenu = useCallback(() => setIsMobileMenuOpen(true), []);
+  const handleCloseMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
+  const handleOpenHotlineModal = useCallback(() => setIsHotlineModalOpen(true), []);
+  const handleCloseHotlineModal = useCallback(() => setIsHotlineModalOpen(false), []);
+
   // Scroll to top and close mobile navigation drawer on route change
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -27,8 +32,8 @@ export const PublicLayout: React.FC = () => {
 
       {/* Global Header */}
       <Header
-        onOpenMobileMenu={() => setIsMobileMenuOpen(true)}
-        onOpenHotlineModal={() => setIsHotlineModalOpen(true)}
+        onOpenMobileMenu={handleOpenMobileMenu}
+        onOpenHotlineModal={handleOpenHotlineModal}
       />
 
       {/* Main Content Viewport with Accessible Skip Anchor */}
@@ -39,19 +44,19 @@ export const PublicLayout: React.FC = () => {
       {/* Mobile Drawer Menu */}
       <MobileNav
         isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
-        onOpenHotlineModal={() => setIsHotlineModalOpen(true)}
+        onClose={handleCloseMobileMenu}
+        onOpenHotlineModal={handleOpenHotlineModal}
       />
 
       {/* Emergency Hotline Directory Modal */}
       <HotlineModal
         isOpen={isHotlineModalOpen}
-        onClose={() => setIsHotlineModalOpen(false)}
+        onClose={handleCloseHotlineModal}
       />
 
       {/* Mobile Sticky Quick-Action Bar */}
       <StickyHotlineBar
-        onOpenHotlineModal={() => setIsHotlineModalOpen(true)}
+        onOpenHotlineModal={handleOpenHotlineModal}
       />
 
       {/* District Footer */}

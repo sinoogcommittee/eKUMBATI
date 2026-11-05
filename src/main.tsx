@@ -15,18 +15,25 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   </React.StrictMode>
 );
 
-// Register PWA Service Worker for Offline-First Hybrid Resilience
+// Register PWA Service Worker in production only for Offline-First Hybrid Resilience
 if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker
-      .register('/sw.js')
-      .then((reg) => {
-        if (import.meta.env.DEV) {
-          console.info('e-KUMBATI ServiceWorker active:', reg.scope);
-        }
-      })
-      .catch((err) => {
-        console.warn('ServiceWorker registration skipped:', err);
-      });
-  });
+  if (import.meta.env.PROD) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then((reg) => {
+          reg.update();
+        })
+        .catch((err) => {
+          console.warn('ServiceWorker registration skipped:', err);
+        });
+    });
+  } else {
+    // In dev mode, unregister any active service worker to prevent stale asset caching
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (const reg of registrations) {
+        reg.unregister();
+      }
+    });
+  }
 }
