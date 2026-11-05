@@ -7,6 +7,7 @@ import {
   GalleryMedia,
   HotlineEntry,
   MapLocation,
+  NewsAnnouncement,
 } from '../types/kumbati.types';
 
 // ============================================================================
@@ -796,3 +797,246 @@ export const INITIAL_MAP_LOCATIONS: MapLocation[] = [
     is_active: true,
   },
 ];
+
+// ============================================================================
+// 9. INITIAL NEWS & PUBLIC ANNOUNCEMENTS
+// ============================================================================
+export const INITIAL_NEWS_ANNOUNCEMENTS: NewsAnnouncement[] = [
+  {
+    id: 'news-ptv-weather-standby',
+    title_en: 'PTV 24/7 Emergency Dispatch Standby Alert for Weather Disturbance across 19 Municipalities',
+    title_ceb: 'PTV 24/7 Alerto ug Andam sa Emerhensiya sa Panahon sa Dautan nga Panahon lukop sa 19 ka Lungsod',
+    excerpt_en: 'The 4-van Patient Transport Vehicle (PTV) fleet is placed on heightened 24/7 standby for emergency hospital transfers and patient logistics across all 19 towns.',
+    excerpt_ceb: 'Ang 4 ka sakyanan sa PTV 24/7 nga naka-alerto alang sa dinaliang paghatod sa mga pasyente sa tambalanan lukop sa 19 ka mga lungsod sa Ikatulong Distrito.',
+    content_en: `In view of recent localized thunderstorms and weather advisories affecting eastern and central Bohol, Congresswoman Kristine Alexie Besas Tutor has directed the entire 4-van Patient Transport Vehicle (PTV) fleet to maintain 24/7 heightened readiness.
+
+Our dispatch coordinators and professional drivers stationed in Candijay, Jagna, Carmen, and Guindulman hubs are actively collaborating with Municipal Disaster Risk Reduction and Management Offices (MDRRMOs) and local rural health units (RHUs).
+
+Emergency Dispatch Protocols:
+1. Dial the 24/7 Hotline immediately: +63 917 832 6284 or (038) 526-0123.
+2. Provide patient details, current exact location/barangay, and receiving hospital.
+3. Zero-Fare Guarantee: No constituent shall be charged for fuel, driver honorarium, or vehicle dispatch.
+
+For critical inter-facility emergency transfers, please have your attending medical officer or RHU nurse endorse the patient so our drivers can coordinate with receiving hospital triage teams in Tagbilaran City or district hospitals.`,
+    content_ceb: `Tungod sa mga pag-ulan ug dautan nga panahon nga nasinati sa silangan ug sentral nga bahin sa Bohol, gimandoan ni Congresswoman Kristine Alexie Besas Tutor ang tanang 4 ka sakyanan sa Patient Transport Vehicle (PTV) nga magpabilin nga 24/7 andam ug alerto.
+
+Ang atong mga dispatch coordinators ug mga drayber sa Candijay, Jagna, Carmen, ug Guindulman kanunayng nakig-alayon sa mga MDRRMO ug Rural Health Units (RHUs).
+
+Pamaagi sa Pag-request sa PTV:
+1. Tawag dayon sa 24/7 Hotline: +63 917 832 6284 o (038) 526-0123.
+2. Ihatag ang ngalan sa pasyente, address/barangay, ug asa nga ospital dad-on.
+3. Libre ug Walay Bayad: Walay pabayron bisan piso sa krudo, drayber, o sakyanan.
+
+Alang sa pasyente nga kinahanglang ibalhin sa Tagbilaran o district hospital, palihug ipahibawo sa inyong RHU o doktor aron ma-coordinate sa receiving hospital.`,
+    category: 'advisory',
+    priority: 'urgent',
+    author: 'PTV 24/7 Command Center',
+    publish_date: '2026-11-04',
+    image_url: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80',
+    is_pinned: true,
+    is_published: true,
+    target_towns: ['District-wide'],
+  },
+  {
+    id: 'news-ched-tdp-payout-schedule',
+    title_en: 'Schedule of Payout: CHED Tulong Dunong Program (TDP) for 1st Semester College Scholars',
+    title_ceb: 'Eskedyul sa Payout: CHED Tulong Dunong Program (TDP) alang sa mga Iskolar sa Kolehiyo',
+    excerpt_en: 'The Congressional District Office releases the municipal payout schedule and documentary requirements for 3,829+ tertiary student beneficiaries.',
+    excerpt_ceb: 'Gipagawas sa Opisina sa Distrito ang eskedyul sa payout ug mga gikinahanglang dokumento sa kapin 3,829+ ka mga estudyante sa kolehiyo.',
+    content_en: `The Office of Congresswoman Alexie Besas Tutor, in coordination with the Commission on Higher Education (CHED Region VII), announces the official payout schedule for the CHED Tulong Dunong Program (TDP-TES) tertiary educational grants for the 1st Semester.
+
+Municipal Payout Cluster Schedule:
+- Cluster 1 (Candijay, Anda, Mabini, Alicia): Tuesday, 8:30 AM - Candijay Cultural Center
+- Cluster 2 (Jagna, Duero, Garcia Hernandez): Wednesday, 8:30 AM - Jagna Municipal Gymnasium
+- Cluster 3 (Carmen, Batuan, Bilar, Sierra Bullones, Pilar): Thursday, 8:30 AM - Carmen Multi-Purpose Complex
+- Cluster 4 (Dimiao, Valencia, Lila, Loay, Loboc, Sevilla): Friday, 8:30 AM - Loay Gymnasium
+
+Mandatory Requirements to Bring:
+1. Valid Student School ID (Original and 2 photocopies).
+2. Certificate of Registration (COR) / Assessment Form for current semester with official dry seal.
+3. Certificate of Indigency from Barangay Captain (Original).
+4. Ballpen (Black ink).
+
+Scholars are advised to come on their assigned municipal timeslots to avoid congestion. Parents or authorized representatives must present an Authorization Letter and Valid Government ID if the scholar has a conflict with mandatory school exams.`,
+    content_ceb: `Ang Opisina ni Congresswoman Alexie Besas Tutor, kauban ang Commission on Higher Education (CHED Region VII), nagpahibalo sa opisyal nga eskedyul sa payout sa CHED Tulong Dunong Program (TDP-TES) alang sa 1st Semester.
+
+Eskedyul sa Payout Matag Cluster:
+- Cluster 1 (Candijay, Anda, Mabini, Alicia): Martes, 8:30 AM - Candijay Cultural Center
+- Cluster 2 (Jagna, Duero, Garcia Hernandez): Miyerkules, 8:30 AM - Jagna Municipal Gymnasium
+- Cluster 3 (Carmen, Batuan, Bilar, Sierra Bullones, Pilar): Huwebes, 8:30 AM - Carmen Multi-Purpose Complex
+- Cluster 4 (Dimiao, Valencia, Lila, Loay, Loboc, Sevilla): Biyernes, 8:30 AM - Loay Gymnasium
+
+Mga Gikinahanglang Dalhon:
+1. Valid School ID sa estudyante (Original ug 2 ka photocopy).
+2. Certificate of Registration (COR) / Assessment Form nga may official seal.
+3. Barangay Certificate of Indigency (Original).
+4. Ballpen (Itom).
+
+Giawhag ang mga iskolar sa pag-abot sa gitakdang oras aron mahapsay ang pag-apud-apod sa hinabang.`,
+    category: 'payout_schedule',
+    priority: 'important',
+    author: 'District Educational Assistance Desk',
+    publish_date: '2026-11-02',
+    image_url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
+    is_pinned: true,
+    is_published: true,
+    target_towns: ['Candijay', 'Carmen', 'Jagna', 'Guindulman', 'Sierra Bullones', 'Pilar', 'Alicia', 'Anda', 'Mabini', 'Duero', 'Garcia Hernandez', 'Dimiao', 'Valencia', 'Lila', 'Loay', 'Loboc', 'Sevilla', 'Batuan', 'Bilar'],
+  },
+  {
+    id: 'news-kumbati-clinic-caravan',
+    title_en: 'Free Kumbati Medical Clinic & Diagnostic Caravan Scheduled for Eastern Bohol Municipalities',
+    title_ceb: 'Libreng Kumbati Medical Clinic ug Diagnostic Caravan sa mga Lungsod sa Silangang Bohol',
+    excerpt_en: 'Free physician consultations, pediatric checkups, ECG testing, prescription maintenance medicines, and tooth extractions across Anda, Mabini, and Duero.',
+    excerpt_ceb: 'Libreng konsultasyon sa doktor, check-up sa bata, ECG, tambal sa maintenance, ug ibot sa ngipon sa mga lungsod sa Anda, Mabini, ug Duero.',
+    content_en: `Continuing the healthcare advocacy of Congresswoman Alexie Tutor, the mobile team of Kumbati Medical Clinic will conduct a 3-day multi-town Medical and Diagnostic Mission in eastern Bohol.
+
+Services Offered 100% Free:
+- Comprehensive adult and geriatric medical examinations
+- Pediatric wellness checkups and vitamin supplements
+- 12-Lead Electrocardiogram (ECG) screening for hypertension and cardiac patients
+- Random blood glucose and uric acid screening
+- Tooth extractions and dental hygiene kits
+- Dispensation of maintenance medicines for hypertension, diabetes, and respiratory ailments
+
+Itinerary:
+- Day 1: Anda Municipal Covered Court (8:00 AM - 3:00 PM)
+- Day 2: Mabini Town Gymnasium (8:00 AM - 3:00 PM)
+- Day 3: Duero Cultural Center (8:00 AM - 3:00 PM)
+
+All constituents are welcome. Priority numbering will be given to senior citizens, pregnant mothers, and persons with disabilities (PWDs).`,
+    content_ceb: `Aron ipadayon ang serbisyo medikal ni Congw. Alexie Tutor, ang grupo sa Kumbati Medical Clinic mopahigayon og 3 ka adlaw nga Medical and Diagnostic Caravan sa silangang bahin sa Bohol.
+
+Libreng Serbisyo:
+- Pagsusi sa doktor alang sa mga hamtong ug katigulangan
+- Check-up sa mga bata ug libreng bitamina
+- 12-Lead ECG para sa may alta-presyon ug sakit sa kasingkasing
+- Blood sugar testing
+- Ibot sa ngipon
+- Libreng tambal sa maintenance sama sa tambal sa high blood, diabetes, ug ubo/sipon
+
+Lugar ug Adlaw:
+- Adlaw 1: Anda Municipal Covered Court (8:00 AM - 3:00 PM)
+- Adlaw 2: Mabini Town Gymnasium (8:00 AM - 3:00 PM)
+- Adlaw 3: Duero Cultural Center (8:00 AM - 3:00 PM)
+
+Bukas kini sa tanang lumulupyo. Prayoridad ang mga senior citizen, mabdos, ug PWD.`,
+    category: 'medical_mission',
+    priority: 'important',
+    author: 'Kumbati Medical Mission Team',
+    publish_date: '2026-10-28',
+    image_url: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
+    is_pinned: false,
+    is_published: true,
+    target_towns: ['Anda', 'Mabini', 'Duero'],
+  },
+  {
+    id: 'news-ra-11883-groundbreaking',
+    title_en: 'Republic Act No. 11883 Implementation: Civil Works Commence for Carmen Hospital Expansion',
+    title_ceb: 'Pagpatuman sa RA 11883: Pagsugod sa Trabaho sa Pagpalapad sa Hospital sa Carmen',
+    excerpt_en: 'Department of Health and DPWH break ground on the modern 75-bed expansion of Cong. Simeon G. Toribio Memorial Hospital under Congw. Alexie Tutor\'s authored law.',
+    excerpt_ceb: 'Gisugdan na sa DOH ug DPWH ang pagtukod sa bag-ong edipisyo aron mahimong 75-bed capacity ang ospital sa Carmen subay sa balaod ni Congw. Tutor.',
+    content_en: `Groundwork and structural construction have officially commenced for the multi-million hospital expansion of the Cong. Simeon G. Toribio Memorial Hospital in Carmen, Bohol, implementing Republic Act No. 11883 authored by Congresswoman Kristine Alexie Besas Tutor.
+
+Key Upgrades Being Constructed:
+- Bed capacity expansion from 40 to 75 authorized beds
+- Dedicated High-Dependency Intensive Care Unit (ICU) and Neonatal ICU
+- Expanded Emergency Trauma Bay with modernized triage
+- New Hemodialysis Wing to serve dialysis patients from Carmen, Batuan, Sagbayan, and Sierra Bullones
+- Upgraded digital radiological and sonographic imaging center
+
+"Through RA 11883, we are ensuring that the families in the interior highlands of Bohol do not have to travel over an hour to Tagbilaran City just to receive life-saving hospital care," stated Congw. Alexie Tutor during the project site inspection.`,
+    content_ceb: `Gisugdan na ang trabaho sa pagpalapad sa Cong. Simeon G. Toribio Memorial Hospital sa lungsod sa Carmen, agi og pagpatuman sa Republic Act No. 11883 nga gipangamahanan ni Congresswoman Kristine Alexie Besas Tutor.
+
+Mga Bag-ong Pasilidad nga Tukuron:
+- Pagpadako sa katre gikan sa 40 ngadto sa 75 ka katre
+- Bag-ong Intensive Care Unit (ICU) ug Neonatal ICU alang sa bag-ong natawo
+- Mas dako ug modernong Emergency Trauma Room
+- Bag-ong Hemodialysis Wing alang sa mga pasyente sa Carmen, Batuan, ug kasikbit nga lungsod
+- Modernong digital X-Ray ug laboratoryo
+
+"Pinaagi sa RA 11883, gisiguro nato nga ang katawhan sa interior sa Bohol dili na kinahanglang mobiyahe og layo ngadto sa Tagbilaran aron matambalan," matud pa ni Congw. Alexie Tutor.`,
+    category: 'legislative',
+    priority: 'normal',
+    author: 'Congressional Media Bureau',
+    publish_date: '2026-10-22',
+    image_url: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80',
+    is_pinned: false,
+    is_published: true,
+    target_towns: ['Carmen', 'Batuan', 'Bilar', 'Sierra Bullones'],
+  },
+  {
+    id: 'news-tambayan-dialysis-lodging',
+    title_en: 'Tambayan ni Kumbati for Dialysis Patients: Updated Lodging and Free Meal Protocol',
+    title_ceb: 'Tambayan ni Kumbati sa Tagbilaran: Bag-ong Giya sa Libreng Pahuwayan ug Pagkaon sa Dialysis Patients',
+    excerpt_en: 'Guidelines on how 3rd District kidney care patients and their travel companions can reserve air-conditioned dorm beds and warm meals in Tagbilaran City.',
+    excerpt_ceb: 'Mga pahimangno ug pamaagi kon unsaon pag-avail sa libreng kwarto nga aircon ug pagkaon alang sa mga dialysis patients gikan sa Distrito 3.',
+    content_en: `The Office of Congresswoman Alexie Besas Tutor reminds all hemodialysis patients from the 19 municipalities of Bohol's 3rd Congressional District that Tambayan ni Kumbati, located near major dialysis centers in Tagbilaran City, continues to provide 100% free lodging and freshly prepared nutritious meals.
+
+Amenities Available:
+- Clean, air-conditioned patient dormitories with orthopedic mattresses
+- Companion sleeping areas and sanitized restrooms with hot/cold showers
+- Free hot meals and kidney-safe dining menu for patients and their caregivers
+- Television recreation lounge and high-speed Wi-Fi
+- Direct transit coordination with the PTV 24/7 fleet for trips back to the province
+
+Reservation Procedure:
+Please coordinate with the Action Center desk or call the Tambayan Coordinator at +63 917 832 6284 at least 24 hours prior to your scheduled dialysis treatment in Tagbilaran.`,
+    content_ceb: `Gipahinumdoman sa Opisina ni Congw. Alexie Tutor ang tanang pasyente sa hemodialysis gikan sa 19 ka lungsod sa Distrito 3 nga ang Tambayan ni Kumbati sa Tagbilaran City padayong naghatag og libreng pahuwayan ug pagkaon.
+
+Mga Pasilidad sa Tambayan:
+- Limpyo ug aircon nga mga kwarto nga may komportableng katre
+- Pahuwayan alang sa mga bantay ug limpyong kasilyas nga may hot/cold shower
+- Libreng init nga pagkaon nga angay sa dialysis diet
+- TV lounge ug libreng Wi-Fi
+- Koordinasyon sa PTV alang sa pagsakay pauli sa lungsod
+
+Pamaagi sa Pagpa-reserve:
+Tawag o pakig-alayon sa Tambayan Coordinator sa +63 917 832 6284 labing menos 24 oras sa dili pa ang inyong schedule sa dialysis.`,
+    category: 'advisory',
+    priority: 'normal',
+    author: 'Tambayan ni Kumbati Administrator',
+    publish_date: '2026-10-15',
+    image_url: 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80',
+    is_pinned: false,
+    is_published: true,
+    target_towns: ['District-wide'],
+  },
+  {
+    id: 'news-pabahay-site-assessment',
+    title_en: 'Pabahay ni Kumbati Phase 4 Site Assessment: 40 More Resilient Homes Slated for Coastal Municipalities',
+    title_ceb: 'Pabahay ni Kumbati Phase 4: Dugang 40 ka Balay ang Pagatukuron sa mga Baybayong Lungsod',
+    excerpt_en: 'Technical validation conducted in partnership with LGU engineers to finalize beneficiary masterlists for typhoon-resilient concrete housing units.',
+    excerpt_ceb: 'Gipahigayon ang inspeksyon ug pagsusi sa listahan sa mga benepisyaryo sa bag-ong sementadong balay nga dili maguba sa katalagman.',
+    content_en: `Engineers from the District Technical Planning Office, in coordination with municipal social welfare officers from Dimiao, Garcia Hernandez, Valencia, and Lila, have concluded initial ground validations for Phase 4 of Pabahay ni Kumbati.
+
+This flagship socialized shelter program of Congw. Alexie Tutor has already turned over 259+ concrete homes to landless, indigent families living in danger zones or disaster-vulnerable shorelines.
+
+Key Specifications of Each Pabahay Unit:
+- Monolithic reinforced concrete foundation engineered to withstand Category 5 super typhoons
+- Metal-trussed galvanized roofing with gale-force wind strapping
+- Dedicated individual septic tank, modern plumbing, and electricity wiring
+- Solar perimeter lighting for community safety
+
+Beneficiary selection is strictly vetted through municipal MSWDO assessments, focusing on families without legal land tenure or residing in high-risk cliffside and storm-surge hazard zones.`,
+    content_ceb: `Ang mga inhenyero sa Distrito, kauban ang mga MSWDO sa Dimiao, Garcia Hernandez, Valencia, ug Lila, nakahuman na sa validation alang sa Phase 4 sa Pabahay ni Kumbati.
+
+Kini nga programa ni Congw. Alexie Tutor nakahatag na og kapin 259+ ka sementadong panimalay sa mga kabus nga pamilya nga nagpuyo sa danger zones o daplin sa baybayon.
+
+Mga Kinaiya sa Balay sa Pabahay:
+- Sementado nga pundasyon nga makasukol sa kusog nga bagyo
+- Lig-on nga atop nga may hurricane clips
+- Adunay kaugalingong septic tank, kasilyas, ug linya sa suga
+- Solar streetlights alang sa kaluwasan sa komunidad
+
+Ang pagpili sa benepisyaryo subay sa pagsusi sa MSWDO sa matag lungsod aron masiguro nga ang labing nanginahanglan maoy makadawat.`,
+    category: 'general',
+    priority: 'normal',
+    author: 'Pabahay Technical Committee',
+    publish_date: '2026-10-08',
+    image_url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80',
+    is_pinned: false,
+    is_published: true,
+    target_towns: ['Dimiao', 'Garcia Hernandez', 'Valencia', 'Lila'],
+  },
+];
+

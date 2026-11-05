@@ -116,3 +116,31 @@
   - [x] Supabase Storage bucket `kumbati-media` created with public read access
   - [x] Seed data migrations applied (7 metrics, 7 programs, albums, media, directory, map pins)
   - [x] Local `.env` linked to live Supabase endpoint and verified in bundle build
+
+---
+
+### Phase 7: News, Updates & Public Announcements CMS + Google Maps Integration
+- [x] **7.1 Data Architecture & Supabase DDL**:
+  - [x] Added `NewsAnnouncement` domain types and categories (`advisory`, `payout_schedule`, `medical_mission`, `legislative`, `disaster_alert`, `general`) to `src/types/kumbati.types.ts`.
+  - [x] Applied idempotent Supabase migration creating `public.news_announcements` with RLS policies (public read published, authenticated write).
+  - [x] Regenerated database types in `src/types/database.types.ts`.
+  - [x] Seeded 6 realistic announcements in `src/lib/constants.ts` and remote Supabase database.
+- [x] **7.2 Public News Portal (`src/pages/public/NewsPage.tsx`)**:
+  - [x] Pinned & urgent advisory banner at top with emergency priority alerts.
+  - [x] Keyword search and category/town filtering for announcements.
+  - [x] Full announcement modal with print, share, and formatted paragraphs.
+  - [x] Hybrid offline fallback to `localStorage` and `constants.ts`.
+- [x] **7.3 Back-Office News CMS (`src/pages/admin/AdminNewsPage.tsx`)**:
+  - [x] Full CRUD manager for district advisories, payout schedules, and updates.
+  - [x] Client-side WebP image compression with `compressImageToWebP`.
+  - [x] Instant toggle for publish status (live vs draft) and pinned status.
+  - [x] Direct shortcut and callout in `AdminSettingsPage.tsx` and `AdminSidebar.tsx`.
+- [x] **7.4 Google Maps Free Interactive Maps Integration**:
+  - [x] Integrated 100% free Google Maps raster tiles (`roadmap`, `satellite`, `hybrid`, `terrain`) in `DistrictLeafletMap.tsx` with zero API cost and no credit card/billing requirement.
+  - [x] Added Google Maps layer switcher buttons directly on the map.
+  - [x] Added direct Google Maps turn-by-turn route navigation (`https://www.google.com/maps/dir/?api=1&destination=...`) on all facility popups and cards in `MapPage.tsx`.
+  - [x] Added interactive Google Maps Satellite Embed modal preview for each facility.
+- [x] **7.5 Global Navigation Integration**:
+  - [x] Added News & Updates to `Header.tsx`, `MobileNav.tsx`, `Footer.tsx`, and `AdminSidebar.tsx`.
+  - [x] Preserved navigation sequence: `Home` → `Programs` → `Impact` → `News & Updates` → `Gallery` → `19 Towns` → `District Map` → `Action Center` → `About`.
+  - [x] Verified `npm run build` succeeds with exit code 0.

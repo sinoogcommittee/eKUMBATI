@@ -11,6 +11,7 @@ const HomePage = lazy(() => import('./pages/public/HomePage'));
 const AboutPage = lazy(() => import('./pages/public/AboutPage'));
 const ProgramsPage = lazy(() => import('./pages/public/ProgramsPage'));
 const ImpactPage = lazy(() => import('./pages/public/ImpactPage'));
+const NewsPage = lazy(() => import('./pages/public/NewsPage'));
 const GalleryPage = lazy(() => import('./pages/public/GalleryPage'));
 const DirectoryPage = lazy(() => import('./pages/public/DirectoryPage'));
 const MapPage = lazy(() => import('./pages/public/MapPage'));
@@ -19,6 +20,7 @@ const ActionCenterPage = lazy(() => import('./pages/public/ActionCenterPage'));
 // Lazy-Loaded Admin CMS Pages
 const AdminLoginPage = lazy(() => import('./pages/admin/AdminLoginPage'));
 const AdminDashboardPage = lazy(() => import('./pages/admin/AdminDashboardPage'));
+const AdminNewsPage = lazy(() => import('./pages/admin/AdminNewsPage'));
 const AdminSettingsPage = lazy(() => import('./pages/admin/AdminSettingsPage'));
 const AdminMetricsPage = lazy(() => import('./pages/admin/AdminMetricsPage'));
 const AdminProgramsPage = lazy(() => import('./pages/admin/AdminProgramsPage'));
@@ -36,6 +38,9 @@ export const App: React.FC = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/programs" element={<ProgramsPage />} />
             <Route path="/impact" element={<ImpactPage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/announcements" element={<Navigate to="/news" replace />} />
+            <Route path="/updates" element={<Navigate to="/news" replace />} />
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/directory" element={<DirectoryPage />} />
             <Route path="/map" element={<MapPage />} />
@@ -50,6 +55,7 @@ export const App: React.FC = () => {
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Navigate to="/admin/dashboard" replace />} />
             <Route path="dashboard" element={<AdminDashboardPage />} />
+            <Route path="news" element={<AdminNewsPage />} />
             <Route path="settings" element={<AdminSettingsPage />} />
             <Route path="metrics" element={<AdminMetricsPage />} />
             <Route path="programs" element={<AdminProgramsPage />} />

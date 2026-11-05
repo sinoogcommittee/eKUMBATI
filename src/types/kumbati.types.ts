@@ -211,3 +211,37 @@ export interface MapLocation {
   created_at?: string;
   updated_at?: string;
 }
+
+// ============================================================================
+// 9. NEWS & PUBLIC ANNOUNCEMENT
+// ============================================================================
+export type AnnouncementCategory =
+  | 'advisory'
+  | 'payout_schedule'
+  | 'medical_mission'
+  | 'legislative'
+  | 'disaster_alert'
+  | 'general';
+
+export type AnnouncementPriority = 'urgent' | 'important' | 'normal';
+
+export interface NewsAnnouncement {
+  id: string;
+  title_en: string;
+  title_ceb: string;
+  excerpt_en: string;
+  excerpt_ceb: string;
+  content_en: string;
+  content_ceb: string;
+  category: AnnouncementCategory;
+  priority: AnnouncementPriority;
+  author: string;
+  publish_date: string;
+  image_url?: string;
+  attachment_url?: string;
+  is_pinned: boolean;
+  is_published: boolean;
+  target_towns?: string[];
+  created_at?: string;
+  updated_at?: string;
+}

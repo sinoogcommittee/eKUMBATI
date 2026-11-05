@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import { INITIAL_MAP_LOCATIONS, BOHOL_DISTRICT_3_TOWNS } from '../../lib/constants';
-import { LocationCategory } from '../../types/kumbati.types';
+import { LocationCategory, MapLocation } from '../../types/kumbati.types';
 import DistrictLeafletMap from '../../components/maps/DistrictLeafletMap';
 import Badge from '../../components/common/Badge';
+import Modal from '../../components/common/Modal';
 import {
   MapPin,
   Phone,
@@ -16,6 +17,9 @@ import {
   Home,
   Ambulance,
   Building2,
+  Navigation,
+  ExternalLink,
+  Map as MapIcon,
 } from 'lucide-react';
 
 export const MapPage: React.FC = () => {
@@ -25,6 +29,7 @@ export const MapPage: React.FC = () => {
 
   const [selectedCategory, setSelectedCategory] = useState<LocationCategory | 'all'>('all');
   const [selectedTown, setSelectedTown] = useState<string>(initialTownParam);
+  const [previewLocation, setPreviewLocation] = useState<MapLocation | null>(null);
 
   const filteredList = INITIAL_MAP_LOCATIONS.filter((loc) => {
     const matchCategory = selectedCategory === 'all' || loc.category === selectedCategory;
@@ -58,16 +63,17 @@ export const MapPage: React.FC = () => {
       <section className="bg-gradient-to-b from-orange-50/80 via-amber-50/20 to-transparent pt-10 pb-8 border-b border-orange-100/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <Badge variant="orange" size="sm" dot>
-              {t('Geospatial District Facilities', 'Mapa sa mga Pasilidad')}
-            </Badge>
-            <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mt-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-800 text-xs font-bold uppercase tracking-wider mb-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>{t('Google Maps Geospatial District Facilities', 'Google Maps sa mga Pasilidad sa Distrito')}</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mt-2">
               {t('Interactive District 3 Map & Facility Finder', 'Interactive nga Mapa sa Distrito 3')}
             </h1>
             <p className="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed">
               {t(
-                'Explore the geographical distribution of district offices, Kumbati clinics, PTV 24/7 stations, dialysis haven, and municipal halls across all 19 towns.',
-                'Susiha ang nahimutangan sa mga opisina sa kongreso, klinika, sakyanan sa pasyente, tambayan sa dialysis, ug mga munisipyo sa tibuok distrito.'
+                'Explore the geographical distribution of district offices, Kumbati clinics, PTV 24/7 stations, dialysis haven, and municipal halls powered by Google Maps with free turn-by-turn navigation.',
+                'Susiha ang nahimutangan sa mga opisina sa kongreso, klinika, sakyanan sa pasyente, tambayan sa dialysis, ug mga munisipyo pinaagi sa Google Maps nga may libreng direksyon sa biyahe.'
               )}
             </p>
           </div>
@@ -103,9 +109,19 @@ export const MapPage: React.FC = () => {
       </section>
 
       {/* =====================================================================
-          3. FULL LEAFLET MAP VIEWPORT
+          3. FULL GOOGLE MAPS LEAFLET VIEWPORT
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-3 flex items-center justify-between text-xs text-slate-500 font-medium">
+          <span className="flex items-center gap-1.5">
+            <MapIcon className="w-3.5 h-3.5 text-orange-600" />
+            <span>{t('Powered by Google Maps (Roadmap, Satellite & Terrain)', 'Gipadagan sa Google Maps (Kalsada, Satelayt ug Terrain)')}</span>
+          </span>
+          <span className="text-[11px] text-slate-400">
+            {t('Free & Open Navigation', 'Libreng Direksyon')}
+          </span>
+        </div>
+
         <DistrictLeafletMap
           height="580px"
           initialTown={selectedTown}
@@ -114,7 +130,7 @@ export const MapPage: React.FC = () => {
       </section>
 
       {/* =====================================================================
-          4. FACILITY DIRECTORY CARDS
+          4. FACILITY DIRECTORY CARDS WITH GOOGLE MAPS DIRECTIONS
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
@@ -123,7 +139,7 @@ export const MapPage: React.FC = () => {
               {t('Catalog of District Locations', 'Listahan sa mga Lokasyon')}
             </h2>
             <p className="text-xs text-slate-500 mt-0.5">
-              {filteredList.length} {t('registered physical facilities', 'mga pasilidad')}
+              {filteredList.length} {t('registered physical facilities with verified GPS coordinates', 'mga pasilidad nga may kumpirmadong GPS')}
             </p>
           </div>
 
@@ -133,7 +149,7 @@ export const MapPage: React.FC = () => {
             <select
               value={selectedTown}
               onChange={(e) => setSelectedTown(e.target.value)}
-              className="px-3.5 py-1.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 bg-white hover:border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="px-3.5 py-1.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 bg-white hover:border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500 shadow-sm"
             >
               <option value="all">{t('All Municipalities', 'Tanan nga Lungsod')}</option>
               {BOHOL_DISTRICT_3_TOWNS.map((town) => (
@@ -214,22 +230,107 @@ export const MapPage: React.FC = () => {
                   )}
                 </div>
 
-                {loc.phone && (
-                  <div className="pt-4 mt-2">
+                {/* Card Actions: Phone + Google Maps Navigation */}
+                <div className="pt-4 mt-2 space-y-2 border-t border-slate-100">
+                  <div className="grid grid-cols-2 gap-2">
+                    {loc.phone ? (
+                      <a
+                        href={`tel:${loc.phone.replace(/[^0-9+]/g, '')}`}
+                        className="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-orange-50 hover:bg-orange-500 hover:text-white text-orange-700 font-bold text-xs transition-colors"
+                      >
+                        <Phone className="w-3.5 h-3.5" />
+                        <span>{t('Call', 'Tawag')}</span>
+                      </a>
+                    ) : (
+                      <div />
+                    )}
+
                     <a
-                      href={`tel:${loc.phone.replace(/[^0-9+]/g, '')}`}
-                      className="inline-flex items-center justify-center gap-2 w-full py-2 px-3 rounded-xl bg-orange-50 hover:bg-orange-500 hover:text-white text-orange-700 font-bold text-xs transition-colors"
+                      href={`https://www.google.com/maps/dir/?api=1&destination=${loc.latitude},${loc.longitude}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-700 font-bold text-xs transition-colors"
+                      title="Open Google Maps Turn-by-Turn Directions"
                     >
-                      <Phone className="w-3.5 h-3.5" />
-                      <span>{loc.phone}</span>
+                      <Navigation className="w-3.5 h-3.5 text-blue-600 hover:text-white" />
+                      <span>{t('Google Maps', 'Direksyon')}</span>
+                      <ExternalLink className="w-3 h-3 opacity-60" />
                     </a>
                   </div>
-                )}
+
+                  <button
+                    type="button"
+                    onClick={() => setPreviewLocation(loc)}
+                    className="w-full text-center text-[11px] font-bold text-slate-500 hover:text-orange-600 transition-colors py-1"
+                  >
+                    {t('Preview Google Maps Satellite View', 'I-preview sa Google Maps')}
+                  </button>
+                </div>
               </div>
             );
           })}
         </div>
       </section>
+
+      {/* =====================================================================
+          5. GOOGLE MAPS EMBED PREVIEW MODAL (FREE, ZERO API KEY REQUIRED)
+         ===================================================================== */}
+      {previewLocation && (
+        <Modal
+          isOpen={!!previewLocation}
+          onClose={() => setPreviewLocation(null)}
+          title={t(previewLocation.title_en, previewLocation.title_ceb)}
+          maxWidth="lg"
+        >
+          <div className="space-y-4">
+            <div className="flex items-center justify-between text-xs text-slate-600">
+              <span className="font-bold text-orange-600">{previewLocation.municipality}</span>
+              <span>GPS: {previewLocation.latitude.toFixed(4)}, {previewLocation.longitude.toFixed(4)}</span>
+            </div>
+
+            {/* Free Google Maps Embed Iframe */}
+            <div className="w-full h-80 rounded-2xl overflow-hidden border border-slate-200 shadow-inner">
+              <iframe
+                title={previewLocation.title_en}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+                src={`https://maps.google.com/maps?q=${previewLocation.latitude},${previewLocation.longitude}&t=m&z=15&output=embed&iwloc=near`}
+              />
+            </div>
+
+            <p className="text-xs text-slate-600 leading-relaxed">
+              {previewLocation.address}
+            </p>
+
+            <div className="flex flex-wrap gap-2 pt-2">
+              <a
+                href={`https://www.google.com/maps/dir/?api=1&destination=${previewLocation.latitude},${previewLocation.longitude}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors shadow-sm"
+              >
+                <Navigation className="w-4 h-4" />
+                <span>{t('Open Full Google Maps App', 'Ablihi sa Google Maps App')}</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+
+              {previewLocation.phone && (
+                <a
+                  href={`tel:${previewLocation.phone.replace(/[^0-9+]/g, '')}`}
+                  className="inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs transition-colors shadow-sm"
+                >
+                  <Phone className="w-4 h-4" />
+                  <span>{previewLocation.phone}</span>
+                </a>
+              )}
+            </div>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };

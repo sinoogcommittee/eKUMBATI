@@ -7,6 +7,8 @@ export type Json =
   | Json[]
 
 export type Database = {
+  // Allows to automatically instantiate createClient with right options
+  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "14.18"
   }
@@ -103,7 +105,7 @@ export type Database = {
         }
         Update: {
           category?: string
-          cover_image_url?: string | null
+          cover_image_url?: string
           created_at?: string | null
           description_ceb?: string | null
           description_en?: string | null
@@ -308,6 +310,69 @@ export type Database = {
           title_ceb?: string
           title_en?: string
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      news_announcements: {
+        Row: {
+          attachment_url: string | null
+          author: string
+          category: string
+          content_ceb: string
+          content_en: string
+          created_at: string
+          excerpt_ceb: string
+          excerpt_en: string
+          id: string
+          image_url: string | null
+          is_pinned: boolean
+          is_published: boolean
+          priority: string
+          publish_date: string
+          target_towns: string[] | null
+          title_ceb: string
+          title_en: string
+          updated_at: string
+        }
+        Insert: {
+          attachment_url?: string | null
+          author?: string
+          category?: string
+          content_ceb: string
+          content_en: string
+          created_at?: string
+          excerpt_ceb: string
+          excerpt_en: string
+          id?: string
+          image_url?: string | null
+          is_pinned?: boolean
+          is_published?: boolean
+          priority?: string
+          publish_date?: string
+          target_towns?: string[] | null
+          title_ceb: string
+          title_en: string
+          updated_at?: string
+        }
+        Update: {
+          attachment_url?: string | null
+          author?: string
+          category?: string
+          content_ceb?: string
+          content_en?: string
+          created_at?: string
+          excerpt_ceb?: string
+          excerpt_en?: string
+          id?: string
+          image_url?: string | null
+          is_pinned?: boolean
+          is_published?: boolean
+          priority?: string
+          publish_date?: string
+          target_towns?: string[] | null
+          title_ceb?: string
+          title_en?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -538,3 +603,44 @@ export type TablesUpdate<
       ? U
       : never
     : never
+
+export type Enums<
+  DefaultSchemaEnumNameOrOptions extends
+    | keyof DefaultSchema["Enums"]
+    | { schema: keyof DatabaseWithoutInternals },
+  EnumName extends (DefaultSchemaEnumNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
+    : never) = never,
+> = DefaultSchemaEnumNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
+    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
+    : never
+
+export type CompositeTypes<
+  PublicCompositeTypeNameOrOptions extends
+    | keyof DefaultSchema["CompositeTypes"]
+    | { schema: keyof DatabaseWithoutInternals },
+  CompositeTypeName extends (PublicCompositeTypeNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    : never) = never,
+> = PublicCompositeTypeNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
+    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+    : never
+
+export const Constants = {
+  public: {
+    Enums: {},
+  },
+} as const
+

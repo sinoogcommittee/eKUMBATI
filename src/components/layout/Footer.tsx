@@ -134,6 +134,11 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/news" className="hover:text-orange-400 transition-colors">
+                  {t('News & Public Announcements', 'Mga Balita ug Pahibalo')}
+                </Link>
+              </li>
+              <li>
                 <Link to="/gallery" className="hover:text-orange-400 transition-colors">
                   {t('Multimedia Photo Gallery', 'Galeriya sa mga Hulagway')}
                 </Link>

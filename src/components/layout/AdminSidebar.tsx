@@ -14,6 +14,7 @@ import {
   Shield,
   Database,
   CloudOff,
+  Bell,
 } from 'lucide-react';
 import { Badge } from '../common/Badge';
 
@@ -32,6 +33,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ onCloseMobile }) => 
 
   const navLinks = [
     { to: '/admin/dashboard', label: 'Dashboard Overview', icon: LayoutDashboard },
+    { to: '/admin/news', label: 'News & Announcements', icon: Bell },
     { to: '/admin/settings', label: 'Site Settings & FB', icon: Settings },
     { to: '/admin/metrics', label: 'Impact Metrics (7)', icon: BarChart2 },
     { to: '/admin/programs', label: 'Programs & Checklists', icon: Layers },

@@ -16,6 +16,7 @@ import {
   Map,
   FileText,
   ChevronRight,
+  Bell,
 } from 'lucide-react';
 import { INITIAL_SITE_SETTINGS } from '../../lib/constants';
 
@@ -36,6 +37,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
     { to: '/', labelEn: 'Home', labelCeb: 'Balay', icon: Home },
     { to: '/programs', labelEn: '7 Flagship Programs', labelCeb: '7 ka Programa', icon: Layers },
     { to: '/impact', labelEn: '2025 Impact Metrics', labelCeb: 'Kalampusan', icon: BarChart3 },
+    { to: '/news', labelEn: 'News & Announcements', labelCeb: 'Mga Pahibalo', icon: Bell },
     { to: '/gallery', labelEn: 'Photo Gallery', labelCeb: 'Galeriya', icon: Image },
     { to: '/directory', labelEn: '19 Towns Directory', labelCeb: '19 ka Lungsod', icon: MapPin },
     { to: '/map', labelEn: 'Interactive Map', labelCeb: 'Mapa sa Distrito', icon: Map },

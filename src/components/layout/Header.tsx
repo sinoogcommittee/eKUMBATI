@@ -25,6 +25,7 @@ export const Header: React.FC<HeaderProps> = ({
     { to: '/', labelEn: 'Home', labelCeb: 'Balay' },
     { to: '/programs', labelEn: 'Programs', labelCeb: 'Mga Programa' },
     { to: '/impact', labelEn: 'Impact', labelCeb: 'Kalampusan' },
+    { to: '/news', labelEn: 'News & Updates', labelCeb: 'Mga Pahibalo' },
     { to: '/gallery', labelEn: 'Gallery', labelCeb: 'Galeriya' },
     { to: '/directory', labelEn: '19 Towns', labelCeb: '19 ka Lungsod' },
     { to: '/map', labelEn: 'District Map', labelCeb: 'Mapa sa Distrito' },

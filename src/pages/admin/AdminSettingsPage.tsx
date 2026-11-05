@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { INITIAL_SITE_SETTINGS } from '../../lib/constants';
 import { SiteSettings } from '../../types/kumbati.types';
 import Button from '../../components/common/Button';
@@ -11,6 +12,8 @@ import {
   MapPin,
   Phone,
   FileText,
+  Bell,
+  ChevronRight,
 } from 'lucide-react';
 
 const LOCAL_STORAGE_SETTINGS_KEY = 'kumbati_site_settings';
@@ -66,6 +69,31 @@ export const AdminSettingsPage: React.FC = () => {
             <span>Settings Successfully Saved!</span>
           </div>
         )}
+      </div>
+
+      {/* News & Public Announcements Quick Control Bar */}
+      <div className="p-6 rounded-3xl bg-gradient-to-r from-orange-500/20 via-amber-500/10 to-transparent border border-orange-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-2xl bg-orange-500 text-white flex items-center justify-center shrink-0 shadow-kumbati">
+            <Bell className="w-5 h-5" />
+          </div>
+          <div>
+            <h4 className="text-sm font-black text-white">
+              Public News, Updates & Emergency Advisories Manager
+            </h4>
+            <p className="text-xs text-slate-300 mt-0.5">
+              Write and publish advisories, PTV emergency notices, and payout schedules to display on the public portal.
+            </p>
+          </div>
+        </div>
+
+        <Link
+          to="/admin/news"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition-colors shrink-0 shadow-sm"
+        >
+          <span>Open News CMS</span>
+          <ChevronRight className="w-3.5 h-3.5" />
+        </Link>
       </div>
 
       <form onSubmit={handleSave} className="space-y-8">

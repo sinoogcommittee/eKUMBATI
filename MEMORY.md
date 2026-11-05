@@ -76,3 +76,12 @@
       - **Co-Authored Landmark Laws**: RA 11997 (*Kabalikat sa Pagtuturo Act*), RA 11934 (*SIM Registration Act*), Magna Carta of Barangay Health Workers (BHWs), Magna Carta of Filipino Seafarers, Universal Health Care (RA 11223) & Malasakit Centers (RA 11463), Anti-Hospital Deposit Law Enforcement (RA 10932).
     - **Official House Verification Banner**: Direct link to House Member Code `J075` on `https://www.congress.gov.ph/house-members/view/J075`.
   - Confirmed 100% clean production build (`npm run build` in 14.18s with exit code 0).
+- **2026-11-05**: News & Public Announcements Portal + 100% Free Google Maps Integration:
+  - Created public page `src/pages/public/NewsPage.tsx` (`/news`, `/announcements`, `/updates`) for office bulletins, PTV weather standbys, CHED-TDP payout schedules, and medical mission itineraries.
+  - Implemented back-office CMS `src/pages/admin/AdminNewsPage.tsx` (`/admin/news`) with full CRUD, WebP image compression upload, publish toggle, and pinned alert management.
+  - Connected News CMS to `AdminSettingsPage.tsx` with direct callout and quick launcher.
+  - Created Supabase table `news_announcements` with RLS (public read published, admin write), seeded 6 records, and refreshed `database.types.ts`.
+  - Replaced map tiles with 100% free Google Maps raster tiles (`roadmap`, `satellite`, `hybrid`, `terrain`) in `DistrictLeafletMap.tsx`, requiring zero billing and zero paid API keys.
+  - Added direct Google Maps turn-by-turn route navigation (`https://www.google.com/maps/dir/?api=1&destination=...`) and interactive Google Maps Embed preview modal in `MapPage.tsx`.
+  - Updated all navigation menus (`Header.tsx`, `MobileNav.tsx`, `Footer.tsx`, `AdminSidebar.tsx`) preserving sequence with About after Action Center.
+  - Confirmed clean production build (`npm run build` passed in 21.45s with exit code 0).
