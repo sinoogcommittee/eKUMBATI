@@ -201,3 +201,11 @@
     - Infrastructure: Tabajan Bridge engineering inspection and rural community upgrades.
   - Replaced 100% of generic Unsplash placeholder images in `src/lib/constants.ts`, `AdminGalleryPage.tsx`, and `AdminProgramsPage.tsx` with authentic local WebP assets.
   - Verified 100% clean production build (`npm run build` passed in 14.78s with exit code 0).
+- **2026-11-05**: Authentic Education & Tertiary College Photo Replacement:
+  - Replaced solo portrait photo in `#5 Flagship: CHED-TDP & District Tertiary Scholarships` (`/images/programs/scholars.webp`) with authentic news photography of the **Carmen Municipal College (CMC)** inauguration and ceremonial ribbon-cutting ceremony.
+  - The photo features Rep. Alexie Tutor and Mayor Che Toribio cutting the ceremonial ribbon in Carmen, Bohol, surrounded by municipal leaders, faculty, students, and the CMC college banner celebrating free tertiary education for 350+ Boholano scholars.
+  - Updated `public/images/programs/scholars.webp` (92 KB WebP, 16:9 widescreen).
+  - Updated `public/images/gallery/scholar_assembly_tutor.webp` and `public/images/news/scholar_assembly.webp`.
+  - Added authentic Candijay National Science High School digital library & StarBooks educational turnover photo (`public/images/gallery/candijay_science_turnover.webp`, 108 KB) featuring Rep. Alexie Tutor and science educators in Candijay.
+  - Updated `INITIAL_GALLERY_ALBUMS` and `INITIAL_GALLERY_MEDIA` in `src/lib/constants.ts` with bilingual captions for both Carmen Municipal College and Candijay National Science High School.
+  - Verified production build (`npm run build`) passed with exit code 0 (1980 modules transformed in 10.44s).
