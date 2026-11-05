@@ -18,15 +18,20 @@ import {
 export const Footer: React.FC = () => {
   const { t } = useLanguage();
 
-  const officialFBPage = {
-    name: 'Cong. Alexie Tutor',
-    handle: '@Cong.AlexieTutor',
-    desc: t(
-      'Official Facebook Page of Congresswoman Alexie Tutor for constituent advisories, medical transport assistance, and legislative reports.',
-      'Opisyal nga Facebook Page ni Congresswoman Alexie Tutor alang sa mga pahibalo, serbisyo sa PTV, ug balita sa distrito.'
-    ),
-    url: INITIAL_SITE_SETTINGS.facebook_page_official || 'https://www.facebook.com/Cong.AlexieTutor',
-  };
+  const officialFBPages = [
+    {
+      name: 'Cong. Alexie Tutor',
+      handle: '@Cong.AlexieTutor',
+      role: t('Official Representative Page', 'Opisyal nga Panid sa Magbabalaod'),
+      url: INITIAL_SITE_SETTINGS.facebook_page_official || 'https://www.facebook.com/Cong.AlexieTutor',
+    },
+    {
+      name: 'KUMBATI Cares',
+      handle: 'Official Outreach',
+      role: t('Community & Constituent Care', 'Serbisyo sa Komunidad ug Katawhan'),
+      url: INITIAL_SITE_SETTINGS.facebook_page_kumbati_cares || 'https://www.facebook.com/profile.php?id=100063819665430',
+    },
+  ];
 
   return (
     <footer className="bg-slate-950 text-slate-300 pt-16 pb-28 md:pb-16 border-t border-slate-800">
@@ -76,38 +81,35 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Column 2: Official Facebook Page */}
+          {/* Column 2: 2 Official Facebook Channels */}
           <div className="space-y-4">
             <h4 className="text-sm font-black text-white uppercase tracking-wider flex items-center gap-2">
               <Facebook className="w-4 h-4 text-blue-400" />
-              <span>{t('Official Facebook Page', 'Opisyal nga Facebook Page')}</span>
+              <span>{t('Official Facebook Channels', 'Opisyal nga Facebook Channels')}</span>
             </h4>
-            <div className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition-all space-y-3">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
-                  <Facebook className="w-5 h-5 fill-current" />
-                </div>
-                <div className="min-w-0">
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-xs font-bold text-white truncate">{officialFBPage.name}</span>
-                    <span className="px-1.5 py-0.5 rounded text-[9px] font-black bg-blue-500/20 text-blue-400 uppercase tracking-wider">Official</span>
+            <div className="space-y-2.5">
+              {officialFBPages.map((fb, idx) => (
+                <a
+                  key={idx}
+                  href={fb.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block p-3 rounded-2xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 hover:bg-slate-850 transition-all shadow-xs"
+                >
+                  <div className="flex items-center justify-between text-xs font-bold text-white group-hover:text-blue-400 transition-colors">
+                    <div className="flex items-center gap-2.5 min-w-0 pr-2">
+                      <div className="w-7 h-7 rounded-lg bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
+                        <Facebook className="w-3.5 h-3.5 fill-current" />
+                      </div>
+                      <span className="truncate">{fb.name}</span>
+                    </div>
+                    <ExternalLink className="w-3.5 h-3.5 shrink-0 text-slate-500 group-hover:text-blue-400 transition-colors" />
                   </div>
-                  <span className="text-[11px] text-slate-400 block truncate">{officialFBPage.handle}</span>
-                </div>
-              </div>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                {officialFBPage.desc}
-              </p>
-              <a
-                href={officialFBPage.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors shadow-sm group"
-              >
-                <Facebook className="w-3.5 h-3.5 fill-current" />
-                <span>{t('Visit Official Facebook Page', 'Bisitaha ang Opisyal nga Page')}</span>
-                <ExternalLink className="w-3 h-3 ml-0.5 text-blue-200 group-hover:text-white transition-colors" />
-              </a>
+                  <div className="text-[11px] text-slate-400 mt-1 pl-9">
+                    {fb.role}
+                  </div>
+                </a>
+              ))}
             </div>
           </div>
 

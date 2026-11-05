@@ -65,6 +65,7 @@ export interface SiteSettings {
   main_office_address: string;
   main_office_phone: string;
   facebook_page_official?: string;
+  facebook_page_kumbati_cares?: string;
   facebook_page_alexie_besas_tutor: string;
   facebook_page_alexie_b_tutor?: string;
   facebook_page_team_kumbati?: string;

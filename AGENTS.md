@@ -151,9 +151,10 @@ Any feature, filter, dropdown, or directory referencing municipalities must supp
 
 ## 5. Official External Channels & Social Links
 
-Always use the single verified official Facebook channel URL for Congw. Alexie Besas Tutor:
+Always use the 2 verified official Facebook channels for Congw. Alexie Besas Tutor and KUMBATI constituent outreach:
 
 1. **Cong. Alexie Tutor (Official Page)**: `https://www.facebook.com/Cong.AlexieTutor`
+2. **KUMBATI Cares (Community & Outreach Page)**: `https://www.facebook.com/profile.php?id=100063819665430`
 
 ---
 

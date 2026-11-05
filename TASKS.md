@@ -454,6 +454,18 @@
 - [x] **21.2 Verification & Build**:
   - [x] Verified production build (`npm run build`) completed with code 0 (1980 modules transformed in 12.47s).
 
+---
+
+### Phase 22: Official KUMBATI Cares Facebook Channel Integration
+- [x] **22.1 Official Channel Expansion**:
+  - [x] Added **KUMBATI Cares** (`https://www.facebook.com/profile.php?id=100063819665430`) alongside **Cong. Alexie Tutor** (`https://www.facebook.com/Cong.AlexieTutor`).
+- [x] **22.2 Layout & UI Integration**:
+  - [x] Updated Homepage Social Media section into a dual-card grid featuring both official verified channels.
+  - [x] Updated Footer Column 2 to display both official channels with direct access links.
+  - [x] Updated Admin Settings (`AdminSettingsPage.tsx`) with configuration inputs for both channels.
+- [x] **22.3 Architecture & Type Safety**:
+  - [x] Updated `src/types/kumbati.types.ts`, `src/lib/constants.ts`, `AGENTS.md`, and `MEMORY.md`.
+
 
 
 

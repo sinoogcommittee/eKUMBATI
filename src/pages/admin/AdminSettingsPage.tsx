@@ -302,33 +302,56 @@ export const AdminSettingsPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Section 4: Official Facebook Channel */}
+        {/* Section 4: Official Facebook Channels */}
         <div className="bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-8 space-y-6">
           <h3 className="text-sm font-black uppercase tracking-wider text-orange-400 flex items-center gap-2 border-b border-slate-800 pb-3">
             <Facebook className="w-4 h-4 text-blue-400" />
-            <span>4. Official Facebook Page</span>
+            <span>4. The 2 Official Facebook Channels</span>
           </h3>
 
-          <div>
-            <label className="block text-xs font-bold text-slate-300 mb-1">
-              Official Facebook Page URL (Cong. Alexie Tutor)
-            </label>
-            <input
-              type="url"
-              value={settings.facebook_page_official || settings.facebook_page_alexie_besas_tutor || 'https://www.facebook.com/Cong.AlexieTutor'}
-              onChange={(e) =>
-                setSettings({
-                  ...settings,
-                  facebook_page_official: e.target.value,
-                  facebook_page_alexie_besas_tutor: e.target.value,
-                })
-              }
-              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 font-mono"
-              placeholder="https://www.facebook.com/Cong.AlexieTutor"
-            />
-            <p className="text-[11px] text-slate-500 mt-1.5">
-              The verified official Facebook page of Congresswoman Alexie Tutor for public constituent updates, PTV dispatch advisories, and district accomplishments.
-            </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-xs font-bold text-slate-300 mb-1">
+                Official Representative Page (Cong. Alexie Tutor)
+              </label>
+              <input
+                type="url"
+                value={settings.facebook_page_official || settings.facebook_page_alexie_besas_tutor || 'https://www.facebook.com/Cong.AlexieTutor'}
+                onChange={(e) =>
+                  setSettings({
+                    ...settings,
+                    facebook_page_official: e.target.value,
+                    facebook_page_alexie_besas_tutor: e.target.value,
+                  })
+                }
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 font-mono"
+                placeholder="https://www.facebook.com/Cong.AlexieTutor"
+              />
+              <p className="text-[11px] text-slate-500 mt-1.5">
+                The verified official Facebook page for legislative work, committee updates, and public governance.
+              </p>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-slate-300 mb-1">
+                Community & Outreach Page (KUMBATI Cares)
+              </label>
+              <input
+                type="url"
+                value={settings.facebook_page_kumbati_cares || 'https://www.facebook.com/profile.php?id=100063819665430'}
+                onChange={(e) =>
+                  setSettings({
+                    ...settings,
+                    facebook_page_kumbati_cares: e.target.value,
+                  })
+                }
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 font-mono"
+                placeholder="https://www.facebook.com/profile.php?id=100063819665430"
+              />
+              <p className="text-[11px] text-slate-500 mt-1.5">
+                The dedicated community outreach channel for PTV medical dispatch, clinic caravans, and constituent aid.
+              </p>
+            </div>
           </div>
         </div>
 

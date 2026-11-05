@@ -57,6 +57,7 @@ export const INITIAL_SITE_SETTINGS: SiteSettings = {
   main_office_address: 'District Headquarters, Poblacion, Candijay, Bohol 6312 / House of Representatives, Batasan Complex, Quezon City',
   main_office_phone: '(038) 526-0123 / +63 917 832 6284',
   facebook_page_official: 'https://www.facebook.com/Cong.AlexieTutor',
+  facebook_page_kumbati_cares: 'https://www.facebook.com/profile.php?id=100063819665430',
   facebook_page_alexie_besas_tutor: 'https://www.facebook.com/Cong.AlexieTutor',
 };
 

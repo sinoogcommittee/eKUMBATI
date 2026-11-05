@@ -481,54 +481,118 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* =====================================================================
-          7. OFFICIAL FACEBOOK CHANNEL STRIP
+          7. OFFICIAL FACEBOOK CHANNELS STRIP
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-3xl p-8 sm:p-12 border border-slate-800 shadow-sinoog relative overflow-hidden">
+        <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-3xl p-8 sm:p-10 border border-slate-800 shadow-sinoog relative overflow-hidden">
           {/* Subtle decorative background glow */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-            <div className="max-w-2xl space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-wider">
-                <Facebook className="w-3.5 h-3.5 fill-current" />
-                <span>{t('Only Official Social Media Channel', 'Bugtong Opisyal nga Panid sa Social Media')}</span>
+          <div className="relative z-10">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-wider mb-2">
+                  <Facebook className="w-3.5 h-3.5 fill-current" />
+                  <span>{t('Verified Official Social Media', 'Beripikadong Opisyal nga Social Media')}</span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
+                  {t('Connect with Congw. Alexie Tutor & KUMBATI Cares', 'Konektar kang Congw. Alexie Tutor ug KUMBATI Cares')}
+                </h2>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight">
-                {t('Follow Cong. Alexie Tutor on Facebook', 'Sunda si Cong. Alexie Tutor sa Facebook')}
-              </h2>
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                {t(
-                  'Stay connected with the official Facebook page of Congresswoman Kristine Alexie Besas Tutor for authentic public announcements, PTV 24/7 medical dispatch coordination, CHED-TDP scholarship advisories, Kumbati clinic schedules, and 19-town constituent assistance.',
-                  'Magpabiling updated sa bugtong opisyal nga panid sa Facebook ni Congresswoman Kristine Alexie Besas Tutor alang sa mga pahibalo sa distrito, serbisyo sa PTV 24/7, scholarship sa CHED-TDP, Kumbati clinic, ug tabang sa 19 ka mga lungsod sa Ikatulong Distrito.'
-                )}
-              </p>
-              <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400 pt-1">
-                <span className="flex items-center gap-1.5 font-semibold text-slate-300">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  {t('Verified Official Presence', 'Beripikadong Opisyal nga Panid')}
-                </span>
-                <span>•</span>
-                <span className="font-mono text-blue-400">facebook.com/Cong.AlexieTutor</span>
-                <span>•</span>
-                <span>{t('Serving 19 Municipalities', 'Naga-alagad sa 19 ka Lungsod')}</span>
-              </div>
+              <span className="text-xs text-slate-400 font-semibold flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                {t('2 Official Verified Channels', '2 ka Opisyal nga Panid')}
+              </span>
             </div>
 
-            <div className="shrink-0 flex flex-col sm:flex-row lg:flex-col gap-3">
-              <a
-                href={INITIAL_SITE_SETTINGS.facebook_page_official || 'https://www.facebook.com/Cong.AlexieTutor'}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-base shadow-lg hover:shadow-blue-600/30 hover:-translate-y-0.5 transition-all duration-200 group"
-              >
-                <Facebook className="w-5 h-5 fill-current" />
-                <span>{t('Visit Official Facebook Page', 'Bisitaha ang Opisyal nga Page')}</span>
-                <ExternalLink className="w-4 h-4 ml-1 text-blue-200 group-hover:text-white transition-colors" />
-              </a>
-              <div className="text-center text-[11px] text-slate-400">
-                {t('Official Channel • Office of Congw. Alexie Tutor', 'Opisyal nga Panid • Buhatan ni Congw. Alexie Tutor')}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Channel 1: Cong. Alexie Tutor */}
+              <div className="bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 hover:border-blue-500/50 rounded-2xl p-6 sm:p-7 shadow-xs hover:shadow-sinoog hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-2xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
+                        <Facebook className="w-6 h-6 fill-current" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">
+                            Cong. Alexie Tutor
+                          </h3>
+                          <span className="px-2 py-0.5 rounded text-[10px] font-black bg-blue-500/20 text-blue-400 uppercase tracking-wider">
+                            Official
+                          </span>
+                        </div>
+                        <span className="text-xs font-mono text-slate-400">@Cong.AlexieTutor</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    {t(
+                      'Official representative page for legislative bills, national committee hearings, public advisories, and district-wide governance for the 19 towns of Bohol District 3.',
+                      'Opisyal nga panid sa magbabalaod alang sa mga balaodnon, komite sa Kongreso, mga opisyal nga pahibalo, ug pagserbisyo sa 19 ka mga lungsod sa Ikatulong Distrito.'
+                    )}
+                  </p>
+                </div>
+
+                <div className="pt-6">
+                  <a
+                    href={INITIAL_SITE_SETTINGS.facebook_page_official || 'https://www.facebook.com/Cong.AlexieTutor'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2.5 w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold transition-all shadow-md group-hover:shadow-blue-500/20"
+                  >
+                    <Facebook className="w-4 h-4 fill-current" />
+                    <span>{t('Visit Cong. Alexie Tutor Page', 'Bisitaha ang Panid ni Cong. Alexie Tutor')}</span>
+                    <ExternalLink className="w-3.5 h-3.5 ml-1 text-blue-200 group-hover:text-white transition-colors" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Channel 2: KUMBATI Cares */}
+              <div className="bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 hover:border-orange-500/50 rounded-2xl p-6 sm:p-7 shadow-xs hover:shadow-sinoog hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-2xl bg-orange-600/20 border border-orange-500/30 flex items-center justify-center text-orange-400 shrink-0">
+                        <Facebook className="w-6 h-6 fill-current" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h3 className="text-lg font-bold text-white group-hover:text-orange-400 transition-colors">
+                            KUMBATI Cares
+                          </h3>
+                          <span className="px-2 py-0.5 rounded text-[10px] font-black bg-orange-500/20 text-orange-400 uppercase tracking-wider">
+                            Community
+                          </span>
+                        </div>
+                        <span className="text-xs text-slate-400">{t('Constituent Outreach', 'Serbisyo sa Katawhan')}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    {t(
+                      'Dedicated community action channel for PTV 24/7 emergency patient transport, Kumbati medical clinic schedules, humanitarian relief missions, and direct indigent family assistance.',
+                      'Dedikadong panid alang sa serbisyo sa PTV 24/7, libreng klinika sa Kumbati, hinabang sa kalamidad, ug dinaliang tabang medikal ug pinansyal sa mga pamilyang nanginahanglan.'
+                    )}
+                  </p>
+                </div>
+
+                <div className="pt-6">
+                  <a
+                    href={INITIAL_SITE_SETTINGS.facebook_page_kumbati_cares || 'https://www.facebook.com/profile.php?id=100063819665430'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2.5 w-full py-3 px-4 rounded-xl bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white text-xs sm:text-sm font-bold transition-all shadow-md group-hover:shadow-orange-500/20"
+                  >
+                    <Facebook className="w-4 h-4 fill-current" />
+                    <span>{t('Visit KUMBATI Cares Page', 'Bisitaha ang Panid sa KUMBATI Cares')}</span>
+                    <ExternalLink className="w-3.5 h-3.5 ml-1 text-orange-100 group-hover:text-white transition-colors" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>

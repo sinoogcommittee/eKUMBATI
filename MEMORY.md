@@ -24,7 +24,8 @@
 ---
 
 ## 3. Official External Channels
-1. **Cong. Alexie Tutor (Only Official Page)**: `https://www.facebook.com/Cong.AlexieTutor`
+1. **Cong. Alexie Tutor (Official Page)**: `https://www.facebook.com/Cong.AlexieTutor`
+2. **KUMBATI Cares (Community & Outreach Page)**: `https://www.facebook.com/profile.php?id=100063819665430`
 
 ---
 
@@ -217,3 +218,9 @@
   - Removed redundant absolute-positioned background year text watermark in `src/pages/public/ImpactPage.tsx` (`The Journey of KUMBATI Deliverables` section).
   - Eliminated visual collision with the milestone calendar badges for `2023–2024`, `2025`, `2026`, and `2027`.
   - Confirmed 100% clean build (`npm run build` passed in 12.47s with exit code 0).
+- **2026-11-05**: Added Official KUMBATI Cares Community Channel:
+  - Added the verified official community action page **KUMBATI Cares** (`https://www.facebook.com/profile.php?id=100063819665430`).
+  - Updated Homepage Social Media section into a 2-card verified presence grid featuring both `Cong. Alexie Tutor` (official representative page) and `KUMBATI Cares` (humanitarian and community outreach page).
+  - Updated Footer Column 2 to display both official channels.
+  - Updated Admin Settings (`AdminSettingsPage.tsx`) to manage both official URLs.
+  - Updated `constants.ts`, `kumbati.types.ts`, `AGENTS.md`, and `TASKS.md`.
