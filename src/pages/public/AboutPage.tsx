@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import { INITIAL_SITE_SETTINGS, BOHOL_DISTRICT_3_TOWNS } from '../../lib/constants';
+import {
+  OFFICIAL_COMMITTEE_MEMBERSHIPS,
+  PRINCIPAL_AUTHORED_MEASURES,
+  CO_AUTHORED_MEASURES,
+  type OfficialLegislativeMeasure,
+} from '../../lib/legislativeData';
 import Badge from '../../components/common/Badge';
 import Button from '../../components/common/Button';
 import {
   Award,
   BookOpen,
-  Heart,
   Home,
   GraduationCap,
   Briefcase,
@@ -24,12 +29,19 @@ import {
   Building2,
   Sparkles,
   Globe,
+  Search,
+  Filter,
+  Calendar,
+  X,
+  ChevronDown,
 } from 'lucide-react';
 
 export const AboutPage: React.FC = () => {
   const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'principal' | 'coauthored'>('principal');
   const [billCategory, setBillCategory] = useState<string>('all');
+  const [measureSearch, setMeasureSearch] = useState<string>('');
+  const [visibleCount, setVisibleCount] = useState<number>(10);
 
   const corePillars = [
     {
@@ -76,395 +88,90 @@ export const AboutPage: React.FC = () => {
       titleEn: 'Grassroots Infrastructure',
       titleCeb: 'Imprastraktura sa Komunidad',
       descEn:
-        'Solar streetlights, deep well drinking water systems, and flood protection for 31+ isolated rural communities.',
+        'Solar streetlights, deep well drinking water systems, and flood protection for 36+ isolated rural communities.',
       descCeb:
-        'Solar nga suga sa dalan, limpyong patubig, ug riprap sa 31+ ka mga hilit nga baryo ug sityo.',
+        'Solar nga suga sa dalan, limpyong patubig, ug riprap sa 36+ ka mga hilit nga baryo ug sityo.',
       icon: Users,
       color: 'purple',
     },
   ];
 
   // =========================================================================
-  // OFFICIAL 19TH CONGRESS COMMITTEE APPOINTMENTS (congress.gov.ph/house-members/view/J075)
+  // OFFICIAL COMMITTEE APPOINTMENTS (FROM docs/Committee Membership.docx)
   // =========================================================================
-  const committeeLeadership = [
-    {
-      role: 'Chairperson',
-      roleCeb: 'Pangulo (Chairperson)',
-      committeeEn: 'Committee on Civil Service and Professional Regulation',
-      committeeCeb: 'Komitiba sa Serbisyo Sibil ug Regulasyon sa mga Propesyon',
-      statusVariant: 'orange' as const,
-      icon: Landmark,
-      descEn:
-        'Direct legislative jurisdiction over the civil service system, rights, benefits, tenure, security, and retirement of all government employees, as well as the regulation of licensed professions under the Professional Regulation Commission (PRC).',
-      descCeb:
-        'Nanguna sa pagpanday og mga balaod alang sa proteksyon, regularisasyon, ug benepisyo sa tanang kawani sa gobyerno, ug pagdumala sa mga lisensyadong propesyonal ubos sa PRC.',
-      highlights: [
-        'Tenure & Civil Service eligibility for contractual/JO workers',
-        'Extension of PRC ID validity to 5 years',
-        'Standardization of public sector salaries and benefits',
-      ],
-    },
-    {
-      role: 'Vice Chairperson',
-      roleCeb: 'Pangalawang Pangulo (Vice Chairperson)',
-      committeeEn: 'Committee on Health',
-      committeeCeb: 'Komitiba sa Panglawas',
-      statusVariant: 'emerald' as const,
-      icon: Stethoscope,
-      descEn:
-        'Key leadership over national public health policies, hospital expansions, disease control, maternal healthcare, medical frontliner compensation, and health financing systems like PhilHealth and Malasakit Centers.',
-      descCeb:
-        'Nangulo sa pagpalapad sa mga distrito nga tambalanan sa Bohol, pagpalig-on sa Universal Health Care, ug paghatag og dugang katre, ekipo, ug benepisyo sa mga health workers.',
-      highlights: [
-        'Republic Act 11883 upgrading Simeon Toribio Hospital',
-        'Bed capacity increases in Candijay & Jagna hospitals',
-        'Magna Carta of Barangay Health Workers (BHWs)',
-      ],
-    },
+  const committeeLeadership = OFFICIAL_COMMITTEE_MEMBERSHIPS.filter((c) => c.isLeadership);
+  const committeeMemberships = OFFICIAL_COMMITTEE_MEMBERSHIPS.filter((c) => !c.isLeadership);
+
+  // Sector Categories for Legislative Measures
+  const sectorCategories = [
+    { id: 'all', labelEn: 'All Sectors', labelCeb: 'Tanan' },
+    { id: 'civil_service', labelEn: 'Civil Service & PRC', labelCeb: 'Serbisyo Sibil' },
+    { id: 'health', labelEn: 'Health & Hospitals', labelCeb: 'Panglawas' },
+    { id: 'education', labelEn: 'Education & Youth', labelCeb: 'Edukasyon' },
+    { id: 'tourism_env', labelEn: 'Tourism & Environment', labelCeb: 'Turismo ug Kinaiyahan' },
+    { id: 'social_welfare', labelEn: 'Social Welfare & PWD', labelCeb: 'Kaayohan ug PWD' },
+    { id: 'appropriations', labelEn: 'Budget & Salaries', labelCeb: 'Pondo ug Suweldo' },
+    { id: 'justice_safety', labelEn: 'Justice & Public Safety', labelCeb: 'Hustisya' },
+    { id: 'local_gov', labelEn: 'Local Governance', labelCeb: 'Kagamhanang Lokal' },
+    { id: 'economy_infra', labelEn: 'Economy & Infrastructure', labelCeb: 'Ekonomiya' },
   ];
 
-  const committeeMemberships = [
-    {
-      committeeEn: 'Committee on Appropriations',
-      committeeCeb: 'Komitiba sa Paggahin ug Pondo (Appropriations)',
-      role: 'Member for the Majority',
-      roleCeb: 'Miyembro sa Mayorya',
-      icon: Scale,
-      descEn:
-        'Scrutiny and allocation of the annual national budget (General Appropriations Act) for district infrastructure, healthcare grants, and education subsidies.',
-      descCeb:
-        'Paggahin sa nasudnong pondo alang sa mga tulay, kalsada, ospital, ug scholarship sa Distrito 3.',
-    },
-    {
-      committeeEn: 'Committee on Basic Education and Culture',
-      committeeCeb: 'Komitiba sa Batakang Edukasyon ug Kultura',
-      role: 'Member for the Majority',
-      roleCeb: 'Miyembro sa Mayorya',
-      icon: GraduationCap,
-      descEn:
-        'Classroom building programs, textbook accuracy review, teacher compensation, and preserving Bohol\'s cultural heritage.',
-      descCeb:
-        'Pagtukod og mga lawak-saringan, pagbantay sa kalidad sa libro sa DepEd, ug proteksyon sa kultura.',
-    },
-    {
-      committeeEn: 'Committee on Overseas Workers Affairs',
-      committeeCeb: 'Komitiba sa mga Mamumuo sa Gawas sa Nasud (OFW)',
-      role: 'Member for the Majority',
-      roleCeb: 'Miyembro sa Mayorya',
-      icon: Globe,
-      descEn:
-        'Welfare protection, emergency repatriation, anti-human trafficking, and livelihood reintegration for Boholano and Filipino OFWs.',
-      descCeb:
-        'Proteksyon sa katungod ug kaayohan sa mga Boholano nga nanarbaho sa gawas sa nasud ug ilang pamilya.',
-    },
-    {
-      committeeEn: 'Committee on Visayas Development',
-      committeeCeb: 'Komitiba sa Pagpalambo sa Kabisay-an',
-      role: 'Member for the Majority',
-      roleCeb: 'Miyembro sa Mayorya',
-      icon: Building2,
-      descEn:
-        'Inter-island connectivity, port modernizations, Bohol UNESCO Global Geopark eco-tourism corridors, and regional agro-industrial growth.',
-      descCeb:
-        'Pagsumpay-sumpay sa mga isla, pagpalambo sa mga pantalan, turismo sa geopark, ug patigayon sa Kabisay-an.',
-    },
-    {
-      committeeEn: 'Special Committee on Globalization and WTO',
-      committeeCeb: 'Espesyal nga Komitiba sa Globalisasyon ug WTO',
-      role: 'Member for the Majority',
-      roleCeb: 'Miyembro sa Mayorya',
-      icon: Award,
-      descEn:
-        'Evaluating international trade impacts on domestic agricultural producers, local farmers, and micro-enterprises across central Philippines.',
-      descCeb:
-        'Panalipod sa mga lokal nga mag-uuma ug mangingisda batok sa dili patas nga kompetisyon sa imported nga produkto.',
-    },
-  ];
+  // Active dataset depending on selected tab
+  const activeMeasures: OfficialLegislativeMeasure[] =
+    activeTab === 'principal' ? PRINCIPAL_AUTHORED_MEASURES : CO_AUTHORED_MEASURES;
 
-  // =========================================================================
-  // PRINCIPAL AUTHORED BILLS (Official Record - congress.gov.ph/house-members/view/J075)
-  // =========================================================================
-  const principalAuthoredBills = [
-    {
-      billNumber: 'HB 8970 / RA 11883',
-      category: 'health',
-      categoryLabelEn: 'Health & Hospitals',
-      categoryLabelCeb: 'Panglawas ug Ospital',
-      statusEn: 'Enacted into Law (Republic Act No. 11883)',
-      statusCeb: 'Nahimong Opisyal nga Balaod (RA 11883)',
-      statusVariant: 'emerald' as const,
-      titleEn:
-        'An Act Increasing the Bed Capacity of Cong. Simeon G. Toribio Memorial Hospital in Carmen, Bohol',
-      titleCeb:
-        'Balaod sa Pagdugang sa Katre sa Cong. Simeon G. Toribio Memorial Hospital sa Carmen, Bohol',
-      descEn:
-        'Successfully enacted into law, expanding the hospital capacity from 40 to 75 beds, upgrading diagnostic equipment, intensive care suites, and medical personnel funding to serve the central interior municipalities of Bohol.',
-      descCeb:
-        'Opisyal nang balaod nga nagpadako sa pasilidad gikan sa 40 ngadto sa 75 ka katre, modernong ekipo sa laboratoryo ug ICU, ug dugang doktor ug nars alang sa interior nga mga lungsod.',
-    },
-    {
-      billNumber: 'House Bill No. 2043',
-      category: 'health',
-      categoryLabelEn: 'Health & Hospitals',
-      categoryLabelCeb: 'Panglawas ug Ospital',
-      statusEn: 'Approved on Third Reading in the House',
-      statusCeb: 'Naaprobahan sa Third Reading sa Ubos Balay-Balaoranan',
-      statusVariant: 'orange' as const,
-      titleEn:
-        'An Act Upgrading Candijay Community Hospital into a Level I District Hospital',
-      titleCeb:
-        'Balaod sa Pag-upgrade sa Candijay Community Hospital Ngadto sa Level I District Hospital',
-      descEn:
-        'Elevating the municipal community hospital in Candijay into a full-fledged Level I District Hospital, increasing bed capacity from 10 to 50 beds with dedicated surgical, pediatric, and emergency facilities.',
-      descCeb:
-        'Pag-alsa sa tambalanan sa Candijay gikan sa 10 ngadto sa 50 ka katre nga adunay operahanan, ward sa kabataan, ug modernong emergency room alang sa silangang Bohol.',
-    },
-    {
-      billNumber: 'House Bill No. 8494',
-      category: 'health',
-      categoryLabelEn: 'Health & Hospitals',
-      categoryLabelCeb: 'Panglawas ug Ospital',
-      statusEn: 'Approved on Third Reading in the House',
-      statusCeb: 'Naaprobahan sa Third Reading sa Ubos Balay-Balaoranan',
-      statusVariant: 'orange' as const,
-      titleEn:
-        'An Act Upgrading Teodoro B. Galagar District Hospital in Jagna, Bohol into a Level II Hospital',
-      titleCeb:
-        'Balaod sa Pag-upgrade sa Teodoro B. Galagar District Hospital sa Jagna Ngadto sa Level II',
-      descEn:
-        'Upgrading Jagna\'s primary district medical center from 75 to 100 beds, establishing specialized surgical units, expanded hemodialysis accommodations, and secondary laboratory accreditation.',
-      descCeb:
-        'Pagpadako sa katre gikan sa 75 ngadto sa 100 ug pagbutang og espesyalistang serbisyo sa operasyon ug hemodialysis sa lungsod sa Jagna.',
-    },
-    {
-      billNumber: 'House Bill No. 7771',
-      category: 'environment',
-      categoryLabelEn: 'Tourism & Environment',
-      categoryLabelCeb: 'Turismo ug Kinaiyahan',
-      statusEn: 'Approved in Committee',
-      statusCeb: 'Aprobado sa Komitiba',
-      statusVariant: 'blue' as const,
-      titleEn:
-        'An Act Declaring Can-umantad Falls in Candijay, Bohol an Official Ecotourism Site',
-      titleCeb:
-        'Balaod sa Pagdeklarar sa Can-umantad Falls sa Candijay Isip Opisyal nga Ecotourism Site',
-      descEn:
-        'Declaring Bohol\'s tallest waterfall an official national ecotourism destination, mandating infrastructure investments from DOT and DPWH while enforcing strict ecological protection and local livelihood inclusion.',
-      descCeb:
-        'Pagdeklarar sa labing taas nga busay sa Bohol isip national ecotourism site aron mapundohan ang kalsada, pasilidad, ug panalipod sa kinaiyahan.',
-    },
-    {
-      billNumber: 'House Bill No. 10438 / HB 831',
-      category: 'environment',
-      categoryLabelEn: 'Tourism & Environment',
-      categoryLabelCeb: 'Turismo ug Kinaiyahan',
-      statusEn: 'Under Committee Review & Plenary Action',
-      statusCeb: 'Gipanday sa Komitiba ug Plenaryo',
-      statusVariant: 'orange' as const,
-      titleEn:
-        'Chocolate Hills Natural Monument (CHNM) Protection & PAMB Governance Reform Act',
-      titleCeb:
-        'Balaod sa Pagpanalipod sa Chocolate Hills Natural Monument ug Reporma sa PAMB',
-      descEn:
-        'Prohibiting commercial desecration inside the Chocolate Hills Protected Area, reforming Protected Area Management Board (PAMB) clearances, and safeguarding Bohol\'s UNESCO Global Geopark designation.',
-      descCeb:
-        'Pagdili sa dili angay nga commercial structures sa Chocolate Hills, pag-usab sa proseso sa PAMB permits, ug pagpanalipod sa dungog sa Bohol isip UNESCO Global Geopark.',
-    },
-    {
-      billNumber: 'House Bill No. 2047',
-      category: 'education',
-      categoryLabelEn: 'Education & Livelihood',
-      categoryLabelCeb: 'Edukasyon ug Panginabuhian',
-      statusEn: 'Approved on Third Reading',
-      statusCeb: 'Naaprobahan sa Ikatulong Pagbasa',
-      statusVariant: 'emerald' as const,
-      titleEn:
-        'An Act Establishing a TESDA Municipal Training Center in Candijay, Bohol',
-      titleCeb:
-        'Balaod sa Pagtukod og TESDA Provincial/Municipal Training Center sa Candijay',
-      descEn:
-        'Establishing a full technical-vocational skills training center in Candijay to provide free certified courses in automotive, welding, agro-processing, tourism, and digital technology for youth in District 3.',
-      descCeb:
-        'Pagtukod og opisyal nga sentro sa bansay sa TESDA sa Candijay aron libreng makat-on og bokasyonal nga kurso ang mga kabatan-onan sa distrito.',
-    },
-    {
-      billNumber: 'House Bill No. 5041',
-      category: 'welfare',
-      categoryLabelEn: 'Social Welfare',
-      categoryLabelCeb: 'Kaayohan sa Katawhan',
-      statusEn: 'Harmonized into Priority Social Protection Laws',
-      statusCeb: 'Nahiusa sa mga Balaod sa Proteksyon Sosyal',
-      statusVariant: 'blue' as const,
-      titleEn:
-        'An Act Increasing the Monthly Social Pension of Indigent Senior Citizens',
-      titleCeb:
-        'Balaod sa Pagsaka sa Buwanang Pensiyon sa mga Kabus nga Senior Citizen',
-      descEn:
-        'Advocating for increased monthly stipends and wider eligibility thresholds for elderly citizens across the Philippines to cushion against medical inflation and cost of basic living.',
-      descCeb:
-        'Pagduso sa pagsaka sa binuwan nga pensiyon ug pagpasalipod sa mga katigulangan nga walay regular nga kita o pensiyon sa SSS/GSIS.',
-    },
-    {
-      billNumber: 'House Bill No. 9764',
-      category: 'civil_service',
-      categoryLabelEn: 'Civil Service & PRC',
-      categoryLabelCeb: 'Serbisyo Sibil ug PRC',
-      statusEn: 'Priority Committee Measure',
-      statusCeb: 'Prayoridad nga Balaodnon sa Komitiba',
-      statusVariant: 'orange' as const,
-      titleEn:
-        'An Act Extending the Validity of Professional Regulation Commission (PRC) IDs from 3 to 5 Years',
-      titleCeb:
-        'Balaod sa Paglugway sa Validity sa PRC License IDs Gikan sa 3 Ngadto sa 5 ka Tuig',
-      descEn:
-        'Streamlining regulatory renewals for registered nurses, physical therapists, teachers, engineers, and professionals by extending PRC license validity from 3 to 5 years, reducing financial and travel burdens.',
-      descCeb:
-        'Pagpalugway sa lisensya sa mga propesyonal (PRC IDs) ngadto sa 5 ka tuig aron maminusan ang gasto ug hasol sa pag-renew matag tulo ka tuig.',
-    },
-    {
-      billNumber: 'House Bill No. 1581',
-      category: 'civil_service',
-      categoryLabelEn: 'Civil Service & PRC',
-      categoryLabelCeb: 'Serbisyo Sibil ug PRC',
-      statusEn: 'Pending Committee Deliberation',
-      statusCeb: 'Gihisgutan sa Komitiba',
-      statusVariant: 'blue' as const,
-      titleEn:
-        'Automatic Civil Service Eligibility for Long-Term Casual, Contractual, and Job Order (JO) Workers',
-      titleCeb:
-        'Awtomatikong Civil Service Eligibility sa mga Casual, Contractual, ug Job Order Workers',
-      descEn:
-        'Granting appropriate civil service eligibility to dedicated casual and job order government personnel who have rendered years of uninterrupted, exemplary public service across local and national offices.',
-      descCeb:
-        'Paghatag og civil service eligibility sa mga kawani sa gobyerno nga dugay nang nagserbisyo isip casual o job order (JO) aron ma-regular sa trabaho.',
-    },
-    {
-      billNumber: 'House Bill No. 5308',
-      category: 'education',
-      categoryLabelEn: 'Education & Livelihood',
-      categoryLabelCeb: 'Edukasyon ug Panginabuhian',
-      statusEn: 'Committee Deliberation',
-      statusCeb: 'Gihisgutan sa Komitiba',
-      statusVariant: 'blue' as const,
-      titleEn:
-        'National Book Development & DepEd Textbook Error Review and Correction Act',
-      titleCeb:
-        'Balaod sa Pagsubay ug Pagtul-id sa mga Kasaypanan sa mga Libro sa DepEd',
-      descEn:
-        'Enforcing stringent review standards and independent audits to identify, penalize, and rectify factual, grammatical, and historical errors in public school learning materials.',
-      descCeb:
-        'Pagsiguro nga sakto ug walay sayop ang mga libro ug learning modules nga gigamit sa mga tinun-an sa pampublikong tulunghaan sa nasud.',
-    },
-    {
-      billNumber: 'House Bills No. 835, 838, & 840',
-      category: 'health',
-      categoryLabelEn: 'Health & Hospitals',
-      categoryLabelCeb: 'Panglawas ug Ospital',
-      statusEn: 'House Committee Action',
-      statusCeb: 'Aksyon sa Komitiba',
-      statusVariant: 'orange' as const,
-      titleEn:
-        'Magna Carta for Healthcare Professionals and Allied Health Salary Standardization',
-      titleCeb:
-        'Magna Carta sa mga Propesyonal sa Panglawas ug Pagsaka sa Sweldo sa Allied Health',
-      descEn:
-        'Mandating equitable salary grades, hazard pay, clinical development allowances, and legal protections for public physical therapists, medical technologists, pharmacists, and allied medical practitioners.',
-      descCeb:
-        'Pag-alsa sa suholan ug paghatag og hazard pay ug insentibo sa mga physical therapist, pharmacist, med tech, ug ubang kawani sa ospital.',
-    },
-  ];
+  // Filtered dataset by category and search query
+  const filteredMeasures = activeMeasures.filter((m) => {
+    const matchesCategory = billCategory === 'all' || m.category === billCategory;
+    const q = measureSearch.trim().toLowerCase();
+    const matchesQuery =
+      !q ||
+      m.displayId.toLowerCase().includes(q) ||
+      m.measureId.toLowerCase().includes(q) ||
+      m.titleEn.toLowerCase().includes(q) ||
+      m.titleCeb.toLowerCase().includes(q) ||
+      m.referral.toLowerCase().includes(q) ||
+      m.principalAuthors.toLowerCase().includes(q);
 
-  // =========================================================================
-  // CO-AUTHORED LANDMARK ENACTED REPUBLIC ACTS (Official congress.gov.ph Record)
-  // =========================================================================
-  const coAuthoredLaws = [
-    {
-      lawNumber: 'Republic Act No. 11997',
-      shortTitle: 'Kabalikat sa Pagtuturo Act',
-      shortTitleCeb: 'Balaod Kabalikat sa Pagtuturo',
-      icon: GraduationCap,
-      descEn:
-        'Institutionalizing an annual cash teaching supplies allowance for all public school teachers nationwide, increasing from ₱5,000 to ₱10,000 to relieve educators from out-of-pocket expenses for classroom instruction.',
-      descCeb:
-        'Pagpasar og balaod nga naghatag og ₱10,000 matag tuig nga teaching supplies allowance sa tanang magtutudlo sa pampublikong eskwelahan aron dili na sila mogasto sa kaugalingong bulsa.',
-    },
-    {
-      lawNumber: 'Republic Act No. 11934',
-      shortTitle: 'Subscriber Identity Module (SIM) Registration Act',
-      shortTitleCeb: 'Balaod sa Rehistrasyon sa SIM Card',
-      icon: ShieldCheck,
-      descEn:
-        'Mandatory registration of all active SIM cards with telecommunications providers to protect citizens against digital scam syndicates, mobile bank fraud, and cyber harassment.',
-      descCeb:
-        'Mandatory nga pagparehistro sa tanang SIM card aron sumpoon ang mga text scam, pagpangilad sa bangko pinaagi sa cellphone, ug cybercrime.',
-    },
-    {
-      lawNumber: 'Republic Act No. 11223 & RA 11463',
-      shortTitle: 'Universal Health Care & Malasakit Centers Act',
-      shortTitleCeb: 'Universal Health Care ug Malasakit Centers',
-      icon: Heart,
-      descEn:
-        'Championing zero-balance billing for indigent patients, comprehensive outpatient benefit packages, free dialysis treatment subsidies, and one-stop government financial assistance centers in all public hospitals.',
-      descCeb:
-        'Pagpatuman sa zero-balance billing sa mga kabus nga pasyente, libreng sesyon sa dialysis, ug usa ka tambayan nga tabang pinansyal sa mga pampublikong tambalanan.',
-    },
-    {
-      lawNumber: 'Magna Carta of Barangay Health Workers (BHWs)',
-      shortTitle: 'Grassroots Healthcare Frontliner Protection',
-      shortTitleCeb: 'Proteksyon ug Kaayohan sa mga BHW',
-      icon: Stethoscope,
-      descEn:
-        'Establishing standardized monthly honoraria, hazard pay, transportation allowances, PhilHealth enrollment, civil service eligibility credits, and security of tenure for volunteer barangay health workers.',
-      descCeb:
-        'Paghatag og desenteng binulan nga honorarium, hazard pay, PhilHealth, ug proteksyon batok sa kalit nga pagkatangtang sa trabaho sa mga BHW.',
-    },
-    {
-      lawNumber: 'Magna Carta of Filipino Seafarers',
-      shortTitle: 'Maritime Labor Protection & Safety Standards',
-      shortTitleCeb: 'Proteksyon sa mga Marino nga Pilipino',
-      icon: Award,
-      descEn:
-        'Comprehensive statutory protection guaranteeing fair employment contracts, just compensation, standard onboard living conditions, legal support, and medical repatriation for Filipino seafarers worldwide.',
-      descCeb:
-        'Komprehensibong panalipod sa suholan, desenteng puy-anan sa barko, ug tabang legal ug medikal alang sa tanang marinong Pilipino.',
-    },
-    {
-      lawNumber: 'Republic Act No. 10932 Enforcement',
-      shortTitle: 'Anti-Hospital Deposit Law Compliance',
-      shortTitleCeb: 'Pahamtang sa Anti-Hospital Deposit Law',
-      icon: FileText,
-      descEn:
-        'Strict statutory enforcement prohibiting hospitals and clinics from demanding monetary deposits or advance payments before administering emergency medical stabilization or pediatric care.',
-      descCeb:
-        'Pagdili sa mga ospital sa pagpangayo og deposito o advance nga bayad sa dili pa tambalan ang mga pasyente nga anaa sa emerhensiya.',
-    },
-  ];
+    return matchesCategory && matchesQuery;
+  });
 
-  const filteredBills =
-    billCategory === 'all'
-      ? principalAuthoredBills
-      : principalAuthoredBills.filter((b) => b.category === billCategory);
+  const displayedMeasures = filteredMeasures.slice(0, visibleCount);
+
+  // Helper to get committee icon
+  const getCommitteeIcon = (name: string) => {
+    switch (name) {
+      case 'Landmark':
+        return Landmark;
+      case 'Scale':
+        return Scale;
+      case 'Globe':
+        return Globe;
+      case 'Building2':
+      default:
+        return Building2;
+    }
+  };
 
   return (
     <div className="space-y-16 sm:space-y-24 pb-16">
       {/* =====================================================================
-          1. ABOUT HERO BANNER (VERIFIED 19TH CONGRESS RECORD)
+          1. ABOUT HERO BANNER (OFFICIAL CONGRESSIONAL RECORD)
          ===================================================================== */}
       <section className="bg-gradient-to-b from-orange-50/90 via-amber-50/30 to-transparent pt-10 pb-16 border-b border-orange-100/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-800 text-xs font-bold uppercase tracking-wider mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-800 text-xs font-bold uppercase tracking-wider mb-3 shadow-2xs">
               <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
-              <span>{t('19th Congress of the Philippines • House Member Code: J075', 'Ika-19 nga Kongreso sa Pilipinas • Kodigo sa Miyembro: J075')}</span>
+              <span>{t('House of Representatives of the Philippines', 'Balay Balaoranan sa Pilipinas')}</span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mt-2">
               {t('About Congresswoman Kristine Alexie Besas Tutor', 'Mahitungod kang Congresswoman Kristine Alexie Besas Tutor')}
             </h1>
             <p className="text-base sm:text-lg text-slate-700 mt-4 leading-relaxed font-medium">
               {t(
-                'Licensed Physical Therapist, Law Graduate, and Champion of Bohol\'s 3rd Congressional District. Serving as Chairperson of the Committee on Civil Service & Professional Regulation and Vice Chairperson of the Committee on Health.',
-                'Lisensyadong Physical Therapist, Gradwado sa Balaod, ug Tingog sa 19 ka mga Lungsod sa Ikatulong Distrito sa Bohol. Pangulo sa Committee on Civil Service & Professional Regulation ug Pangalawang Pangulo sa Committee on Health.'
+                'Licensed Physical Therapist, Law Graduate, and Champion of Bohol\'s 3rd Congressional District. Serving as Vice Chairperson of the Committee on Civil Service & Professional Regulation, and Member for the Majority in Appropriations, Sustainable Development Goals, and Visayas Development.',
+                'Lisensyadong Physical Therapist, Gradwado sa Balaod, ug Tingog sa 19 ka mga Lungsod sa Ikatulong Distrito sa Bohol. Pangalawang Pangulo sa Committee on Civil Service & Professional Regulation, ug Miyembro sa Mayorya sa Appropriations, Sustainable Development Goals, ug Visayas Development.'
               )}
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -473,14 +180,14 @@ export const AboutPage: React.FC = () => {
                 className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[44px]"
               >
                 <Landmark className="w-3.5 h-3.5" />
-                <span>{t('Committee Leadership', 'Mga Komitiba sa Kongreso')}</span>
+                <span>{t('Committee Assignments', 'Mga Komitiba sa Kongreso')}</span>
               </a>
               <a
                 href="#bills"
                 className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-white border border-orange-200 text-slate-800 font-bold text-xs hover:bg-orange-50 transition-all shadow-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 min-h-[44px]"
               >
                 <BookOpen className="w-3.5 h-3.5 text-orange-600" />
-                <span>{t('Authored Bills & Enacted Laws', 'Mga Balaodnon ug Naipasang Balaod')}</span>
+                <span>{t('Authored & Co-Authored Measures', 'Mga Balaodnon ug Resolusyon')}</span>
               </a>
               <a
                 href="https://www.congress.gov.ph/house-members/view/J075"
@@ -488,7 +195,7 @@ export const AboutPage: React.FC = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[44px]"
               >
-                <span>{t('Official Congress Record (J075)', 'Opisyal nga Rekord sa Kongreso')}</span>
+                <span>{t('Official Congress Record', 'Opisyal nga Rekord sa Kongreso')}</span>
                 <ExternalLink className="w-3 h-3 text-orange-400" />
               </a>
             </div>
@@ -507,7 +214,7 @@ export const AboutPage: React.FC = () => {
               <div className="absolute -inset-2 bg-gradient-to-tr from-orange-500 to-amber-400 rounded-3xl blur-md opacity-30 shadow-sinoog" />
               <div className="relative bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-7 border border-orange-200/80 shadow-sinoog hover:shadow-sinoog-hover transition-all duration-300 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
+                  src="/images/cong_alexie.jpg"
                   alt={INITIAL_SITE_SETTINGS.congresswoman_name}
                   className="w-full h-80 object-cover object-top rounded-2xl mb-5 shadow-sm"
                 />
@@ -525,33 +232,26 @@ export const AboutPage: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Badges of Distinction */}
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    <span className="px-3 py-1 rounded-full bg-orange-100 text-orange-800 text-[11px] font-bold">
-                      {t('Chairperson: Civil Service & PRC', 'Chairperson: Serbisyo Sibil ug PRC')}
-                    </span>
-                    <span className="px-3 py-1 rounded-full bg-red-100 text-red-800 text-[11px] font-bold">
-                      {t('Vice Chairperson: Health', 'Vice Chairperson: Panglawas')}
-                    </span>
-                  </div>
-
-                  {/* Structured Credentials */}
-                  <div className="border-t border-slate-100 pt-3 text-xs text-slate-700 space-y-2">
+                  <div className="pt-3 border-t border-slate-100 space-y-2.5 text-xs">
                     <div className="flex items-start gap-2">
                       <GraduationCap className="w-4 h-4 text-orange-600 shrink-0 mt-0.5" />
                       <div>
-                        <strong className="text-slate-900">{t('Education & Profession', 'Edukasyon ug Propesyon')}:</strong>
+                        <strong className="text-slate-900">{t('Educational Background', 'Edukasyon')}:</strong>
                         <div className="text-slate-600">
-                          {t(
-                            'BS Physical Therapy (BSPT) — Velez College, Cebu City',
-                            'BS Physical Therapy (BSPT) — Velez College, Dakbayan sa Sugbo'
-                          )}
+                          Bachelor of Science in Physical Therapy (BSPT) • Velez College (Cebu City)
                         </div>
-                        <div className="text-slate-600 font-medium">
-                          {t(
-                            'Licensed Physical Therapist (PRC) • Bachelor of Laws (LL.B)',
-                            'Lisensyadong Physical Therapist (PRC) • Gradwado sa Balaod (LL.B)'
-                          )}
+                        <div className="text-slate-600">
+                          Bachelor of Laws (LL.B) Graduate
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-2">
+                      <Stethoscope className="w-4 h-4 text-orange-600 shrink-0 mt-0.5" />
+                      <div>
+                        <strong className="text-slate-900">{t('Professional License', 'Propesyonal nga Lisensya')}:</strong>
+                        <div className="text-slate-600">
+                          {t('Licensed Physical Therapist (PRC Registered)', 'Lisensyadong Physical Therapist (PRC)')}
                         </div>
                       </div>
                     </div>
@@ -564,7 +264,7 @@ export const AboutPage: React.FC = () => {
                           {t('18th Congress (2019–2022) • 19th Congress (2022–Present)', 'Ika-18 nga Kongreso (2019–2022) • Ika-19 nga Kongreso (2022–Karon)')}
                         </div>
                         <div className="text-slate-500 text-[11px]">
-                          {t('House of Representatives Member Code: J075', 'Kodigo sa Balay Balaoranan: J075')}
+                          {t('House of Representatives of the Philippines', 'Balay Balaoranan sa Pilipinas')}
                         </div>
                       </div>
                     </div>
@@ -601,7 +301,7 @@ export const AboutPage: React.FC = () => {
                       rel="noopener noreferrer"
                       className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-orange-50/80 hover:bg-orange-500 text-orange-800 hover:text-white border border-orange-200/90 font-bold text-xs shadow-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[44px]"
                     >
-                      <span>{t('View Verified House Profile (J075)', 'Tan-awa ang Opisyal nga Profile sa Kongreso')}</span>
+                      <span>{t('View Official House Profile', 'Tan-awa ang Opisyal nga Profile sa Kongreso')}</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   </div>
@@ -613,16 +313,12 @@ export const AboutPage: React.FC = () => {
           {/* Biography Narrative Column */}
           <div className="lg:col-span-7 space-y-6">
             <div className="space-y-4 text-slate-700 leading-relaxed text-sm sm:text-base">
-              <Badge variant="orange" size="sm">
-                {t('Leadership & Public Service Journey', 'Panaw sa Pagserbisyo ug Pagpangulo')}
+              <Badge variant="orange" size="sm" dot>
+                {t('Champion of Boholano Welfare', 'Manlalaban sa Katawhang Boholano')}
               </Badge>
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
                 {t('From Health Sciences & Legal Acumen to Congressional Leadership', 'Gikan sa Syensya sa Panglawas ug Balaod Ngadto sa Balay Balaoranan')}
               </h2>
-
-              <p>
-                {t(INITIAL_SITE_SETTINGS.bio_summary_en, INITIAL_SITE_SETTINGS.bio_summary_ceb)}
-              </p>
 
               <p>
                 {t(
@@ -633,101 +329,83 @@ export const AboutPage: React.FC = () => {
 
               <p>
                 {t(
-                  'Before her tenure in the House of Representatives, she served with distinction as a Provincial Board Member representing Bohol\'s 3rd District from 2016 to 2019. Elected to the 18th Congress in 2019 and decisively re-elected to the 19th Congress in 2022, Congw. Tutor earned national recognition as Chairperson of the vital Committee on Civil Service and Professional Regulation and Vice Chairperson of the Committee on Health.',
-                  'Sa wala pa siya napili sa Kongreso, nagserbisyo siya isip Board Member sa Ikatulong Distrito sa Bohol gikan 2016 hangtod 2019. Napili sa Ika-18 nga Kongreso niadtong 2019 ug subling gisaligan sa Ika-19 nga Kongreso niadtong 2022, giila siya sa tibuok nasud pinaagi sa iyang pagka-Pangulo sa Committee on Civil Service and Professional Regulation ug Pangalawang Pangulo sa Committee on Health.'
+                  'Before her tenure in the House of Representatives, she served with distinction as a Provincial Board Member representing Bohol\'s 3rd District from 2016 to 2019. Decisively elected to the 18th Congress in 2019 and re-elected to the 19th Congress, Congw. Tutor earned national recognition as Vice Chairperson of the Committee on Civil Service & Professional Regulation, and Member for the Majority in the Committees on Appropriations, Sustainable Development Goals, and Visayas Development.',
+                  'Sa wala pa siya napili sa Kongreso, nagserbisyo siya isip Board Member sa Ikatulong Distrito sa Bohol gikan 2016 hangtod 2019. Napili sa Balay Balaoranan ug subling gisaligan sa katawhan, naila siya pinaagi sa iyang pagka-Pangalawang Pangulo sa Committee on Civil Service and Professional Regulation ug Miyembro sa Mayorya sa Appropriations, Sustainable Development Goals, ug Visayas Development.'
                 )}
               </p>
 
               <p>
                 {t(
-                  'Under her "Padayon ang Kumbati" banner, she translated policy into everyday grassroots relief: pioneering the zero-fare 4-van Patient Transport Vehicle (PTV) fleet running 24/7 across 19 towns, founding the Tambayan ni Kumbati in Tagbilaran City offering free air-conditioned lodging and meals for dialysis patients, building 259+ typhoon-proof concrete homes under Pabahay ni Kumbati, and funding college degrees for over 3,829 CHED-TDP scholars.',
-                  'Ubos sa panultihon nga "Padayon ang Kumbati", gihubad niya ang balaod ngadto sa tinuod nga serbisyo: 4 ka libreng Patient Transport Vehicles (PTV) nga 24/7 nagbilar sa 19 ka lungsod, Tambayan ni Kumbati sa Tagbilaran alang sa dialysis patients, 259+ ka sementadong balay sa Pabahay ni Kumbati, ug scholarship sa 3,829+ ka mga batan-on.'
+                  'Congw. Tutor\'s legislative compass is guided by one core doctrine: public office must deliver tangible, life-saving, and dignity-restoring results directly to constituents ("Serbisyo Diretso sa Katawhan"). This governance philosophy gave birth to the KUMBATI brand—a dynamic public service network encompassing typhoon-resilient concrete housing (Pabahay ni Kumbati), free 24/7 emergency medical transit (Patient Transport Vehicles), patient boarding havens (Tambayan ni Kumbati for Dialysis Patients in Tagbilaran), and comprehensive scholarship assistance for thousands of Boholano youth.',
+                  'Ang pagserbisyo ni Congw. Tutor gipasukad sa usa ka baruganan: ang gahum sa kagamhanan kinahanglang maghatag og tinuod nga kaayohan, proteksyon, ug dignidad direkta sa katawhan ("Serbisyo Diretso sa Katawhan"). Kini ang nagmugna sa kalihukang KUMBATI—nga naghatag og libreng pabalay nga kongkreto, 24/7 nga sakyanan medikal (PTV), pahuwayan sa dialysis patients sa Tagbilaran, ug liboan ka scholarships sa mga batan-ong Boholano.'
                 )}
               </p>
-            </div>
-
-            <div className="pt-2 flex flex-wrap gap-3">
-              <Link to="/programs">
-                <Button variant="primary" size="md" icon={<Heart className="w-4 h-4" />}>
-                  {t('Explore 7 Flagship Programs', 'Tan-awa ang 7 ka Programa')}
-                </Button>
-              </Link>
-              <Link to="/action-center">
-                <Button variant="outline" size="md" icon={<ShieldCheck className="w-4 h-4" />}>
-                  {t('Contact Action Center', 'Pakig-alayon sa Action Center')}
-                </Button>
-              </Link>
             </div>
           </div>
         </div>
       </section>
 
       {/* =====================================================================
-          3. 19TH CONGRESS COMMITTEE LEADERSHIP & MEMBERSHIPS (OFFICIAL J075 RECORD)
+          3. COMMITTEE ASSIGNMENTS (OFFICIAL HOUSE RECORD)
          ===================================================================== */}
       <section id="committees" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <Badge variant="orange" size="sm" dot>
-            {t('Official 19th Congress Organization', 'Opisyal nga Organisasyon sa Ika-19 nga Kongreso')}
+            {t('Official Congressional Organization', 'Opisyal nga Organisasyon sa Balay Balaoranan')}
           </Badge>
           <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-2">
             {t('House Committee Leadership & Memberships', 'Mga Pamunuan ug Komitiba sa Balay Balaoranan')}
           </h2>
           <p className="text-sm text-slate-600 mt-2 leading-relaxed">
             {t(
-              'Official committee appointments and leadership assignments of Rep. Kristine Alexie Besas Tutor as recorded in the House of Representatives of the Philippines (Member Code: J075).',
-              'Opisyal nga katungdanan ug gisalig nga pamunuan sa mga komitiba kang Rep. Kristine Alexie Besas Tutor sumala sa talaan sa Ubos Balay-Balaoranan (Member Code: J075).'
+              'Official committee appointments and leadership assignments of Rep. Kristine Alexie Besas Tutor as recorded in the official journals of the House of Representatives of the Philippines.',
+              'Opisyal nga katungdanan ug gisalig nga pamunuan sa mga komitiba kang Rep. Kristine Alexie Besas Tutor sumala sa opisyal nga mga journal sa Balay Balaoranan.'
             )}
           </p>
         </div>
 
-        {/* Leadership Portfolios: Chairperson & Vice Chairperson */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          {committeeLeadership.map((item, idx) => {
-            const Icon = item.icon;
-            const isChair = item.role === 'Chairperson';
+        {/* Leadership Portfolio Card: Civil Service & Professional Regulation */}
+        <div className="mb-8">
+          {committeeLeadership.map((item) => {
+            const Icon = getCommitteeIcon(item.iconName);
             return (
               <div
-                key={idx}
-                className={`relative rounded-3xl p-8 border transition-all duration-300 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1 ${
-                  isChair
-                    ? 'bg-gradient-to-br from-orange-500/10 via-amber-500/5 to-white border-orange-300/80 shadow-orange-100/50'
-                    : 'bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-white border-emerald-300/80 shadow-emerald-100/50'
-                }`}
+                key={item.id}
+                className="relative rounded-3xl p-8 sm:p-10 border transition-all duration-300 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1 bg-gradient-to-br from-orange-500/10 via-amber-500/5 to-white border-orange-300/80 shadow-orange-100/50"
               >
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <div
-                    className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${
-                      isChair
-                        ? 'bg-orange-600 text-white shadow-sinoog'
-                        : 'bg-emerald-600 text-white shadow-sinoog'
-                    }`}
-                  >
-                    <Icon className="w-6 h-6" />
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 bg-orange-600 text-white shadow-sinoog">
+                      <Icon className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-orange-700 bg-orange-100 px-2.5 py-0.5 rounded-full inline-block mb-1">
+                        {item.journalNo}
+                      </span>
+                      <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                        {t(item.committeeEn, item.committeeCeb)}
+                      </h3>
+                    </div>
                   </div>
-                  <Badge variant={item.statusVariant} size="md">
-                    {t(item.role, item.roleCeb)}
+                  <Badge variant="orange" size="md" className="self-start">
+                    {t(item.positionEn, item.positionCeb)}
                   </Badge>
                 </div>
 
-                <h3 className="text-xl font-black text-slate-900 mb-2">
-                  {t(item.committeeEn, item.committeeCeb)}
-                </h3>
-
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5">
-                  {t(item.descEn, item.descCeb)}
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-6">
+                  {t(item.descriptionEn, item.descriptionCeb)}
                 </p>
 
-                <div className="border-t border-slate-200/80 pt-4 space-y-2">
+                <div className="border-t border-slate-200/80 pt-4 space-y-2.5">
                   <div className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-orange-600" />
-                    <span>{t('Key Policy Focus', 'Panguna nga Tutok sa Balaod')}</span>
+                    <Sparkles className="w-4 h-4 text-orange-600" />
+                    <span>{t('Key Policy Priorities', 'Panguna nga Tutok sa Balaod')}</span>
                   </div>
-                  <ul className="space-y-1.5">
-                    {item.highlights.map((h, hIdx) => (
-                      <li key={hIdx} className="text-xs text-slate-700 flex items-center gap-2">
-                        <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 ${isChair ? 'text-orange-600' : 'text-emerald-600'}`} />
-                        <span>{h}</span>
+                  <ul className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+                    {item.keyFunctions.map((func, fIdx) => (
+                      <li key={fIdx} className="text-xs text-slate-700 flex items-start gap-2 bg-orange-50/60 p-3 rounded-xl border border-orange-100">
+                        <CheckCircle2 className="w-4 h-4 shrink-0 text-orange-600 mt-0.5" />
+                        <span>{func}</span>
                       </li>
                     ))}
                   </ul>
@@ -737,39 +415,56 @@ export const AboutPage: React.FC = () => {
           })}
         </div>
 
-        {/* Member for the Majority Committees */}
+        {/* Member for the Majority Committees Grid */}
         <div className="bg-slate-50/80 rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sinoog">
           <div className="flex items-center gap-2 mb-6">
             <Badge variant="slate" size="sm">
               {t('Committee Memberships', 'Mga Komitiba Isip Miyembro')}
             </Badge>
             <span className="text-xs font-bold text-slate-600">
-              {t('5 Majority Memberships in the 19th Congress', '5 ka Komitiba sa Mayorya sa Ika-19 nga Kongreso')}
+              {t('3 Majority Memberships in the House of Representatives', '3 ka Komitiba sa Mayorya sa Balay Balaoranan')}
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {committeeMemberships.map((comm, cIdx) => {
-              const Icon = comm.icon;
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {committeeMemberships.map((comm) => {
+              const Icon = getCommitteeIcon(comm.iconName);
               return (
                 <div
-                  key={cIdx}
-                  className="bg-white p-5 rounded-2xl border border-slate-200/80 hover:border-orange-300 transition-all shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1"
+                  key={comm.id}
+                  className="bg-white p-6 rounded-2xl border border-slate-200/80 hover:border-orange-300 transition-all shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1 flex flex-col justify-between"
                 >
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center">
-                      <Icon className="w-4 h-4" />
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <span className="text-[11px] font-mono font-bold text-slate-500 uppercase bg-slate-100 px-2 py-0.5 rounded-full">
+                        {comm.journalNo}
+                      </span>
                     </div>
-                    <span className="text-[11px] font-bold text-slate-500 uppercase">
-                      {t(comm.role, comm.roleCeb)}
-                    </span>
+
+                    <div className="text-[11px] font-bold text-orange-600 uppercase tracking-wider mb-1">
+                      {t(comm.positionEn, comm.positionCeb)}
+                    </div>
+
+                    <h4 className="text-base font-bold text-slate-900 mb-2 leading-snug">
+                      {t(comm.committeeEn, comm.committeeCeb)}
+                    </h4>
+
+                    <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                      {t(comm.descriptionEn, comm.descriptionCeb)}
+                    </p>
                   </div>
-                  <h4 className="text-sm font-bold text-slate-900 mb-1.5">
-                    {t(comm.committeeEn, comm.committeeCeb)}
-                  </h4>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    {t(comm.descEn, comm.descCeb)}
-                  </p>
+
+                  <div className="border-t border-slate-100 pt-3 space-y-1.5">
+                    {comm.keyFunctions.slice(0, 2).map((kf, kIdx) => (
+                      <div key={kIdx} className="text-[11px] text-slate-500 flex items-start gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-orange-500 shrink-0 mt-1" />
+                        <span className="line-clamp-1">{kf}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               );
             })}
@@ -786,12 +481,12 @@ export const AboutPage: React.FC = () => {
             {t('Official Legislative Portfolio', 'Opisyal nga Talaan sa mga Balaod')}
           </Badge>
           <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-2">
-            {t('Authored Bills & Landmark Enacted Laws', 'Mga Naipasang Balaod ug Gipanday nga Balaodnon')}
+            {t('Authored Bills & Congressional Measures', 'Mga Gipangamahanan ug Gipaluyohang Balaodnon')}
           </h2>
           <p className="text-sm text-slate-600 mt-2 leading-relaxed">
             {t(
-              'Comprehensive legislative achievements authored and co-authored by Congw. Kristine Alexie Besas Tutor to transform healthcare, education, civil service tenure, and environmental protection.',
-              'Komprehensibong talaan sa mga balaod nga gipangamahanan ug gipaluyohan ni Congw. Alexie Tutor aron palambuon ang panglawas, edukasyon, trabaho, ug kinaiyahan.'
+              'Official legislative records authored and co-authored by Rep. Kristine Alexie Besas Tutor to advance healthcare, civil service eligibility, environmental conservation, and district infrastructure.',
+              'Opisyal nga talaan sa mga balaodnon nga gipangamahanan ug gipaluyohan ni Rep. Alexie Tutor alang sa panglawas, serbisyo sibil, kinaiyahan, ug kalambuan sa Bohol.'
             )}
           </p>
         </div>
@@ -800,7 +495,10 @@ export const AboutPage: React.FC = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
           <div className="inline-flex p-1.5 rounded-full bg-slate-100 border border-slate-200">
             <button
-              onClick={() => setActiveTab('principal')}
+              onClick={() => {
+                setActiveTab('principal');
+                setVisibleCount(10);
+              }}
               className={`px-6 py-2.5 rounded-full font-bold text-xs sm:text-sm transition-all flex items-center gap-2 min-h-[44px] cursor-pointer ${
                 activeTab === 'principal'
                   ? 'bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 text-white shadow-sinoog'
@@ -808,14 +506,17 @@ export const AboutPage: React.FC = () => {
               }`}
             >
               <BookOpen className="w-4 h-4" />
-              <span>{t('Principal Authored Bills', 'Panguna nga Gipanday nga Balaodnon')}</span>
-              <span className={`px-2 py-0.5 rounded-full text-xs ${activeTab === 'principal' ? 'bg-orange-800 text-white' : 'bg-slate-200 text-slate-700'}`}>
-                {principalAuthoredBills.length}
+              <span>{t('Principal Authored Measures', 'Panguna nga Gipanday')}</span>
+              <span className={`px-2 py-0.5 rounded-full text-xs font-mono font-bold ${activeTab === 'principal' ? 'bg-orange-800 text-white' : 'bg-slate-200 text-slate-700'}`}>
+                {PRINCIPAL_AUTHORED_MEASURES.length}
               </span>
             </button>
 
             <button
-              onClick={() => setActiveTab('coauthored')}
+              onClick={() => {
+                setActiveTab('coauthored');
+                setVisibleCount(10);
+              }}
               className={`px-6 py-2.5 rounded-full font-bold text-xs sm:text-sm transition-all flex items-center gap-2 min-h-[44px] cursor-pointer ${
                 activeTab === 'coauthored'
                   ? 'bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 text-white shadow-sinoog'
@@ -823,120 +524,211 @@ export const AboutPage: React.FC = () => {
               }`}
             >
               <Award className="w-4 h-4" />
-              <span>{t('Co-Authored Landmark Laws', 'Gipaluyohan nga Landmark Republic Acts')}</span>
-              <span className={`px-2 py-0.5 rounded-full text-xs ${activeTab === 'coauthored' ? 'bg-orange-800 text-white' : 'bg-slate-200 text-slate-700'}`}>
-                {coAuthoredLaws.length}
+              <span>{t('Co-Authored Bills', 'Gipaluyohan nga Balaodnon')}</span>
+              <span className={`px-2 py-0.5 rounded-full text-xs font-mono font-bold ${activeTab === 'coauthored' ? 'bg-orange-800 text-white' : 'bg-slate-200 text-slate-700'}`}>
+                {CO_AUTHORED_MEASURES.length}
               </span>
             </button>
           </div>
         </div>
 
-        {/* Tab 1: Principal Authored Bills Content */}
-        {activeTab === 'principal' && (
-          <div className="space-y-6">
-            {/* Category Pills */}
-            <div className="flex flex-wrap items-center justify-center gap-2 pb-2">
-              {[
-                { id: 'all', labelEn: 'All Sectors', labelCeb: 'Tanan' },
-                { id: 'health', labelEn: 'Health & Hospitals', labelCeb: 'Panglawas' },
-                { id: 'civil_service', labelEn: 'Civil Service & PRC', labelCeb: 'Serbisyo Sibil' },
-                { id: 'education', labelEn: 'Education & TESDA', labelCeb: 'Edukasyon' },
-                { id: 'environment', labelEn: 'Environment & Tourism', labelCeb: 'Kinaiyahan' },
-                { id: 'welfare', labelEn: 'Social Welfare', labelCeb: 'Kaayohan' },
-              ].map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setBillCategory(cat.id)}
-                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                    billCategory === cat.id
-                      ? 'bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-sinoog font-black'
-                      : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
-                  }`}
-                >
-                  {t(cat.labelEn, cat.labelCeb)}
-                </button>
-              ))}
-            </div>
+        {/* Search & Sector Filters Bar */}
+        <div className="bg-white/95 rounded-3xl p-5 sm:p-6 border border-orange-200/80 shadow-sinoog space-y-4 mb-8 backdrop-blur-md">
+          {/* Search Input */}
+          <div className="relative">
+            <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              placeholder={t(
+                'Search by bill number (e.g., HB 831, HR 301), keyword, or committee referral...',
+                'Pangita pinaagi sa numero sa balaod (e.g. HB 831, HR 301), pulong, o komitiba...'
+              )}
+              value={measureSearch}
+              onChange={(e) => {
+                setMeasureSearch(e.target.value);
+                setVisibleCount(10);
+              }}
+              className="w-full pl-11 pr-10 py-3 rounded-full border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 shadow-2xs font-medium"
+            />
+            {measureSearch && (
+              <button
+                type="button"
+                onClick={() => setMeasureSearch('')}
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
+          </div>
 
-            {/* Bills Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {filteredBills.map((bill, bIdx) => (
-                <div
-                  key={bIdx}
-                  className="p-6 sm:p-7 rounded-3xl bg-white border border-orange-200/70 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-orange-900 text-xs font-black">
+          {/* Sector Category Pills */}
+          <div className="flex flex-wrap items-center gap-2 pt-1">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 mr-1">
+              <Filter className="w-3.5 h-3.5 text-orange-600" />
+              <span>{t('Sector:', 'Sektor:')}</span>
+            </div>
+            {sectorCategories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => {
+                  setBillCategory(cat.id);
+                  setVisibleCount(10);
+                }}
+                className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                  billCategory === cat.id
+                    ? 'bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-sinoog font-black'
+                    : 'bg-slate-100 hover:bg-orange-50 text-slate-600 hover:text-orange-600 border border-slate-200'
+                }`}
+              >
+                {t(cat.labelEn, cat.labelCeb)}
+              </button>
+            ))}
+          </div>
+
+          {/* Live Result Counter */}
+          <div className="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-100">
+            <span>
+              {t(
+                `Showing ${displayedMeasures.length} of ${filteredMeasures.length} measures`,
+                `Gipakita ang ${displayedMeasures.length} sa ${filteredMeasures.length} ka balaodnon`
+              )}
+            </span>
+            {(measureSearch || billCategory !== 'all') && (
+              <button
+                type="button"
+                onClick={() => {
+                  setMeasureSearch('');
+                  setBillCategory('all');
+                  setVisibleCount(10);
+                }}
+                className="text-orange-600 font-bold hover:underline"
+              >
+                {t('Reset filters', 'Ibalik sa sinugdan')}
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Measures Grid */}
+        {displayedMeasures.length === 0 ? (
+          <div className="text-center py-16 bg-white rounded-3xl border border-slate-200 p-8 shadow-sinoog">
+            <BookOpen className="w-12 h-12 text-slate-300 mx-auto mb-3" />
+            <h3 className="text-base font-bold text-slate-800">
+              {t('No legislative measures match your search', 'Walay nakit-an nga balaodnon sa imong gipangita')}
+            </h3>
+            <p className="text-xs text-slate-500 mt-1 max-w-md mx-auto">
+              {t(
+                'Try searching with a different keyword or resetting your sector filter.',
+                'Sulayi ang laing pulong o i-reset ang imong filter.'
+              )}
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {displayedMeasures.map((measure, mIdx) => (
+              <div
+                key={mIdx}
+                className="p-6 sm:p-7 rounded-3xl bg-white border border-orange-200/70 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  {/* Top Badges */}
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <div className="flex items-center gap-2">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-orange-950 text-xs font-mono font-black shadow-2xs">
                         <FileText className="w-3.5 h-3.5 text-orange-600" />
-                        <span>{bill.billNumber}</span>
+                        <span>{measure.displayId}</span>
                       </span>
-                      <Badge variant={bill.statusVariant} size="sm">
-                        {t(bill.statusEn, bill.statusCeb)}
+                      <span className="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold">
+                        {measure.type === 'bill' ? 'House Bill' : 'House Resolution'}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-1.5">
+                      <Badge variant={measure.significance === 'National' ? 'blue' : 'emerald'} size="sm">
+                        {measure.significance}
                       </Badge>
                     </div>
-
-                    <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2 leading-snug">
-                      {t(bill.titleEn, bill.titleCeb)}
-                    </h3>
-
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                      {t(bill.descEn, bill.descCeb)}
-                    </p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                    <span className="font-semibold text-orange-600">
-                      {t(bill.categoryLabelEn, bill.categoryLabelCeb)}
+                  {/* Title En */}
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2 leading-snug">
+                    {measure.titleEn}
+                  </h3>
+
+                  {/* Title Ceb Translation */}
+                  <p className="text-xs sm:text-sm text-slate-600 italic leading-relaxed mb-4">
+                    {measure.titleCeb}
+                  </p>
+                </div>
+
+                {/* Details Footer */}
+                <div className="mt-4 pt-3 border-t border-slate-100 space-y-2 text-xs">
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="text-slate-500 font-medium">
+                      {t('Primary Referral:', 'Komitiba:')}
                     </span>
-                    <span>{t('19th Congress Record', 'Talaan sa Ika-19 nga Kongreso')}</span>
+                    <span className="font-bold text-slate-800 text-right">
+                      {measure.referral}
+                    </span>
                   </div>
+
+                  {measure.principalAuthors && (
+                    <div className="flex items-start justify-between gap-2">
+                      <span className="text-slate-500 font-medium">
+                        {t('Principal Authors:', 'Tagsulat:')}
+                      </span>
+                      <span className="text-slate-700 text-right font-medium">
+                        {measure.principalAuthors}
+                      </span>
+                    </div>
+                  )}
+
+                  <div className="flex items-center justify-between gap-2 pt-1 text-[11px] text-slate-500">
+                    <span className="inline-flex items-center gap-1">
+                      <Calendar className="w-3 h-3 text-slate-400" />
+                      <span>{t('Filed:', 'Gisumite:')} {measure.dateFiled}</span>
+                    </span>
+                    <span className="font-semibold text-orange-600">
+                      {t(measure.categoryLabelEn, measure.categoryLabelCeb)}
+                    </span>
+                  </div>
+
+                  {measure.status && (
+                    <div className="pt-1 text-[11px] text-emerald-700 font-semibold flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                      <span className="line-clamp-1">{measure.status}</span>
+                    </div>
+                  )}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         )}
 
-        {/* Tab 2: Co-Authored Landmark Laws Content */}
-        {activeTab === 'coauthored' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {coAuthoredLaws.map((law, lIdx) => {
-              const Icon = law.icon;
-              return (
-                <div
-                  key={lIdx}
-                  className="p-6 sm:p-7 rounded-3xl bg-white border border-orange-200/70 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="w-10 h-10 rounded-2xl bg-orange-50 text-orange-600 border border-orange-200/60 flex items-center justify-center mb-4">
-                      <Icon className="w-5 h-5" />
-                    </div>
+        {/* Load More Button */}
+        {filteredMeasures.length > visibleCount && (
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => setVisibleCount((prev) => Math.min(prev + 10, filteredMeasures.length))}
+              className="py-3 px-6 rounded-full bg-slate-100 hover:bg-orange-50 hover:text-orange-600 border border-slate-200 text-slate-800 font-bold text-xs shadow-2xs hover:shadow-sinoog transition-all flex items-center gap-2 cursor-pointer"
+            >
+              <span>{t(`Show More Measures (${filteredMeasures.length - visibleCount} remaining)`, `Ipakita ang Dugang (${filteredMeasures.length - visibleCount} nabilin)`)}</span>
+              <ChevronDown className="w-4 h-4" />
+            </button>
 
-                    <div className="text-xs font-black text-orange-600 uppercase tracking-wider mb-1">
-                      {law.lawNumber}
-                    </div>
-
-                    <h3 className="text-base font-bold text-slate-900 mb-2">
-                      {t(law.shortTitle, law.shortTitleCeb)}
-                    </h3>
-
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      {t(law.descEn, law.descCeb)}
-                    </p>
-                  </div>
-
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs text-emerald-700 font-bold">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                    <span>{t('Enacted & Serving the Public', 'Naipasa ug Nag-alagad sa Publiko')}</span>
-                  </div>
-                </div>
-              );
-            })}
+            <button
+              type="button"
+              onClick={() => setVisibleCount(filteredMeasures.length)}
+              className="py-3 px-6 rounded-full bg-orange-50 hover:bg-orange-100 text-orange-700 border border-orange-200 font-bold text-xs shadow-2xs hover:shadow-sinoog transition-all cursor-pointer"
+            >
+              {t(`Show All (${filteredMeasures.length})`, `Ipakita ang Tanan (${filteredMeasures.length})`)}
+            </button>
           </div>
         )}
 
-        {/* Official House Verification Callout Banner */}
-        <div className="mt-10 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-950 text-white shadow-sinoog-raised border border-slate-700/60 flex flex-col md:flex-row items-center justify-between gap-6">
+        {/* Official House Verification Callout Banner (NO J075!) */}
+        <div className="mt-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-950 text-white shadow-sinoog-raised border border-slate-700/60 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 text-xs font-bold uppercase tracking-wider">
               <Landmark className="w-3.5 h-3.5" />
@@ -947,8 +739,8 @@ export const AboutPage: React.FC = () => {
             </h4>
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
               {t(
-                'Access all 300+ principal authored measures, 200+ co-authored bills, committee reports, and plenary session logs registered under House Member Code J075.',
-                'Tan-awa ang kapin 300+ ka balaodnon, report sa komitiba, ug plenaryo ubos sa Opisyal nga Member Code J075 sa House of Representatives.'
+                'Access all principal authored measures, co-authored bills, committee reports, and plenary session logs registered in the official records of the House of Representatives.',
+                'Tan-awa ang tanang mga balaodnon, report sa komitiba, ug plenaryo ubos sa Opisyal nga Talaan sa Balay Balaoranan.'
               )}
             </p>
           </div>
@@ -1011,57 +803,55 @@ export const AboutPage: React.FC = () => {
       </section>
 
       {/* =====================================================================
-          6. BOHOL DISTRICT 3 PROFILE & 19 TOWNS
+          6. DISTRICT 3 COVERAGE & 19 MUNICIPALITIES
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-orange-50/70 rounded-3xl p-8 sm:p-12 border border-orange-200/80 shadow-sinoog">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7 space-y-4">
-              <Badge variant="orange" size="sm">
-                {t('Geographic Heritage', 'Kabilin sa Distrito')}
-              </Badge>
-              <h2 className="text-3xl font-black text-slate-900 tracking-tight">
-                {t(
-                  'The 19 Municipalities of Bohol\'s 3rd Congressional District',
-                  'Ang 19 ka mga Lungsod sa Ikatulong Distrito sa Bohol'
-                )}
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                {t(
-                  'Spanning the lush interior highlands down to the eastern coral seas of Bohol, District 3 is home to resilient farming communities, vibrant fishing cooperatives, iconic natural wonders like the Chocolate Hills in Carmen, white sand beaches in Anda, and historic coastal trading ports in Jagna and Loay.',
-                  'Gikan sa kabukiran sa Carmen hangtod sa kadagatan sa Anda ug Jagna, ang Ikatulong Distrito nailhan sa kugihan nga mag-uuma, mangingisda, ug talagsaong katahom sa kinaiyahan.'
-                )}
-              </p>
+        <div className="bg-white/95 backdrop-blur-md rounded-3xl p-8 sm:p-12 border border-orange-200/70 shadow-sinoog">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <Badge variant="orange" size="sm" dot>
+              {t('Official District Jurisdiction', 'Opisyal nga Hurisdiksyon')}
+            </Badge>
+            <h2 className="text-3xl font-black text-slate-900 tracking-tight mt-2">
+              {t(
+                'The 19 Municipalities of Bohol\'s 3rd Congressional District',
+                'Ang 19 ka mga Lungsod sa Ikatulong Distrito sa Bohol'
+              )}
+            </h2>
+            <p className="text-sm text-slate-600 mt-2">
+              {t(
+                'Serving every constituent with equal dedication across eastern and central Bohol.',
+                'Nag-alagad sa matag Boholano nga may tiunay nga dedikasyon lukop sa distrito.'
+              )}
+            </p>
+          </div>
 
-              <div className="pt-2">
-                <Link to="/directory">
-                  <Button variant="primary" size="md" icon={<MapPin className="w-4 h-4" />}>
-                    {t('View 19-Town Municipal Directory & Hotlines', 'Tan-awa ang Direktoryo sa 19 ka Lungsod')}
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5">
-              <div className="bg-white rounded-2xl p-6 border border-orange-200/80 shadow-sinoog">
-                <h4 className="text-xs font-black uppercase tracking-wider text-slate-900 mb-3 flex items-center justify-between">
-                  <span>{t('Municipalities List', 'Listahan sa mga Lungsod')}</span>
-                  <span className="text-orange-600 font-bold">19 Towns</span>
-                </h4>
-                <div className="grid grid-cols-2 gap-2 text-xs">
-                  {BOHOL_DISTRICT_3_TOWNS.map((town) => (
-                    <Link
-                      key={town}
-                      to={`/directory?town=${encodeURIComponent(town)}`}
-                      className="p-2 rounded-xl bg-orange-50/50 hover:bg-orange-100 text-slate-700 hover:text-orange-700 font-semibold transition-all flex items-center justify-between hover:translate-x-0.5"
-                    >
-                      <span>{town}</span>
-                      <ChevronRight className="w-3 h-3 text-orange-400" />
-                    </Link>
-                  ))}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+            {BOHOL_DISTRICT_3_TOWNS.map((town, idx) => (
+              <div
+                key={idx}
+                className="p-3.5 rounded-2xl bg-slate-50 hover:bg-orange-50 border border-slate-200/80 hover:border-orange-300 text-center transition-all group shadow-2xs hover:shadow-sinoog hover:-translate-y-0.5"
+              >
+                <div className="text-xs font-black text-slate-800 group-hover:text-orange-600 transition-colors">
+                  {town}
+                </div>
+                <div className="text-[10px] text-slate-600 mt-0.5">
+                  Bohol District 3
                 </div>
               </div>
-            </div>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link to="/directory">
+              <Button
+                variant="primary"
+                size="md"
+                icon={<ChevronRight className="w-4 h-4" />}
+                iconPosition="right"
+              >
+                {t('View Complete 19-Town Directory & Hotlines', 'Tan-awa ang Directory sa 19 ka Lungsod')}
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

@@ -203,3 +203,32 @@
 - [x] **9.4 Documentation & Build**:
   - [x] Updated `AGENTS.md`, `PRD.md`, `ARCHITECTURE.md`, `DEPLOYMENT.md`, `README.md`, `MEMORY.md`.
   - [x] Verified `npm run build` compiles with zero errors (exit code 0).
+
+---
+
+### Phase 10: Legislative Portfolio Integration, J075 Removal, & Official Portrait Asset
+- [x] **10.1 Removal of Internal ID Mentions**:
+  - [x] Purged all user-facing occurrences of `(J075)` and `J075` from titles, buttons, badges, and body copy across `AboutPage.tsx`.
+  - [x] Preserved the underlying HTTPS congress link (`https://www.congress.gov.ph/house-members/view/J075`) in the official portal link button.
+- [x] **10.2 Word Document Parsing & Seed Dataset (`src/lib/legislativeData.ts`)**:
+  - [x] Processed `E:\Programs\e-KUMBATI\docs\Committee Membership.docx`:
+    - Structured all 4 committee positions (1 leadership portfolio: Vice-Chairperson, Committee on Civil Service and Professional Regulation; 3 Majority memberships: Appropriations, Sustainable Development Goals, Visayas Development).
+  - [x] Processed `E:\Programs\e-KUMBATI\docs\Principal Authored Bills.docx`:
+    - Parsed all 35 measures (27 House Bills e.g. HB 831–11153 + 8 House Resolutions e.g. HR 301–1475).
+    - Structured fields: measure ID, full title in English, natural Boholano Cebuano translation, committee referral, date filed, legislative status, and significance tag.
+  - [x] Processed `E:\Programs\e-KUMBATI\docs\Co-Authored Bills.docx`:
+    - Parsed all 19 House Bills (HB 602–9945).
+    - Structured fields: bill ID, full title in English, Boholano Cebuano translation, primary authors, committee referral, date filed, and status.
+  - [x] Added `OfficialLegislativeMeasure` and `OfficialCommitteeAppointment` types in `src/types/kumbati.types.ts`.
+- [x] **10.3 Interactive Legislative Portfolio UI (`AboutPage.tsx`)**:
+  - [x] Integrated dual-mode pill tab switcher: **Principal Authored (35)** and **Co-Authored (19)** with count badges.
+  - [x] Added real-time instant search input (filters by measure ID, title keyword, committee referral, or author).
+  - [x] Implemented 10 sector category filter pills (`All`, `Civil Service & PRC`, `Health & Hospitals`, `Education & Youth`, `Tourism & Environment`, `Social Welfare & PWD`, `Budget & Salaries`, `Justice & Public Safety`, `Local Governance`, `Economy & Infrastructure`).
+  - [x] Implemented progressive disclosure ("Show More Measures" / "Show All") with result count feedback and active filter reset.
+  - [x] Styled cards with Sinoog 2027 3-layer pop shadows, status indicators, and bilingual layout.
+- [x] **10.4 Official Portrait Integration**:
+  - [x] Connected user-provided asset `/images/cong_alexie.jpg` to both `AboutPage.tsx` and `HomePage.tsx`.
+- [x] **10.5 Production Build & Cleanup**:
+  - [x] Cleaned up temporary dump and scratch files from workspace root.
+  - [x] Verified production build (`npm run build`) passes cleanly with exit code 0.
+

@@ -245,3 +245,39 @@ export interface NewsAnnouncement {
   created_at?: string;
   updated_at?: string;
 }
+
+
+// ============================================================================
+// 10. LEGISLATIVE MEASURE & COMMITTEE APPOINTMENT
+// ============================================================================
+export interface OfficialLegislativeMeasure {
+  measureId: string;
+  displayId: string;
+  type: 'bill' | 'resolution';
+  titleEn: string;
+  titleCeb: string;
+  rawTitle: string;
+  dateFiled: string;
+  significance: 'National' | 'Local' | string;
+  principalAuthors: string;
+  referral: string;
+  status: string;
+  category: string;
+  categoryLabelEn: string;
+  categoryLabelCeb: string;
+  isPrincipal: boolean;
+}
+
+export interface OfficialCommitteeAppointment {
+  id: string;
+  committeeEn: string;
+  committeeCeb: string;
+  positionEn: string;
+  positionCeb: string;
+  journalNo: string;
+  isLeadership: boolean;
+  iconName: 'Landmark' | 'Scale' | 'Globe' | 'Building2';
+  descriptionEn: string;
+  descriptionCeb: string;
+  keyFunctions: string[];
+}

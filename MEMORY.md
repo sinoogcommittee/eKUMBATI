@@ -97,3 +97,18 @@
     - Standardized section spacing rhythm to `space-y-16 sm:space-y-24 pb-16` across all views.
     - Rolled out Sinoog 2027 cards, pill buttons, and responsive spacing across all public pages (`HomePage.tsx`, `AboutPage.tsx`, `ProgramsPage.tsx`, `NewsPage.tsx`, `DirectoryPage.tsx`, `ImpactPage.tsx`, `ActionCenterPage.tsx`, `MapPage.tsx`, `GalleryPage.tsx`, `Header.tsx`, `StickyHotlineBar.tsx`).
   - Confirmed 100% clean production build (`npm run build` passed in 15.13s with exit code 0).
+- **2026-11-05**: Legislative Portfolio Integration, J075 Removal, & Official Portrait Asset:
+  - Removed all occurrences of `(J075)` and `J075` from visible copy, badges, titles, and buttons across the website.
+  - Parsed all three official documents from `E:\Programs\e-KUMBATI\docs`:
+    - `Committee Membership.docx`: Vice-Chairperson on Committee on Civil Service and Professional Regulation; Member for the Majority on Appropriations, Sustainable Development Goals, and Visayas Development.
+    - `Principal Authored Bills.docx`: 35 measures (27 House Bills e.g. HB 831, HB 832, HB 833, HB 834, HB 835, HB 836, HB 837, HB 838, HB 839, HB 840, HB 841, HB 842, HB 843, HB 844, HB 1579, HB 1580, HB 1581, HB 1747, HB 4058, HB 4746, HB 4884, HB 4885, HB 8191, HB 8192, HB 8876, HB 10858, HB 11153 + 8 House Resolutions e.g. HR 301, HR 302, HR 522, HR 823, HR 907, HR 928, HR 1430, HR 1475).
+    - `Co-Authored Bills.docx`: 19 House Bills (HB 602, HB 1676, HB 1909, HB 2026, HB 2045, HB 3803, HB 4838, HB 4839, HB 4892, HB 4905, HB 5403, HB 5404, HB 6070, HB 7558, HB 7820, HB 8494, HB 9943, HB 9944, HB 9945).
+  - Created `src/lib/legislativeData.ts` with all 54 measures and 4 committee memberships, with bilingual English and Boholano Cebuano titles, committee referrals, dates, statuses, and sector tags.
+  - Updated `src/types/kumbati.types.ts` with `OfficialLegislativeMeasure` and `OfficialCommitteeAppointment` interfaces.
+  - Upgraded `src/pages/public/AboutPage.tsx` with:
+    - Dual-tab legislative portfolio switcher with live count badges (**Principal Authored (35)** and **Co-Authored (19)**).
+    - Real-time search filter across measure IDs, titles, committees, and authors.
+    - 10 sector filter pills (`All`, `Civil Service & PRC`, `Health & Hospitals`, `Education & Youth`, `Tourism & Environment`, `Social Welfare & PWD`, `Budget & Salaries`, `Justice & Public Safety`, `Local Governance`, `Economy & Infrastructure`).
+    - Progressive disclosure pagination ("Show More Measures" / "Show All") with instant feedback.
+    - Official portrait integration with user-provided asset `/images/cong_alexie.jpg` in both `AboutPage.tsx` and `HomePage.tsx`.
+  - Confirmed 100% clean production build (`npm run build` passed in 9.84s with exit code 0).
