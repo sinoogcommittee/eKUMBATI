@@ -11,9 +11,10 @@ export const PublicLayout: React.FC = () => {
   const [isHotlineModalOpen, setIsHotlineModalOpen] = useState(false);
   const location = useLocation();
 
-  // Scroll to top on route change
+  // Scroll to top and close mobile navigation drawer on route change
   useEffect(() => {
     window.scrollTo(0, 0);
+    setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
   return (

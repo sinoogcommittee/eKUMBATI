@@ -258,3 +258,9 @@
   - Removed `.agents/skills/unslop` from git tracking and cleaned `.gitignore`.
   - Verified `unslop` no longer appears in VS Code Source Control panel or status bar.
   - Verified `npm run build` completed with code 0.
+- **2026-11-05**: Fixed Mobile Navigation Drawer Auto-Close & Close Button:
+  - Fixed Framer Motion 11 exit deadlock by separating backdrop and drawer into independent `motion.div` children with unique keys under `<AnimatePresence>` (`mobile-nav-backdrop` and `mobile-nav-drawer`).
+  - Added route change listener (`location.pathname`) in both `MobileNav.tsx` and `PublicLayout.tsx` to automatically close drawer upon selecting any navigation item.
+  - Enlarged `X` close button to 40x40 touch target (`p-2 -mr-1`, `w-6 h-6`) with `type="button"` and `cursor-pointer`.
+  - Added body scroll locking and Escape key dismiss.
+  - Verified `npm run build` completed with code 0.

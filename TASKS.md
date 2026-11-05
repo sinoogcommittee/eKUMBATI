@@ -484,13 +484,19 @@
 
 ---
 
-### Phase 28: Remove Cloned unslop Repository & Skills from Workspace
-- [x] **28.1 Remove Nested Git Repository**:
-  - [x] Deleted cloned external repository `unslop/` and its `.git` folder, immediately resolving the duplicate repository entry in VS Code Source Control panel and status bar.
-  - [x] Removed `.agents/skills/unslop` from git tracking.
-  - [x] Cleaned `.gitignore` entries for `unslop`.
-- [x] **28.2 Verification & Build**:
-  - [x] Verified `npm run build` completed with code 0.
+### Phase 29: Fix Mobile Navigation Drawer Auto-Close & Close Button
+- [x] **29.1 Framer Motion Architecture & Unmount Fix**:
+  - [x] Replaced intermediate non-motion wrapper `div` with independent `motion.div` children under `<AnimatePresence>` (`key="mobile-nav-backdrop"` and `key="mobile-nav-drawer"`), resolving Framer Motion 11 exit animation deadlock.
+  - [x] Separated backdrop (`fixed inset-0 z-50`) and drawer (`fixed top-0 bottom-0 right-0 z-50`) to ensure backdrop never intercepts drawer click events.
+- [x] **29.2 Auto-Close on Navigation & Link Clicks**:
+  - [x] Attached `onClick={onClose}` to all 9 navigation links, brand logo link, and action buttons.
+  - [x] Added `useEffect` in both `MobileNav.tsx` and `PublicLayout.tsx` listening to `location.pathname` to guarantee drawer closes on any route transition.
+- [x] **29.3 Touch Accessibility & Controls**:
+  - [x] Enlarged Close button (`X`) with `w-6 h-6`, `p-2`, `type="button"`, and `cursor-pointer` for instant, reliable tap response on mobile touchscreens.
+  - [x] Added `document.body.style.overflow = 'hidden'` locking while drawer is open, and added Escape key handler.
+- [x] **29.4 Verification & Production Build**:
+  - [x] Verified `npm run build` completed with code 0 (1980 modules transformed in 7.98s).
+
 
 
 
