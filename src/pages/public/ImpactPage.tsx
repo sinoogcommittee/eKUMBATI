@@ -120,13 +120,15 @@ export const ImpactPage: React.FC = () => {
           ))}
 
           {/* 8th Card: 100% Towns Served */}
-          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-sinoog border border-slate-800">
+          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-sinoog border border-slate-800 border-t-slate-700 hover:border-orange-500/50 hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300">
             <div>
               <div className="flex items-center justify-between mb-3">
                 <Badge variant="emerald" size="sm">
                   {t('Coverage', 'Kasangkaran')}
                 </Badge>
-                <Sparkles className="w-4 h-4 text-amber-400" />
+                <div className="w-9 h-9 rounded-xl bg-slate-800/90 border border-slate-700/80 flex items-center justify-center shadow-sinoog-inner">
+                  <Sparkles className="w-4 h-4 text-amber-400" />
+                </div>
               </div>
               <div className="text-4xl font-black text-white mb-1">
                 19 / 19
@@ -153,7 +155,7 @@ export const ImpactPage: React.FC = () => {
           3. MUNICIPAL DISTRIBUTION BREAKDOWN TABLE
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white/95 rounded-3xl border border-orange-200/80 p-6 sm:p-10 shadow-sinoog backdrop-blur-md">
+        <div className="bg-white/98 rounded-3xl border border-orange-200/80 border-t-white p-6 sm:p-10 shadow-sinoog hover:shadow-sinoog-hover transition-all duration-300 backdrop-blur-md">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div>
               <h2 className="text-2xl font-black text-slate-900 tracking-tight">
@@ -169,13 +171,13 @@ export const ImpactPage: React.FC = () => {
 
             {/* Town Search Bar */}
             <div className="relative w-full sm:w-64 shrink-0">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-orange-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 placeholder={t('Search town...', 'Pangitaa ang lungsod...')}
                 value={townSearch}
                 onChange={(e) => setTownSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-full border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-orange-500 shadow-2xs"
+                className="w-full pl-10 pr-4 py-2.5 rounded-full bg-white border border-orange-200/80 border-t-white text-xs shadow-sinoog-inner focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
             </div>
           </div>
@@ -241,13 +243,13 @@ export const ImpactPage: React.FC = () => {
           {milestonesTimeline.map((item, idx) => (
             <div
               key={idx}
-              className="bg-white/95 rounded-3xl p-6 sm:p-7 border border-orange-200/70 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1 transition-all duration-300 relative overflow-hidden backdrop-blur-md"
+              className="bg-gradient-to-b from-white via-white/98 to-amber-50/25 rounded-3xl p-6 sm:p-7 border border-orange-200/80 border-t-white shadow-sinoog hover:shadow-sinoog-hover hover:border-orange-400 hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden backdrop-blur-md"
             >
-              <div className="text-3xl font-black text-orange-500/20 absolute top-4 right-4 font-sans select-none">
+              <div className="text-3xl font-black text-orange-500/15 absolute top-4 right-4 font-sans select-none">
                 {item.year}
               </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-orange-800 text-xs font-bold mb-3 shadow-2xs">
-                <Calendar className="w-3 h-3 text-orange-600" />
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white border border-orange-200/70 border-t-white shadow-sinoog-inner text-orange-800 text-xs font-bold mb-3">
+                <Calendar className="w-3.5 h-3.5 text-orange-600" />
                 <span>{item.year} Milestone</span>
               </div>
               <h3 className="text-base font-bold text-slate-900 leading-snug mb-2">

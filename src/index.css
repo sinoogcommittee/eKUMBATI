@@ -8,28 +8,42 @@
   :root {
     /* Sinoog 2027 Material Design 3 Pop Shadow System (Floating 3D Lift + Top Light Specular Glaze) */
     --sinoog-shadow-card:
-      0 1px 3px rgba(15, 23, 42, 0.05),
-      0 12px 28px -6px rgba(194, 65, 12, 0.20),
-      0 30px 60px -16px rgba(15, 23, 42, 0.16),
+      0 1px 2px rgba(194, 65, 12, 0.08),
+      0 8px 22px -4px rgba(234, 88, 12, 0.14),
+      0 16px 32px -12px rgba(15, 23, 42, 0.08),
       inset 0 1.5px 0 0 rgba(255, 255, 255, 1),
-      inset 0 8px 20px -2px rgba(255, 255, 255, 0.85);
+      inset 0 8px 16px -2px rgba(255, 255, 255, 0.9);
 
     --sinoog-shadow-card-hover:
-      0 3px 6px rgba(15, 23, 42, 0.08),
-      0 18px 38px -6px rgba(194, 65, 12, 0.30),
-      0 42px 80px -20px rgba(15, 23, 42, 0.22),
+      0 2px 4px rgba(194, 65, 12, 0.10),
+      0 14px 30px -4px rgba(234, 88, 12, 0.22),
+      0 24px 44px -12px rgba(15, 23, 42, 0.10),
       inset 0 2px 0 0 rgba(255, 255, 255, 1),
-      inset 0 10px 24px -2px rgba(255, 255, 255, 0.95);
+      inset 0 10px 20px -2px rgba(255, 255, 255, 0.95);
 
     --sinoog-shadow-card-raised:
-      0 4px 8px rgba(15, 23, 42, 0.08),
-      0 22px 48px -8px rgba(194, 65, 12, 0.32),
-      0 48px 90px -24px rgba(15, 23, 42, 0.24),
+      0 4px 8px rgba(194, 65, 12, 0.12),
+      0 18px 36px -6px rgba(234, 88, 12, 0.26),
+      0 32px 52px -16px rgba(15, 23, 42, 0.12),
       inset 0 2px 0 0 rgba(255, 255, 255, 1),
-      inset 0 12px 28px -2px rgba(255, 255, 255, 0.95);
+      inset 0 12px 24px -2px rgba(255, 255, 255, 0.95);
 
-    --sinoog-border-card: 1px solid color-mix(in srgb, #fed7aa 55%, rgba(226, 232, 240, 0.85));
-    --sinoog-border-card-hover: 1px solid color-mix(in srgb, #ea580c 50%, #fed7aa);
+    /* Sub-container inner pop shadow (for boxes & tiles INSIDE cards) */
+    --sinoog-shadow-inner:
+      0 1px 3px rgba(15, 23, 42, 0.04),
+      0 4px 12px -2px rgba(194, 65, 12, 0.08),
+      inset 0 1px 0 0 rgba(255, 255, 255, 1);
+
+    --sinoog-shadow-inner-hover:
+      0 2px 6px rgba(15, 23, 42, 0.06),
+      0 8px 18px -2px rgba(194, 65, 12, 0.14),
+      inset 0 1.5px 0 0 rgba(255, 255, 255, 1);
+
+    --sinoog-border-card: 1px solid color-mix(in srgb, #fed7aa 60%, rgba(226, 232, 240, 0.85));
+    --sinoog-border-card-hover: 1px solid #fb923c;
+    --sinoog-border-card-hover-color: #fb923c;
+    --sinoog-border-inner: 1px solid rgba(254, 215, 170, 0.65);
+    --sinoog-border-inner-hover: 1px solid #fb923c;
     --sinoog-ease-card: cubic-bezier(0.22, 1, 0.36, 1);
 
     /* Sinoog 2027 Adaptive Spacing & Rhythm */
@@ -114,8 +128,31 @@
   .sinoog-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--sinoog-shadow-card-hover);
-    border-color: var(--sinoog-border-card-hover);
+    border-color: var(--sinoog-border-card-hover-color, #fb923c) !important;
+    border-top-color: #ffffff !important;
+  }
+
+  /* Sinoog 2027 Nested Inner Pop Container (for elements/boxes INSIDE cards) */
+  .sinoog-card-inner,
+  .sinoog-inner-box {
+    display: block;
+    box-sizing: border-box;
+    background: #ffffff;
+    border-radius: 1rem;
+    border: var(--sinoog-border-inner, 1px solid rgba(254, 215, 170, 0.65));
     border-top-color: #ffffff;
+    box-shadow: var(--sinoog-shadow-inner);
+    transition:
+      transform 180ms var(--sinoog-ease-card),
+      box-shadow 180ms var(--sinoog-ease-card),
+      border-color 180ms ease;
+  }
+
+  .sinoog-card-inner:hover,
+  .sinoog-inner-box:hover {
+    border-color: var(--sinoog-border-inner-hover, #fb923c) !important;
+    border-top-color: #ffffff !important;
+    box-shadow: var(--sinoog-shadow-inner-hover);
   }
 
   .sinoog-card--elevated {

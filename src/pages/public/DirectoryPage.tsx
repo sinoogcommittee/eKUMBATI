@@ -201,7 +201,7 @@ export const DirectoryPage: React.FC = () => {
                   {/* Town Header */}
                   <div className="flex items-center justify-between mb-3 border-b border-slate-100 pb-3">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center font-black text-sm shadow-2xs">
+                      <div className="w-9 h-9 rounded-xl bg-white border border-orange-200/80 border-t-white text-orange-600 flex items-center justify-center font-black text-sm shadow-sinoog-inner">
                         {town.charAt(0)}
                       </div>
                       <div>
@@ -230,7 +230,7 @@ export const DirectoryPage: React.FC = () => {
                       hotlines.map((h) => (
                         <div
                           key={h.id}
-                          className="p-3.5 rounded-2xl bg-orange-50/60 border border-orange-100 space-y-1.5"
+                          className="p-3.5 rounded-2xl bg-white border border-orange-200/80 border-t-white shadow-sinoog-inner space-y-1.5"
                         >
                           <div className="flex items-center justify-between">
                             <span className="text-xs font-bold text-slate-900">
@@ -247,7 +247,7 @@ export const DirectoryPage: React.FC = () => {
                             {h.phone_numbers.map((phoneNum, idx) => (
                               <div
                                 key={idx}
-                                className="inline-flex items-center gap-1 bg-white border border-slate-200 px-2 py-0.5 rounded-lg text-xs"
+                                className="inline-flex items-center gap-1 bg-white border border-orange-200/70 border-t-white px-2.5 py-0.5 rounded-lg text-xs shadow-2xs hover:border-orange-400 transition-colors"
                               >
                                 <a
                                   href={`tel:${phoneNum.replace(/[^0-9+]/g, '')}`}

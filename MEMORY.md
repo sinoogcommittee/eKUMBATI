@@ -97,6 +97,19 @@
     - Standardized section spacing rhythm to `space-y-16 sm:space-y-24 pb-16` across all views.
     - Rolled out Sinoog 2027 cards, pill buttons, and responsive spacing across all public pages (`HomePage.tsx`, `AboutPage.tsx`, `ProgramsPage.tsx`, `NewsPage.tsx`, `DirectoryPage.tsx`, `ImpactPage.tsx`, `ActionCenterPage.tsx`, `MapPage.tsx`, `GalleryPage.tsx`, `Header.tsx`, `StickyHotlineBar.tsx`).
   - Confirmed 100% clean production build (`npm run build` passed in 15.13s with exit code 0).
+- **2026-11-05**: Sinoog 2027 3D Card Architecture, Nested Inner Pop Containers & Zero-Black Hover Border Fix:
+  - Fixed root cause of unwanted black borders on hover: `--sinoog-border-card-hover` had `1px solid ...` passed to `border-color`, which failed CSS property parsing and defaulted to text color (`currentColor` / dark slate). Created dedicated `--sinoog-border-card-hover-color: #fb923c` and added explicit `border-color: #fb923c !important` on hover.
+  - Calibrated card elevation shadows in `tailwind.config.js`, `tokens.css`, and `index.css`: removed heavy unconstrained blur and replaced with Sinoog's precise negative spread (`0 8px 22px -4px rgba(234, 88, 12, 0.14), 0 16px 32px -12px rgba(15, 23, 42, 0.08)`) with crisp `inset 0 1.5px 0 rgba(255, 255, 255, 1)` specular light at the top edge.
+  - Implemented `.sinoog-card-inner` / `shadow-sinoog-inner` and applied it to sub-containers inside cards across:
+    - `HomePage.tsx`: Flagship programs key requirements boxes, spotlight card frame, photo album metadata pills.
+    - `ProgramsPage.tsx`: Program detail cards, required documents checklist boxes, and 3-step constituent guide cards.
+    - `ImpactPage.tsx`: 19/19 geographic reach card, municipal distribution table search bar, and milestone timeline cards.
+    - `GalleryPage.tsx`: Documented album cards, photo stream cards, date pills, and tag badges.
+    - `ActionCenterPage.tsx`: Submission form card, caseworker guidance sidebar, demo preview launcher, tracking search box, and live ticket detail cards.
+    - `AboutPage.tsx`: Civil Service Committee leadership banner, committee membership tiles, legislative measure cards, and verified status badges.
+    - `DirectoryPage.tsx`: Municipal town cards, hotline directory boxes, and click-to-dial phone pills.
+    - `StatCounter.tsx`: Elevated icon container and 2027 verified milestone badge.
+  - Confirmed 100% clean production build (`npm run build` in 15.73s with exit code 0).
 - **2026-11-05**: Legislative Portfolio Integration, J075 Removal, & Official Portrait Asset:
   - Removed all occurrences of `(J075)` and `J075` from visible copy, badges, titles, and buttons across the website.
   - Parsed all three official documents from `E:\Programs\e-KUMBATI\docs`:

@@ -83,18 +83,18 @@ export const StatCounter: React.FC<StatCounterProps> = ({
 
   return (
     <div
-      className={`group relative rounded-3xl p-6 sm:p-7 border border-orange-200/70 border-t-white/95 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden backdrop-blur-md bg-gradient-to-b from-white via-white/95 to-amber-50/20 ${className}`}
+      className={`group relative rounded-3xl p-6 sm:p-7 border border-orange-200/80 border-t-white shadow-sinoog hover:shadow-sinoog-hover hover:border-orange-400 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden backdrop-blur-md bg-gradient-to-b from-white via-white/98 to-amber-50/25 ${className}`}
     >
       {/* Decorative Warm Gradient Ambient Corner */}
-      <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-orange-100/50 via-amber-50/20 to-transparent rounded-bl-full pointer-events-none transition-transform group-hover:scale-110" />
+      <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-orange-100/40 via-amber-50/20 to-transparent rounded-bl-full pointer-events-none transition-transform group-hover:scale-110" />
 
       <div>
-        {/* Header: Category Badge & Icon */}
+        {/* Header: Category Badge & Elevated Icon Box */}
         <div className="flex items-center justify-between mb-4 relative z-10">
           <Badge variant={categoryVariant} size="sm" dot>
             {category}
           </Badge>
-          <div className="w-10 h-10 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-600 group-hover:bg-orange-500 group-hover:text-white transition-colors duration-300 shadow-sm">
+          <div className="w-11 h-11 rounded-2xl bg-white border border-orange-200/80 border-t-white flex items-center justify-center text-orange-600 shadow-sinoog-inner group-hover:bg-gradient-to-tr group-hover:from-orange-500 group-hover:to-amber-500 group-hover:text-white group-hover:shadow-sinoog transition-all duration-300">
             <IconComponent className="w-5 h-5" />
           </div>
         </div>
@@ -117,14 +117,14 @@ export const StatCounter: React.FC<StatCounterProps> = ({
         </h3>
       </div>
 
-      {/* Description / Subtext */}
+      {/* Description / Subtext & Inner Milestone Box */}
       {(descriptionEn || descriptionCeb) && (
-        <div className="border-t border-slate-100 pt-3 mt-3 relative z-10">
-          <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">
+        <div className="border-t border-orange-100/70 pt-3 mt-3 relative z-10">
+          <p className="text-xs text-slate-500 leading-relaxed line-clamp-2 mb-2.5">
             {t(descriptionEn || '', descriptionCeb || '')}
           </p>
-          <div className="mt-2 flex items-center gap-1.5 text-[11px] font-semibold text-emerald-600">
-            <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-white/95 border border-emerald-200/80 border-t-white shadow-sinoog-inner text-[11px] font-bold text-emerald-700">
+            <CheckCircle2 className="w-3.5 h-3.5 shrink-0 text-emerald-600" />
             <span>{t('2027 Verified Milestone', 'Beripikadong Talaan 2027')}</span>
           </div>
         </div>

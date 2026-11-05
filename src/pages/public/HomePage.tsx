@@ -130,14 +130,14 @@ export const HomePage: React.FC = () => {
                 {/* Decorative Frame */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-orange-500 to-amber-400 rounded-3xl rotate-2 shadow-sinoog -z-10 opacity-75" />
 
-                <div className="bg-gradient-to-b from-white via-white/95 to-amber-50/20 backdrop-blur-md rounded-3xl p-6 sm:p-7 border border-orange-200/70 border-t-white/95 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
-                  <div className="relative h-72 sm:h-80 w-full rounded-2xl overflow-hidden mb-5 bg-slate-100">
+                <div className="bg-gradient-to-b from-white via-white/98 to-amber-50/25 backdrop-blur-md rounded-3xl p-6 sm:p-7 border border-orange-200/80 border-t-white shadow-sinoog hover:shadow-sinoog-hover hover:border-orange-400 hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
+                  <div className="relative h-72 sm:h-80 w-full rounded-2xl overflow-hidden mb-5 bg-slate-100 shadow-sinoog-inner border border-orange-100/60 border-t-white">
                     <img
                       src="/images/cong_alexie.webp"
                       alt={INITIAL_SITE_SETTINGS.congresswoman_name}
                       className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950/80 via-slate-950/40 to-transparent p-4 text-white">
+                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950/85 via-slate-950/45 to-transparent p-4 text-white">
                       <div className="text-xs font-black uppercase tracking-wider text-orange-400">
                         {t('19th Congress of the Philippines', 'Ika-19 nga Kongreso sa Pilipinas')}
                       </div>
@@ -157,7 +157,7 @@ export const HomePage: React.FC = () => {
                     )}
                   </p>
 
-                  <div className="flex items-center justify-between border-t border-slate-100 pt-3 text-xs">
+                  <div className="flex items-center justify-between border-t border-orange-100/70 pt-3 text-xs">
                     <Link
                       to="/about"
                       className="inline-flex items-center gap-1.5 font-bold text-orange-600 hover:text-orange-700 transition-colors"
@@ -221,13 +221,15 @@ export const HomePage: React.FC = () => {
           ))}
 
           {/* District 3 Summary Block as the 8th Tile */}
-          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-sinoog border border-slate-800 border-t-slate-700/80 hover:border-orange-500/30 hover:-translate-y-1.5 transition-all duration-300">
+          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-sinoog border border-slate-800 border-t-slate-700 hover:border-orange-500/50 hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300">
             <div>
               <div className="flex items-center justify-between mb-3">
                 <Badge variant="orange" size="sm">
                   {t('District-wide', 'Tibuok Distrito')}
                 </Badge>
-                <Heart className="w-4 h-4 text-red-500 fill-red-500" />
+                <div className="w-9 h-9 rounded-xl bg-slate-800/90 border border-slate-700/80 flex items-center justify-center shadow-sinoog-inner">
+                  <Heart className="w-4 h-4 text-red-500 fill-red-500" />
+                </div>
               </div>
               <div className="text-4xl font-black tracking-tight text-white mb-1">
                 19 / 19
@@ -279,15 +281,15 @@ export const HomePage: React.FC = () => {
           {featuredPrograms.map((prog) => (
             <div
               key={prog.id}
-              className="bg-gradient-to-b from-white via-white/95 to-amber-50/20 rounded-3xl border border-orange-200/70 border-t-white/95 overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md"
+              className="bg-gradient-to-b from-white via-white/98 to-amber-50/25 rounded-3xl border border-orange-200/80 border-t-white overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:border-orange-400 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md group"
             >
               <div>
                 {/* Cover Image */}
-                <div className="relative h-48 w-full overflow-hidden bg-slate-100">
+                <div className="relative h-48 w-full overflow-hidden bg-slate-100 border-b border-orange-100/60">
                   <img
                     src={prog.cover_image_url}
                     alt={prog.title_en}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-3 right-3">
                     <Badge variant={prog.category === 'Health' ? 'red' : 'orange'} size="sm">
@@ -298,20 +300,22 @@ export const HomePage: React.FC = () => {
 
                 {/* Card Body */}
                 <div className="p-6 sm:p-7">
-                  <h3 className="text-lg font-black text-slate-900 leading-snug mb-2">
+                  <h3 className="text-lg font-black text-slate-900 leading-snug mb-2 group-hover:text-orange-600 transition-colors">
                     {t(prog.title_en, prog.title_ceb)}
                   </h3>
                   <p className="text-xs text-slate-600 leading-relaxed mb-4">
                     {t(prog.summary_en, prog.summary_ceb)}
                   </p>
 
-                  {/* Requirements Snippet */}
-                  <div className="bg-orange-50/70 rounded-2xl p-3.5 border border-orange-100/80">
-                    <div className="text-[11px] font-bold text-orange-950 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                      <FileText className="w-3.5 h-3.5 text-orange-600" />
+                  {/* Requirements Snippet (Sinoog Inner Pop Container) */}
+                  <div className="bg-white rounded-2xl p-4 border border-orange-200/80 border-t-white shadow-sinoog-inner">
+                    <div className="text-[11px] font-black text-orange-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                      <div className="w-5 h-5 rounded-md bg-orange-100/80 flex items-center justify-center text-orange-600 shrink-0">
+                        <FileText className="w-3 h-3" />
+                      </div>
                       <span>{t('Key Requirements', 'Mga Panginahanglanon')}:</span>
                     </div>
-                    <ul className="text-[11px] text-slate-600 space-y-1 list-disc list-inside">
+                    <ul className="text-[11px] text-slate-600 space-y-1.5 list-disc list-inside">
                       {prog.requirements_en.slice(0, 2).map((req, idx) => (
                         <li key={idx} className="truncate">
                           {t(req, prog.requirements_ceb[idx] || req)}
@@ -326,7 +330,7 @@ export const HomePage: React.FC = () => {
               <div className="px-6 pb-6 pt-1">
                 <Link
                   to={`/programs#${prog.slug}`}
-                  className="w-full inline-flex items-center justify-center gap-1.5 py-3 px-5 rounded-full bg-orange-50/80 hover:bg-orange-500 hover:text-white text-orange-700 font-bold text-xs shadow-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[44px]"
+                  className="w-full inline-flex items-center justify-center gap-1.5 py-3 px-5 rounded-2xl bg-white border border-orange-200/80 border-t-white shadow-sinoog-inner hover:bg-gradient-to-r hover:from-orange-500 hover:to-amber-500 hover:text-white hover:border-orange-400 text-orange-700 font-bold text-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[44px]"
                 >
                   <span>{t('View Requirements & Guidelines', 'Tan-awa ang mga Kinahanglanon')}</span>
                   <ChevronRight className="w-3.5 h-3.5" />
@@ -441,9 +445,9 @@ export const HomePage: React.FC = () => {
             <Link
               key={album.id}
               to={`/gallery?album=${album.id}`}
-              className="group block bg-gradient-to-b from-white via-white/95 to-amber-50/20 rounded-3xl border border-orange-200/70 border-t-white/95 overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300"
+              className="group block bg-gradient-to-b from-white via-white/98 to-amber-50/25 rounded-3xl border border-orange-200/80 border-t-white overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:border-orange-400 hover:-translate-y-1.5 transition-all duration-300"
             >
-              <div className="relative h-56 w-full overflow-hidden bg-slate-100">
+              <div className="relative h-56 w-full overflow-hidden bg-slate-100 border-b border-orange-100/60">
                 <img
                   src={album.cover_image_url}
                   alt={album.title_en}
@@ -463,7 +467,7 @@ export const HomePage: React.FC = () => {
                 )}
               </div>
               <div className="p-6">
-                <div className="text-[11px] font-bold text-slate-400 mb-1.5 flex items-center gap-1.5">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white border border-orange-200/70 border-t-white shadow-sinoog-inner text-[11px] font-bold text-slate-500 mb-2.5">
                   <ImageIcon className="w-3.5 h-3.5 text-orange-500" />
                   <span>{album.event_date} &bull; {album.media_count || 1} {t('photos', 'litrato')}</span>
                 </div>

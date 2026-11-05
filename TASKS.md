@@ -98,6 +98,12 @@
 - [x] **5.1 Type-check & lint validation**: `npm run build` succeeds without errors
 - [x] **5.2 Offline resilience test**: Full navigation functions when Supabase is disconnected
 - [x] **5.3 Deployment readiness check**: Verification against Render & Supabase requirements
+- [x] **5.4 Sinoog 2027 3D Card Architecture & Inner Pop Containers**:
+  - [x] Eliminated black hover border bug by fixing CSS syntax in `--sinoog-border-card-hover-color: #fb923c` and removing shorthand collision with `border-color`.
+  - [x] Calibrated floating 3D drop-shadow system (`shadow-sinoog`, `shadow-sinoog-hover`, `shadow-sinoog-raised`) with negative spread to prevent dark cloud bleed onto adjacent cards.
+  - [x] Built `.sinoog-card-inner` and `shadow-sinoog-inner` utility tokens for elevated nested containers inside cards.
+  - [x] Rolled out floating cards and elevated inner containers across all public pages: `HomePage.tsx` (spotlight card, flagship programs, requirements boxes, album cards), `ProgramsPage.tsx` (detail cards, document checklists), `ImpactPage.tsx` (19/19 tile, distribution table, timeline cards), `GalleryPage.tsx` (cataloged albums, photo stream, tag badges), `ActionCenterPage.tsx` (form card, guidance sidebar, tracker search, ticket detail cards), `AboutPage.tsx` (chairmanship banner, committee tiles, legislative measure cards & status badges), `DirectoryPage.tsx` (town cards, hotline boxes, phone pills), and `StatCounter.tsx` (elevated icon container & verified milestone badge).
+  - [x] Production build (`npm run build`) passed with exit code 0.
 
 ---
 

@@ -133,13 +133,13 @@ export const GalleryPage: React.FC = () => {
             {INITIAL_ALBUMS.map((album) => (
               <div
                 key={album.id}
-                className="bg-white/95 rounded-3xl border border-orange-200/70 overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md"
+                className="bg-gradient-to-b from-white via-white/98 to-amber-50/25 rounded-3xl border border-orange-200/80 border-t-white overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:border-orange-400 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md group"
               >
-                <div className="relative h-44 w-full bg-slate-100 overflow-hidden">
+                <div className="relative h-44 w-full bg-slate-100 overflow-hidden border-b border-orange-100/60">
                   <img
                     src={album.cover_image_url}
                     alt={album.title_en}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-2.5 left-2.5">
                     <Badge variant="orange" size="sm">
@@ -157,15 +157,15 @@ export const GalleryPage: React.FC = () => {
 
                 <div className="p-5 flex-1 flex flex-col justify-between">
                   <div>
-                    <div className="text-[10px] text-slate-400 font-semibold mb-1 flex items-center gap-1">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-white border border-orange-200/70 border-t-white shadow-sinoog-inner text-[10px] text-slate-500 font-bold mb-2">
                       <Calendar className="w-3 h-3 text-orange-500" />
                       <span>{album.event_date}</span>
                     </div>
-                    <h4 className="text-xs font-bold text-slate-900 line-clamp-2 leading-snug">
+                    <h4 className="text-xs font-extrabold text-slate-900 group-hover:text-orange-600 transition-colors line-clamp-2 leading-snug">
                       {t(album.title_en, album.title_ceb)}
                     </h4>
                   </div>
-                  <div className="text-[11px] text-orange-600 font-bold pt-3 mt-2 border-t border-slate-100 flex items-center justify-between">
+                  <div className="text-[11px] text-orange-600 font-bold pt-3 mt-2 border-t border-orange-100/70 flex items-center justify-between">
                     <span>{album.media_count || 3} photos</span>
                     <span>Browse Album &rarr;</span>
                   </div>
@@ -194,9 +194,9 @@ export const GalleryPage: React.FC = () => {
                 <div
                   key={media.id}
                   onClick={() => setLightboxMedia(media)}
-                  className="group relative bg-white/95 rounded-3xl border border-orange-200/70 overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 cursor-pointer transition-all duration-300 backdrop-blur-md"
+                  className="group relative bg-gradient-to-b from-white via-white/98 to-amber-50/25 rounded-3xl border border-orange-200/80 border-t-white overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:border-orange-400 hover:-translate-y-1.5 cursor-pointer transition-all duration-300 backdrop-blur-md"
                 >
-                  <div className="relative h-64 w-full bg-slate-100 overflow-hidden">
+                  <div className="relative h-64 w-full bg-slate-100 overflow-hidden border-b border-orange-100/60">
                     <img
                       src={media.media_url}
                       alt={media.caption_en || 'KUMBATI photo'}
@@ -205,14 +205,14 @@ export const GalleryPage: React.FC = () => {
 
                     {/* Hover Overlay */}
                     <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
-                      <div className="p-3 rounded-full bg-white/20 backdrop-blur-sm">
+                      <div className="p-3 rounded-full bg-white/20 backdrop-blur-sm shadow-sinoog">
                         <Maximize2 className="w-6 h-6 text-white" />
                       </div>
                     </div>
 
                     {parentAlbum && (
                       <div className="absolute bottom-2.5 left-2.5">
-                        <span className="px-2.5 py-1 rounded-lg bg-black/70 text-white text-[11px] font-bold">
+                        <span className="px-2.5 py-1 rounded-lg bg-black/70 text-white text-[11px] font-bold backdrop-blur-xs">
                           {parentAlbum.category}
                         </span>
                       </div>
@@ -220,16 +220,16 @@ export const GalleryPage: React.FC = () => {
                   </div>
 
                   {/* Caption & Tag bar */}
-                  <div className="p-4">
+                  <div className="p-5">
                     <p className="text-xs font-bold text-slate-800 line-clamp-2 leading-relaxed">
                       {t(media.caption_en || '', media.caption_ceb || '')}
                     </p>
                     {media.tags && media.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-1 mt-2.5">
+                      <div className="flex flex-wrap gap-1.5 mt-3">
                         {media.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="inline-flex items-center gap-1 text-[10px] font-semibold text-orange-700 bg-orange-50 px-2 py-0.5 rounded-md"
+                            className="inline-flex items-center gap-1 text-[10px] font-bold text-orange-700 bg-white px-2.5 py-1 rounded-xl border border-orange-200/70 border-t-white shadow-sinoog-inner"
                           >
                             <Tag className="w-2.5 h-2.5 text-orange-500" />
                             <span>{tag}</span>

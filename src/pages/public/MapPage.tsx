@@ -131,7 +131,7 @@ export const MapPage: React.FC = () => {
       {/* =====================================================================
           1. UNIFIED TOP CONTROL & FILTER STRIP (ONE SCREEN VIEW HEADER)
          ===================================================================== */}
-      <div className="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-orange-200/70 border-t-white/95 p-3.5 sm:p-4 shadow-sinoog flex flex-col gap-3 shrink-0">
+      <div className="bg-white/98 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-orange-200/80 border-t-white p-3.5 sm:p-4 shadow-sinoog flex flex-col gap-3 shrink-0">
         {/* Row 1: Brand, Status, Emergency Dial & Map Layers */}
         <div className="flex flex-wrap items-center justify-between gap-2.5">
           {/* Portal Title & Active Count */}
@@ -292,7 +292,7 @@ export const MapPage: React.FC = () => {
         {/* ===================================================================
             LEFT COLUMN: DETAILS SIDEBAR (SCROLLABLE FEED & SELECTED SPOTLIGHT)
            =================================================================== */}
-        <div className="lg:col-span-5 xl:col-span-4 h-full flex flex-col min-h-0 bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-orange-200/70 border-t-white/95 shadow-sinoog overflow-hidden">
+        <div className="lg:col-span-5 xl:col-span-4 h-full flex flex-col min-h-0 bg-white/98 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-orange-200/80 border-t-white shadow-sinoog overflow-hidden">
           {/* Details Sidebar Header */}
           <div className="px-4 sm:px-5 py-3 border-b border-slate-100 flex items-center justify-between bg-orange-50/40 shrink-0">
             <div className="flex items-center gap-2">
@@ -478,7 +478,7 @@ export const MapPage: React.FC = () => {
         {/* ===================================================================
             RIGHT COLUMN: INTERACTIVE GOOGLE MAPS VIEWPORT
            =================================================================== */}
-        <div className="lg:col-span-7 xl:col-span-8 h-[440px] lg:h-full rounded-2xl sm:rounded-3xl overflow-hidden border border-orange-200/70 border-t-white/95 shadow-sinoog relative min-h-0">
+        <div className="lg:col-span-7 xl:col-span-8 h-[440px] lg:h-full rounded-2xl sm:rounded-3xl overflow-hidden border border-orange-200/80 border-t-white shadow-sinoog relative min-h-0">
           <DistrictLeafletMap
             locations={INITIAL_MAP_LOCATIONS}
             selectedCategory={selectedCategory}

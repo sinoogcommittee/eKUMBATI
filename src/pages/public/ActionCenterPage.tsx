@@ -304,7 +304,7 @@ export const ActionCenterPage: React.FC = () => {
         {activeTab === 'submit' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             {/* Form Column */}
-            <div className="lg:col-span-8 bg-white/95 rounded-3xl border border-orange-200/80 p-6 sm:p-10 shadow-sinoog backdrop-blur-md">
+            <div className="lg:col-span-8 bg-white/98 rounded-3xl border border-orange-200/80 border-t-white p-6 sm:p-10 shadow-sinoog hover:shadow-sinoog-hover transition-all duration-300 backdrop-blur-md">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-slate-700 mb-2">
@@ -478,7 +478,7 @@ export const ActionCenterPage: React.FC = () => {
 
             {/* Explanatory Sidebar Column */}
             <div className="lg:col-span-4 space-y-6">
-              <div className="bg-orange-50/80 rounded-3xl p-6 sm:p-7 border border-orange-200/80 shadow-sinoog space-y-3">
+              <div className="bg-gradient-to-b from-white via-white/98 to-amber-50/25 rounded-3xl p-6 sm:p-7 border border-orange-200/80 border-t-white shadow-sinoog hover:shadow-sinoog-hover transition-all duration-300 space-y-3">
                 <div className="w-10 h-10 rounded-2xl bg-orange-500 text-white flex items-center justify-center font-bold shadow-sinoog">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
@@ -517,7 +517,7 @@ export const ActionCenterPage: React.FC = () => {
               </div>
 
               {/* Sample Code Quick Search Card */}
-              <div className="bg-white/95 rounded-3xl p-6 sm:p-7 border border-orange-200/70 shadow-sinoog space-y-3">
+              <div className="bg-gradient-to-b from-white via-white/98 to-amber-50/25 rounded-3xl p-6 sm:p-7 border border-orange-200/80 border-t-white shadow-sinoog hover:shadow-sinoog-hover transition-all duration-300 space-y-3">
                 <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
                   Demo Preview Code
                 </span>
@@ -534,7 +534,7 @@ export const ActionCenterPage: React.FC = () => {
                     setSearchCode('KMB-2027-DEMO1');
                     handleTrackTicket('KMB-2027-DEMO1');
                   }}
-                  className="w-full py-2.5 px-4 rounded-full bg-slate-100 hover:bg-orange-50 hover:text-orange-600 text-xs font-mono font-bold text-slate-800 transition-all text-center border border-slate-200 shadow-2xs cursor-pointer"
+                  className="w-full py-2.5 px-4 rounded-full bg-white hover:bg-orange-50 hover:text-orange-600 text-xs font-mono font-bold text-slate-800 transition-all text-center border border-orange-200/80 border-t-white shadow-sinoog-inner hover:shadow-sinoog hover:-translate-y-0.5 cursor-pointer"
                 >
                   KMB-2027-DEMO1 &rarr;
                 </button>
@@ -547,7 +547,7 @@ export const ActionCenterPage: React.FC = () => {
         {activeTab === 'track' && (
           <div className="max-w-3xl mx-auto space-y-8">
             {/* Search Box */}
-            <div className="bg-white/95 rounded-3xl border border-orange-200/80 p-6 sm:p-8 shadow-sinoog backdrop-blur-md">
+            <div className="bg-white/98 rounded-3xl border border-orange-200/80 border-t-white p-6 sm:p-8 shadow-sinoog hover:shadow-sinoog-hover transition-all duration-300 backdrop-blur-md">
               <h3 className="text-lg font-black text-slate-900 mb-2">
                 {t('Enter Reference Tracking Code', 'Ibutang ang Reference Code')}
               </h3>
@@ -635,7 +635,7 @@ export const ActionCenterPage: React.FC = () => {
                 </div>
 
                 {/* Ticket Details */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs bg-white p-5 rounded-2xl border border-orange-200/80 border-t-white shadow-sinoog-inner">
                   <div>
                     <strong className="text-slate-400 uppercase text-[10px] block">
                       {t('Beneficiary Name', 'Ngalan sa Benepisyaryo')}
@@ -675,7 +675,7 @@ export const ActionCenterPage: React.FC = () => {
 
                 {/* Case Notes / Remarks from Congressional Staff */}
                 {trackedTicket.admin_notes && (
-                  <div className="p-4 rounded-2xl bg-orange-50 border border-orange-200">
+                  <div className="p-5 rounded-2xl bg-white border border-orange-200/80 border-t-white shadow-sinoog-inner">
                     <div className="text-xs font-black uppercase tracking-wider text-orange-950 mb-1 flex items-center gap-1.5">
                       <FileText className="w-4 h-4 text-orange-600" />
                       <span>{t('Staff Case Remarks & Next Steps', 'Mensahe gikan sa Buhatan')}</span>
