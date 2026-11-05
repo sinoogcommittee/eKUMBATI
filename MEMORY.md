@@ -423,4 +423,16 @@
   - **Hamburger Toggle Hardening**: Updated the hamburger button in `Header.tsx` to explicit `type="button"` with `e.stopPropagation()` in its `onClick` callback.
   - **20-Scenario Lifecycle Test Suite**: Executed `verify_lifecycle.mjs` verifying that hamburger open keeps the drawer open indefinitely across multiple renders, navigation items trigger immediate route rendering and drawer closing, the `X` button closes the drawer and releases body scroll lock, the backdrop click closes the drawer, and browser history transitions cleanly dismiss the drawer (20/20 test assertions passed with 100% success rate).
   - Verified `npm run build` completed with code 0 (1985 modules transformed in 7.85s).
+- **2026-11-06**: React Router v7 Future Flags Adoption (`App.tsx`):
+  - **`v7_startTransition` Future Flag**: Added `future={{ v7_startTransition: true, v7_relativeSplatPath: true }}` to `<BrowserRouter>` in [`src/App.tsx`](file:///e:/Programs/e-KUMBATI/src/App.tsx#L35-L40). Opts in early to React 18 concurrent `startTransition` wrapping for routing state updates, aligning with React Router v7 and eliminating the deprecation console warning.
+  - **`v7_relativeSplatPath` Future Flag**: Opts in early to v7 relative routing resolution behavior within splat (`*`) fallback routes, eliminating the relative splat path warning.
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 8.68s).
+- **2026-11-06**: Accessibility & WAI-ARIA `inert` Migration for Mobile Drawer (`MobileNav.tsx`, `vite-env.d.ts`):
+  - **Eliminated Blocked `aria-hidden` Console Error & React 18 Attribute Warning**: Resolved Chrome/Edge accessibility engine error (*"Blocked aria-hidden on an element because its descendant retained focus"*) by replacing dynamic `aria-hidden={!isOpen}` with the standard HTML `inert={!isOpen ? '' : undefined}` attribute. Passing empty string `''` satisfies React 18's string attribute expectation for custom DOM attributes, eliminating the React DevTools console warning.
+  - **Active Focus Release on Close**: In `handleClose()`, added `(document.activeElement as HTMLElement)?.blur()` to immediately blur any clicked navigation link or button before drawer transition, releasing focus safely back to `document.body`.
+  - **TypeScript HTMLAttributes Augmentation**: Added `inert?: string | boolean` in [`src/vite-env.d.ts`](file:///e:/Programs/e-KUMBATI/src/vite-env.d.ts) with `import 'react';` to support the modern `inert` attribute under strict TypeScript.
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 6.37s).
+
+
+
 

@@ -32,7 +32,12 @@ const AdminLocationsPage = lazy(() => import('./pages/admin/AdminLocationsPage')
 export const App: React.FC = () => {
   return (
     <ToastProvider>
-      <BrowserRouter>
+      <BrowserRouter
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
         <Suspense fallback={<LoadingSpinner fullScreen text="Loading e-KUMBATI..." />}>
           <Routes>
             {/* Public Portal Routes */}

@@ -943,3 +943,27 @@
 - [x] **53.4 Production Build Verification**:
   - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 7.85s).
 
+---
+
+### Phase 54: React Router v7 Future Flags Adoption (`App.tsx`)
+- [x] **54.1 Configured `v7_startTransition` Future Flag**:
+  - [x] Opted in early to React Router v7 state transition semantics by adding `future={{ v7_startTransition: true }}` to `<BrowserRouter>`. Enables React 18 concurrent startTransition wrapping for route transitions and eliminates the console warning.
+- [x] **54.2 Configured `v7_relativeSplatPath` Future Flag**:
+  - [x] Opted in early to React Router v7 relative route resolution within splat (`*`) routes with `future={{ v7_relativeSplatPath: true }}` on `<BrowserRouter>`, eliminating the deprecation warning.
+- [x] **54.3 Verification & Production Build**:
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 8.68s).
+
+---
+
+### Phase 55: Accessibility & WAI-ARIA `inert` Migration for Mobile Drawer (`MobileNav.tsx`, `vite-env.d.ts`)
+- [x] **55.1 Replaced `aria-hidden` with Standard HTML `inert` Attribute (`MobileNav.tsx`)**:
+  - [x] Replaced `aria-hidden={!isOpen}` with `inert={!isOpen ? '' : undefined}` on the mobile navigation drawer wrapper. Passing empty string `''` aligns with React 18's string attribute expectation for `inert`, completely eliminating the React DevTools console warning (`Warning: Received true for a non-boolean attribute inert`).
+  - [x] Augmented React 18 `HTMLAttributes` in `src/vite-env.d.ts` with `inert?: string | boolean` for strict TypeScript type-checking.
+- [x] **55.2 Active Element Blur on Close (`MobileNav.tsx`)**:
+  - [x] In `handleClose()`, added explicit `document.activeElement.blur()` check to safely release focus from clicked `<a>` links and `<button>` elements back to `document.body` upon closing.
+- [x] **55.3 Verification & Production Build**:
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 6.37s).
+
+
+
+

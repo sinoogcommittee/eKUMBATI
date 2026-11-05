@@ -33,8 +33,11 @@ export const MobileNav: React.FC<MobileNavProps> = ({
   const { lang, setLang, t } = useLanguage();
   const location = useLocation();
 
-  // Deterministic close function that always releases body scroll lock
+  // Deterministic close function that releases active focus and body scroll lock
   const handleClose = useCallback(() => {
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
     document.body.style.overflow = '';
     onClose();
   }, [onClose]);
@@ -88,7 +91,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
       className={`fixed inset-0 z-[60] transition-all duration-300 ${
         isOpen ? 'visible' : 'invisible pointer-events-none'
       }`}
-      aria-hidden={!isOpen}
+      inert={!isOpen ? '' : undefined}
     >
       {/* Semi-transparent Backdrop: Clicking outside closes the drawer immediately */}
       <div
