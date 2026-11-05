@@ -154,3 +154,11 @@
     - Top edge light treatment: `border-top-color: rgba(255, 255, 255, 0.95)` and directional background gradient (`linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 252, 248, 0.94) 100%)`).
     - Applied across all card surfaces: `.m3-card` (`filled`, `elevated`, `outlined`), `.sinoog-card`, `StatCounter.tsx`, `HomePage.tsx` (spotlight photo, summary tile, programs, albums), `ProgramsPage.tsx`, `AboutPage.tsx`, `DirectoryPage.tsx`, and `NewsPage.tsx`.
   - Confirmed 100% clean production build (`npm run build` passed in 9.40s with exit code 0).
+- **2026-11-05**: Unified One-Screen District Map & Facility Details Integration:
+  - Eliminated vertical page scrolling on desktop viewports by locking `MapPage.tsx` container to `lg:h-[calc(100vh-108px)] lg:max-h-[960px] overflow-hidden`.
+  - Consolidated top filter bar with facility count pill, PTV 24/7 hotline callout button, Google Maps layer switcher (Roadmap / Satellite / Terrain), real-time search input, category pills, and 19-town dropdown.
+  - Split desktop viewport into:
+    - **Left Sidebar**: Active Spotlight Card showing complete facility details (address, operating hours, description, direct phone call button, Google Maps GPS directions) + scrollable list of filtered facility cards with Sinoog floating elevation.
+    - **Right Interactive Leaflet Map**: 100% height Google Maps viewport with dynamic `flyTo` camera panning, custom SVG pulsing markers, and active pin indicator.
+  - Bidirectional interactivity: clicking any pin highlights its facility in the sidebar and opens the spotlight card; clicking any card flies the camera and opens its pin popup.
+  - Confirmed 100% clean production build (`npm run build` passed in 10.20s with exit code 0).

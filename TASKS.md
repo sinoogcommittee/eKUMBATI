@@ -331,6 +331,30 @@
 - [x] **15.4 Build Verification**:
   - [x] Verified production build (`npm run build`) passed with exit code 0 in 9.40s.
 
+---
+
+### Phase 16: Unified One-Screen District Map & Facility Details Integration
+- [x] **16.1 One-Screen Viewport Architecture (`MapPage.tsx`)**:
+  - [x] Enforced zero-page-scroll layout on desktop using `lg:h-[calc(100vh-108px)] lg:max-h-[960px] overflow-hidden` with flex-col container and responsive mobile fallbacks.
+  - [x] Designed top unified control strip:
+    - Page heading and facility count badge.
+    - Quick PTV 24/7 hotline dispatch callout pill.
+    - Google Map tile layer switcher (Roadmap / Satellite / Terrain).
+    - Real-time search input for facilities, towns, and addresses.
+    - Category filter chips (`All`, `Offices`, `Clinics`, `PTV Stations`, `Dialysis Tambayan`, `Pabahay`, `Municipal Halls`).
+    - Alphabetical 19-town dropdown filter with auto camera repositioning.
+- [x] **16.2 Split-Screen Interactive Facility Sidebar**:
+  - [x] Built scrollable details sidebar (`lg:col-span-5 xl:col-span-4 h-full flex flex-col min-h-0`):
+    - **Active Facility Spotlight Card**: Prominent details card displaying complete facility address, operating hours, full bilingual description, direct phone call button, and Google Maps GPS navigation link (`https://www.google.com/maps/dir/?api=1&destination=lat,lng`).
+    - **Scrollable Facilities List**: Sinoog floating cards for all matching facilities with municipality badges, category icons, phone contacts, and quick "View on Map" triggers.
+- [x] **16.3 Enhanced Interactive Map Component (`DistrictLeafletMap.tsx`)**:
+  - [x] Added bidirectional selection synchronization: clicking a map pin highlights its card in the sidebar and opens the spotlight; clicking a sidebar card flies the map camera and opens its popup.
+  - [x] Implemented `MapViewController` using Leaflet `useMap` for smooth `flyTo` camera animation when selecting a facility or switching towns.
+  - [x] Added `MapResizeInvalidator` to ensure Leaflet tiles never render blank/gray when mounting inside flexible CSS grid containers.
+  - [x] Upgraded SVG custom pin markers with an animated pulsing halo and active ring state when `selectedLocationId` matches.
+- [x] **16.4 Build Verification**:
+  - [x] Verified production build (`npm run build`) completed with code 0 (1980 modules transformed in 10.20s).
+
 
 
 
