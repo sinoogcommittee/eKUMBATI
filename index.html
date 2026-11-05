@@ -7,15 +7,43 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>e-KUMBATI | 3rd Congressional District of Bohol - Congw. Alexie Besas Tutor</title>
-    <meta name="description" content="Official constituent web portal for the 3rd District of Bohol. Congw. Alexie Besas Tutor - 7 Flagship Programs, Action Center, District Directory, Map and Verified 2027 Impact Metrics." />
+    <meta name="description" content="Official constituent web portal for the 3rd District of Bohol. Congw. Alexie Besas Tutor - 7 Flagship Programs, Action Center, District Directory, Map and Flagship Impact Metrics." />
     
+    <!-- Progressive Web App (PWA) Manifest & Meta -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#F97316" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="e-Kumbati" />
+    <meta name="application-name" content="e-Kumbati" />
+
+    <!-- OpenGraph Social Media Preview Tags (Facebook, Messenger, WhatsApp, Viber, LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="e-KUMBATI" />
+    <meta property="og:title" content="e-KUMBATI | Official Portal of Congw. Alexie Besas Tutor" />
+    <meta property="og:description" content="Serbisyo Diretso sa Katawhan: Official bilingual portal for Bohol 3rd Congressional District. 7 Flagship Programs, Pabahay, PTV 24/7 dispatch, and Action Center." />
+    <meta property="og:image" content="/images/og_preview.png" />
+    <meta property="og:image:secure_url" content="/images/og_preview.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="e-KUMBATI Official Logo & Seal - Congresswoman Alexie Besas Tutor, Bohol 3rd District" />
+
+    <!-- Twitter / X Social Preview Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="e-KUMBATI | Official Portal of Congw. Alexie Besas Tutor" />
+    <meta name="twitter:description" content="Serbisyo Diretso sa Katawhan: Official bilingual portal for Bohol 3rd Congressional District. Pabahay, PTV 24/7 dispatch, and Action Center." />
+    <meta name="twitter:image" content="/images/og_preview.png" />
+    <meta name="twitter:image:alt" content="e-KUMBATI Official Web Portal" />
+    
+    <!-- Largest Contentful Paint (LCP) Hero Image Preload -->
+    <link rel="preload" as="image" href="/images/cong_alexie.webp" type="image/webp" fetchpriority="high" />
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Leaflet CSS for Map Rendering -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   </head>
   <body class="bg-[#FFFDF9] text-slate-900 antialiased selection:bg-orange-500 selection:text-white">
     <div id="root"></div>

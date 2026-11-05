@@ -65,12 +65,12 @@ export const MobileNav: React.FC<MobileNavProps> = ({
   const navItems = [
     { to: '/', labelEn: 'Home', labelCeb: 'Balay', icon: Home },
     { to: '/programs', labelEn: '7 Flagship Programs', labelCeb: '7 ka Programa', icon: Layers },
-    { to: '/impact', labelEn: '2027 Impact Metrics', labelCeb: 'Kalampusan', icon: BarChart3 },
+    { to: '/action-center', labelEn: 'Action Center & Tracker', labelCeb: 'Sentro sa Aksyon', icon: FileText },
     { to: '/news', labelEn: 'News & Announcements', labelCeb: 'Mga Pahibalo', icon: Bell },
     { to: '/gallery', labelEn: 'Photo Gallery', labelCeb: 'Galeriya', icon: Image },
     { to: '/directory', labelEn: '19 Towns Directory', labelCeb: '19 ka Lungsod', icon: MapPin },
     { to: '/map', labelEn: 'Interactive Map', labelCeb: 'Mapa sa Distrito', icon: Map },
-    { to: '/action-center', labelEn: 'Action Center & Tracker', labelCeb: 'Sentro sa Aksyon', icon: FileText },
+    { to: '/impact', labelEn: 'Flagship Impact Metrics', labelCeb: 'Mga Sukod sa Kalampusan', icon: BarChart3 },
     { to: '/about', labelEn: 'About Congw. Alexie', labelCeb: 'Mahitungod', icon: Info },
   ];
 
@@ -96,14 +96,14 @@ export const MobileNav: React.FC<MobileNavProps> = ({
           animate={{ x: 0 }}
           exit={{ x: '100%' }}
           transition={{ type: 'spring', damping: 25, stiffness: 250 }}
-          className="fixed top-0 bottom-0 right-0 w-full max-w-xs sm:max-w-sm bg-[#FFFDF9] h-full shadow-2xl flex flex-col justify-between overflow-y-auto z-50 border-l border-orange-100"
+          className="fixed top-0 bottom-0 right-0 w-full max-w-xs sm:max-w-sm bg-[#FFFDF9] h-full shadow-2xl flex flex-col justify-between overflow-y-auto overscroll-contain z-50 border-l border-orange-100"
           role="dialog"
           aria-modal="true"
         >
           {/* Top Bar: Brand & Close */}
           <div>
             <div className="p-5 flex items-center justify-between border-b border-orange-100 bg-white">
-              <Link to="/" onClick={onClose} className="flex items-center gap-2.5">
+              <Link to="/" viewTransition onClick={onClose} className="flex items-center gap-2.5">
                 <img
                   src="/images/kumbati_logo_sm.webp"
                   alt="e-KUMBATI Official Logo"
@@ -171,6 +171,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
                   <NavLink
                     key={item.to}
                     to={item.to}
+                    viewTransition
                     onClick={onClose}
                     className={({ isActive }) =>
                       `flex items-center justify-between p-3 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
@@ -192,14 +193,14 @@ export const MobileNav: React.FC<MobileNavProps> = ({
           </div>
 
           {/* Bottom Actions: PTV Emergency & Action Center */}
-          <div className="p-4 border-t border-orange-100 bg-white space-y-2.5">
+          <div className="p-4 pb-8 sm:pb-6 border-t border-orange-100 bg-white space-y-2.5">
             <button
               type="button"
               onClick={() => {
                 onClose();
                 onOpenHotlineModal();
               }}
-              className="w-full py-3 px-4 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-colors cursor-pointer"
+              className="w-full py-3 px-4 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sinoog hover:shadow-sinoog-hover active:scale-98 transition-all cursor-pointer min-h-[44px]"
             >
               <PhoneCall className="w-4 h-4 animate-bounce" />
               <span>{t('PTV 24/7 Hotline: 0917-832-6284', 'PTV 24/7 Hotline: 0917-832-6284')}</span>
@@ -208,7 +209,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
             <Link
               to="/action-center"
               onClick={onClose}
-              className="w-full py-2.5 px-4 rounded-xl bg-orange-50 border border-orange-200 text-orange-900 hover:bg-orange-100 font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
+              className="w-full py-2.5 px-4 rounded-full bg-orange-50 border border-orange-200 text-orange-900 hover:bg-orange-100 font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer min-h-[44px]"
             >
               <ShieldCheck className="w-4 h-4 text-orange-600" />
               <span>{t('Action Center & Ticket Tracker', 'Sentro sa Aksyon ug Tracker')}</span>

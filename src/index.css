@@ -1,3 +1,4 @@
+@import "leaflet/dist/leaflet.css";
 @import "./styles/m3/index.css";
 
 @tailwind base;
@@ -51,6 +52,13 @@
     --layout-section-gap: 48px;
     --target-touch-min: 44px;
     --target-touch-comfortable: 48px;
+
+    /* Standard Modern Scrollbars (Baseline cross-browser standard) */
+    --scrollbar-thumb: #FDBA74;
+    --scrollbar-thumb-hover: #FB923C;
+    --scrollbar-track: #FFF7ED;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    scrollbar-width: thin;
   }
 
   @media (min-width: 640px) {
@@ -75,11 +83,17 @@
   }
 
   html {
-    scroll-behavior: smooth;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     overflow-x: hidden;
     max-width: 100%;
     width: 100%;
+  }
+
+  /* Motion Hygiene: Respect user vestibular preferences */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   body {
@@ -185,23 +199,83 @@
   }
 }
 
-/* Custom Scrollbars */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+/* Standard & Legacy Fallback Scrollbars */
+:root,
+body,
+* {
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: thin;
 }
 
-::-webkit-scrollbar-track {
-  background: #FFF7ED;
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track, #FFF7ED);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb, #FDBA74);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover, #FB923C);
+  }
 }
 
-::-webkit-scrollbar-thumb {
-  background: #FDBA74;
-  border-radius: 9999px;
+/* Modern Web Guidance: Native Dialog Scroll Containment & Top Layer Backdrop */
+dialog:modal {
+  overscroll-behavior: contain;
+}
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background-color: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #FB923C;
+/* Modern Web Guidance: Same-Document View Transitions */
+@keyframes vt-fade-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.99);
+  }
+}
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(1.01);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: 160ms cubic-bezier(0.4, 0, 1, 1) both vt-fade-out;
+  }
+  ::view-transition-new(root) {
+    animation: 200ms cubic-bezier(0, 0, 0.2, 1) both vt-fade-in;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }
 
 /* Leaflet Container Tweaks */
@@ -244,3 +318,101 @@
     opacity: 0;
   }
 }
+
+/* =====================================================================
+   Scroll-Driven Progress Indicator (scroll-progress-indicator)
+   Native CSS scroll-timeline with reduced motion guard
+   ===================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    @keyframes grow-scroll-progress {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    #scroll-progress-bar {
+      transform-origin: 0 50%;
+      animation: grow-scroll-progress auto linear;
+      animation-timeline: scroll();
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #scroll-progress-bar {
+    display: none !important;
+  }
+}
+
+/* =====================================================================
+   Toast Auto-Dismiss Progress Bar
+   ===================================================================== */
+@keyframes toastProgress {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+
+.animate-toast-progress {
+  animation: toastProgress linear forwards;
+}
+
+/* =====================================================================
+   Horizontal Scroll Soft Edge Fade (scrollability-affordance-hints)
+   ===================================================================== */
+.scroll-fade-edges {
+  mask-image: linear-gradient(to right, transparent, black 20px, black calc(100% - 20px), transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 20px, black calc(100% - 20px), transparent);
+}
+
+/* =====================================================================
+   Modern Form :user-invalid Styling (accessible-error-announcement)
+   Only shows invalid cues after the user interacts and blurs the field
+   ===================================================================== */
+input:user-invalid,
+select:user-invalid,
+textarea:user-invalid {
+  border-color: #EF4444 !important;
+}
+
+input:user-invalid:focus,
+select:user-invalid:focus,
+textarea:user-invalid:focus {
+  --tw-ring-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+/* =====================================================================
+   Official Print Media Stylesheet (@media print)
+   Generates clean, high-contrast slips for physical constituent endorsement
+   ===================================================================== */
+@media print {
+  header,
+  footer,
+  nav,
+  #sticky-hotline-bar,
+  #scroll-progress-bar,
+  .no-print,
+  button:not(.print-include) {
+    display: none !important;
+  }
+
+  body,
+  #main-content {
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    overflow: visible !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .sinoog-card,
+  .rounded-3xl,
+  .rounded-2xl {
+    box-shadow: none !important;
+    border: 1px solid #CBD5E1 !important;
+    background: #FFFFFF !important;
+    page-break-inside: avoid;
+  }
+}
+

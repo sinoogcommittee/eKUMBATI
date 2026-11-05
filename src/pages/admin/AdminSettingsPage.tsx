@@ -8,6 +8,7 @@ import {
   CheckCircle2,
   Settings,
   Facebook,
+  Instagram,
   Mail,
   MapPin,
   Phone,
@@ -302,17 +303,18 @@ export const AdminSettingsPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Section 4: Official Facebook Channels */}
+        {/* Section 4: Official Social Media Channels (Facebook & Instagram) */}
         <div className="bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-8 space-y-6">
           <h3 className="text-sm font-black uppercase tracking-wider text-orange-400 flex items-center gap-2 border-b border-slate-800 pb-3">
             <Facebook className="w-4 h-4 text-blue-400" />
-            <span>4. The 2 Official Facebook Channels</span>
+            <span>4. Official Social Media Channels</span>
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-              <label className="block text-xs font-bold text-slate-300 mb-1">
-                Official Representative Page (Cong. Alexie Tutor)
+              <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center gap-1.5">
+                <Facebook className="w-3.5 h-3.5 text-blue-400" />
+                <span>Official Page (Cong. Alexie Tutor)</span>
               </label>
               <input
                 type="url"
@@ -328,13 +330,14 @@ export const AdminSettingsPage: React.FC = () => {
                 placeholder="https://www.facebook.com/Cong.AlexieTutor"
               />
               <p className="text-[11px] text-slate-500 mt-1.5">
-                The verified official Facebook page for legislative work, committee updates, and public governance.
+                Official legislative Facebook page.
               </p>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-300 mb-1">
-                Community & Outreach Page (KUMBATI Cares)
+              <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center gap-1.5">
+                <Facebook className="w-3.5 h-3.5 text-blue-400" />
+                <span>KUMBATI Cares (Outreach)</span>
               </label>
               <input
                 type="url"
@@ -349,7 +352,29 @@ export const AdminSettingsPage: React.FC = () => {
                 placeholder="https://www.facebook.com/profile.php?id=100063819665430"
               />
               <p className="text-[11px] text-slate-500 mt-1.5">
-                The dedicated community outreach channel for PTV medical dispatch, clinic caravans, and constituent aid.
+                Community & humanitarian outreach channel.
+              </p>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center gap-1.5">
+                <Instagram className="w-3.5 h-3.5 text-pink-400" />
+                <span>Official Instagram</span>
+              </label>
+              <input
+                type="url"
+                value={settings.instagram_official || 'https://www.instagram.com/alexietutor'}
+                onChange={(e) =>
+                  setSettings({
+                    ...settings,
+                    instagram_official: e.target.value,
+                  })
+                }
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 font-mono"
+                placeholder="https://www.instagram.com/alexietutor"
+              />
+              <p className="text-[11px] text-slate-500 mt-1.5">
+                Official Instagram handle (@alexietutor).
               </p>
             </div>
           </div>

@@ -163,13 +163,13 @@ export const AdminSubmissionsPage: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {/* Search Input */}
           <div className="relative">
-            <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               placeholder="Search code, name, phone..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full pl-10 pr-4 py-3 rounded-2xl bg-slate-950/80 border border-slate-700/80 text-white text-xs font-medium focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 min-h-[44px] transition-all"
             />
           </div>
 
@@ -180,7 +180,7 @@ export const AdminSubmissionsPage: React.FC = () => {
               onChange={(e) =>
                 setFilterStatus(e.target.value as SubmissionStatus | 'all')
               }
-              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs font-bold focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-4 py-3 rounded-2xl bg-slate-950/80 border border-slate-700/80 text-white text-xs font-bold focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 min-h-[44px] transition-all cursor-pointer"
             >
               <option value="all">All Statuses</option>
               <option value="pending">Pending</option>
@@ -196,7 +196,7 @@ export const AdminSubmissionsPage: React.FC = () => {
             <select
               value={filterTown}
               onChange={(e) => setFilterTown(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs font-bold focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-4 py-3 rounded-2xl bg-slate-950/80 border border-slate-700/80 text-white text-xs font-bold focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 min-h-[44px] transition-all cursor-pointer"
             >
               <option value="all">All 19 Municipalities</option>
               {BOHOL_DISTRICT_3_TOWNS.map((town) => (
@@ -214,7 +214,7 @@ export const AdminSubmissionsPage: React.FC = () => {
               onChange={(e) =>
                 setFilterType(e.target.value as SubmissionType | 'all')
               }
-              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs font-bold focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-4 py-3 rounded-2xl bg-slate-950/80 border border-slate-700/80 text-white text-xs font-bold focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 min-h-[44px] transition-all cursor-pointer"
             >
               <option value="all">All Types</option>
               <option value="assistance">Assistance Request</option>

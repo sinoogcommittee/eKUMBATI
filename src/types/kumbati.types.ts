@@ -70,6 +70,7 @@ export interface SiteSettings {
   facebook_page_alexie_b_tutor?: string;
   facebook_page_team_kumbati?: string;
   facebook_page_ptv_official?: string;
+  instagram_official?: string;
   created_at?: string;
   updated_at?: string;
 }

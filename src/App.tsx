@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import PublicLayout from './components/layout/PublicLayout';
 import AdminLayout from './components/layout/AdminLayout';
 import LoadingSpinner from './components/common/LoadingSpinner';
+import { ToastProvider } from './context/ToastContext';
 
 // Lazy-Loaded Public Pages for Maximum Mobile Performance
 const HomePage = lazy(() => import('./pages/public/HomePage'));
@@ -30,45 +31,47 @@ const AdminLocationsPage = lazy(() => import('./pages/admin/AdminLocationsPage')
 
 export const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Suspense fallback={<LoadingSpinner fullScreen text="Loading e-KUMBATI..." />}>
-        <Routes>
-          {/* Public Portal Routes */}
-          <Route element={<PublicLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/programs" element={<ProgramsPage />} />
-            <Route path="/impact" element={<ImpactPage />} />
-            <Route path="/news" element={<NewsPage />} />
-            <Route path="/announcements" element={<Navigate to="/news" replace />} />
-            <Route path="/updates" element={<Navigate to="/news" replace />} />
-            <Route path="/gallery" element={<GalleryPage />} />
-            <Route path="/directory" element={<DirectoryPage />} />
-            <Route path="/map" element={<MapPage />} />
-            <Route path="/action-center" element={<ActionCenterPage />} />
-            <Route path="/about" element={<AboutPage />} />
-          </Route>
+    <ToastProvider>
+      <BrowserRouter>
+        <Suspense fallback={<LoadingSpinner fullScreen text="Loading e-KUMBATI..." />}>
+          <Routes>
+            {/* Public Portal Routes */}
+            <Route element={<PublicLayout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/programs" element={<ProgramsPage />} />
+              <Route path="/impact" element={<ImpactPage />} />
+              <Route path="/news" element={<NewsPage />} />
+              <Route path="/announcements" element={<Navigate to="/news" replace />} />
+              <Route path="/updates" element={<Navigate to="/news" replace />} />
+              <Route path="/gallery" element={<GalleryPage />} />
+              <Route path="/directory" element={<DirectoryPage />} />
+              <Route path="/map" element={<MapPage />} />
+              <Route path="/action-center" element={<ActionCenterPage />} />
+              <Route path="/about" element={<AboutPage />} />
+            </Route>
 
-          {/* Admin Login Route (Standalone) */}
-          <Route path="/admin/login" element={<AdminLoginPage />} />
+            {/* Admin Login Route (Standalone) */}
+            <Route path="/admin/login" element={<AdminLoginPage />} />
 
-          {/* Protected Admin CMS Routes */}
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={<Navigate to="/admin/dashboard" replace />} />
-            <Route path="dashboard" element={<AdminDashboardPage />} />
-            <Route path="news" element={<AdminNewsPage />} />
-            <Route path="settings" element={<AdminSettingsPage />} />
-            <Route path="metrics" element={<AdminMetricsPage />} />
-            <Route path="programs" element={<AdminProgramsPage />} />
-            <Route path="gallery" element={<AdminGalleryPage />} />
-            <Route path="submissions" element={<AdminSubmissionsPage />} />
-            <Route path="directory-map" element={<AdminLocationsPage />} />
-          </Route>
+            {/* Protected Admin CMS Routes */}
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<Navigate to="/admin/dashboard" replace />} />
+              <Route path="dashboard" element={<AdminDashboardPage />} />
+              <Route path="news" element={<AdminNewsPage />} />
+              <Route path="settings" element={<AdminSettingsPage />} />
+              <Route path="metrics" element={<AdminMetricsPage />} />
+              <Route path="programs" element={<AdminProgramsPage />} />
+              <Route path="gallery" element={<AdminGalleryPage />} />
+              <Route path="submissions" element={<AdminSubmissionsPage />} />
+              <Route path="directory-map" element={<AdminLocationsPage />} />
+            </Route>
 
-          {/* Fallback Catch-all Route */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+            {/* Fallback Catch-all Route */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    </ToastProvider>
   );
 };
 

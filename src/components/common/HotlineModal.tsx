@@ -4,6 +4,8 @@ import { INITIAL_HOTLINES } from '../../lib/constants';
 import { Modal } from './Modal';
 import { Phone, Search, AlertCircle, Check, Copy } from 'lucide-react';
 import { Badge } from './Badge';
+import { useToast } from '../../context/ToastContext';
+import { triggerHaptic } from '../../lib/haptics';
 
 interface HotlineModalProps {
   isOpen: boolean;
@@ -12,6 +14,7 @@ interface HotlineModalProps {
 
 export const HotlineModal: React.FC<HotlineModalProps> = ({ isOpen, onClose }) => {
   const { t } = useLanguage();
+  const { showToast } = useToast();
   const [searchTerm, setSearchTerm] = useState('');
   const [copiedNumber, setCopiedNumber] = useState<string | null>(null);
 
@@ -28,6 +31,7 @@ export const HotlineModal: React.FC<HotlineModalProps> = ({ isOpen, onClose }) =
   const handleCopy = (number: string) => {
     navigator.clipboard.writeText(number);
     setCopiedNumber(number);
+    showToast(t(`Copied ${number} to clipboard!`, `Nahi-kopya ang ${number}!`), 'success');
     setTimeout(() => setCopiedNumber(null), 2000);
   };
 
@@ -50,17 +54,22 @@ export const HotlineModal: React.FC<HotlineModalProps> = ({ isOpen, onClose }) =
       )}
     >
       <div className="space-y-4">
-        {/* Search Input */}
-        <div className="relative">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+        {/* Search Landmark & Input */}
+        <search className="relative">
+          <label htmlFor="hotline-search-input" className="sr-only">
+            {t('Search directory hotlines by town', 'Pangitaa ang mga hotline')}
+          </label>
+          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" />
           <input
-            type="text"
+            id="hotline-search-input"
+            name="q"
+            type="search"
             placeholder={t('Search by town (e.g. Carmen, Jagna, PTV)...', 'Pangitaa pinaagi sa lungsod (e.g. Carmen, Jagna, PTV)...')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
           />
-        </div>
+        </search>
 
         {/* Priority Banner for PTV Dispatch */}
         <div className="p-3.5 rounded-2xl bg-gradient-to-r from-red-600 to-orange-600 text-white flex items-center justify-between shadow-sm">
@@ -110,6 +119,7 @@ export const HotlineModal: React.FC<HotlineModalProps> = ({ isOpen, onClose }) =
                   <div key={idx} className="flex items-center gap-1 bg-slate-50 border border-slate-200 px-2.5 py-1 rounded-lg">
                     <a
                       href={`tel:${phoneNum.replace(/[^0-9+]/g, '')}`}
+                      onClick={() => triggerHaptic('emergency')}
                       className="text-xs font-bold text-slate-800 hover:text-orange-600 transition-colors"
                       title={t('Click to call', 'Pindota aron motawag')}
                     >

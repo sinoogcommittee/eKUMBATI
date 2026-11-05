@@ -12,11 +12,11 @@ import Button from '../../components/common/Button';
 import Badge from '../../components/common/Badge';
 import HotlineModal from '../../components/common/HotlineModal';
 import {
-  PhoneCall,
   ShieldCheck,
   ChevronRight,
   FileText,
   Heart,
+  Layers,
   Image as ImageIcon,
 } from 'lucide-react';
 
@@ -28,7 +28,7 @@ export const HomePage: React.FC = () => {
   const recentAlbums = INITIAL_ALBUMS.slice(0, 3);
 
   return (
-    <div className="space-y-16 sm:space-y-24 pb-16 w-full max-w-full overflow-x-hidden">
+    <div className="space-y-16 sm:space-y-24 pb-32 sm:pb-36 w-full max-w-full overflow-x-hidden">
       {/* =====================================================================
           1. HERO SECTION
          ===================================================================== */}
@@ -51,7 +51,7 @@ export const HomePage: React.FC = () => {
               </div>
 
               {/* Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1] text-balance">
                 {t(INITIAL_SITE_SETTINGS.hero_headline_en, INITIAL_SITE_SETTINGS.hero_headline_ceb)}
               </h1>
 
@@ -60,38 +60,29 @@ export const HomePage: React.FC = () => {
                 {t(INITIAL_SITE_SETTINGS.hero_subtext_en, INITIAL_SITE_SETTINGS.hero_subtext_ceb)}
               </p>
 
-              {/* Action Buttons: strictly 1 line on desktop, wrapping on mobile/tablet */}
-              <div className="flex flex-wrap lg:flex-nowrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3 xl:gap-3.5 pt-2">
-                <Button
-                  variant="emergency"
-                  size="md"
-                  onClick={() => setIsHotlineModalOpen(true)}
-                  icon={<PhoneCall className="w-4 h-4 sm:w-4.5 sm:h-4.5 animate-bounce shrink-0" />}
-                  className="px-3.5 sm:px-4 lg:px-3.5 xl:px-5 py-2.5 sm:py-3 text-xs sm:text-xs xl:text-sm whitespace-nowrap min-h-[44px] xl:min-h-[48px] shrink-0"
-                >
-                  {t('PTV 24/7 Hotline', 'PTV 24/7 Hotline')}
-                </Button>
-
-                <Link to="/action-center" className="shrink-0">
+              {/* Action Buttons: 2 focused, high-contrast CTAs */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 pt-2">
+                <Link to="/action-center" className="w-full sm:w-auto shrink-0">
                   <Button
                     variant="primary"
                     size="md"
-                    icon={<ShieldCheck className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />}
-                    className="px-3.5 sm:px-4 lg:px-3.5 xl:px-5 py-2.5 sm:py-3 text-xs sm:text-xs xl:text-sm whitespace-nowrap min-h-[44px] xl:min-h-[48px] shrink-0"
+                    icon={<ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />}
+                    className="w-full sm:w-auto px-5 sm:px-6 py-3 text-xs sm:text-sm whitespace-nowrap min-h-[46px] shadow-sinoog"
                   >
-                    {t('Action Center (Tracker)', 'Sentro sa Aksyon (Tracker)')}
+                    {t('Apply for Assistance / Track Ticket', 'Pag-apply og Hinabang / Susiha ang Ticket')}
                   </Button>
                 </Link>
 
-                <Link to="/programs" className="shrink-0">
+                <a href="#flagship-programs" className="w-full sm:w-auto shrink-0">
                   <Button
-                    variant="white"
+                    variant="outline"
                     size="md"
-                    className="px-3.5 sm:px-4 lg:px-3.5 xl:px-5 py-2.5 sm:py-3 text-xs sm:text-xs xl:text-sm whitespace-nowrap min-h-[44px] xl:min-h-[48px] shrink-0"
+                    icon={<Layers className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />}
+                    className="w-full sm:w-auto px-5 sm:px-6 py-3 text-xs sm:text-sm whitespace-nowrap min-h-[46px] bg-white/90"
                   >
-                    {t('7 Flagship Programs', '7 ka Programa')}
+                    {t('Explore 7 Flagship Programs', 'Susiha ang 7 ka Programa')}
                   </Button>
-                </Link>
+                </a>
               </div>
             </div>
 
@@ -106,6 +97,10 @@ export const HomePage: React.FC = () => {
                     <img
                       src="/images/cong_alexie.webp"
                       alt={INITIAL_SITE_SETTINGS.congresswoman_name}
+                      width={448}
+                      height={320}
+                      {...({ fetchpriority: 'high' } as any)}
+                      decoding="async"
                       className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950/85 via-slate-950/45 to-transparent p-4 text-white">
@@ -141,94 +136,14 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* =====================================================================
-          2. THE 7 VERIFIED 2027 KUMBATI IMPACT METRICS
+          2. FEATURED FLAGSHIP PROGRAMS OF TEAM KUMBATI (Immediate Utility)
          ===================================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-10">
-          <div>
-            <div className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-3 py-1 rounded-full border border-orange-200 mb-2">
-              <span>{t('Audit-Verified Governance', 'Matinud-anong Pag-alagad')}</span>
-            </div>
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              {t('7 Flagship 2027 KUMBATI Impact Metrics', '7 ka mga Nag-unang Sukod sa Kalampusan sa KUMBATI 2027')}
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1">
-              {t(
-                'Direct tangible assistance delivered across the 19 municipalities of Bohol District 3.',
-                'Diretsong hinabang ug serbisyo nga naabot sa 19 ka mga lungsod sa Ikatulong Distrito.'
-              )}
-            </p>
-          </div>
-
-          <Link to="/impact" className="shrink-0 self-start sm:self-auto">
-            <Button variant="outline" size="sm" icon={<ChevronRight className="w-4 h-4" />} iconPosition="right">
-              {t('View Detailed Impact Report', 'Tan-awa ang Tibuok Ulat')}
-            </Button>
-          </Link>
-        </div>
-
-        {/* Dynamic Responsive 7 Metrics Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-          {INITIAL_METRICS.map((metric) => (
-            <StatCounter
-              key={metric.id}
-              numericValue={metric.value_numeric}
-              suffix={metric.suffix}
-              titleEn={metric.title_en}
-              titleCeb={metric.title_ceb}
-              category={metric.category}
-              iconName={metric.icon_name}
-              showDetails={false}
-            />
-          ))}
-
-          {/* District 3 Summary Block as the 8th Tile */}
-          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-7 flex flex-col justify-between shadow-sinoog border border-slate-800 border-t-slate-700 hover:border-orange-500/50 hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300">
-            <div>
-              <div className="flex items-center justify-between gap-1 mb-2.5 sm:mb-4">
-                <Badge
-                  variant="orange"
-                  size="sm"
-                  className="text-[10px] sm:text-[11px] px-1.5 py-0.5 sm:px-2 sm:py-0.5 shrink truncate max-w-[85px] sm:max-w-none"
-                >
-                  {t('District-wide', 'Tibuok Distrito')}
-                </Badge>
-                <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-slate-800/90 border border-slate-700/80 flex items-center justify-center shadow-sinoog-inner shrink-0">
-                  <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-red-500 fill-red-500" />
-                </div>
-              </div>
-              <div className="flex items-baseline gap-0.5 sm:gap-1 mb-1 sm:mb-2">
-                <span className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight font-sans">
-                  19 / 19
-                </span>
-              </div>
-              <h3 className="text-xs sm:text-base lg:text-lg font-bold text-orange-400 leading-tight sm:leading-snug break-words">
-                {t('Municipalities United', 'Mga Lungsod nga Nahiusa')}
-              </h3>
-            </div>
-
-            <div className="border-t border-slate-800 pt-2 sm:pt-3 mt-2 sm:mt-4">
-              <Link
-                to="/directory"
-                className="text-[11px] sm:text-xs font-bold text-orange-400 hover:text-orange-300 inline-flex items-center gap-1 sm:gap-1.5 transition-colors"
-              >
-                <span className="truncate">{t('Browse 19 Municipalities', 'Susiha ang 19 ka Lungsod')}</span>
-                <ChevronRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================================================
-          3. FEATURED FLAGSHIP PROGRAMS
-         ===================================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <Badge variant="orange" size="sm">
+      <section id="flagship-programs" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+          <Badge variant="orange" size="sm" dot>
             {t('Core Initiatives', 'Mga Nag-unang Proyekto')}
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-2">
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-2 text-balance">
             {t('Flagship Programs of Team KUMBATI', 'Mga Nag-unang Programa sa Team KUMBATI')}
           </h2>
           <p className="text-sm text-slate-600 mt-2">
@@ -239,67 +154,66 @@ export const HomePage: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {featuredPrograms.map((prog) => (
-            <div
-              key={prog.id}
-              className="bg-gradient-to-b from-white via-white/98 to-amber-50/25 rounded-3xl border border-orange-200/80 border-t-white overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:border-orange-400 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md group"
-            >
-              <div>
-                {/* Cover Image */}
-                <div className="relative h-48 w-full overflow-hidden bg-slate-100 border-b border-orange-100/60">
-                  <img
-                    src={prog.cover_image_url}
-                    alt={prog.title_en}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-3 right-3">
-                    <Badge variant={prog.category === 'Health' ? 'red' : 'orange'} size="sm">
-                      {prog.category}
-                    </Badge>
-                  </div>
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {featuredPrograms.map((prog) => {
+            const reqCount = prog.requirements_en?.length || 4;
 
-                {/* Card Body */}
-                <div className="p-6 sm:p-7">
-                  <h3 className="text-lg font-black text-slate-900 leading-snug mb-2 group-hover:text-orange-600 transition-colors">
-                    {t(prog.title_en, prog.title_ceb)}
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                    {t(prog.summary_en, prog.summary_ceb)}
-                  </p>
-
-                  {/* Requirements Snippet (Sinoog Inner Pop Container) */}
-                  <div className="bg-white rounded-2xl p-4 border border-orange-200/80 border-t-white shadow-sinoog-inner">
-                    <div className="text-[11px] font-black text-orange-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                      <div className="w-5 h-5 rounded-md bg-orange-100/80 flex items-center justify-center text-orange-600 shrink-0">
-                        <FileText className="w-3 h-3" />
-                      </div>
-                      <span>{t('Key Requirements', 'Mga Panginahanglanon')}:</span>
+            return (
+              <div
+                key={prog.id}
+                className="bg-gradient-to-b from-white via-white/98 to-amber-50/25 rounded-3xl border border-orange-200/80 border-t-white overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:border-orange-400 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md group"
+              >
+                <div>
+                  {/* Cover Image */}
+                  <div className="relative h-48 w-full overflow-hidden bg-slate-100 border-b border-orange-100/60">
+                    <img
+                      src={prog.cover_image_url}
+                      alt={prog.title_en}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-3 right-3">
+                      <Badge variant={prog.category === 'Health' ? 'red' : 'orange'} size="sm">
+                        {prog.category}
+                      </Badge>
                     </div>
-                    <ul className="text-[11px] text-slate-600 space-y-1.5 list-disc list-inside">
-                      {prog.requirements_en.slice(0, 2).map((req, idx) => (
-                        <li key={idx} className="truncate">
-                          {t(req, prog.requirements_ceb[idx] || req)}
-                        </li>
-                      ))}
-                    </ul>
+                  </div>
+
+                  {/* Card Body */}
+                  <div className="p-6 sm:p-7">
+                    <h3 className="text-lg font-black text-slate-900 leading-snug mb-2 group-hover:text-orange-600 transition-colors">
+                      {t(prog.title_en, prog.title_ceb)}
+                    </h3>
+
+                    {/* Requirements Count Pill Badge */}
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-50/90 border border-orange-200/80 text-[11px] font-bold text-orange-800 shadow-2xs mb-3">
+                      <FileText className="w-3.5 h-3.5 text-orange-600 shrink-0" />
+                      <span>
+                        {t(
+                          `📋 ${reqCount} Simple Requirements`,
+                          `📋 ${prog.requirements_ceb?.length || reqCount} ka mga Panginahanglanon`
+                        )}
+                      </span>
+                    </div>
+
+                    {/* Clamped Description for Scannability */}
+                    <p className="text-xs text-slate-600 leading-relaxed mb-4 line-clamp-3">
+                      {t(prog.summary_en, prog.summary_ceb)}
+                    </p>
                   </div>
                 </div>
-              </div>
 
-              {/* Card Footer Link */}
-              <div className="px-6 pb-6 pt-1">
-                <Link
-                  to={`/programs#${prog.slug}`}
-                  className="w-full inline-flex items-center justify-center gap-1.5 py-3 px-5 rounded-2xl bg-white border border-orange-200/80 border-t-white shadow-sinoog-inner hover:bg-gradient-to-r hover:from-orange-500 hover:to-amber-500 hover:text-white hover:border-orange-400 text-orange-700 font-bold text-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[44px]"
-                >
-                  <span>{t('View Requirements & Guidelines', 'Tan-awa ang mga Kinahanglanon')}</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </Link>
+                {/* Card Footer Link */}
+                <div className="px-6 pb-6 pt-1">
+                  <Link
+                    to={`/programs#${prog.slug}`}
+                    className="w-full inline-flex items-center justify-center gap-1.5 py-3 px-5 rounded-full bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-bold text-xs shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[44px]"
+                  >
+                    <span>{t('View Requirements & Apply →', 'Tan-awa ang Kinahanglanon ug Pag-apply →')}</span>
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="text-center mt-10">
@@ -312,7 +226,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* =====================================================================
-          4. ACTION CENTER CTA BANNER (CONSTITUENT DESK)
+          3. ACTION CENTER CTA BANNER (CONSTITUENT DESK)
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-3xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 text-white p-8 sm:p-12 overflow-hidden shadow-sinoog-raised border border-orange-400/40">
@@ -322,7 +236,7 @@ export const HomePage: React.FC = () => {
                 <ShieldCheck className="w-4 h-4" />
                 <span>{t('Digital Constituent Assistance Desk', 'Digital nga Sentro sa Aksyon')}</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-balance">
                 {t(
                   'Need Medical Assistance, Shelter Help, or Have a Concern?',
                   'Nanginahanglan og Hinabang Medikal, Pabalay, o Dunay Sumbong?'
@@ -353,23 +267,31 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* =====================================================================
-          5. MULTIMEDIA PHOTO HIGHLIGHTS PREVIEW
+          4. MULTIMEDIA PHOTO HIGHLIGHTS PREVIEW (RECENT OUTREACH)
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-8">
           <div>
-            <Badge variant="orange" size="sm">
+            <Badge variant="orange" size="sm" dot>
               {t('Visual Documentation', 'Dokumentasyon')}
             </Badge>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-1">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight mt-2 text-balance">
               {t('Recent Outreach & Project Highlights', 'Bag-ong Kalihokan ug Proyekto')}
             </h2>
+            <p className="text-xs sm:text-sm text-slate-600 mt-1.5 max-w-xl">
+              {t(
+                'Transparent photo documentation of project turnovers, medical missions, and constituent outreach across Bohol District 3.',
+                'Dokumentasyon sa mga turnover sa proyekto, medikal nga misyon, ug serbisyo sa katawhan sa Ikatulong Distrito.'
+              )}
+            </p>
           </div>
-          <Link to="/gallery" className="shrink-0">
-            <Button variant="ghost" size="sm" icon={<ImageIcon className="w-4 h-4" />}>
-              {t('View All Albums', 'Tanan nga Album')}
-            </Button>
-          </Link>
+          <div className="shrink-0 pt-1 sm:pt-0">
+            <Link to="/gallery" className="inline-block">
+              <Button variant="ghost" size="sm" icon={<ImageIcon className="w-4 h-4" />}>
+                {t('View All Albums', 'Tanan nga Album')}
+              </Button>
+            </Link>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -412,11 +334,89 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Hotline Modal */}
-      <HotlineModal
-        isOpen={isHotlineModalOpen}
-        onClose={() => setIsHotlineModalOpen(false)}
-      />
+      {/* =====================================================================
+          5. THE 7 FLAGSHIP IMPACT METRICS OF TEAM KUMBATI (Proof & Transparency)
+         ===================================================================== */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-10">
+          <div>
+            <div className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-3 py-1 rounded-full border border-orange-200 mb-2">
+              <span>{t('Audit-Verified Governance', 'Matinud-anong Pag-alagad')}</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight text-balance">
+              {t('7 Flagship Impact Metrics of Team KUMBATI', '7 ka mga Nag-unang Sukod sa Kalampusan sa Team KUMBATI')}
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 mt-1">
+              {t(
+                'Direct tangible assistance delivered across the 19 municipalities of Bohol District 3.',
+                'Diretsong hinabang ug serbisyo nga naabot sa 19 ka mga lungsod sa Ikatulong Distrito.'
+              )}
+            </p>
+          </div>
+
+          <Link to="/impact" className="shrink-0 self-start sm:self-auto">
+            <Button variant="outline" size="sm" icon={<ChevronRight className="w-4 h-4" />} iconPosition="right">
+              {t('View Detailed Impact Report', 'Tan-awa ang Tibuok Ulat')}
+            </Button>
+          </Link>
+        </div>
+
+        {/* Dynamic Responsive 7 Metrics Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+          {INITIAL_METRICS.map((metric) => (
+            <StatCounter
+              key={metric.id}
+              numericValue={metric.value_numeric}
+              suffix={metric.suffix}
+              titleEn={metric.title_en}
+              titleCeb={metric.title_ceb}
+              category={metric.category}
+              iconName={metric.icon_name}
+              showDetails={false}
+            />
+          ))}
+
+          {/* District 3 Summary Block as the 8th Tile - Unified Clean White Surface */}
+          <div className="group relative rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 lg:p-7 border border-orange-200/80 border-t-white shadow-sinoog hover:shadow-sinoog-hover hover:border-orange-400 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden backdrop-blur-md bg-gradient-to-b from-white via-white/98 to-amber-50/25">
+            {/* Ambient Corner Accent */}
+            <div className="absolute top-0 right-0 w-16 h-16 sm:w-28 sm:h-28 bg-gradient-to-bl from-orange-100/40 via-amber-50/20 to-transparent rounded-bl-full pointer-events-none transition-transform group-hover:scale-110" />
+
+            <div>
+              <div className="flex items-center justify-between gap-1 mb-2.5 sm:mb-4 relative z-10">
+                <Badge
+                  variant="orange"
+                  size="sm"
+                  dot
+                  className="text-[10px] sm:text-[11px] px-1.5 py-0.5 sm:px-2 sm:py-0.5 shrink truncate max-w-[110px] sm:max-w-none font-bold"
+                >
+                  {t('100% COVERAGE', '100% SERBISYO')}
+                </Badge>
+                <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-white border border-orange-200/80 border-t-white flex items-center justify-center text-red-500 shadow-sinoog-inner group-hover:bg-gradient-to-tr group-hover:from-orange-500 group-hover:to-amber-500 group-hover:text-white group-hover:shadow-sinoog transition-all duration-300 shrink-0">
+                  <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-red-500 group-hover:fill-white transition-colors" />
+                </div>
+              </div>
+              <div className="flex items-baseline gap-0.5 sm:gap-1 mb-1 sm:mb-2 relative z-10">
+                <span className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight font-sans">
+                  19 / 19
+                </span>
+              </div>
+              <h3 className="text-xs sm:text-base lg:text-lg font-bold text-slate-900 group-hover:text-orange-600 transition-colors leading-tight sm:leading-snug mb-1 sm:mb-2 relative z-10 break-words">
+                {t('Municipalities Served', 'Mga Lungsod nga Naalagaran')}
+              </h3>
+            </div>
+
+            <div className="border-t border-orange-100/70 pt-2 sm:pt-3 mt-2 sm:mt-4 relative z-10">
+              <Link
+                to="/directory"
+                className="text-[11px] sm:text-xs font-bold text-orange-600 hover:text-orange-700 inline-flex items-center gap-1 sm:gap-1.5 transition-colors"
+              >
+                <span className="truncate">{t('Browse 19 Municipalities', 'Susiha ang 19 ka Lungsod')}</span>
+                <ChevronRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Hotline Modal */}
       <HotlineModal

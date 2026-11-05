@@ -223,7 +223,7 @@ export const AdminDashboardPage: React.FC = () => {
               title: '7 Flagship Impact Metrics',
               desc: 'Update audited counts for Pabahay, PTV, Clinic, and Scholars',
               icon: ShieldCheck,
-              badge: '2027 Audited',
+              badge: 'Audited',
             },
             {
               to: '/admin/programs',

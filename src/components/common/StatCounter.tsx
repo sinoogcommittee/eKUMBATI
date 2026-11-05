@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import {
   Home,
@@ -54,37 +54,81 @@ export const StatCounter: React.FC<StatCounterProps> = ({
 }) => {
   const { t } = useLanguage();
   const [displayValue, setDisplayValue] = useState<number>(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const IconComponent = ICON_MAP[iconName] || Activity;
   const categoryVariant = getCategoryBadgeVariant(category);
 
   useEffect(() => {
+    // Check operating system reduced motion accessibility preference
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      setDisplayValue(numericValue);
+      return;
+    }
+
     let startTimestamp: number | null = null;
     let animationFrameId: number;
+    let hasStarted = false;
 
-    const step = (timestamp: number) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      // Ease out cubic
-      const easedProgress = 1 - Math.pow(1 - progress, 3);
-      setDisplayValue(Math.floor(easedProgress * numericValue));
+    const startCountAnimation = () => {
+      if (hasStarted) return;
+      hasStarted = true;
 
-      if (progress < 1) {
-        animationFrameId = window.requestAnimationFrame(step);
-      } else {
-        setDisplayValue(numericValue);
-      }
+      const step = (timestamp: number) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        // Ease out cubic
+        const easedProgress = 1 - Math.pow(1 - progress, 3);
+        setDisplayValue(Math.floor(easedProgress * numericValue));
+
+        if (progress < 1) {
+          animationFrameId = window.requestAnimationFrame(step);
+        } else {
+          setDisplayValue(numericValue);
+        }
+      };
+
+      animationFrameId = window.requestAnimationFrame(step);
     };
 
-    animationFrameId = window.requestAnimationFrame(step);
+    // IntersectionObserver triggers count-up only when visible in the viewport
+    if (typeof IntersectionObserver !== 'undefined' && containerRef.current) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const [entry] = entries;
+          if (entry.isIntersecting) {
+            startCountAnimation();
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.15 }
+      );
 
-    return () => {
-      window.cancelAnimationFrame(animationFrameId);
-    };
+      observer.observe(containerRef.current);
+
+      return () => {
+        observer.disconnect();
+        if (animationFrameId) {
+          window.cancelAnimationFrame(animationFrameId);
+        }
+      };
+    } else {
+      startCountAnimation();
+      return () => {
+        if (animationFrameId) {
+          window.cancelAnimationFrame(animationFrameId);
+        }
+      };
+    }
   }, [numericValue, duration]);
 
   return (
     <div
+      ref={containerRef}
       className={`group relative rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 lg:p-7 border border-orange-200/80 border-t-white shadow-sinoog hover:shadow-sinoog-hover hover:border-orange-400 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden backdrop-blur-md bg-gradient-to-b from-white via-white/98 to-amber-50/25 ${className}`}
     >
       {/* Decorative Warm Gradient Ambient Corner */}
@@ -132,7 +176,7 @@ export const StatCounter: React.FC<StatCounterProps> = ({
           </p>
           <div className="inline-flex items-center gap-1 sm:gap-1.5 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg sm:rounded-xl bg-white/95 border border-emerald-200/80 border-t-white shadow-sinoog-inner text-[9px] sm:text-[11px] font-bold text-emerald-700 max-w-full">
             <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 text-emerald-600" />
-            <span className="truncate">{t('2027 Verified Milestone', 'Beripikadong Talaan 2027')}</span>
+            <span className="truncate">{t('Verified Term Milestone', 'Beripikadong Talaan sa Termino')}</span>
           </div>
         </div>
       )}

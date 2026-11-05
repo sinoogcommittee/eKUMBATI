@@ -7,34 +7,49 @@ import {
 } from '../../lib/constants';
 import {
   Facebook,
+  Instagram,
   Phone,
   Mail,
   MapPin,
   ExternalLink,
-  Shield,
   Heart,
 } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const { t } = useLanguage();
 
-  const officialFBPages = [
+  const officialSocialChannels = [
     {
       name: 'Cong. Alexie Tutor',
       handle: '@Cong.AlexieTutor',
       role: t('Official Representative Page', 'Opisyal nga Panid sa Magbabalaod'),
       url: INITIAL_SITE_SETTINGS.facebook_page_official || 'https://www.facebook.com/Cong.AlexieTutor',
+      icon: Facebook,
+      iconColor: 'text-blue-400 bg-blue-600/20 border-blue-500/30',
+      hoverColor: 'group-hover:text-blue-400 hover:border-blue-500/50',
     },
     {
       name: 'KUMBATI Cares',
       handle: 'Official Outreach',
       role: t('Community & Constituent Care', 'Serbisyo sa Komunidad ug Katawhan'),
       url: INITIAL_SITE_SETTINGS.facebook_page_kumbati_cares || 'https://www.facebook.com/profile.php?id=100063819665430',
+      icon: Facebook,
+      iconColor: 'text-blue-400 bg-blue-600/20 border-blue-500/30',
+      hoverColor: 'group-hover:text-blue-400 hover:border-blue-500/50',
+    },
+    {
+      name: '@alexietutor',
+      handle: 'Official Instagram',
+      role: t('Official Instagram Channel', 'Opisyal nga Instagram sa Magbabalaod'),
+      url: INITIAL_SITE_SETTINGS.instagram_official || 'https://www.instagram.com/alexietutor',
+      icon: Instagram,
+      iconColor: 'text-pink-400 bg-pink-600/20 border-pink-500/30',
+      hoverColor: 'group-hover:text-pink-400 hover:border-pink-500/50',
     },
   ];
 
   return (
-    <footer className="bg-slate-950 text-slate-300 pt-16 pb-28 md:pb-16 border-t border-slate-800">
+    <footer className="bg-slate-950 text-slate-300 pt-16 pb-32 md:pb-16 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main 4-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800/80">
@@ -76,40 +91,50 @@ export const Footer: React.FC = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-orange-500 shrink-0" />
-                <span>{INITIAL_SITE_SETTINGS.official_email}</span>
+                <a
+                  href={`mailto:${INITIAL_SITE_SETTINGS.official_email}`}
+                  className="hover:text-orange-400 transition-colors break-all"
+                  title="Send email to Congw. Alexie Tutor"
+                >
+                  {INITIAL_SITE_SETTINGS.official_email}
+                </a>
               </div>
             </div>
           </div>
 
-          {/* Column 2: 2 Official Facebook Channels */}
+          {/* Column 2: Official Social Media Channels (Facebook & Instagram) */}
           <div className="space-y-4">
             <h4 className="text-sm font-black text-white uppercase tracking-wider flex items-center gap-2">
               <Facebook className="w-4 h-4 text-blue-400" />
-              <span>{t('Official Facebook Channels', 'Opisyal nga Facebook Channels')}</span>
+              <span>{t('Official Social Channels', 'Opisyal nga Social Channels')}</span>
             </h4>
             <div className="space-y-2.5">
-              {officialFBPages.map((fb, idx) => (
-                <a
-                  key={idx}
-                  href={fb.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block p-3 rounded-2xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 hover:bg-slate-850 transition-all shadow-xs"
-                >
-                  <div className="flex items-center justify-between text-xs font-bold text-white group-hover:text-blue-400 transition-colors">
-                    <div className="flex items-center gap-2.5 min-w-0 pr-2">
-                      <div className="w-7 h-7 rounded-lg bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
-                        <Facebook className="w-3.5 h-3.5 fill-current" />
+              {officialSocialChannels.map((social, idx) => {
+                const IconComponent = social.icon;
+
+                return (
+                  <a
+                    key={idx}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`group block p-3 rounded-2xl bg-slate-900 border border-slate-800 transition-all shadow-xs ${social.hoverColor}`}
+                  >
+                    <div className="flex items-center justify-between text-xs font-bold text-white transition-colors">
+                      <div className="flex items-center gap-2.5 min-w-0 pr-2">
+                        <div className={`w-7 h-7 rounded-lg border flex items-center justify-center shrink-0 ${social.iconColor}`}>
+                          <IconComponent className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="truncate">{social.name}</span>
                       </div>
-                      <span className="truncate">{fb.name}</span>
+                      <ExternalLink className="w-3.5 h-3.5 shrink-0 text-slate-500 group-hover:text-white transition-colors" />
                     </div>
-                    <ExternalLink className="w-3.5 h-3.5 shrink-0 text-slate-500 group-hover:text-blue-400 transition-colors" />
-                  </div>
-                  <div className="text-[11px] text-slate-400 mt-1 pl-9">
-                    {fb.role}
-                  </div>
-                </a>
-              ))}
+                    <div className="text-[11px] text-slate-400 mt-1 pl-9">
+                      {social.role}
+                    </div>
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -130,8 +155,11 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/impact" className="hover:text-orange-400 transition-colors">
-                  {t('2027 Verified Impact Metrics', 'Beripikadong Kalampusan 2027')}
+                <Link
+                  to="/action-center"
+                  className="font-bold text-orange-400 hover:text-orange-300 transition-colors"
+                >
+                  {t('Action Center (Submit or Track Ticket)', 'Sentro sa Aksyon (Track Ticket)')}
                 </Link>
               </li>
               <li>
@@ -155,11 +183,8 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/action-center"
-                  className="font-bold text-orange-400 hover:text-orange-300 transition-colors"
-                >
-                  {t('Action Center (Submit or Track Ticket)', 'Sentro sa Aksyon (Track Ticket)')}
+                <Link to="/impact" className="hover:text-orange-400 transition-colors">
+                  {t('Flagship Impact Metrics', 'Mga Sukod sa Kalampusan')}
                 </Link>
               </li>
               <li>
@@ -181,42 +206,43 @@ export const Footer: React.FC = () => {
                 'Naglangkob sa mga lungsod sa sidlakan ug sentral Bohol:'
               )}
             </p>
-            <div className="flex flex-wrap gap-1.5 max-h-48 overflow-y-auto pr-1">
-              {BOHOL_DISTRICT_3_TOWNS.map((town) => (
-                <Link
-                  key={town}
-                  to={`/directory?town=${encodeURIComponent(town)}`}
-                  className="text-[11px] px-2 py-0.5 rounded-md bg-slate-900 border border-slate-800 text-slate-300 hover:border-orange-500 hover:text-white transition-colors"
-                >
-                  {town}
-                </Link>
-              ))}
+            <div className="flex flex-wrap gap-1.5 max-h-56 overflow-y-auto pr-1">
+              {BOHOL_DISTRICT_3_TOWNS.map((town) => {
+                const slug = town.toLowerCase().replace(/\s+/g, '-');
+                return (
+                  <Link
+                    key={town}
+                    to={`/directory?town=${encodeURIComponent(town)}#town-${slug}`}
+                    className="text-[11px] px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:border-orange-500 hover:text-white hover:bg-orange-500/10 transition-all font-medium inline-block active:scale-95 cursor-pointer"
+                  >
+                    {town}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Staff Admin Link */}
+        {/* Bottom Bar: Copyright & Subtle Staff Portal Link */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <div className="flex items-center gap-1.5 text-center sm:text-left">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 text-center sm:text-left">
             <span>&copy; {new Date().getFullYear()} Office of Congresswoman Alexie Besas Tutor.</span>
             <span className="hidden sm:inline">&bull;</span>
             <span className="flex items-center gap-1">
               {t('Padayon ang KUMBATI!', 'Padayon ang KUMBATI!')}
               <Heart className="w-3.5 h-3.5 text-red-500 inline fill-red-500" />
             </span>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <span className="text-[11px] text-slate-500">
-              Republic of the Philippines &bull; House of Representatives
-            </span>
+            <span className="hidden sm:inline">&bull;</span>
             <Link
               to="/admin/login"
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-850 text-slate-400 hover:text-orange-400 hover:border-orange-500/50 transition-colors text-[11px] font-bold"
+              className="text-slate-600 hover:text-slate-400 transition-colors text-[11px] underline-offset-2 hover:underline opacity-60 hover:opacity-100"
             >
-              <Shield className="w-3 h-3 text-orange-500" />
-              <span>Staff CMS</span>
+              {t('Staff Portal', 'Portal sa Kawani')}
             </Link>
+          </div>
+
+          <div className="flex items-center gap-4 text-[11px] text-slate-500">
+            <span>Republic of the Philippines &bull; House of Representatives</span>
           </div>
         </div>
       </div>

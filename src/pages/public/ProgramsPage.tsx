@@ -8,20 +8,98 @@ import Button from '../../components/common/Button';
 import Modal from '../../components/common/Modal';
 import {
   FileText,
-  CheckCircle,
   HelpCircle,
   ShieldCheck,
   Filter,
-  PhoneCall,
   Printer,
   ChevronRight,
-  ExternalLink,
+  ChevronDown,
+  Check,
+  CheckCircle,
 } from 'lucide-react';
+
+const LOCAL_STORAGE_CHECKLIST_KEY = 'kumbati_programs_checklist_progress';
+
+// Who Can Apply: Target Audience Dictionary
+const TARGET_AUDIENCE_MAP: Record<string, { icon: string; en: string; ceb: string }> = {
+  pabahay: {
+    icon: '🏠',
+    en: 'Who Can Apply: Indigent Families & Disaster Victims',
+    ceb: 'Kinsay Mahimong Mo-apply: Kabus nga Pamilya ug Biktima sa Kalamidad',
+  },
+  'patient-transport-vehicles': {
+    icon: '🚑',
+    en: 'Who Can Apply: Emergency & Referral Patients',
+    ceb: 'Kinsay Mahimong Mo-apply: Pasyente sa Emerhensiya ug Referral',
+  },
+  'tambayan-ni-kumbati-dialysis': {
+    icon: '🏥',
+    en: 'Who Can Apply: Hemodialysis Patients & Watchers',
+    ceb: 'Kinsay Mahimong Mo-apply: Pasyente sa Dialysis ug mga Bantay',
+  },
+  'kumbati-medical-clinic': {
+    icon: '💊',
+    en: 'Who Can Apply: Individual Constituents, Seniors & PWDs',
+    ceb: 'Kinsay Mahimong Mo-apply: Indibidwal nga Katawhan, Senior ug PWD',
+  },
+  'ched-tdp-scholars': {
+    icon: '🎓',
+    en: 'Who Can Apply: Enrolled College Students (GWA ≥ 80%)',
+    ceb: 'Kinsay Mahimong Mo-apply: Estudyante sa Kolehiyo (GWA ≥ 80%)',
+  },
+  'sustainable-livelihood-program': {
+    icon: '🤝',
+    en: 'Who Can Apply: Registered Co-ops & Associations (SEC/CDA/DOLE)',
+    ceb: 'Kinsay Mahimong Mo-apply: Rehistradong Kooperatiba ug Asosasyon (SEC/CDA/DOLE)',
+  },
+  'kumbati-community-infrastructure': {
+    icon: '🏛️',
+    en: 'Who Can Apply: Barangay Councils & LGU Officials',
+    ceb: 'Kinsay Mahimong Mo-apply: Konseho sa Barangay ug Opisyales sa LGU',
+  },
+};
+
+const QUICK_JUMP_PROGRAMS = [
+  { num: '1', name: 'Pabahay', slug: 'pabahay' },
+  { num: '2', name: 'PTV 24/7', slug: 'patient-transport-vehicles' },
+  { num: '3', name: 'Dialysis', slug: 'tambayan-ni-kumbati-dialysis' },
+  { num: '4', name: 'Medicine', slug: 'kumbati-medical-clinic' },
+  { num: '5', name: 'Scholarships', slug: 'ched-tdp-scholars' },
+  { num: '6', name: 'Livelihood', slug: 'sustainable-livelihood-program' },
+  { num: '7', name: 'Rural Infra', slug: 'kumbati-community-infrastructure' },
+];
 
 export const ProgramsPage: React.FC = () => {
   const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<ProgramCategory | 'All'>('All');
   const [activeModalProgram, setActiveModalProgram] = useState<ProgramAdvocacy | null>(null);
+  const [isGuideOpen, setIsGuideOpen] = useState(false);
+
+  // Interactive Checklist Progress stored per program in localStorage
+  const [checkedDocs, setCheckedDocs] = useState<Record<string, number[]>>(() => {
+    try {
+      const saved = localStorage.getItem(LOCAL_STORAGE_CHECKLIST_KEY);
+      return saved ? JSON.parse(saved) : {};
+    } catch {
+      return {};
+    }
+  });
+
+  const toggleRequirement = (progId: string, reqIndex: number) => {
+    setCheckedDocs((prev) => {
+      const current = prev[progId] || [];
+      const updated = current.includes(reqIndex)
+        ? current.filter((idx) => idx !== reqIndex)
+        : [...current, reqIndex];
+      const next = { ...prev, [progId]: updated };
+      try {
+        localStorage.setItem(LOCAL_STORAGE_CHECKLIST_KEY, JSON.stringify(next));
+      } catch {
+        // Ignore localStorage quota errors
+      }
+      return next;
+    });
+  };
 
   const categories: (ProgramCategory | 'All')[] = [
     'All',
@@ -37,18 +115,28 @@ export const ProgramsPage: React.FC = () => {
     return prog.category === selectedCategory;
   });
 
+  const handleQuickJump = (slug: string) => {
+    setSelectedCategory('All');
+    setTimeout(() => {
+      const el = document.getElementById(slug);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 50);
+  };
+
   return (
-    <div className="space-y-16 sm:space-y-24 pb-16">
+    <div className="space-y-12 sm:space-y-16 pb-32 sm:pb-36">
       {/* =====================================================================
           1. PROGRAMS HERO BANNER
          ===================================================================== */}
-      <section className="bg-gradient-to-b from-orange-50/80 via-amber-50/20 to-transparent pt-10 pb-12 border-b border-orange-100/70">
+      <section className="bg-gradient-to-b from-orange-50/80 via-amber-50/20 to-transparent pt-10 pb-10 border-b border-orange-100/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <Badge variant="orange" size="sm" dot>
               {t('Constituent Assistance', 'Serbisyo sa Katawhan')}
             </Badge>
-            <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mt-3">
+            <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mt-3 text-balance">
               {t('7 Flagship Programs & Advocacies', '7 ka mga Nag-unang Programa ug Adbokasiya')}
             </h1>
             <p className="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed">
@@ -62,42 +150,162 @@ export const ProgramsPage: React.FC = () => {
       </section>
 
       {/* =====================================================================
-          2. CATEGORY FILTERS & PROGRAMS LIST
+          2. MAIN CONTENT CONTAINER (3-STEP GUIDE, STICKY FILTERS & PROGRAMS)
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Category Filter Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none border-b border-slate-100">
-          <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 uppercase tracking-wider shrink-0 pr-2">
-            <Filter className="w-3.5 h-3.5 text-orange-600" />
-            <span>{t('Category', 'Kategoriya')}:</span>
-          </div>
-          {categories.map((cat) => (
+        {/* ===================================================================
+            2.1 TOP "HOW TO APPLY" 3-STEP CONSTITUENT GUIDE
+           =================================================================== */}
+        <div className="bg-slate-900 text-white rounded-3xl p-5 sm:p-7 border border-slate-800 shadow-sinoog mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-orange-500/20 text-orange-400 text-xs font-bold uppercase tracking-wider mb-1">
+                <span>{t('Simple 3-Step Process', '3 ka Sayon nga Lakang')}</span>
+              </div>
+              <h2 className="text-lg sm:text-2xl font-black text-white tracking-tight">
+                {t('How to Apply for KUMBATI Programs', 'Unsaon Pag-apply sa mga Programa')}
+              </h2>
+            </div>
+
+            {/* Mobile Accordion Toggle Button */}
             <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all shrink-0 cursor-pointer ${
-                selectedCategory === cat
-                  ? 'bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-sinoog font-black'
-                  : 'bg-white border border-slate-200 text-slate-700 hover:border-orange-300 hover:bg-orange-50/50 shadow-2xs'
-              }`}
+              type="button"
+              onClick={() => setIsGuideOpen(!isGuideOpen)}
+              className="sm:hidden w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-800/90 border border-slate-700 text-xs font-bold text-orange-300 hover:bg-slate-800 transition-colors cursor-pointer"
             >
-              {cat === 'All'
-                ? t('All 7 Programs', 'Tanan nga 7 ka Programa')
-                : cat}
+              <span>{t('📌 How to Apply in 3 Easy Steps (Tap to View)', '📌 3 ka Sayon nga Lakang sa Pag-apply (Pindota)')}</span>
+              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isGuideOpen ? 'rotate-180 text-orange-400' : ''}`} />
             </button>
-          ))}
+          </div>
+
+          {/* 3 Horizontal Steps: Always visible on desktop, expandable on mobile */}
+          <div className={`${isGuideOpen ? 'grid' : 'hidden sm:grid'} grid-cols-1 sm:grid-cols-3 gap-4 mt-4 pt-4 border-t border-slate-800`}>
+            {/* Step 1 */}
+            <div className="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80 flex flex-col justify-between">
+              <div>
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-500 text-white font-black text-xs flex items-center justify-center mb-2.5 shadow-sinoog border border-orange-300/40">
+                  1
+                </div>
+                <h3 className="text-sm font-bold text-white mb-1">
+                  {t('1. Prepare Required Documents', '1. Ihanda ang mga Dokumento')}
+                </h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  {t(
+                    'Review the checklist for your needed program below and gather your Barangay Indigency, ID, or medical abstract.',
+                    'Susiha ang checklist sa ubos ug kuhaa ang Barangay Indigency, ID, o reseta/abstract.'
+                  )}
+                </p>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80 flex flex-col justify-between">
+              <div>
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-500 text-white font-black text-xs flex items-center justify-center mb-2.5 shadow-sinoog border border-orange-300/40">
+                  2
+                </div>
+                <h3 className="text-sm font-bold text-white mb-1">
+                  {t('2. Submit Online or at District Office', '2. Isumite Online o sa Buhatan')}
+                </h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  {t(
+                    'Submit digital photos via the Action Center form, or visit our Candijay HQ or Jagna Clinic in person.',
+                    'I-submit sa online Action Center o personal nga dad-a sa Candijay HQ o Jagna Clinic.'
+                  )}
+                </p>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80 flex flex-col justify-between">
+              <div>
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-500 text-white font-black text-xs flex items-center justify-center mb-2.5 shadow-sinoog border border-orange-300/40">
+                  3
+                </div>
+                <h3 className="text-sm font-bold text-white mb-1">
+                  {t('3. Track Your Reference Code', '3. Subaya ang Reference Code')}
+                </h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  {t(
+                    'Receive an instant tracking code (e.g., KMB-2027-XXXXX) to follow up casework status and disbursement updates anytime.',
+                    'Makadawat og Reference Code aron masubay ang estado sa imong ticket bisan unsang orasa.'
+                  )}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* 7 Programs Detailed Cards */}
+        {/* ===================================================================
+            2.2 STICKY CATEGORY FILTER BAR & QUICK-JUMP PROGRAM INDEX
+           =================================================================== */}
+        <div className="sticky top-14 sm:top-16 z-20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-3 bg-[#FFFDF9]/95 backdrop-blur-md border-y border-orange-100/80 shadow-2xs mb-8 transition-all">
+          {/* Row 1: Category Filter Tabs */}
+          <div className="relative mb-2.5">
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 uppercase tracking-wider shrink-0 pr-1">
+                <Filter className="w-3.5 h-3.5 text-orange-600" />
+                <span className="hidden sm:inline">{t('Category', 'Kategoriya')}:</span>
+              </div>
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-4 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                    selectedCategory === cat
+                      ? 'bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-sinoog font-black'
+                      : 'bg-white border border-slate-200 text-slate-700 hover:border-orange-300 hover:bg-orange-50/50 shadow-2xs'
+                  }`}
+                >
+                  {cat === 'All'
+                    ? t('All 7 Programs', 'Tanan nga 7 ka Programa')
+                    : cat}
+                </button>
+              ))}
+            </div>
+            {/* Subtle Right-edge Gradient Fade */}
+            <div className="absolute right-0 top-0 bottom-1 w-6 bg-gradient-to-l from-[#FFFDF9] to-transparent pointer-events-none" />
+          </div>
+
+          {/* Row 2: Quick-Jump Program Index */}
+          <div className="relative">
+            <div className="flex items-center gap-1.5 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden text-[11px]">
+              <span className="text-[10px] font-black uppercase tracking-wider text-orange-600 shrink-0 pr-1 flex items-center gap-1">
+                <span>{t('Jump to', 'Ambak ngadto')}:</span>
+              </span>
+              {QUICK_JUMP_PROGRAMS.map((item) => (
+                <button
+                  key={item.slug}
+                  onClick={() => handleQuickJump(item.slug)}
+                  className="px-2.5 py-1 rounded-lg bg-white/95 border border-orange-200/80 hover:border-orange-400 hover:bg-orange-50/80 text-slate-800 font-bold shrink-0 transition-all shadow-2xs hover:shadow-xs active:scale-95 cursor-pointer"
+                >
+                  <span className="text-orange-600 font-mono font-black mr-1">#{item.num}</span>
+                  <span>{item.name}</span>
+                </button>
+              ))}
+            </div>
+            {/* Subtle Right-edge Gradient Fade */}
+            <div className="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-[#FFFDF9] to-transparent pointer-events-none" />
+          </div>
+        </div>
+
+        {/* ===================================================================
+            2.3 7 DETAILED FLAGSHIP PROGRAM CARDS
+           =================================================================== */}
         <div className="space-y-12">
           {filteredPrograms.map((prog, index) => {
             const badgeVariant = getCategoryBadgeVariant(prog.category);
+            const targetAudience = TARGET_AUDIENCE_MAP[prog.slug];
+            const checkedForThisProg = checkedDocs[prog.id] || [];
+            const checkedCount = checkedForThisProg.length;
+            const totalCount = prog.requirements_en.length;
+            const allChecked = checkedCount === totalCount && totalCount > 0;
 
             return (
               <div
                 key={prog.id}
                 id={prog.slug}
-                className="bg-gradient-to-b from-white via-white/98 to-amber-50/25 rounded-3xl border border-orange-200/80 border-t-white shadow-sinoog hover:shadow-sinoog-hover hover:border-orange-400 hover:-translate-y-1.5 transition-all duration-300 overflow-hidden backdrop-blur-md"
+                className="bg-gradient-to-b from-white via-white/98 to-amber-50/25 rounded-3xl border border-orange-200/80 border-t-white shadow-sinoog hover:shadow-sinoog-hover hover:border-orange-400 hover:-translate-y-1.5 transition-all duration-300 overflow-hidden backdrop-blur-md scroll-mt-40"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 sm:p-10">
                   {/* Left Column: Image with Category Tag */}
@@ -121,13 +329,22 @@ export const ProgramsPage: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Right Column: Title, Full Description & Requirements Checklist */}
+                  {/* Right Column: Title, Target Badge, Full Description & Interactive Checklist */}
                   <div className="lg:col-span-7 space-y-4">
                     <div>
                       <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-snug">
                         {t(prog.title_en, prog.title_ceb)}
                       </h2>
-                      <p className="text-xs sm:text-sm font-semibold text-orange-600 mt-1">
+
+                      {/* Who Can Apply Target Audience Badge */}
+                      {targetAudience && (
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-100/80 border border-orange-200/90 text-xs font-bold text-orange-950 shadow-2xs mt-2.5">
+                          <span className="text-sm shrink-0">{targetAudience.icon}</span>
+                          <span>{t(targetAudience.en, targetAudience.ceb)}</span>
+                        </div>
+                      )}
+
+                      <p className="text-xs sm:text-sm font-semibold text-orange-600 mt-2">
                         {t(prog.summary_en, prog.summary_ceb)}
                       </p>
                     </div>
@@ -136,66 +353,113 @@ export const ProgramsPage: React.FC = () => {
                       {t(prog.full_description_en, prog.full_description_ceb)}
                     </p>
 
-                    {/* Requirements Checklist Box (Sinoog Inner Pop Container) */}
+                    {/* Interactive Required Documents Self-Check Container */}
                     <div className="bg-white rounded-2xl p-4 sm:p-5 border border-orange-200/80 border-t-white shadow-sinoog-inner space-y-3">
-                      <div className="flex items-center justify-between">
+                      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-orange-100/70 pb-2.5">
                         <div className="text-xs font-black uppercase tracking-wider text-orange-950 flex items-center gap-1.5">
                           <div className="w-5 h-5 rounded-md bg-orange-100/80 flex items-center justify-center text-orange-600 shrink-0">
                             <FileText className="w-3.5 h-3.5" />
                           </div>
-                          <span>{t('Required Documents Checklist', 'Listahan sa mga Kinahanglanong Dokumento')}</span>
+                          <span>{t('Required Documents Checklist', 'Listahan sa mga Kinahanglanon')}</span>
                         </div>
-                        <button
-                          onClick={() => setActiveModalProgram(prog)}
-                          className="text-[11px] font-bold text-orange-600 hover:text-orange-700 underline flex items-center gap-1 cursor-pointer"
-                        >
-                          <span>{t('Print / Full View', 'I-print / Tan-awa')}</span>
-                          <ExternalLink className="w-3 h-3" />
-                        </button>
+
+                        {/* Interactive Progress Counter Badge & Compact Print Pill */}
+                        <div className="flex items-center gap-2 shrink-0 ml-auto">
+                          <span
+                            className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border transition-all ${
+                              allChecked
+                                ? 'bg-emerald-100 border-emerald-300 text-emerald-800'
+                                : checkedCount > 0
+                                ? 'bg-amber-100 border-amber-300 text-amber-800'
+                                : 'bg-slate-100 border-slate-200 text-slate-600'
+                            }`}
+                          >
+                            {allChecked
+                              ? t('All Ready!', 'Andam Na Tanan!')
+                              : t(
+                                  `${checkedCount} / ${totalCount} Ready`,
+                                  `${checkedCount} sa ${totalCount} Andam Na`
+                                )}
+                          </span>
+
+                          <button
+                            type="button"
+                            onClick={() => setActiveModalProgram(prog)}
+                            className="text-[11px] font-bold text-orange-700 hover:text-white hover:bg-orange-600 bg-orange-100/70 border border-orange-300/80 px-2.5 py-1 rounded-lg transition-all inline-flex items-center gap-1 whitespace-nowrap cursor-pointer shadow-2xs"
+                            title={t('Print Checklist & Eligibility', 'I-print ang Listahan')}
+                          >
+                            <Printer className="w-3 h-3 shrink-0" />
+                            <span>{t('Print / Full View', 'I-print / Tan-awa')}</span>
+                          </button>
+                        </div>
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
-                        {prog.requirements_en.map((req, rIdx) => (
-                          <div
-                            key={rIdx}
-                            className="flex items-start gap-2 text-xs text-slate-700 bg-orange-50/40 p-2.5 rounded-xl border border-orange-200/60 shadow-xs hover:border-orange-300 transition-colors"
-                          >
-                            <CheckCircle className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
-                            <span>{t(req, prog.requirements_ceb[rIdx] || req)}</span>
-                          </div>
-                        ))}
+                      {/* Interactive Checklist Items */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                        {prog.requirements_en.map((req, rIdx) => {
+                          const isChecked = checkedForThisProg.includes(rIdx);
+
+                          return (
+                            <button
+                              key={rIdx}
+                              type="button"
+                              role="checkbox"
+                              aria-checked={isChecked}
+                              onClick={() => toggleRequirement(prog.id, rIdx)}
+                              className={`w-full text-left flex items-start gap-2.5 p-2.5 rounded-xl border transition-all duration-200 cursor-pointer select-none ${
+                                isChecked
+                                  ? 'bg-emerald-50/80 border-emerald-300/90 text-emerald-950 shadow-2xs'
+                                  : 'bg-white border-orange-200/70 text-slate-700 hover:border-orange-300 hover:bg-orange-50/30'
+                              }`}
+                            >
+                              {/* Custom Checkbox Toggle */}
+                              <div
+                                className={`w-4 h-4 rounded-md flex items-center justify-center shrink-0 mt-0.5 transition-all ${
+                                  isChecked
+                                    ? 'bg-emerald-600 text-white shadow-xs'
+                                    : 'border-2 border-slate-300 bg-white hover:border-orange-400'
+                                }`}
+                              >
+                                {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
+                              </div>
+
+                              <span
+                                className={`text-xs leading-snug flex-1 ${
+                                  isChecked ? 'font-semibold line-through decoration-emerald-500/60 text-slate-800' : ''
+                                }`}
+                              >
+                                {t(req, prog.requirements_ceb[rIdx] || req)}
+                              </span>
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="pt-2 flex flex-wrap items-center gap-3">
-                      <Link to={`/action-center?program=${prog.slug}`}>
+                    {/* Action Buttons: Clean 2-Button Layout */}
+                    <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                      <Link
+                        to={`/action-center?tab=submit&program=${encodeURIComponent(prog.slug)}`}
+                        className="flex-1 sm:flex-initial"
+                      >
                         <Button
                           variant="primary"
                           size="md"
-                          icon={<ShieldCheck className="w-4 h-4" />}
+                          icon={<ShieldCheck className="w-4 h-4 shrink-0" />}
+                          className="w-full sm:w-auto px-6 py-2.5 text-xs sm:text-sm font-bold shadow-sinoog"
                         >
                           {t('Apply / Inquire at Action Center', 'Pag-apply sa Sentro sa Aksyon')}
                         </Button>
                       </Link>
 
                       <button
+                        type="button"
                         onClick={() => setActiveModalProgram(prog)}
-                        className="px-5 py-2.5 rounded-full border-2 border-orange-200/90 hover:border-orange-500 hover:bg-orange-50/70 text-slate-700 text-xs font-bold shadow-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 transition-all inline-flex items-center gap-1.5 min-h-[44px] cursor-pointer"
+                        className="px-5 py-2.5 rounded-full border-2 border-orange-200/90 hover:border-orange-500 hover:bg-orange-50/70 text-slate-700 text-xs font-bold shadow-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 transition-all inline-flex items-center justify-center gap-1.5 min-h-[44px] cursor-pointer"
                       >
-                        <HelpCircle className="w-4 h-4 text-orange-500" />
-                        <span>{t('Eligibility Details', 'Kwalipikasyon')}</span>
+                        <HelpCircle className="w-4 h-4 text-orange-500 shrink-0" />
+                        <span>{t('Eligibility & Print View', 'Kwalipikasyon ug Pag-print')}</span>
                       </button>
-
-                      {prog.slug === 'patient-transport-vehicles' && (
-                        <a
-                          href="tel:+639178326284"
-                          className="px-5 py-2.5 rounded-full bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-bold shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-0.5 active:translate-y-0 transition-all inline-flex items-center gap-1.5 min-h-[44px]"
-                        >
-                          <PhoneCall className="w-4 h-4 animate-bounce" />
-                          <span>{t('Call PTV: 0917-832-6284', 'Tawag PTV: 0917-832-6284')}</span>
-                        </a>
-                      )}
                     </div>
                   </div>
                 </div>
@@ -206,70 +470,7 @@ export const ProgramsPage: React.FC = () => {
       </section>
 
       {/* =====================================================================
-          3. HOW TO AVAIL: 3-STEP CONSTITUENT GUIDE
-         ===================================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 border border-slate-800 shadow-sinoog">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs font-bold uppercase tracking-wider text-orange-400 bg-orange-500/10 px-3.5 py-1 rounded-full border border-orange-500/20">
-              {t('Simple 3-Step Process', '3 ka Sayon nga Lakang')}
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-2">
-              {t('How to Apply for KUMBATI Programs', 'Unsaon Pag-avail sa mga Programa')}
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-3xl bg-slate-800/90 border border-slate-700/80 border-t-slate-600 hover:border-orange-500/50 shadow-sinoog-inner hover:shadow-sinoog hover:-translate-y-1 transition-all duration-300">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-orange-500 to-amber-500 text-white font-black text-sm flex items-center justify-center mb-4 shadow-sinoog border border-orange-300/40 border-t-white/80">
-                1
-              </div>
-              <h3 className="text-base font-bold text-white mb-2">
-                {t('Prepare Required Documents', 'Ihanda ang mga Dokumento')}
-              </h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                {t(
-                  'Obtain your Barangay Indigency Certificate and corresponding proof (doctor prescription, COR for scholars, or land consent).',
-                  'Kuhaa ang Barangay Indigency ug uban pang gikinahanglang papeles sama sa reseta o certificate of registration.'
-                )}
-              </p>
-            </div>
-
-            <div className="p-6 rounded-3xl bg-slate-800/90 border border-slate-700/80 border-t-slate-600 hover:border-orange-500/50 shadow-sinoog-inner hover:shadow-sinoog hover:-translate-y-1 transition-all duration-300">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-orange-500 to-amber-500 text-white font-black text-sm flex items-center justify-center mb-4 shadow-sinoog border border-orange-300/40 border-t-white/80">
-                2
-              </div>
-              <h3 className="text-base font-bold text-white mb-2">
-                {t('Submit Online or Visit District Office', 'Isumite Online o Bisitaha ang Buhatan')}
-              </h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                {t(
-                  'Use our online Action Center form to submit digital photos of requirements, or visit the Candijay headquarters or Jagna Clinic.',
-                  'Isumite pinaagi sa online Action Center o personal nga dalha sa District Office sa Candijay o Jagna Clinic.'
-                )}
-              </p>
-            </div>
-
-            <div className="p-6 rounded-3xl bg-slate-800/90 border border-slate-700/80 border-t-slate-600 hover:border-orange-500/50 shadow-sinoog-inner hover:shadow-sinoog hover:-translate-y-1 transition-all duration-300">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-orange-500 to-amber-500 text-white font-black text-sm flex items-center justify-center mb-4 shadow-sinoog border border-orange-300/40 border-t-white/80">
-                3
-              </div>
-              <h3 className="text-base font-bold text-white mb-2">
-                {t('Track Your Reference Code', 'Subaya ang Reference Code')}
-              </h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                {t(
-                  'Receive a unique tracking code (e.g., KMB-2027-XXXXX) to check real-time approval status and payout schedules.',
-                  'Gamita ang Reference Code aron masayran ang pag-apruba, iskedyul sa sakyanan, o petsa sa payout sa imong ayuda.'
-                )}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================================================
-          4. PROGRAM REQUIREMENTS MODAL
+          3. PROGRAM REQUIREMENTS & ELIGIBILITY MODAL
          ===================================================================== */}
       {activeModalProgram && (
         <Modal
@@ -292,6 +493,19 @@ export const ProgramsPage: React.FC = () => {
               </p>
             </div>
 
+            {/* Target Audience in Modal */}
+            {TARGET_AUDIENCE_MAP[activeModalProgram.slug] && (
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-100/90 border border-orange-200 text-xs font-bold text-orange-950">
+                <span>{TARGET_AUDIENCE_MAP[activeModalProgram.slug].icon}</span>
+                <span>
+                  {t(
+                    TARGET_AUDIENCE_MAP[activeModalProgram.slug].en,
+                    TARGET_AUDIENCE_MAP[activeModalProgram.slug].ceb
+                  )}
+                </span>
+              </div>
+            )}
+
             <div>
               <div className="text-xs font-black uppercase tracking-wider text-slate-900 mb-2 flex items-center gap-1.5">
                 <FileText className="w-4 h-4 text-orange-600" />
@@ -312,15 +526,16 @@ export const ProgramsPage: React.FC = () => {
 
             <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
               <button
+                type="button"
                 onClick={() => window.print()}
-                className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 flex items-center gap-1.5"
+                className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 flex items-center gap-1.5 cursor-pointer shadow-2xs"
               >
                 <Printer className="w-3.5 h-3.5" />
                 <span>{t('Print Checklist', 'I-print')}</span>
               </button>
 
               <Link
-                to={`/action-center?program=${activeModalProgram.slug}`}
+                to={`/action-center?tab=submit&program=${encodeURIComponent(activeModalProgram.slug)}`}
                 onClick={() => setActiveModalProgram(null)}
               >
                 <Button variant="primary" size="sm" icon={<ChevronRight className="w-3.5 h-3.5" />} iconPosition="right">

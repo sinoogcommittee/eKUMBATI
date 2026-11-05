@@ -46,7 +46,8 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   };
 
   useEffect(() => {
-    document.documentElement.lang = lang === 'ceb' ? 'fil-PH' : 'en';
+    // BCP 47 standard language tag for screen readers and speech synthesis (ceb-PH for Cebuano / Boholano)
+    document.documentElement.lang = lang === 'ceb' ? 'ceb-PH' : 'en';
   }, [lang]);
 
   return (

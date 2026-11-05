@@ -18,19 +18,21 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   };
 
   const spinnerContent = (
-    <div className="flex flex-col items-center justify-center gap-3">
-      <div className="relative">
-        {/* Outer glowing pulsing ring */}
+    <div className="flex flex-col items-center justify-center gap-3" role="status" aria-live="polite">
+      <div className="relative" aria-hidden="true">
+        {/* Outer glowing pulsing ring with motion dampening */}
         <div
-          className={`${sizeMap[size]} rounded-full border-orange-200 border-t-orange-600 animate-spin`}
+          className={`${sizeMap[size]} rounded-full border-orange-200 border-t-orange-600 animate-spin motion-reduce:animate-none motion-reduce:border-orange-500`}
         />
         {/* Inner center dot */}
-        <div className="absolute inset-0 m-auto w-2 h-2 rounded-full bg-orange-500 animate-ping opacity-75" />
+        <div className="absolute inset-0 m-auto w-2 h-2 rounded-full bg-orange-500 animate-ping motion-reduce:animate-none opacity-75" />
       </div>
-      {text && (
+      {text ? (
         <p className="text-xs sm:text-sm font-semibold text-slate-600 tracking-wide">
           {text}
         </p>
+      ) : (
+        <span className="sr-only">Loading...</span>
       )}
     </div>
   );

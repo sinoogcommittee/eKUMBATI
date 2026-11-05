@@ -83,7 +83,7 @@ export const AdminMetricsPage: React.FC = () => {
             <span>Audited Governance Counters</span>
           </div>
           <h2 className="text-2xl font-black text-white tracking-tight">
-            The 7 Flagship 2027 Impact Metrics
+            The 7 Flagship Impact Metrics
           </h2>
           <p className="text-xs text-slate-400">
             Audit and adjust verified numerical counts, suffixes, and bilingual explanations for Pabahay, PTV, Clinic, and Scholars.

@@ -23,9 +23,11 @@
 
 ---
 
-## 3. Official External Channels
-1. **Cong. Alexie Tutor (Official Page)**: `https://www.facebook.com/Cong.AlexieTutor`
-2. **KUMBATI Cares (Community & Outreach Page)**: `https://www.facebook.com/profile.php?id=100063819665430`
+## 3. Official External Channels & Communication Contacts
+1. **Cong. Alexie Tutor (Official Facebook Page)**: `https://www.facebook.com/Cong.AlexieTutor`
+2. **KUMBATI Cares (Community & Outreach Facebook Page)**: `https://www.facebook.com/profile.php?id=100063819665430`
+3. **Official Instagram**: `https://www.instagram.com/alexietutor`
+4. **Official Constituent Email**: `congressmanalexietutor80@gmail.com`
 
 ---
 
@@ -264,3 +266,136 @@
   - Enlarged `X` close button to 40x40 touch target (`p-2 -mr-1`, `w-6 h-6`) with `type="button"` and `cursor-pointer`.
   - Added body scroll locking and Escape key dismiss.
   - Verified `npm run build` completed with code 0.
+- **2026-11-05**: Reordered Navigation Links across Header, MobileNav, and Footer:
+  - Positioned Action Center immediately after Programs.
+  - Positioned Impact immediately before About.
+  - Final sequence: Home -> Programs -> Action Center -> News -> Gallery -> 19 Towns -> Map -> Impact -> About.
+  - Verified `npm run build` completed with code 0.
+- **2026-11-05**: Home Portal, Global Navigation & Footer UX Streamlining:
+  - **Header Utility & Language**: Added scroll listener to auto-hide the top white PTV emergency strip on scroll down so only the orange navbar remains sticky; added explicit bilingual segmented toggle pill `EN | BIN` on desktop and mobile.
+  - **Hero CTAs**: Streamlined hero buttons to 2 high-contrast CTAs: primary solid orange gradient `"Apply for Assistance / Track Ticket"` (`ShieldCheck` icon) -> `/action-center`, and secondary clean outline `"Explore 7 Flagship Programs"` (`Layers` icon) -> `#flagship-programs`. Removed redundant red PTV button from Hero.
+  - **Section Reordering**: Moved Flagship Programs of Team KUMBATI up to Section 2 (immediate constituent utility) and moved 7 Flagship 2027 KUMBATI Impact Metrics down to Section 3 (proof & transparency data).
+  - **Condensed Program Preview Cards**: Removed embedded `"KEY REQUIREMENTS"` checklist container from home preview cards; added compact requirement count pill badge (`📋 4 Simple Requirements`); added prominent `"View Requirements & Apply →"` button; clamped card descriptions to `line-clamp-3`.
+  - **Unified Impact Metrics Grid**: Updated 8th card (`19 / 19 Municipalities Served`) to match clean white card surface, border radius, and shadow of cards 1-7 with subtle `100% COVERAGE` badge and dark typography.
+  - **Footer Interactivity & De-emphasize Staff CMS**: Converted 19 municipality pills into interactive links targeting `/directory?town=...#town-...`; added dynamic query parameter listener and smooth anchor scrolling in `DirectoryPage.tsx`; replaced boxed `Staff CMS` button with subtle inline `"Staff Portal"` text link with low opacity; added `pb-32 md:pb-16` bottom padding so the mobile sticky hotline bar never overlaps footer content.
+  - **Build Verification**: `npm run build` succeeded with exit code 0 (1980 modules transformed in 17.35s).
+- **2026-11-05**: Renamed Metrics Title & Removed Year Restriction Across Codebase:
+  - Renamed home section title to **"7 Flagship Impact Metrics of Team KUMBATI"** (`t('7 Flagship Impact Metrics of Team KUMBATI', '7 ka mga Nag-unang Sukod sa Kalampusan sa Team KUMBATI')`), resolving noun-pileup grammar and mirroring Section 2's "Flagship Programs of Team KUMBATI".
+  - Removed "2027" from all ongoing term-wide metric titles, verification badges, navigation labels, and CMS headers (`ImpactPage.tsx`, `StatCounter.tsx`, `Footer.tsx`, `MobileNav.tsx`, `AdminMetricsPage.tsx`, `AdminDashboardPage.tsx`, `constants.ts`, and `AGENTS.md`) since public assistance programs run continuously throughout the full legislative term.
+  - Verified `npm run build` completed with code 0 (1980 modules transformed in 5.78s).
+- **2026-11-05**: Responsive Layout for Recent Outreach & Moving Metrics Below Outreach:
+  - Fixed mobile title wrapping issue in Recent Outreach & Project Highlights by changing header layout to responsive `flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-6 sm:mb-8`. The title now has full horizontal width to wrap naturally across 1-2 lines, with the "View All Albums" button situated cleanly directly below the title on mobile.
+  - Reordered Home page sections so the 7 Flagship Impact Metrics section sits directly below Recent Outreach & Project Highlights. Final Home page structure: Hero &rarr; Flagship Programs &rarr; Action Center CTA Banner &rarr; Recent Outreach &rarr; Flagship Impact Metrics.
+  - Verified `npm run build` completed with code 0 (1980 modules transformed in 5.95s).
+- **2026-11-05**: 7 Flagship Programs & Advocacies Page Refactoring:
+  - **Top 3-Step Guide**: Surfaced horizontal 3-step application guide (`Prepare Documents` &rarr; `Submit Online/Office` &rarr; `Track Reference Code`) directly below the hero banner. Built a collapsible accordion toggle (`"📌 How to Apply in 3 Easy Steps (Tap to View)"`) on mobile to conserve screen space.
+  - **Sticky Category Filters & Quick-Jump**: Created sticky dual-tier bar (`sticky top-14 sm:top-16 z-20`) with hidden scrollbars and right-edge gradient fade. Includes 7 quick-jump program pills (`#1 Pabahay` to `#7 Rural Infra`) that switch filter to 'All' and smoothly scroll to the program card with `scroll-mt-40`.
+  - **Target Audience Badges**: Added bilingual `Who Can Apply` badges for all 7 programs distinguishing individual/family assistance from co-op/barangay programs.
+  - **Interactive Self-Check Checklist**: Converted static checklists into interactive checkboxes with check/strikethrough styling, dynamic progress counter badge (`"0 / 5 Ready"`, `"3 / 5 Ready"`, `"All Ready!"`), and `localStorage` persistence. Fixed `"Print / Full View"` button alignment to prevent mobile line-wrapping.
+  - **Streamlined Card CTAs**: Unified card footers to 2 buttons (`"Apply / Inquire at Action Center"` and `"Eligibility & Print View"`). Removed redundant 3rd red PTV button on Card #2.
+  - **Action Center Smart Pre-selection**: "Apply / Inquire" buttons pass `tab=submit&program=<slug>`. `ActionCenterPage.tsx` automatically resolves the slug/name and pre-selects the matching program in the dropdown.
+  - Verified `npm run build` completed with code 0 (1980 modules transformed in 8.80s).
+- **2026-11-05**: Constituent Action Center & Tracker Page Refactoring:
+  - **Dynamic Program Auto-Selection**: Added `resolveProgramName` supporting slugs, keywords (`free-medicine`, `clinic`, `ptv`, `dialysis`, `pabahay`, `scholar`, `ched`, `livelihood`, `infra`), and IDs to auto-select the matching program option in the form dropdown on mount and query changes.
+  - **Separation of Submit & Track Views**: Cleanly separated submission form view from tracking view with dedicated cards, clear input states, and live tracking stepper.
+  - **Form Accessibility & Spacing**: Added HTML `autoComplete` attributes, touch target sizes (`min-h-[46px]`), helper text for SMS updates, and `pb-32 sm:pb-36` safe-area bottom padding to avoid collision with the mobile sticky hotline bar.
+  - **One-Tap Copy Reference Code Modal**: Created success confirmation modal featuring large monospace code (`KMB-YYYY-XXXXX`), one-tap copy button with instant feedback, clear next steps, and direct ticket tracking button.
+  - Verified `npm run build` completed with code 0.
+- **2026-11-05**: News, Updates & Public Announcements Page Refactoring:
+  - **Eliminate Duplicate Hero Alerts in Feed**: Excluded `urgentPinnedPost.id` from the main feed grid when the top hero urgent banner is displayed on default view, preventing duplicate cards on initial load while keeping urgent notices fully searchable.
+  - **Dynamic Search & Category Filter Bar**: Implemented client-side filtering by keywords, municipality, and 7 category filter tabs with dynamic match counts (All Updates, Urgent Alerts, Payout Schedules, Medical & Health, Press & Legislative, Public Advisories, General News). Added active filter indicator and "Reset Filters" action button.
+  - **Social Share & Copy Link Actions**: Added secondary action button on every announcement card and hero banner for Share / Copy Link using Web Share API (`navigator.share`) with fallback to clipboard copy and animated `"Link Copied!"` tooltip. Added deep-linking support (`/news?id=xxx`).
+  - **Mobile Spacing & Hidden Scrollbars**: Removed ugly browser scrollbar tracks on category pills using `[scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden touch-pan-x`. Added safe-area padding `pb-32 sm:pb-36` to the page container.
+  - Verified `npm run build` completed with code 0 (1980 modules transformed in 7.70s).
+- **2026-11-05**: Multimedia Photo Gallery Page Refactoring:
+  - **Eliminate Dual-Feed Redundancy**: Removed duplicate stacking of "Recommended Albums" and "Photo Stream", unifying the view into a clean Photo Album Grid (`grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8`).
+  - **Interactive Fullscreen Lightbox Modal**: Created modal with high-res photo, photo counter (`Photo X of Y`), bilingual captions, previous/next controls, keyboard listener (`ArrowLeft`/`ArrowRight`/`Escape`), and bottom interactive thumbnail strip.
+  - **Clean Up Tags & Metadata Overload**: Replaced cluttered document tags with clean bilingual location and date badges (`📍 Candijay • November 2026`) and photo count pills (`📸 X Photos`).
+  - **Mobile Spacing & Hidden Scrollbars**: Removed horizontal scrollbar tracks from category pills (`[scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden touch-pan-x`) and added safe-area padding `pb-32 sm:pb-36` to prevent mobile bottom bar collision.
+  - Verified `npm run build` completed with code 0 (1980 modules transformed in 10.49s).
+- **2026-11-05**: 19-Town Municipal Directory & Emergency Hotlines Refactoring:
+  - **All 19 Municipalities Data Enrichment**: Researched Bohol PNP and MDRRMO emergency directories to populate authentic emergency numbers for all 19 towns in `constants.ts`. Added GPS coordinates for all 19 Municipal Halls in `INITIAL_MAP_LOCATIONS` for interactive map integration.
+  - **Quick-Jump Municipal Pill Grid**: Added responsive 19-town pill grid below search bar with smooth scrolling to `#town-<slug>` and active card highlight.
+  - **Click-to-Call (`tel:`) Hyperlinks**: Converted all telephone numbers into active `tel:` links with phone icons and copy buttons.
+  - **Streamlined Top Emergency Banner**: Compact 2x2 / 4-card emergency grid with direct call buttons for PTV Dispatch, Candijay HQ, Tambayan ni Kumbati, and Kumbati Clinic.
+  - **Mobile Spacing & Map Deep-Links**: Added safe-area padding `pb-32 sm:pb-36` and direct `/map?town=<name>` links on each town card.
+  - Verified `npm run build` completed with code 0 (1980 modules transformed in 8.49s).
+- **2026-11-05**: About Congresswoman Kristine Alexie Besas-Tutor Page Refactoring:
+  - **At a Glance Quick-Fact Profile Card**: Added top summary card highlighting key credentials: Profession (Licensed Physical Therapist & Law Graduate), Constituency (3rd Congressional District of Bohol, 19 Municipalities), Tenure (Serving since 2019, Incumbent Representative), and Core Focus (Emergency Medical Transport, Socialized Housing, Healthcare & Education).
+  - **Tabbed Bio Sections**: Segmented long vertical biography into 3 interactive tab blocks: `Public Servant & Background` (journey and education), `District 3 Vision & Flagship Commitments` (7 pillars of Team KUMBATI), and `Legislative Track Record` (committee assignments, principal authored measures, co-authored bills with search and pagination).
+  - **Mobile Spacing & Safe-Area Padding**: Added `pb-32 sm:pb-36` safe-area bottom padding to prevent collision with mobile emergency hotline bar.
+  - Verified `npm run build` completed with code 0.
+- **2026-11-05**: Home Page Visual Documentation Layout & Button Realignment:
+  - Fixed mobile title wrapping where "Recent Outreach & Project Highlights" was previously squeezed into a 4-word vertical column.
+  - Applied `text-balance` and full-width flow so the title renders cleanly in 2 natural lines across mobile viewports.
+  - Added descriptive context subtext beneath the headline for both English and Cebuano constituents.
+  - Positioned the "View All Albums" button cleanly below the title on mobile viewports (`flex flex-col sm:flex-row`), avoiding awkward side-by-side alignment next to "Highlights".
+  - Confirmed the 7 Flagship Impact Metrics section sits directly below the Recent Outreach / Multimedia Photo Highlights section.
+  - Verified `npm run build` completed with code 0 (1980 modules transformed in 15.23s).
+- **2026-11-05**: District Geospatial Map Page & Leaflet Enhancements:
+  - **Map vs. List View Toggle**: Implemented dual view switch (`🗺️ Map View` | `📋 Facility Directory`) enabling constituents to toggle between full-screen interactive Leaflet mapping and a 3-column facility directory.
+  - **Marker Sync & Auto-Popup**: Integrated auto-popup capability (`<LocationMarker>` with React refs); clicking any facility card or its "View on Map" link switches to Map View, smoothly animates the camera to marker coordinates, and opens the details popup.
+  - **Google Maps GPS Navigation**: Added touch-friendly "Get Directions" buttons (`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`) across all directory cards, spotlight panels, and Leaflet pin popups.
+  - **Collapsible Filter Toolbar**: Consolidated search input, category filters with live counts, 19-town dropdown, and map style switcher (Roadmap, Satellite, Terrain) into a clean collapsible toolbar with badge counters. Added `pb-32 sm:pb-36` safe-area bottom padding.
+  - **Official Office Pins Verification**: Decoded exact Plus Codes for Candijay Main HQ (`RF8W+JVP` &rarr; `9.8165, 124.4971`) and Guindulman Satellite Office & Medical Desk (`QF6Q+G72` &rarr; `9.7613, 124.4881`). Added verified details for Kumbati Clinic Candijay Main (San Antonio Heights), Kumbati Clinic Jagna, Tambayan ni Kumbati Tagbilaran (Gallares Hospital), 3 PTV Hubs, 3 Pabahay Communities, and all 19 Municipal Halls.
+  - **Single-Line Header Streamlining**: Removed redundant red PTV emergency call button from the map header card and placed `Map View`, `Facility Directory`, and `Filter Toolbar` toggle into a single horizontal row (`flex-nowrap`).
+  - Verified `npm run build` completed with code 0 (1980 modules transformed in 9.99s).
+- **2026-11-05**: Header Logo Visibility & Contrast Enhancement:
+  - Enclosed the official KUMBATI AT seal (`kumbati_logo_sm.webp`) within a crisp pure-white circular medallion pod (`rounded-full bg-white p-1 border-2 border-white/95 shadow-md ring-2 ring-black/5`) in `src/components/layout/Header.tsx`.
+  - Maximized contrast and legibility for all logo details against the vibrant orange navbar without modifying the global header background gradient.
+  - Verified `npm run build` completed with code 0 (1980 modules transformed in 7.90s).
+- **2026-11-05**: PWA Web App Installation & Social Media Preview Cards:
+  - **PWA Manifest & App Identity**: Created `public/manifest.json` configured with name and short_name `"e-Kumbati"`, `#F97316` theme color, and standalone display mode.
+  - **Crystal-Clear PWA Icons**: Generated `public/pwa-192x192.png`, `public/pwa-512x512.png`, and `public/pwa-maskable-512x512.png` with the KUMBATI AT seal embedded inside a high-contrast white medallion disc with an orange border ring for optimal visibility across all mobile and desktop wallpapers.
+  - **PWA Install Prompt Modal**: Created `src/components/common/PwaInstallPrompt.tsx` mounted in `PublicLayout.tsx`, featuring auto-prompting via `beforeinstallprompt`, iOS Safari guided instructions, and 7-day dismissal storage in `localStorage`.
+  - **Social Media OpenGraph Preview Card**: Generated 1200x630 high-res card (`public/images/og_preview.png`) and wired up OpenGraph (`og:image`, `og:title`, etc.) and Twitter Card tags in `index.html` for rich link previews across Facebook, Messenger, WhatsApp, Viber, and Twitter.
+  - Verified `npm run build` completed with code 0 (1981 modules transformed in 6.83s).
+- **2026-11-05**: Official Instagram Channel & Constituent Email Integration:
+  - **Domain Types & Site Settings**: Added `instagram_official?: string;` to `SiteSettings` interface in `src/types/kumbati.types.ts`.
+  - **Official Email Integration**: Configured `congressmanalexietutor80@gmail.com` across `INITIAL_SITE_SETTINGS` and `INITIAL_HOTLINES` in `src/lib/constants.ts`, replacing old placeholder addresses.
+  - **Official Instagram Channel**: Added `https://www.instagram.com/alexietutor` to `INITIAL_SITE_SETTINGS` in `src/lib/constants.ts`.
+  - **Public Footer Expansion**: Added Lucide `Instagram` icon, wired active `https://www.instagram.com/alexietutor` channel in `src/components/layout/Footer.tsx`, and updated email link to `mailto:congressmanalexietutor80@gmail.com`.
+  - **Admin Settings CMS**: Expanded Section 4 of `src/pages/admin/AdminSettingsPage.tsx` into "Official Social Media Channels" with dedicated live input for Official Instagram (`@alexietutor`) and verified constituent email management.
+  - **Agent Guidelines & Documentation**: Updated `AGENTS.md` Section 5 with official Instagram and constituent email.
+  - Verified `npm run build` completed with code 0 (1981 modules transformed in 7.86s).
+- **2026-11-05**: Geospatial Map Overflow Elimination & Location Card Architecture:
+  - **Zero-Overflow Control Header**: Optimized the top action tools in `MapPage.tsx` by shortening the directory toggle label to `t('Directory', 'Direktoryo')`, fine-tuning font sizes to `text-[11px] sm:text-xs`, and setting `w-full sm:w-auto justify-between sm:justify-end flex-nowrap` with `flex-1 sm:flex-initial` buttons. Guaranteed zero horizontal overflow on mobile viewports down to 320px.
+  - **Location Card Architecture**: Overhauled the plain sidebar facility containers into official KUMBATI cards featuring warm gradient surfaces (`bg-gradient-to-b from-white via-white/98 to-amber-50/20`), top border highlights (`border-t-white`), 3D depth shadows (`shadow-sinoog hover:shadow-sinoog-hover`), rounded curvature (`rounded-2xl sm:rounded-3xl`), micro-interaction hover lifts (`hover:-translate-y-0.5`), and top accent ribbons for active pins (`scale-[1.01] ring-2 ring-orange-400/25`).
+  - **Category Gradient Identity Pods**: Replaced pale pastel squares with rich gradient icon pods (`bg-gradient-to-tr`) with crisp white icons for clinics, offices, PTV dispatch hubs, dialysis tambayan, housing sites, and municipal halls.
+  - **Card Header & Action Strips**: Integrated municipality badges (`MapPin`), contact numbers, GPS verified dots, and interactive "Focus Pin" pill buttons.
+  - Verified `npm run build` completed with code 0 (1981 modules transformed in 22.96s).
+- **2026-11-05**: Modern Web Platform Modernization — Phase 1 (Baseline Compliance & Quick Wins):
+  - **BCP 47 Language Tag Parity**: Updated `LanguageContext.tsx` to set `document.documentElement.lang = 'ceb-PH'` instead of generic `fil-PH` when constituents switch to Binisaya mode, providing accurate phonetics for screen reader speech synthesis.
+  - **Standard CSS Scrollbars & Vendor Fallback**: Configured standard `scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);` and `scrollbar-width: thin;` in `src/index.css`. Wrapped legacy non-standard `::-webkit-scrollbar` rules inside `@supports not (scrollbar-color: auto)` to prevent selector conflicts in modern Firefox and Safari.
+  - **Vestibular Motion Hygiene**: Nested global `scroll-behavior: smooth` inside `@media (prefers-reduced-motion: no-preference)` in `src/index.css` to honor operating system reduced-motion accessibility preferences.
+  - **Accessible Skip-to-Content Link**: Implemented WCAG 2.4.1 compliant `<a href="#main-content">` Skip Link in `Header.tsx` visible on keyboard focus, paired with target `<main id="main-content" tabIndex={-1}>` in `PublicLayout.tsx` for smooth programmatic focus transfer.
+  - **LCP Hero Prioritization & CLS Elimination**: Added `<link rel="preload" as="image" href="/images/cong_alexie.webp" type="image/webp" fetchpriority="high">` to `<head>` in `index.html`. Added explicit intrinsic dimensions (`width={448}`, `height={320}`), `fetchpriority="high"`, and `decoding="async"` to the hero portrait on `HomePage.tsx`.
+  - **Offline-First Local CSS Bundling**: Removed external `unpkg.com` Leaflet CDN link from `index.html` and bundled `leaflet/dist/leaflet.css` directly via local npm module in `src/index.css`.
+  - Verified `npm run build` completed with code 0 (1981 modules transformed in 8.01s).
+- **2026-11-05**: Modern Web Platform Modernization — Phase 2 (Native Dialogs, Accessible Forms & Motion Hygiene):
+  - **Native `<dialog>` Modal Overhaul**: Migrated `src/components/common/Modal.tsx` and `GalleryPage.tsx` lightbox to native HTML `<dialog>` with `showModal()`. Removed manual `document.body.style.overflow = 'hidden'` in favor of standard `dialog:modal { overscroll-behavior: contain; }` and `dialog::backdrop { overflow: hidden; overscroll-behavior: contain; }`, completely eliminating mobile scroll shifts and focus leaks.
+  - **Accessible Form Controls & Autofill**: Bound all form inputs with explicit `htmlFor` and `id` references across `ActionCenterPage.tsx` and `AdminLoginPage.tsx`. Added standard browser autofill tokens (`name`, `tel`, `address-level2`, `address-level3`, `username`, `current-password`) and turned off autocorrect/spellcheck on credentials. Grouped submission types into semantic `<fieldset>` and `<legend>`.
+  - **HTML5 `<search>` Landmarks**: Replaced generic `div` search wrappers in `DirectoryPage.tsx`, `HotlineModal.tsx`, and `ActionCenterPage.tsx` with native `<search>` landmark elements.
+  - **Motion Hygiene & Viewport Observers**: Enhanced `StatCounter.tsx` with `IntersectionObserver` triggering (animation only runs when scrolled into view) and added `prefers-reduced-motion` detection to render instant final metrics for motion-sensitive users. Added `role="status"` and `motion-reduce:animate-none` to `LoadingSpinner.tsx`.
+  - Verified `npm run build` completed with code 0 (1981 modules transformed in 7.18s).
+- **2026-11-05**: Modern Web Platform Modernization — Phase 3 (PWA Offline Shell, View Transitions & Dark Theme Sync):
+  - **Offline Service Worker Shell**: Authored native Service Worker `public/sw.js` with versioned cache (`kumbati-shell-v1`) pre-caching core shell assets, icons, and manifest. Implemented Stale-While-Revalidate caching for static resources and Network-First navigation fallback to `/index.html`, ensuring 100% offline constituent access across Bohol's 3rd District. Registered on `window.load` in `src/main.tsx`.
+  - **View Transitions API Integration**: Enabled seamless SPA route animations across desktop navbar (`Header.tsx`) and mobile drawer (`MobileNav.tsx`) using React Router v6's `viewTransition` prop. Customized `::view-transition-old(root)` and `::view-transition-new(root)` in `src/index.css` with motion hygiene overrides (`@media (prefers-reduced-motion: reduce)`).
+  - **System Dark Mode Sync**: Added `@media (prefers-color-scheme: dark)` in `src/styles/m3/dark-theme.css` to automatically activate dark palette tokens on OLED and dark-mode devices for `:root:not([data-theme="light"])` without conflicting with user light-theme overrides.
+  - Verified `npm run build` completed with code 0 (1981 modules transformed in 5.67s).
+- **2026-11-06**: UI/UX Modernization & Constituent Utility Upgrades:
+  - **Global Toast Notification System**: Implemented `src/context/ToastContext.tsx` providing stackable, non-intrusive alerts (`role="status"`, `aria-live="polite"`) with automated countdown progress strips and mobile haptic sync. Integrated into ticket creation, reference code copies, emergency hotline copies, and news share links.
+  - **Mobile Haptic Engine**: Created `src/lib/haptics.ts` supporting `light` (10ms), `success`, and `emergency` vibration patterns on supported mobile devices.
+  - **Scroll-Driven Reading Progress**: Added `ScrollProgressBar.tsx` utilizing zero-JS `@supports (animation-timeline: scroll())` CSS keyframes with a lightweight fallback listener and reduced-motion suppression.
+  - **Floating Back to Top Pill**: Implemented `BackToTop.tsx` with smooth scroll behavior and threshold visibility (> 400px), positioned safely above the mobile sticky hotline bar.
+  - **Horizontal Scroll Soft Edge Fading**: Added `.scroll-fade-edges` gradient masks to horizontal category and municipal jump scrollers in `NewsPage.tsx` and `DirectoryPage.tsx`.
+  - **Form Validation Ergonomics**: Styled `:user-invalid` pseudo-class in `src/index.css` to eliminate premature error states while typing.
+  - **Printable Constituent Endorsement Slip**: Designed a dedicated `@media print` layout in `ActionCenterPage.tsx` with an official House of Representatives endorsement slip for constituents visiting municipal offices and district headquarters.
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 11.29s).
+- **2026-11-06**: Layout, UI/UX Design System, Typography & Spacing Finalization:
+  - **Safe-Area Padding Harmonization**: Standardized page bottom padding to `pb-32 sm:pb-36` across all public views (`HomePage.tsx`, `ProgramsPage.tsx`, `ImpactPage.tsx`, etc.), guaranteeing full visibility and thumb reach above the fixed mobile bottom emergency hotline bar.
+  - **Typographic Rhythm & Anti-Widow Balancing**: Applied `text-balance` to all major headlines, preventing orphaned single-word drops across dynamic mobile and desktop viewport widths.
+  - **Mobile Drawer Containment & Home Bar Clearance**: Added `overscroll-contain` to `MobileNav.tsx` drawer to eliminate background scroll-chaining, added `pb-8 sm:pb-6` bottom padding for mobile home indicator bars, and upgraded buttons to full pill geometry (`rounded-full min-h-[44px]`).
+  - **Form Input Consistency**: Refined inputs, selects, and textareas across `ActionCenterPage.tsx`, `AdminLoginPage.tsx`, and `AdminSubmissionsPage.tsx` to `rounded-2xl min-h-[44px]` with warm border highlights matching Sinoog 2027 Material Design 3 tokens.
+  - **TypeScript 6.0+ `baseUrl` Migration**: Removed deprecated `"baseUrl": "."` compiler option from `tsconfig.json` and transitioned path aliases to modern root-relative resolution (`"@/*": ["./src/*"]`), resolving the deprecation warning and future-proofing the build against TypeScript 7.0.
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 7.97s).

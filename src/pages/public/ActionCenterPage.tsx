@@ -23,15 +23,32 @@ import {
   Phone,
   FileText,
   User,
+  Printer,
 } from 'lucide-react';
+import { useToast } from '../../context/ToastContext';
+import { triggerHaptic } from '../../lib/haptics';
 
 const LOCAL_STORAGE_SUBMISSIONS_KEY = 'kumbati_constituent_submissions';
 
 export const ActionCenterPage: React.FC = () => {
   const { t } = useLanguage();
+  const { showToast } = useToast();
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTabParam = searchParams.get('tab') === 'track' ? 'track' : 'submit';
   const prefillProgram = searchParams.get('program') || '';
+
+  // Helper to resolve program name from query parameter (slug, ID, or partial name)
+  const resolveProgramName = (param: string): string => {
+    if (!param) return INITIAL_PROGRAMS[0]?.title_en || 'Pabahay Socialized Housing';
+    const found = INITIAL_PROGRAMS.find(
+      (p) =>
+        p.slug.toLowerCase() === param.toLowerCase() ||
+        p.id.toLowerCase() === param.toLowerCase() ||
+        p.title_en.toLowerCase() === param.toLowerCase() ||
+        p.title_en.toLowerCase().includes(param.toLowerCase())
+    );
+    return found ? found.title_en : param;
+  };
   const prefillCode = searchParams.get('code') || '';
 
   const [activeTab, setActiveTab] = useState<'submit' | 'track'>(activeTabParam);
@@ -44,7 +61,7 @@ export const ActionCenterPage: React.FC = () => {
     email: '',
     municipality: BOHOL_DISTRICT_3_TOWNS[4] as string, // Default Candijay
     barangay: '',
-    program_category: prefillProgram ? prefillProgram : 'Pabahay',
+    program_category: resolveProgramName(prefillProgram),
     subject: '',
     message: '',
   });
@@ -66,10 +83,31 @@ export const ActionCenterPage: React.FC = () => {
     }
   }, [prefillCode]);
 
+  useEffect(() => {
+    const tabParam = searchParams.get('tab');
+    if (tabParam === 'track' || tabParam === 'submit') {
+      setActiveTab(tabParam);
+    }
+    const progParam = searchParams.get('program');
+    if (progParam) {
+      const resolved = resolveProgramName(progParam);
+      setFormData((prev) => ({
+        ...prev,
+        program_category: resolved,
+      }));
+    }
+  }, [searchParams]);
+
   const handleCopyCode = (code: string) => {
     navigator.clipboard.writeText(code);
     setCopiedCode(true);
+    showToast(t(`Reference code ${code} copied!`, `Nahi-kopya ang reference code ${code}!`), 'success');
     setTimeout(() => setCopiedCode(false), 2500);
+  };
+
+  const handlePrintSlip = () => {
+    triggerHaptic('light');
+    window.print();
   };
 
   // Helper to save to localStorage
@@ -141,6 +179,7 @@ export const ActionCenterPage: React.FC = () => {
 
     setIsSubmitting(false);
     setSubmittedTicket(newSubmission);
+    showToast(t('Ticket submitted successfully! Reference code generated.', 'Malampusong nasumiter ang hangyo! Reference code namugna.'), 'success');
   };
 
   // Track Code Handler
@@ -306,10 +345,10 @@ export const ActionCenterPage: React.FC = () => {
             {/* Form Column */}
             <div className="lg:col-span-8 bg-white/98 rounded-3xl border border-orange-200/80 border-t-white p-6 sm:p-10 shadow-sinoog hover:shadow-sinoog-hover transition-all duration-300 backdrop-blur-md">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label className="block text-xs font-black uppercase tracking-wider text-slate-700 mb-2">
+                <fieldset className="border-0 p-0 m-0">
+                  <legend className="block text-xs font-black uppercase tracking-wider text-slate-700 mb-2">
                     {t('Submission Type', 'Klase sa Hangyo')} *
-                  </label>
+                  </legend>
                   <div className="flex flex-wrap gap-2">
                     {[
                       { value: 'assistance', labelEn: 'Assistance', labelCeb: 'Hinabang' },
@@ -329,43 +368,50 @@ export const ActionCenterPage: React.FC = () => {
                       </Chip>
                     ))}
                   </div>
-                </div>
+                </fieldset>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Full Name */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label htmlFor="action-full-name" className="block text-xs font-bold text-slate-700 mb-1.5">
                       {t('Full Name', 'Tibuok Ngalan')} *
                     </label>
                     <div className="relative">
-                      <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                      <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" />
                       <input
+                        id="action-full-name"
+                        name="full_name"
                         type="text"
                         required
+                        autoComplete="name"
                         placeholder="Juan / Maria Dela Cruz"
                         value={formData.full_name}
                         onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                        className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        className="w-full pl-10 pr-4 py-2.5 rounded-2xl border border-orange-200/90 bg-white/95 text-xs sm:text-sm font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 shadow-2xs min-h-[44px] transition-all"
                       />
                     </div>
                   </div>
 
                   {/* Mobile Contact Number */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label htmlFor="action-contact-number" className="block text-xs font-bold text-slate-700 mb-1.5">
                       {t('Contact Number (Mobile)', 'Numero sa Telepono')} *
                     </label>
                     <div className="relative">
-                      <Phone className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                      <Phone className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" />
                       <input
+                        id="action-contact-number"
+                        name="contact_number"
                         type="tel"
                         required
+                        autoComplete="tel"
+                        inputMode="tel"
                         placeholder="0917-xxx-xxxx"
                         value={formData.contact_number}
                         onChange={(e) =>
                           setFormData({ ...formData, contact_number: e.target.value })
                         }
-                        className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        className="w-full pl-10 pr-4 py-2.5 rounded-2xl border border-orange-200/90 bg-white/95 text-xs sm:text-sm font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 shadow-2xs min-h-[44px] transition-all"
                       />
                     </div>
                   </div>
@@ -374,13 +420,16 @@ export const ActionCenterPage: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {/* Municipality */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label htmlFor="action-municipality" className="block text-xs font-bold text-slate-700 mb-1.5">
                       {t('Municipality', 'Lungsod')} *
                     </label>
                     <select
+                      id="action-municipality"
+                      name="municipality"
+                      autoComplete="address-level2"
                       value={formData.municipality}
                       onChange={(e) => setFormData({ ...formData, municipality: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
+                      className="w-full px-3.5 py-2.5 rounded-2xl border border-orange-200/90 bg-white/95 text-xs sm:text-sm font-medium text-slate-800 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 shadow-2xs min-h-[44px] transition-all"
                     >
                       {BOHOL_DISTRICT_3_TOWNS.map((town) => (
                         <option key={town} value={town}>
@@ -392,30 +441,35 @@ export const ActionCenterPage: React.FC = () => {
 
                   {/* Barangay */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label htmlFor="action-barangay" className="block text-xs font-bold text-slate-700 mb-1.5">
                       {t('Barangay', 'Barangay')} *
                     </label>
                     <input
+                      id="action-barangay"
+                      name="barangay"
                       type="text"
                       required
+                      autoComplete="address-level3"
                       placeholder="e.g. Poblacion, Panadtaran"
                       value={formData.barangay}
                       onChange={(e) => setFormData({ ...formData, barangay: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3.5 py-2.5 rounded-2xl border border-orange-200/90 bg-white/95 text-xs sm:text-sm font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 shadow-2xs min-h-[44px] transition-all"
                     />
                   </div>
 
                   {/* Program Category */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label htmlFor="action-program" className="block text-xs font-bold text-slate-700 mb-1.5">
                       {t('Related Program', 'May Kalabotang Programa')}
                     </label>
                     <select
+                      id="action-program"
+                      name="program_category"
                       value={formData.program_category}
                       onChange={(e) =>
                         setFormData({ ...formData, program_category: e.target.value })
                       }
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
+                      className="w-full px-3.5 py-2.5 rounded-2xl border border-orange-200/90 bg-white/95 text-xs sm:text-sm font-medium text-slate-800 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 shadow-2xs min-h-[44px] transition-all"
                     >
                       {INITIAL_PROGRAMS.map((prog) => (
                         <option key={prog.id} value={prog.title_en}>
@@ -431,24 +485,28 @@ export const ActionCenterPage: React.FC = () => {
 
                 {/* Subject */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                  <label htmlFor="action-subject" className="block text-xs font-bold text-slate-700 mb-1.5">
                     {t('Subject / Brief Summary', 'Ulohan sa Hangyo')}
                   </label>
                   <input
+                    id="action-subject"
+                    name="subject"
                     type="text"
                     placeholder={t('e.g. PTV Medical Transit to Tagbilaran Hospital', 'e.g. Sakyanan sa Pasyente paingon sa Tagbilaran')}
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full px-3.5 py-2.5 rounded-2xl border border-orange-200/90 bg-white/95 text-xs sm:text-sm font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 shadow-2xs min-h-[44px] transition-all"
                   />
                 </div>
 
                 {/* Message Details */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                  <label htmlFor="action-message" className="block text-xs font-bold text-slate-700 mb-1.5">
                     {t('Detailed Message & Particulars', 'Detalyadong Mensahe')} *
                   </label>
                   <textarea
+                    id="action-message"
+                    name="message"
                     required
                     rows={5}
                     placeholder={t(
@@ -457,7 +515,7 @@ export const ActionCenterPage: React.FC = () => {
                     )}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full p-3.5 rounded-2xl border border-orange-200/90 bg-white/95 text-xs sm:text-sm font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 shadow-2xs min-h-[120px] transition-all"
                   />
                 </div>
 
@@ -547,7 +605,7 @@ export const ActionCenterPage: React.FC = () => {
         {activeTab === 'track' && (
           <div className="max-w-3xl mx-auto space-y-8">
             {/* Search Box */}
-            <div className="bg-white/98 rounded-3xl border border-orange-200/80 border-t-white p-6 sm:p-8 shadow-sinoog hover:shadow-sinoog-hover transition-all duration-300 backdrop-blur-md">
+            <search className="bg-white/98 rounded-3xl border border-orange-200/80 border-t-white p-6 sm:p-8 shadow-sinoog hover:shadow-sinoog-hover transition-all duration-300 backdrop-blur-md block">
               <h3 className="text-lg font-black text-slate-900 mb-2">
                 {t('Enter Reference Tracking Code', 'Ibutang ang Reference Code')}
               </h3>
@@ -584,7 +642,7 @@ export const ActionCenterPage: React.FC = () => {
                   <span>{searchError}</span>
                 </div>
               )}
-            </div>
+            </search>
 
             {/* Tracked Ticket Resolution Timeline & Card */}
             {trackedTicket && (
@@ -685,6 +743,27 @@ export const ActionCenterPage: React.FC = () => {
                     </p>
                   </div>
                 )}
+
+                {/* Card Action Controls: Copy Code & Print Official Endorsement Slip */}
+                <div className="pt-2 flex flex-wrap items-center justify-end gap-2.5">
+                  <button
+                    type="button"
+                    onClick={() => handleCopyCode(trackedTicket.reference_code)}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors shadow-2xs cursor-pointer"
+                  >
+                    <Copy className="w-3.5 h-3.5 text-slate-500" />
+                    <span>{t('Copy Code', 'Kopyaha ang Code')}</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handlePrintSlip}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold transition-all shadow-sinoog hover:shadow-sinoog-hover cursor-pointer"
+                  >
+                    <Printer className="w-3.5 h-3.5" />
+                    <span>{t('Print Official Slip', 'I-print ang Resibo')}</span>
+                  </button>
+                </div>
               </Card>
             )}
           </div>
@@ -719,23 +798,34 @@ export const ActionCenterPage: React.FC = () => {
               <div className="text-2xl sm:text-3xl font-black font-mono text-orange-600 my-2">
                 {submittedTicket.reference_code}
               </div>
-              <button
-                type="button"
-                onClick={() => handleCopyCode(submittedTicket.reference_code)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-orange-200 text-xs font-bold text-slate-700 hover:bg-orange-100 transition-colors shadow-2xs"
-              >
-                {copiedCode ? (
-                  <>
-                    <Check className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>{t('Copied to Clipboard!', 'Nahi-kopya na!')}</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-3.5 h-3.5" />
-                    <span>{t('Copy Reference Code', 'Kopyaha ang Code')}</span>
-                  </>
-                )}
-              </button>
+              <div className="flex flex-wrap items-center justify-center gap-2 mt-2">
+                <button
+                  type="button"
+                  onClick={() => handleCopyCode(submittedTicket.reference_code)}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border border-orange-200 text-xs font-bold text-slate-700 hover:bg-orange-100 transition-colors shadow-2xs cursor-pointer"
+                >
+                  {copiedCode ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>{t('Copied to Clipboard!', 'Nahi-kopya na!')}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>{t('Copy Reference Code', 'Kopyaha ang Code')}</span>
+                    </>
+                  )}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handlePrintSlip}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold transition-all shadow-sinoog hover:shadow-sinoog-hover cursor-pointer"
+                >
+                  <Printer className="w-3.5 h-3.5" />
+                  <span>{t('Print Official Slip', 'I-print ang Resibo')}</span>
+                </button>
+              </div>
             </div>
 
             <p className="text-xs text-slate-600 leading-relaxed">
@@ -763,6 +853,165 @@ export const ActionCenterPage: React.FC = () => {
             </div>
           </div>
         </Modal>
+      )}
+
+      {/* =====================================================================
+          4. PRINTABLE OFFICIAL CONSTITUENT ENDORSEMENT SLIP (@media print)
+         ===================================================================== */}
+      {(submittedTicket || trackedTicket) && (
+        <div className="hidden print:block printable-document text-slate-900 bg-white p-8 border-2 border-slate-900 rounded-none max-w-3xl mx-auto my-0">
+          {(() => {
+            const ticket = submittedTicket || trackedTicket!;
+            return (
+              <div className="space-y-6">
+                {/* Official House Header */}
+                <div className="border-b-2 border-slate-900 pb-4 text-center space-y-1">
+                  <div className="text-[11px] font-bold tracking-widest uppercase text-slate-600">
+                    Republic of the Philippines • House of Representatives
+                  </div>
+                  <h1 className="text-xl font-black uppercase tracking-wider text-slate-900">
+                    Office of Congresswoman Kristine Alexie Besas Tutor
+                  </h1>
+                  <div className="text-xs font-semibold text-slate-700">
+                    3rd Congressional District of Bohol • District Headquarters: Poblacion, Candijay, Bohol
+                  </div>
+                  <div className="text-[10px] uppercase font-mono tracking-widest text-slate-500 pt-1">
+                    Constituent Action Center & Case Management System
+                  </div>
+                </div>
+
+                {/* Slip Title & Verification Badge */}
+                <div className="flex items-center justify-between border-b border-slate-300 pb-3">
+                  <div>
+                    <h2 className="text-base font-black uppercase text-slate-900">
+                      Official Constituent Assistance Endorsement Slip
+                    </h2>
+                    <p className="text-xs text-slate-600">
+                      Serbisyo Diretso sa Katawhan: Padayon ang Kumbati!
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <span className="inline-block px-3 py-1 bg-slate-900 text-white font-mono text-xs font-black uppercase tracking-wider">
+                      {ticket.status.toUpperCase().replace('_', ' ')}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Reference Code & Filing Timestamp Box */}
+                <div className="bg-slate-50 border border-slate-400 p-4 rounded-lg flex items-center justify-between">
+                  <div>
+                    <div className="text-[10px] uppercase font-bold text-slate-500">
+                      Official Reference Tracking Number
+                    </div>
+                    <div className="text-2xl font-black font-mono tracking-wider text-slate-900">
+                      {ticket.reference_code}
+                    </div>
+                  </div>
+                  <div className="text-right text-xs">
+                    <div className="text-slate-500 font-bold uppercase text-[10px]">Date Filed</div>
+                    <div className="font-bold text-slate-800">
+                      {new Date(ticket.created_at).toLocaleDateString()} {new Date(ticket.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Constituent & Request Summary Grid */}
+                <table className="w-full text-xs border border-slate-300 border-collapse">
+                  <tbody>
+                    <tr className="border-b border-slate-200">
+                      <td className="w-1/3 p-2.5 font-bold uppercase text-slate-600 bg-slate-50 border-r border-slate-200">
+                        Beneficiary Name
+                      </td>
+                      <td className="p-2.5 font-bold text-slate-900 text-sm">
+                        {ticket.full_name}
+                      </td>
+                    </tr>
+                    <tr className="border-b border-slate-200">
+                      <td className="p-2.5 font-bold uppercase text-slate-600 bg-slate-50 border-r border-slate-200">
+                        Contact Number
+                      </td>
+                      <td className="p-2.5 font-mono font-bold text-slate-900">
+                        {ticket.contact_number}
+                      </td>
+                    </tr>
+                    <tr className="border-b border-slate-200">
+                      <td className="p-2.5 font-bold uppercase text-slate-600 bg-slate-50 border-r border-slate-200">
+                        Municipality & Barangay
+                      </td>
+                      <td className="p-2.5 font-bold text-slate-900">
+                        Barangay {ticket.barangay}, {ticket.municipality}, Bohol
+                      </td>
+                    </tr>
+                    <tr className="border-b border-slate-200">
+                      <td className="p-2.5 font-bold uppercase text-slate-600 bg-slate-50 border-r border-slate-200">
+                        Program Category
+                      </td>
+                      <td className="p-2.5 font-bold text-slate-900">
+                        {ticket.program_category || 'Constituent Assistance'}
+                      </td>
+                    </tr>
+                    <tr className="border-b border-slate-200">
+                      <td className="p-2.5 font-bold uppercase text-slate-600 bg-slate-50 border-r border-slate-200">
+                        Subject / Request
+                      </td>
+                      <td className="p-2.5 font-semibold text-slate-800">
+                        {ticket.subject}
+                      </td>
+                    </tr>
+                    {ticket.message && (
+                      <tr className="border-b border-slate-200">
+                        <td className="p-2.5 font-bold uppercase text-slate-600 bg-slate-50 border-r border-slate-200">
+                          Constituent Narrative
+                        </td>
+                        <td className="p-2.5 text-slate-700 leading-relaxed italic">
+                          &ldquo;{ticket.message}&rdquo;
+                        </td>
+                      </tr>
+                    )}
+                    {ticket.admin_notes && (
+                      <tr>
+                        <td className="p-2.5 font-bold uppercase text-slate-600 bg-slate-50 border-r border-slate-200">
+                          Caseworker Action Notes
+                        </td>
+                        <td className="p-2.5 font-semibold text-slate-900">
+                          {ticket.admin_notes}
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+
+                {/* Important Endorsement Instructions */}
+                <div className="border border-slate-300 p-3 bg-slate-50 text-[11px] space-y-1">
+                  <div className="font-bold uppercase text-slate-800">
+                    Important Instructions for Constituent:
+                  </div>
+                  <p className="text-slate-600 leading-relaxed">
+                    Palihug i-presenta kining opisyal nga endorsement slip uban sa imong Barangay Certificate of Indigency, Valid Government ID, ug Medical Abstract / Hospital Bill / Enrollment Assessment Form ngadto sa imong Municipal Social Welfare Office (MSWDO) o sa Congressional Main Headquarters sa Poblacion, Candijay, Bohol.
+                  </p>
+                </div>
+
+                {/* Verification Box & Signatures */}
+                <div className="pt-6 grid grid-cols-2 gap-8 text-center text-xs">
+                  <div className="border-t border-slate-400 pt-2">
+                    <div className="font-bold uppercase text-slate-800">Receiving Officer / Caseworker</div>
+                    <div className="text-[10px] text-slate-500">Office of Congw. Alexie Besas Tutor</div>
+                  </div>
+                  <div className="border-t border-slate-400 pt-2">
+                    <div className="font-bold uppercase text-slate-800">Official Action Center Stamp</div>
+                    <div className="text-[10px] text-slate-500">Bohol 3rd Congressional District</div>
+                  </div>
+                </div>
+
+                {/* Footer Hotlines */}
+                <div className="border-t-2 border-slate-900 pt-3 flex items-center justify-between text-[10px] text-slate-600 font-semibold">
+                  <div>Main Office: 0917-832-6284 • PTV 24/7 Dispatch: 0917-832-6284</div>
+                  <div>Email: congressmanalexietutor80@gmail.com</div>
+                </div>
+              </div>
+            );
+          })()}
+        </div>
       )}
     </div>
   );

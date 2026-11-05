@@ -67,7 +67,7 @@ export const ImpactPage: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-16 sm:space-y-24 pb-16">
+    <div className="space-y-16 sm:space-y-24 pb-32 sm:pb-36">
       {/* =====================================================================
           1. IMPACT HERO BANNER
          ===================================================================== */}
@@ -76,10 +76,10 @@ export const ImpactPage: React.FC = () => {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-2">
               <FileCheck className="w-3.5 h-3.5" />
-              <span>{t('Audited Governance Report 2027', 'Beripikadong Ulat sa Katawhan 2027')}</span>
+              <span>{t('Audited Governance Report', 'Beripikadong Ulat sa Katawhan')}</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mt-1">
-              {t('2027 Verified KUMBATI Impact Metrics', 'Beripikadong Sukod sa Kalampusan sa KUMBATI 2027')}
+            <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mt-1 text-balance">
+              {t('Verified Flagship Impact Metrics of Team KUMBATI', 'Beripikadong mga Sukod sa Kalampusan sa Team KUMBATI')}
             </h1>
             <p className="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed">
               {t(

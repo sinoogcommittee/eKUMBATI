@@ -105,7 +105,7 @@ e-KUMBATI/
 
 ---
 
-## 3. The 7 Verified 2027 Flagship KUMBATI Metrics
+## 3. The 7 Verified Flagship KUMBATI Metrics
 
 All agents must strictly preserve the data integrity of these 7 core metrics across UI, SQL, seed data, and documentation:
 
@@ -149,12 +149,14 @@ Any feature, filter, dropdown, or directory referencing municipalities must supp
 
 ---
 
-## 5. Official External Channels & Social Links
+## 5. Official External Channels & Communication Contacts
 
-Always use the 2 verified official Facebook channels for Congw. Alexie Besas Tutor and KUMBATI constituent outreach:
+Always use the verified official communication channels for Congw. Alexie Besas Tutor and KUMBATI constituent outreach:
 
-1. **Cong. Alexie Tutor (Official Page)**: `https://www.facebook.com/Cong.AlexieTutor`
-2. **KUMBATI Cares (Community & Outreach Page)**: `https://www.facebook.com/profile.php?id=100063819665430`
+1. **Cong. Alexie Tutor (Official Facebook Page)**: `https://www.facebook.com/Cong.AlexieTutor`
+2. **KUMBATI Cares (Community & Outreach Facebook Page)**: `https://www.facebook.com/profile.php?id=100063819665430`
+3. **Official Instagram**: `https://www.instagram.com/alexietutor`
+4. **Official Constituent Email**: `congressmanalexietutor80@gmail.com`
 
 ---
 
