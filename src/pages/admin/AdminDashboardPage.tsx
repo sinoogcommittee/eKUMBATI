@@ -36,7 +36,7 @@ export const AdminDashboardPage: React.FC = () => {
         const sampleSubmissions: ConstituentSubmission[] = [
           {
             id: 'sub-sample-1',
-            reference_code: 'KMB-2025-A8F2K',
+            reference_code: 'KMB-2027-A8F2K',
             type: 'assistance',
             status: 'pending',
             full_name: 'Rolando C. Torralba',
@@ -50,7 +50,7 @@ export const AdminDashboardPage: React.FC = () => {
           },
           {
             id: 'sub-sample-2',
-            reference_code: 'KMB-2025-M4N9Q',
+            reference_code: 'KMB-2027-M4N9Q',
             type: 'assistance',
             status: 'in_review',
             full_name: 'Annalyn G. Maturan',
@@ -64,7 +64,7 @@ export const AdminDashboardPage: React.FC = () => {
           },
           {
             id: 'sub-sample-3',
-            reference_code: 'KMB-2025-K3B7X',
+            reference_code: 'KMB-2027-K3B7X',
             type: 'query',
             status: 'resolved',
             full_name: 'Mark Lester Galorio',
@@ -167,7 +167,7 @@ export const AdminDashboardPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Stat 3: 2025 Core Metrics */}
+        {/* Stat 3: 2027 Core Metrics */}
         <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex items-center justify-between">
           <div>
             <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
@@ -223,7 +223,7 @@ export const AdminDashboardPage: React.FC = () => {
               title: '7 Flagship Impact Metrics',
               desc: 'Update audited counts for Pabahay, PTV, Clinic, and Scholars',
               icon: ShieldCheck,
-              badge: '2025 Audited',
+              badge: '2027 Audited',
             },
             {
               to: '/admin/programs',

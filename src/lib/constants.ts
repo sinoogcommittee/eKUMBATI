@@ -63,7 +63,7 @@ export const INITIAL_SITE_SETTINGS: SiteSettings = {
 };
 
 // ============================================================================
-// 3. THE 7 VERIFIED 2025 FLAGSHIP KUMBATI METRICS
+// 3. THE 7 VERIFIED 2027 FLAGSHIP KUMBATI METRICS
 // ============================================================================
 export const INITIAL_METRICS: ImpactMetric[] = [
   {
@@ -71,7 +71,7 @@ export const INITIAL_METRICS: ImpactMetric[] = [
     metric_key: 'pabahay',
     title_en: 'Pabahay ni Kumbati Beneficiaries',
     title_ceb: 'Benepisyaryo sa Pabahay ni Kumbati',
-    value_numeric: 259,
+    value_numeric: 310,
     suffix: '+',
     display_order: 1,
     category: 'Housing',
@@ -89,8 +89,8 @@ export const INITIAL_METRICS: ImpactMetric[] = [
     suffix: '',
     display_order: 2,
     category: 'Health',
-    description_en: 'Dedicated 24/7 emergency medical vans providing zero-fare transit for indigent and critical patients.',
-    description_ceb: 'Gipahinungod nga 24/7 ambulansya ug sakyanan medikal nga libreng mohatod sa pasyente sa tambalanan.',
+    description_en: 'Dedicated 24/7 emergency medical fleet completing over 6,200+ zero-fare transits for indigent and dialysis patients.',
+    description_ceb: 'Gipahinungod nga 24/7 sakyanan medikal nga nakakompleto sa kapin 6,200+ ka libreng paghatod sa pasyente sa tambalanan.',
     icon_name: 'Ambulance',
     is_active: true,
   },
@@ -113,8 +113,8 @@ export const INITIAL_METRICS: ImpactMetric[] = [
     metric_key: 'community_beneficiaries',
     title_en: 'KUMBATI Community Beneficiaries',
     title_ceb: 'Benepisyaryong Komunidad sa KUMBATI',
-    value_numeric: 31,
-    suffix: '',
+    value_numeric: 36,
+    suffix: '+',
     display_order: 4,
     category: 'Community',
     description_en: 'Rural barangays and priority sitios energized with solar electrification, water supply, and multipurpose access.',
@@ -127,7 +127,7 @@ export const INITIAL_METRICS: ImpactMetric[] = [
     metric_key: 'kumbati_clinic',
     title_en: 'Kumbati Medical Clinic Patients',
     title_ceb: 'Pasyente sa Kumbati Medical Clinic',
-    value_numeric: 2000,
+    value_numeric: 3200,
     suffix: '+',
     display_order: 5,
     category: 'Health',
@@ -141,7 +141,7 @@ export const INITIAL_METRICS: ImpactMetric[] = [
     metric_key: 'sustainable_livelihood',
     title_en: 'Sustainable Livelihood Beneficiaries',
     title_ceb: 'Asosasyon sa Malungtarong Panginabuhian',
-    value_numeric: 78,
+    value_numeric: 88,
     suffix: '+',
     display_order: 6,
     category: 'Livelihood',
@@ -155,7 +155,7 @@ export const INITIAL_METRICS: ImpactMetric[] = [
     metric_key: 'ched_tdp_scholars',
     title_en: 'CHED-TDP & District Scholars',
     title_ceb: 'Mga Iskolar sa CHED-TDP ug Distrito',
-    value_numeric: 3829,
+    value_numeric: 4500,
     suffix: '+',
     display_order: 7,
     category: 'Education',
@@ -179,9 +179,9 @@ export const INITIAL_PROGRAMS: ProgramAdvocacy[] = [
     summary_en: 'Providing dignified, durable disaster-resilient housing units to underprivileged families, disaster victims, and informal settlers.',
     summary_ceb: 'Paghatag og desente, lig-on, ug luwas nga panimalay alang sa mga kabus nga pamilya, biktima sa kalamidad, ug walay kaugalingong luna.',
     full_description_en:
-      'The Pabahay ni Kumbati program is Congw. Alexie Tutor’s flagship socialized housing initiative. Built with reinforced concrete, steel roofing, and sustainable sanitation systems, over 259+ units have been turned over to vulnerable households across Bohol District 3, ensuring long-term family dignity and safety from typhoons.',
+      'The Pabahay ni Kumbati program is Congw. Alexie Tutor’s flagship socialized housing initiative. Built with reinforced concrete, steel roofing, and sustainable sanitation systems, over 310+ units have been turned over to vulnerable households across Bohol District 3, ensuring long-term family dignity and safety from typhoons.',
     full_description_ceb:
-      'Ang programang Pabahay ni Kumbati mao ang nag-unang inisyatiba sa pabalay ni Congw. Alexie Tutor. Gitukod gamit ang semento, lig-on nga atop, ug husto nga pansayan, kapin 259+ ka pamilya na ang nakadawat og yawi sa bag-ong balay aron mapanalipdan sila batok sa mga bagyo ug kalamidad.',
+      'Ang programang Pabahay ni Kumbati mao ang nag-unang inisyatiba sa pabalay ni Congw. Alexie Tutor. Gitukod gamit ang semento, lig-on nga atop, ug husto nga pansayan, kapin 310+ ka pamilya na ang nakadawat og yawi sa bag-ong balay aron mapanalipdan sila batok sa mga bagyo ug kalamidad.',
     requirements_en: [
       'Certificate of Indigency from Barangay Captain',
       'Proof of Lot Ownership or Certificate of Land Usufruct / Permission',
@@ -328,8 +328,8 @@ export const INITIAL_PROGRAMS: ProgramAdvocacy[] = [
     title_en: 'Sustainable Livelihood & Cooperative Support',
     title_ceb: 'Malungtarong Panginabuhian ug Kooperatiba',
     category: 'Livelihood',
-    summary_en: 'Granting starter capital, commercial toolkits, and cooperative training to 78+ women, farmer, and fisherfolk associations.',
-    summary_ceb: 'Paghatag og puhonan, gamit pangnegosyo, ug pagbansay sa kapin 78+ ka asosasyon sa mga mag-uuma, mangingisda, ug kababayen-an.',
+    summary_en: 'Granting starter capital, commercial toolkits, and cooperative training to 88+ women, farmer, and fisherfolk associations.',
+    summary_ceb: 'Paghatag og puhonan, gamit pangnegosyo, ug pagbansay sa kapin 88+ ka asosasyon sa mga mag-uuma, mangingisda, ug kababayen-an.',
     full_description_en:
       'In coordination with DSWD-SLP, DOLE, and DTI, the Sustainable Livelihood Program mobilizes organized community groups into productive, self-sufficient micro-enterprises ranging from food processing to communal poultry and high-value crop production.',
     full_description_ceb:
@@ -390,14 +390,14 @@ export const INITIAL_PROGRAMS: ProgramAdvocacy[] = [
 export const INITIAL_ALBUMS: GalleryAlbum[] = [
   {
     id: 'album-pabahay-turnover',
-    title_en: 'Pabahay ni Kumbati 259th Home Turnover Ceremonies',
-    title_ceb: 'Turnover sa Ika-259 nga Balay sa Pabahay ni Kumbati',
+    title_en: 'Pabahay ni Kumbati 300th Home Turnover Ceremonies',
+    title_ceb: 'Turnover sa Ika-300 nga Balay sa Pabahay ni Kumbati',
     description_en: 'Heartwarming handover of concrete housing units to grateful Boholano families across Candijay, Guindulman, and Carmen.',
     description_ceb: 'Mabungahong pagtugyan sa mga yawi sa sementadong panimalay sa mga pamilya sa Candijay, Guindulman, ug Carmen.',
     cover_image_url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80',
     category: 'Housing',
     municipality: 'Candijay',
-    event_date: '2025-01-15',
+    event_date: '2026-11-25',
     display_order: 1,
     media_count: 3,
   },
@@ -410,7 +410,7 @@ export const INITIAL_ALBUMS: GalleryAlbum[] = [
     cover_image_url: 'https://images.unsplash.com/photo-1587745416684-47953f16f02f?auto=format&fit=crop&w=800&q=80',
     category: 'Health',
     municipality: 'Jagna',
-    event_date: '2025-02-02',
+    event_date: '2026-12-10',
     display_order: 2,
     media_count: 2,
   },
@@ -423,20 +423,20 @@ export const INITIAL_ALBUMS: GalleryAlbum[] = [
     cover_image_url: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80',
     category: 'Health',
     municipality: 'District-wide',
-    event_date: '2025-02-18',
+    event_date: '2027-01-15',
     display_order: 3,
     media_count: 2,
   },
   {
     id: 'album-ched-payout',
-    title_en: 'CHED-TDP Scholarship Payout for 3,829+ Scholars',
-    title_ceb: 'Pagpanghatag sa CHED-TDP Stipend sa mga Iskolar',
+    title_en: 'CHED-TDP Scholarship Payout for 4,500+ Scholars',
+    title_ceb: 'Pagpanghatag sa CHED-TDP Stipend sa Kapin 4,500 ka mga Iskolar',
     description_en: 'Congw. Alexie Tutor leading the ceremonial distribution of educational grants to college scholars.',
     description_ceb: 'Si Congw. Alexie Tutor nangulo sa pag-apod-apod sa hinabang pinansyal sa mga estudyante sa kolehiyo.',
     cover_image_url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80',
     category: 'Education',
     municipality: 'Carmen',
-    event_date: '2025-03-01',
+    event_date: '2027-02-01',
     display_order: 4,
     media_count: 2,
   },
@@ -732,7 +732,7 @@ export const INITIAL_MAP_LOCATIONS: MapLocation[] = [
     longitude: 124.5211,
     phone: '(038) 526-0123',
     operating_hours: 'Visits by Appointment',
-    description_en: 'Model community of 60+ concrete disaster-proof homes completed in 2024–2025.',
+    description_en: 'Model community of 60+ concrete disaster-proof homes completed in 2024–2026.',
     description_ceb: 'Modelong komunidad sa 60+ ka lig-on nga pabalay nga gitunol sa mga pamilya.',
     is_active: true,
   },
@@ -1009,7 +1009,7 @@ Tawag o pakig-alayon sa Tambayan Coordinator sa +63 917 832 6284 labing menos 24
     excerpt_ceb: 'Gipahigayon ang inspeksyon ug pagsusi sa listahan sa mga benepisyaryo sa bag-ong sementadong balay nga dili maguba sa katalagman.',
     content_en: `Engineers from the District Technical Planning Office, in coordination with municipal social welfare officers from Dimiao, Garcia Hernandez, Valencia, and Lila, have concluded initial ground validations for Phase 4 of Pabahay ni Kumbati.
 
-This flagship socialized shelter program of Congw. Alexie Tutor has already turned over 259+ concrete homes to landless, indigent families living in danger zones or disaster-vulnerable shorelines.
+This flagship socialized shelter program of Congw. Alexie Tutor has already turned over 310+ concrete homes to landless, indigent families living in danger zones or disaster-vulnerable shorelines.
 
 Key Specifications of Each Pabahay Unit:
 - Monolithic reinforced concrete foundation engineered to withstand Category 5 super typhoons
@@ -1020,7 +1020,7 @@ Key Specifications of Each Pabahay Unit:
 Beneficiary selection is strictly vetted through municipal MSWDO assessments, focusing on families without legal land tenure or residing in high-risk cliffside and storm-surge hazard zones.`,
     content_ceb: `Ang mga inhenyero sa Distrito, kauban ang mga MSWDO sa Dimiao, Garcia Hernandez, Valencia, ug Lila, nakahuman na sa validation alang sa Phase 4 sa Pabahay ni Kumbati.
 
-Kini nga programa ni Congw. Alexie Tutor nakahatag na og kapin 259+ ka sementadong panimalay sa mga kabus nga pamilya nga nagpuyo sa danger zones o daplin sa baybayon.
+Kini nga programa ni Congw. Alexie Tutor nakahatag na og kapin 310+ ka sementadong panimalay sa mga kabus nga pamilya nga nagpuyo sa danger zones o daplin sa baybayon.
 
 Mga Kinaiya sa Balay sa Pabahay:
 - Sementado nga pundasyon nga makasukol sa kusog nga bagyo

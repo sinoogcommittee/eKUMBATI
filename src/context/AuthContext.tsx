@@ -78,7 +78,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const signInWithPassword = async (email: string, password: string): Promise<{ error: Error | null }> => {
     // If entered demo credentials, activate demo mode
-    if (email === 'demo@kumbati.bohol3.gov.ph' && password === 'kumbati2025') {
+    if (email === 'demo@kumbati.bohol3.gov.ph' && (password === 'kumbati2027' || password === 'kumbati2025')) {
       loginWithDemo();
       return { error: null };
     }

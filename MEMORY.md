@@ -12,14 +12,14 @@
 
 ---
 
-## 2. Verified 2025 Flagship Metrics
-1. **Pabahay ni Kumbati**: 259+ Housing Beneficiaries
-2. **PTV (Patient Transport Vehicles)**: 4 24/7 Medical Transport Vans
+## 2. Verified 2027 Flagship Metrics
+1. **Pabahay ni Kumbati**: 310+ Housing Beneficiaries
+2. **PTV (Patient Transport Vehicles)**: 4 24/7 Medical Transport Vans (6,200+ patient runs)
 3. **Tambayan ni Kumbati for Dialysis Patients**: 1 Free Patient Haven in Tagbilaran City
-4. **KUMBATI Community Beneficiaries**: 31 Empowered Rural Communities
-5. **Kumbati Medical Clinic**: 2,000+ Clinic Consultations & Patients Served
-6. **Sustainable Livelihood Program**: 78+ People's Organizations / Cooperatives
-7. **CHED-TDP & District Scholars**: 3,829+ Tertiary Students Supported
+4. **KUMBATI Community Beneficiaries**: 36+ Empowered Rural Communities
+5. **Kumbati Medical Clinic**: 3,200+ Clinic Consultations & Patients Served
+6. **Sustainable Livelihood Program**: 88+ People's Organizations / Cooperatives
+7. **CHED-TDP & District Scholars**: 4,500+ Tertiary Students Supported
 
 ---
 
@@ -35,14 +35,16 @@
 - **Framework**: Vite + React 18 + TypeScript + Tailwind CSS
 - **Bilingual Strategy**: English (`en`) & Boholano Cebuano (`ceb`) managed reactively via `LanguageContext` with persistent fallback.
 - **Data Layer**: Hybrid Supabase client with graceful fallback to `src/lib/constants.ts` when environment variables are omitted or network queries fail.
-- **Action Center Offline Tracking**: Saves submitted tickets to `localStorage` under `kumbati_offline_submissions` so testing and constituent code retrieval works without database setup.
-- **Admin Access**: Real Supabase Auth + local demonstration switch (`demo@kumbati.bohol3.gov.ph` / `kumbati2025`) for offline CMS preview.
+- **Action Center Offline Tracking**: Saves submitted tickets to `localStorage` under `kumbati_offline_submissions` so testing and constituent code retrieval works without database setup (`KMB-2027-XXXXX`).
+- **Admin Access**: Real Supabase Auth + local demonstration switch (`demo@kumbati.bohol3.gov.ph` / `kumbati2027`) for offline CMS preview.
 - **Image Optimization**: Client-side conversion to `.webp` via `browser-image-compression` before transmission.
+- **Design System**: Sinoog 2027 Material Design 3 3-layer pop shadows (`shadow-sinoog`), pill button curvature (`rounded-full`), and adaptive spacing.
 
 ---
 
 ## 5. Progress History
 - **2026-11-04**: Workspace initialized from scratch.
+- **2026-11-05**: Advanced temporal context across all 8 public and 8 admin pages to 2027, updating flagship metrics (310+ Pabahay homes, 4,500+ scholars, 3,200+ clinic patients, 88+ livelihood associations, 4 PTVs with 6,200+ runs), 2027 reference code format `KMB-2027-XXXXX`, demo credentials `kumbati2027`, and verified milestones through 2027.
   - Authored foundational blueprint files (`PRD.md`, `ARCHITECTURE.md`, `RULES.md`, `DESIGN.md`, `DATABASE.md`, `TASKS.md`, `MEMORY.md`, `DEPLOYMENT.md`, `AGENTS.md`).
   - Generated project root configurations (`package.json`, `tsconfig.json`, `vite.config.ts`, `tailwind.config.js`, `postcss.config.js`, `index.html`, `.env.example`, `src/index.css`, `src/vite-env.d.ts`).
   - Authored Phase 1 core modules: `kumbati.types.ts`, `constants.ts`, `supabaseClient.ts`, `imageCompression.ts`, `LanguageContext.tsx`, `AuthContext.tsx`.

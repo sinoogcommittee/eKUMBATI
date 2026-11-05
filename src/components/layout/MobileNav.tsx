@@ -36,7 +36,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
   const navItems = [
     { to: '/', labelEn: 'Home', labelCeb: 'Balay', icon: Home },
     { to: '/programs', labelEn: '7 Flagship Programs', labelCeb: '7 ka Programa', icon: Layers },
-    { to: '/impact', labelEn: '2025 Impact Metrics', labelCeb: 'Kalampusan', icon: BarChart3 },
+    { to: '/impact', labelEn: '2027 Impact Metrics', labelCeb: 'Kalampusan', icon: BarChart3 },
     { to: '/news', labelEn: 'News & Announcements', labelCeb: 'Mga Pahibalo', icon: Bell },
     { to: '/gallery', labelEn: 'Photo Gallery', labelCeb: 'Galeriya', icon: Image },
     { to: '/directory', labelEn: '19 Towns Directory', labelCeb: '19 ka Lungsod', icon: MapPin },

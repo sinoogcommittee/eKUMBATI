@@ -29,31 +29,40 @@ export const ImpactPage: React.FC = () => {
 
   const milestonesTimeline = [
     {
-      year: '2023',
+      year: '2023–2024',
       titleEn: 'PTV Fleet Launch & Dialysis Haven Groundwork',
       titleCeb: 'Paglunsad sa PTV ug Pagsugod sa Tambayan sa Dialysis',
       descEn:
-        'Procured the first 2 Patient Transport Vehicles and established the legal and operational framework for Tambayan ni Kumbati in Tagbilaran City.',
+        'Procured dedicated Patient Transport Vehicles, established Tambayan ni Kumbati in Tagbilaran City, and completed the first 100+ disaster-resilient concrete Pabahay homes.',
       descCeb:
-        'Gipalit ang unang 2 ka PTV ug gihan-ay ang plano alang sa libreng pahuwayan sa dialysis sa Tagbilaran.',
-    },
-    {
-      year: '2024',
-      titleEn: '100+ Homes Handed Over & 2,500+ Scholars Enrolled',
-      titleCeb: 'Kapin 100 ka Balay Gitunol ug 2,500+ Iskolar Natabangan',
-      descEn:
-        'Massive turnover of concrete Pabahay units in coastal towns and exponential expansion of CHED Tulong Dunong beneficiaries.',
-      descCeb:
-        'Pagtugyan sa mga balay sa Candijay ug Guindulman ug pagsaka sa gidaghanon sa mga batan-ong nakadawat og educational subsidy.',
+        'Gipalit ang unang mga PTV, gitukod ang Tambayan ni Kumbati sa Tagbilaran, ug nahuman ang unang 100+ ka lig-on nga pabalay.',
     },
     {
       year: '2025',
-      titleEn: '4 PTVs in 24/7 Operations, 259+ Pabahay & 3,829+ Scholars',
-      titleCeb: '4 ka PTV 24/7, 259+ Balay ug 3,829+ Iskolar sa Kolehiyo',
+      titleEn: 'Healthcare Law (RA 11883) & 259+ Pabahay Homes',
+      titleCeb: 'Balaod sa Panglawas (RA 11883) ug 259+ Balay sa Pabahay',
       descEn:
-        'Achieved peak service capacity: 4 dedicated PTV emergency units, 2,000+ clinic patients, and 78+ empowered livelihood cooperatives.',
+        'Enacted RA 11883 expanding Simeon Toribio Memorial Hospital to 75 beds with ICU, reached 259+ concrete homes, and subsidized 3,829+ college scholars.',
       descCeb:
-        'Nakab-ot ang kinapungkayang serbisyo: 4 ka modernong ambulansya, 2,000+ pasyente sa klinika, ug 78+ ka asosasyon sa panginabuhian.',
+        'Napalabang ang RA 11883 pagpadako sa tambalanan sa Carmen, naabot ang 259+ ka balay, ug natabangan ang 3,829+ ka mga iskolar.',
+    },
+    {
+      year: '2026',
+      titleEn: '300+ Pabahay Milestone & 5,000+ PTV Patient Transits',
+      titleCeb: 'Ika-300 nga Pabahay ug 5,000+ Biyahe sa PTV',
+      descEn:
+        'Celebrated the 300th home turnover, mobilized AT Kumbati Foundation community medical missions, and completed 5,000+ zero-fare emergency hospital runs.',
+      descCeb:
+        'Gisaulog ang ika-300 nga balay, gipalihok ang mga medical mission sa AT Kumbati Foundation, ug nakakompleto og 5,000+ ka libreng biyahe sa pasyente.',
+    },
+    {
+      year: '2027',
+      titleEn: '310+ Resilient Homes, 4,500+ Scholars & e-KUMBATI Portal',
+      titleCeb: '310+ Balay, 4,500+ Iskolar ug e-KUMBATI 24/7 Portal',
+      descEn:
+        'Launched the unified 19-town digital constituent Action Center, expanded college scholars to 4,500+, and supported 88+ sustainable livelihood cooperatives.',
+      descCeb:
+        'Gilusad ang digital Action Center sa 19 ka lungsod, gipasaka ngadto sa 4,500+ ang mga iskolar, ug gipaluyohan ang 88+ ka kooperatiba sa panginabuhian.',
     },
   ];
 
@@ -67,10 +76,10 @@ export const ImpactPage: React.FC = () => {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-2">
               <FileCheck className="w-3.5 h-3.5" />
-              <span>{t('Audited Governance Report 2025', 'Beripikadong Ulat sa Katawhan 2025')}</span>
+              <span>{t('Audited Governance Report 2027', 'Beripikadong Ulat sa Katawhan 2027')}</span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mt-1">
-              {t('2025 Verified KUMBATI Impact Metrics', 'Beripikadong Sukod sa Kalampusan sa KUMBATI 2025')}
+              {t('2027 Verified KUMBATI Impact Metrics', 'Beripikadong Sukod sa Kalampusan sa KUMBATI 2027')}
             </h1>
             <p className="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed">
               {t(
@@ -216,7 +225,7 @@ export const ImpactPage: React.FC = () => {
       </section>
 
       {/* =====================================================================
-          4. MILESTONES TIMELINE (2023 - 2025)
+          4. MILESTONES TIMELINE (2023 - 2027)
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-10">
@@ -228,7 +237,7 @@ export const ImpactPage: React.FC = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {milestonesTimeline.map((item, idx) => (
             <div
               key={idx}

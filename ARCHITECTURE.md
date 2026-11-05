@@ -96,7 +96,7 @@ e-KUMBATI/
         │   ├── HomePage.tsx               # Hero, Metrics, Quick Actions, Featured
         │   ├── AboutPage.tsx              # Congw. Alexie bio, 19th Congress, District 3
         │   ├── ProgramsPage.tsx           # 7 Flagship programs, requirements, guide
-        │   ├── ImpactPage.tsx             # 2025 verified metrics, district impact
+        │   ├── ImpactPage.tsx             # 2027 verified metrics, district impact
         │   ├── GalleryPage.tsx            # Multi-album photo & video repository
         │   ├── DirectoryPage.tsx          # 19 municipalities & emergency hotlines
         │   ├── MapPage.tsx                # Interactive geospatial facility finder
@@ -140,9 +140,9 @@ e-KUMBATI/
              +--------------+               +----------------------+
 ```
 
-1. **Uninterrupted User Experience**: If the website is launched before the Supabase database is provisioned, or if an anonymous API limit is reached, the frontend switches cleanly to pre-packaged verified 2025 KUMBATI seed data.
-2. **Action Center Ticket Fallback**: When submitting an inquiry without an active Supabase backend, a genuine reference code (e.g. `KMB-2025-XXXXX`) is still created and saved to browser `localStorage`, allowing the user to experience full ticket tracking functionality immediately.
-3. **Admin Demo Mode**: If staff needs to test the administrative CMS before production credentials are ready, a built-in demo toggle (`demo@kumbati.bohol3.gov.ph` / `kumbati2025`) provides safe, sandboxed UI exploration without throwing authentication errors.
+1. **Uninterrupted User Experience**: If the website is launched before the Supabase database is provisioned, or if an anonymous API limit is reached, the frontend switches cleanly to pre-packaged verified 2027 KUMBATI seed data.
+2. **Action Center Ticket Fallback**: When submitting an inquiry without an active Supabase backend, a genuine reference code (e.g. `KMB-2027-XXXXX`) is still created and saved to browser `localStorage`, allowing the user to experience full ticket tracking functionality immediately.
+3. **Admin Demo Mode**: If staff needs to test the administrative CMS before production credentials are ready, a built-in demo toggle (`demo@kumbati.bohol3.gov.ph` / `kumbati2027`) provides safe, sandboxed UI exploration without throwing authentication errors.
 
 ---
 

@@ -350,7 +350,7 @@ export const AdminGalleryPage: React.FC = () => {
               <input
                 type="text"
                 required
-                placeholder="e.g. Pabahay 2025 Handover in Guindulman"
+                placeholder="e.g. Pabahay 2027 Handover in Guindulman"
                 value={newAlbumData.title_en}
                 onChange={(e) =>
                   setNewAlbumData({ ...newAlbumData, title_en: e.target.value })

@@ -7,16 +7,16 @@
 
 ---
 
-## 🌟 The 7 Flagship 2025 KUMBATI Impact Metrics
+## 🌟 The 7 Flagship 2027 KUMBATI Impact Metrics
 
 The portal prominently tracks and verifies the 7 flagship district accomplishments:
-1. **Pabahay ni Kumbati**: **259+** Safe & Resilient Concrete Housing Beneficiaries.
-2. **Patient Transport Vehicles (PTV)**: **4** Dedicated 24/7 Emergency Medical & Referral Vans.
+1. **Pabahay ni Kumbati**: **310+** Safe & Resilient Concrete Housing Beneficiaries.
+2. **Patient Transport Vehicles (PTV)**: **4** Dedicated 24/7 Emergency Medical & Referral Vans (6,200+ patient runs).
 3. **Tambayan ni Kumbati for Dialysis Patients**: **1** Free Patient Haven in Tagbilaran City offering free air-conditioned beds and meals.
-4. **KUMBATI Community Beneficiaries**: **31** Grassroots Communities empowered through solar electrification, water supply, and access paths.
-5. **Kumbati Medical Clinic**: **2,000+** Patients provided with free doctor checkups, laboratory vouchers, and maintenance medications.
-6. **Sustainable Livelihood Program**: **78+** People's organizations, cooperatives, and women's associations funded with capital and toolkits.
-7. **CHED-TDP & District Scholars**: **3,829+** Tertiary students supported through Tulong Dunong Program and congressional grants.
+4. **KUMBATI Community Beneficiaries**: **36+** Grassroots Communities empowered through solar electrification, water supply, and access paths.
+5. **Kumbati Medical Clinic**: **3,200+** Patients provided with free doctor checkups, laboratory vouchers, and maintenance medications.
+6. **Sustainable Livelihood Program**: **88+** People's organizations, cooperatives, and women's associations funded with capital and toolkits.
+7. **CHED-TDP & District Scholars**: **4,500+** Tertiary students supported through Tulong Dunong Program and congressional grants.
 
 ---
 
@@ -31,7 +31,7 @@ Alicia • Anda • Batuan • Bilar • Candijay • Carmen • Dimiao • Duer
 - **Hybrid Resilience & Offline Mode**: Operates seamlessly whether connected to Supabase BaaS or running completely standalone using pre-packaged seed data (`src/lib/constants.ts`).
 - **Constituent Action Center**:
   - File assistance requests, inquiries, grievances, or commendations.
-  - Automatically issues an alphanumeric Reference Tracking Code (e.g. `KMB-2025-XXXXX`).
+  - Automatically issues an alphanumeric Reference Tracking Code (e.g. `KMB-2027-XXXXX`).
   - Real-time resolution progress tracker (Submitted &rarr; In Review &rarr; Action Taken &rarr; Resolved).
 - **19-Town Directory & Interactive Leaflet Map**:
   - Direct telephone links (`tel:`) for all Municipal Halls, MDRRMO rescue lines, and Congressional field offices.
@@ -41,7 +41,7 @@ Alicia • Anda • Batuan • Bilar • Candijay • Carmen • Dimiao • Duer
 - **Bilingual Interface**: Reactive language switcher (`EN` / `CEB`) with persistent storage.
 - **Administrative CMS Back-Office (`/admin`)**:
   - Live management of site copy, 7 impact counters, program requirement checklists, photo albums, action center tickets, and hotlines.
-  - **1-Click Demo Sandbox Admin** (`demo@kumbati.bohol3.gov.ph` / `kumbati2025`).
+  - **1-Click Demo Sandbox Admin** (`demo@kumbati.bohol3.gov.ph` / `kumbati2027`).
 
 ---
 

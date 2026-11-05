@@ -105,19 +105,19 @@ e-KUMBATI/
 
 ---
 
-## 3. The 7 Verified 2025 Flagship KUMBATI Metrics
+## 3. The 7 Verified 2027 Flagship KUMBATI Metrics
 
 All agents must strictly preserve the data integrity of these 7 core metrics across UI, SQL, seed data, and documentation:
 
 | # | Metric Key | English Title | Cebuano Title | Value | Suffix | Category |
 |---|---|---|---|:---:|:---:|---|
-| 1 | `pabahay` | Pabahay ni Kumbati Beneficiaries | Benepisyaryo sa Pabahay ni Kumbati | **259** | `+` | Housing |
+| 1 | `pabahay` | Pabahay ni Kumbati Beneficiaries | Benepisyaryo sa Pabahay ni Kumbati | **310** | `+` | Housing |
 | 2 | `ptv` | Patient Transport Vehicles (PTV) | Patient Transport Vehicles (PTV) | **4** | *(none)* | Health |
 | 3 | `dialysis_tambayan` | Tambayan ni Kumbati for Dialysis Patients | Tambayan ni Kumbati sa mga Dialysis Patients | **1** | *(none)* | Health |
-| 4 | `community_beneficiaries` | KUMBATI Community Beneficiaries | Benepisyaryong Komunidad sa KUMBATI | **31** | *(none)* | Community |
-| 5 | `kumbati_clinic` | Kumbati Medical Clinic Patients | Pasyente sa Kumbati Medical Clinic | **2,000** | `+` | Health |
-| 6 | `sustainable_livelihood` | Sustainable Livelihood Beneficiaries | Asosasyon sa Malungtarong Panginabuhian | **78** | `+` | Livelihood |
-| 7 | `ched_tdp_scholars` | CHED-TDP & District Scholars | Mga Iskolar sa CHED-TDP ug Distrito | **3,829** | `+` | Education |
+| 4 | `community_beneficiaries` | KUMBATI Community Beneficiaries | Benepisyaryong Komunidad sa KUMBATI | **36** | `+` | Community |
+| 5 | `kumbati_clinic` | Kumbati Medical Clinic Patients | Pasyente sa Kumbati Medical Clinic | **3,200** | `+` | Health |
+| 6 | `sustainable_livelihood` | Sustainable Livelihood Beneficiaries | Asosasyon sa Malungtarong Panginabuhian | **88** | `+` | Livelihood |
+| 7 | `ched_tdp_scholars` | CHED-TDP & District Scholars | Mga Iskolar sa CHED-TDP ug Distrito | **4,500** | `+` | Education |
 
 ---
 
@@ -168,7 +168,7 @@ All constituent inquiries and assistance tickets generated in the Action Center 
   - `KMB-`: Official portal prefix.
   - `YYYY`: Current 4-digit calendar year (e.g. `2026`).
   - `XXXXX`: 5-character uppercase alphanumeric string excluding ambiguous characters (`0`, `O`, `I`, `1` avoided when practical).
-  - *Example*: `KMB-2026-AB78X`.
+  - *Example*: `KMB-2027-AB78X`.
 - **Validation Regex**: `^KMB-[0-9]{4}-[A-Z0-9]{5}$`
 - **Status Progression**:
   - `pending` (Default upon constituent submission)

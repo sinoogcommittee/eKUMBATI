@@ -130,7 +130,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/impact" className="hover:text-orange-400 transition-colors">
-                  {t('2025 Verified Impact Metrics', 'Beripikadong Kalampusan 2025')}
+                  {t('2027 Verified Impact Metrics', 'Beripikadong Kalampusan 2027')}
                 </Link>
               </li>
               <li>

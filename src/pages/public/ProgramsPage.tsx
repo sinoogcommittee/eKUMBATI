@@ -257,7 +257,7 @@ export const ProgramsPage: React.FC = () => {
               </h3>
               <p className="text-xs text-slate-400 leading-relaxed">
                 {t(
-                  'Receive a unique tracking code (e.g., KMB-2025-XXXXX) to check real-time approval status and payout schedules.',
+                  'Receive a unique tracking code (e.g., KMB-2027-XXXXX) to check real-time approval status and payout schedules.',
                   'Gamita ang Reference Code aron masayran ang pag-apruba, iskedyul sa sakyanan, o petsa sa payout sa imong ayuda.'
                 )}
               </p>

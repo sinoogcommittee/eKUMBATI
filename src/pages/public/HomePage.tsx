@@ -171,7 +171,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* =====================================================================
-          2. THE 7 VERIFIED 2025 KUMBATI IMPACT METRICS
+          2. THE 7 VERIFIED 2027 KUMBATI IMPACT METRICS
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
@@ -181,7 +181,7 @@ export const HomePage: React.FC = () => {
               <span>{t('Audit-Verified Governance', 'Matinud-anong Pag-alagad')}</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              {t('7 Flagship 2025 KUMBATI Impact Metrics', '7 ka mga Nag-unang Sukod sa Kalampusan sa KUMBATI 2025')}
+              {t('7 Flagship 2027 KUMBATI Impact Metrics', '7 ka mga Nag-unang Sukod sa Kalampusan sa KUMBATI 2027')}
             </h2>
             <p className="text-sm text-slate-600 mt-1">
               {t(
@@ -358,7 +358,7 @@ export const HomePage: React.FC = () => {
               </h2>
               <p className="text-sm sm:text-base text-orange-50 leading-relaxed max-w-2xl">
                 {t(
-                  'The Action Center routes your query directly to congressional caseworkers. Get an instant reference tracking code (e.g., KMB-2025-XXXXX) to track resolution progress anytime.',
+                  'The Action Center routes your query directly to congressional caseworkers. Get an instant reference tracking code (e.g., KMB-2027-XXXXX) to track resolution progress anytime.',
                   'Ang Sentro sa Aksyon modirekta sa imong hangyo ngadto sa buhatan. Makadawat ka og Reference Code aron masubay ang estado sa imong ticket bisan unsang orasa.'
                 )}
               </p>

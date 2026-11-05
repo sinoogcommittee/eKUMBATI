@@ -107,7 +107,7 @@ export const ActionCenterPage: React.FC = () => {
 
     // Generate unique alphanumeric tracking code: KMB-YYYY-XXXXX
     const randomChars = Math.random().toString(36).substring(2, 7).toUpperCase();
-    const currentYear = new Date().getFullYear();
+    const currentYear = Math.max(new Date().getFullYear(), 2027);
     const referenceCode = `KMB-${currentYear}-${randomChars}`;
 
     const newSubmission: ConstituentSubmission = {
@@ -181,11 +181,11 @@ export const ActionCenterPage: React.FC = () => {
       }
     }
 
-    // Default sample for demo preview if code equals 'KMB-2025-DEMO1'
-    if (code === 'KMB-2025-DEMO1') {
+    // Default sample for demo preview if code equals 'KMB-2027-DEMO1' or legacy 'KMB-2025-DEMO1'
+    if (code === 'KMB-2027-DEMO1' || code === 'KMB-2025-DEMO1') {
       const demoTicket: ConstituentSubmission = {
         id: 'sub-demo-1',
-        reference_code: 'KMB-2025-DEMO1',
+        reference_code: 'KMB-2027-DEMO1',
         type: 'assistance',
         status: 'action_taken',
         full_name: 'Maria Elena Dumadag',
@@ -196,7 +196,7 @@ export const ActionCenterPage: React.FC = () => {
         message: 'Requesting validation of barangay indigency certificate for housing unit.',
         program_category: 'Pabahay ni Kumbati',
         admin_notes: 'Endorsed to District Field Engineer for land lot verification. Scheduled visit on Friday.',
-        created_at: '2025-02-14T08:30:00Z',
+        created_at: '2027-02-14T08:30:00Z',
       };
       setTrackedTicket(demoTicket);
       setIsSearching(false);
@@ -493,7 +493,7 @@ export const ActionCenterPage: React.FC = () => {
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                     <span>
                       {t(
-                        'You instantly receive a verified Reference Code (e.g. KMB-2025-XXXXX).',
+                        'You instantly receive a verified Reference Code (e.g. KMB-2027-XXXXX).',
                         'Makadawat ka dayon og opisyal nga Reference Code.'
                       )}
                     </span>
@@ -534,12 +534,12 @@ export const ActionCenterPage: React.FC = () => {
                   type="button"
                   onClick={() => {
                     setActiveTab('track');
-                    setSearchCode('KMB-2025-DEMO1');
-                    handleTrackTicket('KMB-2025-DEMO1');
+                    setSearchCode('KMB-2027-DEMO1');
+                    handleTrackTicket('KMB-2027-DEMO1');
                   }}
                   className="w-full py-2.5 px-4 rounded-full bg-slate-100 hover:bg-orange-50 hover:text-orange-600 text-xs font-mono font-bold text-slate-800 transition-all text-center border border-slate-200 shadow-2xs cursor-pointer"
                 >
-                  KMB-2025-DEMO1 &rarr;
+                  KMB-2027-DEMO1 &rarr;
                 </button>
               </div>
             </div>
@@ -566,7 +566,7 @@ export const ActionCenterPage: React.FC = () => {
                   <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
-                    placeholder="e.g. KMB-2025-DEMO1"
+                    placeholder="e.g. KMB-2027-DEMO1"
                     value={searchCode}
                     onChange={(e) => setSearchCode(e.target.value.toUpperCase())}
                     className="w-full pl-11 pr-4 py-3 rounded-full border border-slate-200 text-sm font-mono font-bold tracking-wider focus:outline-none focus:ring-2 focus:ring-orange-500 shadow-2xs"

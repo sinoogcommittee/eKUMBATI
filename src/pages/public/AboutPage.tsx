@@ -46,9 +46,9 @@ export const AboutPage: React.FC = () => {
       titleEn: 'Dignified Socialized Shelter',
       titleCeb: 'Desente ug Luwas nga Panimalay',
       descEn:
-        'Pabahay ni Kumbati provides typhoon-proof concrete homes to 259+ underprivileged families with land security.',
+        'Pabahay ni Kumbati provides typhoon-proof concrete homes to 310+ underprivileged families with land security.',
       descCeb:
-        'Paghatag og sementado ug lig-on nga panimalay sa kapin 259+ ka kabus nga pamilya lukop sa 19 ka lungsod.',
+        'Paghatag og sementado ug lig-on nga panimalay sa kapin 310+ ka kabus nga pamilya lukop sa 19 ka lungsod.',
       icon: Home,
       color: 'orange',
     },
@@ -56,9 +56,9 @@ export const AboutPage: React.FC = () => {
       titleEn: 'Universal Education Access',
       titleCeb: 'Edukasyon Alang sa Tanan',
       descEn:
-        'CHED-TDP and congressional tertiary scholarships empowering 3,829+ college youth to complete their degrees.',
+        'CHED-TDP and congressional tertiary scholarships empowering 4,500+ college youth to complete their degrees.',
       descCeb:
-        'Tulong Dunong Program ug hinabang pinansyal sa kapin 3,829+ ka mga estudyante sa kolehiyo.',
+        'Tulong Dunong Program ug hinabang pinansyal sa kapin 4,500+ ka mga estudyante sa kolehiyo.',
       icon: GraduationCap,
       color: 'blue',
     },
@@ -66,9 +66,9 @@ export const AboutPage: React.FC = () => {
       titleEn: 'Sustainable Rural Livelihood',
       titleCeb: 'Malungtarong Panginabuhian',
       descEn:
-        'Seed capital, machinery toolkits, and cooperative training for 78+ women, farmer, and fisherfolk associations.',
+        'Seed capital, machinery toolkits, and cooperative training for 88+ women, farmer, and fisherfolk associations.',
       descCeb:
-        'Puhonan, gamit sa panguma ug negosyo alang sa 78+ ka mga kooperatiba ug asosasyon.',
+        'Puhonan, gamit sa panguma ug negosyo alang sa 88+ ka mga kooperatiba ug asosasyon.',
       icon: Briefcase,
       color: 'emerald',
     },

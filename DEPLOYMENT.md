@@ -73,6 +73,6 @@ npm run preview
 ## 5. Post-Deployment Verification Checklist
 - [ ] Visit the homepage (`/`) and verify that all 7 impact counters display their verified figures.
 - [ ] Toggle language between English and Binisaya to confirm translation reactivity.
-- [ ] Submit a test ticket in the Action Center (`/action-center`) and verify that an alphanumeric reference tracking code (e.g., `KMB-2025-XXXXX`) is generated and retrievable.
+- [ ] Submit a test ticket in the Action Center (`/action-center`) and verify that an alphanumeric reference tracking code (e.g., `KMB-2027-XXXXX`) is generated and retrievable.
 - [ ] Test the interactive Leaflet Map (`/map`) to ensure pins render properly across the 19 municipalities.
-- [ ] Access the Admin Login (`/admin/login`) and verify the Demo Mode login (`demo@kumbati.bohol3.gov.ph` / `kumbati2025`).
+- [ ] Access the Admin Login (`/admin/login`) and verify the Demo Mode login (`demo@kumbati.bohol3.gov.ph` / `kumbati2027`).

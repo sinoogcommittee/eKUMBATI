@@ -125,7 +125,7 @@ export const StatCounter: React.FC<StatCounterProps> = ({
           </p>
           <div className="mt-2 flex items-center gap-1.5 text-[11px] font-semibold text-emerald-600">
             <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
-            <span>{t('2025 Verified Milestone', 'Beripikadong Talaan 2025')}</span>
+            <span>{t('2027 Verified Milestone', 'Beripikadong Talaan 2027')}</span>
           </div>
         </div>
       )}

@@ -12,23 +12,23 @@ The portal is designed with a hybrid resilient architecture: it operates dynamic
 ---
 
 ## 2. Core Objectives
-1. **Promote Radical Governance Transparency**: Showcase verified, auditable legislative milestones and direct district investments, prominently highlighting the 7 flagship 2025 KUMBATI impact metrics.
+1. **Promote Radical Governance Transparency**: Showcase verified, auditable legislative milestones and direct district investments, prominently highlighting the 7 flagship 2027 KUMBATI impact metrics.
 2. **Empower Constituents with Direct Access**: Provide clear, bilingual step-by-step application procedures, requirements lists, and contact hotlines for all flagship programs (Pabahay, PTV, Dialysis Tambayan, Clinic, Scholars, Livelihood, Community Outreach).
-3. **Streamline Grievance & Assistance Routing (Action Center)**: Allow any constituent to file an inquiry, assistance request, complaint, or commendation with instant generation of an alphanumeric Reference Tracking Code (e.g., `KMB-2025-XXXXX`).
+3. **Streamline Grievance & Assistance Routing (Action Center)**: Allow any constituent to file an inquiry, assistance request, complaint, or commendation with instant generation of an alphanumeric Reference Tracking Code (e.g., `KMB-2027-XXXXX`).
 4. **District-wide Geospatial Directory**: Provide an interactive Leaflet map and searchable municipal directory covering all 19 municipalities in Bohol District 3, pinpointing municipal halls, district satellite offices, rural health units, Kumbati clinics, and PTV hubs.
 5. **Dynamic Administrative Governance (Supabase CMS)**: Empower congressional staff to update metrics, announce programs, upload photo albums, review constituent submissions, and manage emergency hotlines without engineering intervention.
 
 ---
 
-## 3. The 7 Flagship 2025 KUMBATI Impact Metrics
-The portal prominently showcases the official 2025 verified figures:
-1. **Pabahay ni Kumbati**: **259+** Safe & Resilient Housing Beneficiaries.
-2. **Patient Transport Vehicles (PTV)**: **4** Dedicated Emergency Medical & Referral Vehicles in 24/7 service.
+## 3. The 7 Flagship 2027 KUMBATI Impact Metrics
+The portal prominently showcases the official 2027 verified figures:
+1. **Pabahay ni Kumbati**: **310+** Safe & Resilient Housing Beneficiaries.
+2. **Patient Transport Vehicles (PTV)**: **4** Dedicated Emergency Medical & Referral Vehicles in 24/7 service (6,200+ indigent patient transports completed).
 3. **Tambayan ni Kumbati for Dialysis Patients**: **1** Free Patient & Watcher Haven in Tagbilaran City offering free lodging, meals, and rest for dialysis patients.
-4. **KUMBATI Community Beneficiaries**: **31** Communities empowered through rural electrification, water systems, and communal infrastructure.
-5. **Kumbati Medical Clinic**: **2,000+** Patients provided with free consultations, diagnostics, and essential prescription medicines.
-6. **Sustainable Livelihood Program**: **78+** People's organizations, farmer cooperatives, and women's micro-enterprises funded and mobilized.
-7. **CHED-TDP & District Scholars**: **3,829+** Tertiary students supported through Tulong Dunong Program and congressional educational assistance.
+4. **KUMBATI Community Beneficiaries**: **36+** Communities empowered through rural electrification, water systems, and communal infrastructure.
+5. **Kumbati Medical Clinic**: **3,200+** Patients provided with free consultations, diagnostics, and essential prescription medicines.
+6. **Sustainable Livelihood Program**: **88+** People's organizations, farmer cooperatives, and women's micro-enterprises funded and mobilized.
+7. **CHED-TDP & District Scholars**: **4,500+** Tertiary students supported through Tulong Dunong Program and congressional educational assistance.
 
 ---
 
@@ -80,7 +80,7 @@ The system models and services all 19 municipalities of the 3rd District:
 - Bi-directional translations for all navigation, headings, form labels, metric labels, program requirements, and feedback messages.
 
 ### 6.2 Public Portal Pages
-1. **Home (`/`)**: Hero banner with Congw. Alexie Besas Tutor, 7 animated 2025 impact metric counters, quick-action dispatch buttons, featured programs carousel, recent photo highlights, and official Facebook feed links.
+1. **Home (`/`)**: Hero banner with Congw. Alexie Besas Tutor, 7 animated 2027 impact metric counters, quick-action dispatch buttons, featured programs carousel, recent photo highlights, and official Facebook feed links.
 2. **About Congw. Alexie & District 3 (`/about`)**: Biography, legislative track record, committee chairmanships/memberships in the 19th Congress, and the KUMBATI manifesto.
 3. **Programs & Advocacies (`/programs`)**: Comprehensive tabs for Pabahay, PTV, Dialysis Haven, Clinic, Livelihood, Education, and Infrastructure with downloadable checklists and requirements.
 4. **Impact & Metrics (`/impact`)**: Interactive dashboard visualizing district metrics, municipal distribution of projects, and audited progress reports.

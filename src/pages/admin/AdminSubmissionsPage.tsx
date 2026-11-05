@@ -30,7 +30,7 @@ export const AdminSubmissionsPage: React.FC = () => {
     return [
       {
         id: 'sub-sample-1',
-        reference_code: 'KMB-2025-A8F2K',
+        reference_code: 'KMB-2027-A8F2K',
         type: 'assistance',
         status: 'pending',
         full_name: 'Rolando C. Torralba',
@@ -45,7 +45,7 @@ export const AdminSubmissionsPage: React.FC = () => {
       },
       {
         id: 'sub-sample-2',
-        reference_code: 'KMB-2025-M4N9Q',
+        reference_code: 'KMB-2027-M4N9Q',
         type: 'assistance',
         status: 'in_review',
         full_name: 'Annalyn G. Maturan',
@@ -60,7 +60,7 @@ export const AdminSubmissionsPage: React.FC = () => {
       },
       {
         id: 'sub-sample-3',
-        reference_code: 'KMB-2025-K3B7X',
+        reference_code: 'KMB-2027-K3B7X',
         type: 'query',
         status: 'resolved',
         full_name: 'Mark Lester Galorio',
