@@ -249,3 +249,7 @@
   - Mobile Emergency Dispatch: Refactored mobile view to display `PTV Emergency Dispatch: 0917-832-6284` with pulsing phone icon, eliminating truncation and making the phone number 100% visible and directly tappable.
   - Main Navbar: Set to vibrant KUMBATI orange gradient (`bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 border-b border-orange-700/40`) with crisp white brand title (`e-KUMBATI`), warm ivory subtext, white active navigation pills, translucent language toggle, and high-visibility white/red emergency Hotlines button.
   - Verified `npm run build` completed with code 0.
+- **2026-11-05**: Removed Redundant Official Social Media Strip from Homepage:
+  - Removed Section 6 ("Verified Official Social Media") from `HomePage.tsx` to streamline the homepage flow and avoid duplication with the global footer social links.
+  - Cleaned up unused icons (`Facebook`, `ExternalLink`) reducing homepage bundle size to 16.36 kB.
+  - Verified `npm run build` completed with code 0.

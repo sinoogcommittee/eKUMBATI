@@ -484,23 +484,15 @@
 
 ---
 
-### Phase 26: Orange Main Header & White 24/7 Hotline Bar with Mobile PTV Dispatch Dialing
-- [x] **26.1 White 24/7 Hotline Bar (Top Micro-Bar)**:
-  - [x] Changed top bar background to crisp white (`bg-white border-b border-orange-200/80 shadow-2xs`).
-  - [x] Adjusted font and badge colors for white background (`text-slate-800`, `bg-orange-100 text-orange-700 border-orange-200`, `text-slate-600 hover:text-orange-600`).
-  - [x] Clickable phone number styled with high-contrast `text-orange-600 hover:text-orange-700 hover:underline font-black`.
-- [x] **26.2 Mobile View PTV Emergency Dispatch & Number Visibility**:
-  - [x] Created dedicated mobile view layout showing `PTV Emergency Dispatch: 0917-832-6284` with pulsing emergency phone icon.
-  - [x] Removed text truncation and excessive prefix labels on mobile so the phone number is 100% visible and directly tappable (`tel:09178326284`) even on 320px screens.
-- [x] **26.3 Vibrant KUMBATI Orange Main Navbar**:
-  - [x] Set main navbar background to `bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 border-b border-orange-700/40`.
-  - [x] Updated brand title and subtitle colors to high-contrast white and warm ivory (`text-white`, `text-orange-100/90`).
-  - [x] Updated active desktop nav pill to crisp white with orange text (`bg-white text-orange-600 font-black shadow-sm`) and inactive items to `text-white/90 hover:text-white hover:bg-white/15`.
-  - [x] Styled desktop and mobile language toggle to `border-white/30 text-white bg-white/15 hover:bg-white/25`.
-  - [x] Transformed Hotlines CTA button to high-contrast white button with red emergency styling (`bg-white text-red-600 hover:bg-red-50 font-black shadow-md`).
-  - [x] Updated mobile hamburger menu button to `text-white hover:bg-white/20`.
-- [x] **26.4 Verification & Production Build**:
-  - [x] Verified `npm run build` completed with code 0 (1980 modules transformed in 11.58s).
+### Phase 27: Remove Redundant Official Social Media Strip from Homepage
+- [x] **27.1 Social Media Section Removal**:
+  - [x] Removed redundant Section 6 ("Verified Official Social Media / Connect with Congw. Alexie Tutor & KUMBATI Cares") from `src/pages/public/HomePage.tsx`.
+  - [x] Preserved official Facebook page links in the global Footer (`Footer.tsx`) and Admin Settings (`AdminSettingsPage.tsx`).
+  - [x] Cleaned up unused `Facebook` and `ExternalLink` imports in `HomePage.tsx`.
+- [x] **27.2 Verification & Bundle Optimization**:
+  - [x] Reduced Homepage JS bundle size from 22.34 kB to 16.36 kB (-26.7%).
+  - [x] Verified `npm run build` completed with code 0 (1980 modules transformed in 27.41s).
+
 
 
 
