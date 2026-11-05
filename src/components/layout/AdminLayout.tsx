@@ -21,7 +21,7 @@ export const AdminLayout: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col md:flex-row">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-slate-900 text-slate-100 flex flex-col md:flex-row">
       {/* Desktop Sidebar */}
       <div className="hidden md:block shrink-0">
         <div className="sticky top-0 h-screen">
@@ -43,7 +43,7 @@ export const AdminLayout: React.FC = () => {
       )}
 
       {/* Main Administrative Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 bg-slate-950/40">
+      <div className="flex-1 flex flex-col min-w-0 w-full max-w-full overflow-x-hidden bg-slate-950/40">
         {/* Top Navbar */}
         <header className="sticky top-0 z-30 bg-slate-950/90 backdrop-blur-md border-b border-slate-800 px-4 sm:px-6 py-3.5 flex items-center justify-between">
           <div className="flex items-center gap-3">

@@ -127,3 +127,15 @@
     - `DirectoryPage.tsx`: M3 `SearchBar` for town directory, M3 `Chip` for emergency lines toggle, M3 `Card` for 19 town directory cards.
     - `ActionCenterPage.tsx`: M3 `Chip` for submission types, M3 `SearchBar` for reference code tracking, M3 `Card` for tracking slip.
   - Confirmed 100% clean production build (`npm run build` passed in 16.30s with exit code 0).
+- **2026-11-05**: Viewport Horizontal Overflow & Responsive Navigation Fixes:
+  - Fixed horizontal document overflow ("scroll left beyond the screen window") across desktop and mobile screens:
+    - Root cause: In `Header.tsx`, 9 desktop nav links + logo + 3 action buttons totaled ~1,824px wide with rigid non-shrinking flex items, forcing the document to expand horizontally beyond viewport widths (1280px–1536px) and causing the page to be scrolled to the right, pushing the left half of the page off-screen.
+    - Tablet dead-zone: Hamburger was `sm:hidden` and desktop nav was `xl:flex`, leaving viewports between 640px and 1280px without any navigation menu.
+    - Added document-level `overflow-x: hidden; max-width: 100%; width: 100%;` to `html`, `body`, and `#root` in `src/index.css`.
+    - Added `w-full max-w-full overflow-x-hidden` to `PublicLayout.tsx`, `AdminLayout.tsx`, and `HomePage.tsx`.
+    - Redesigned `Header.tsx`:
+      - Set hamburger menu trigger to `xl:hidden`, making it consistently accessible across mobile and tablet/iPad viewports.
+      - Streamlined desktop nav labels (`Home`/`Balay`, `Programs`/`Programa`, `Impact`/`Kalampusan`, `News`/`Pahibalo`, `Gallery`/`Galeriya`, `19 Towns`/`19 Lungsod`, `Map`/`Mapa`, `Action Center`/`Aksyon`, `About`/`Mahitungod`).
+      - Compacted spacing to `px-2.5 2xl:px-3 py-1.5` and made action buttons responsive (`EN`/`CEB` compact pill on `xl`, full "Track Ticket" button on `2xl`).
+      - Added `min-w-0` and `truncate` to the top emergency micro-bar and logo tagline to eliminate subpixel overflow.
+  - Confirmed 100% clean production build (`npm run build` passed in 18.79s with exit code 0).

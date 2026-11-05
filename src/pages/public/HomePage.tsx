@@ -34,7 +34,7 @@ export const HomePage: React.FC = () => {
   const recentAlbums = INITIAL_ALBUMS.slice(0, 3);
 
   return (
-    <div className="space-y-16 sm:space-y-24 pb-16">
+    <div className="space-y-16 sm:space-y-24 pb-16 w-full max-w-full overflow-x-hidden">
       {/* =====================================================================
           1. HERO SECTION
          ===================================================================== */}

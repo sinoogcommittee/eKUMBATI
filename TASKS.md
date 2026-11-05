@@ -262,3 +262,26 @@
 - [x] **11.4 Verification**:
   - [x] Clean production build verified via `npm run build` (1979 modules transformed, code 0).
 
+---
+
+### Phase 12: Viewport Overflow & Responsive Navigation Fixes
+- [x] **12.1 Root Document Overflow Protection (`src/index.css`)**:
+  - [x] Added strict `overflow-x: hidden`, `width: 100%`, and `max-width: 100%` to `html`, `body`, and `#root` elements.
+  - [x] Ensured no document-level horizontal scrolling is permitted on any viewport width (320px to 4K+).
+- [x] **12.2 Shell Layout Safety (`PublicLayout.tsx` & `AdminLayout.tsx`)**:
+  - [x] Added `w-full max-w-full overflow-x-hidden` to outer layout wrapper and `<main>` viewport container in `PublicLayout.tsx`.
+  - [x] Added `w-full max-w-full overflow-x-hidden` to admin wrapper and administrative content viewport in `AdminLayout.tsx`.
+  - [x] Added `w-full max-w-full overflow-x-hidden` to `HomePage.tsx` root container.
+- [x] **12.3 Header Responsive Navigation Overhaul (`src/components/layout/Header.tsx`)**:
+  - [x] Diagnosed root cause of horizontal blowout: Logo (~336px) + 9 nav links (~970px) + 3 action buttons (~425px) summed to ~1,824px, exceeding all standard desktop resolutions (< 1824px) and causing page to scroll off-screen to the left.
+  - [x] Resolved responsive navigation dead-zone between 640px and 1280px (where both desktop nav and mobile hamburger were previously hidden).
+  - [x] Set hamburger menu button to `xl:hidden` so it is always accessible on all viewports below 1280px (mobile phones, phablets, iPad/tablets, portrait laptops).
+  - [x] Optimized desktop nav labels for concise clarity (`Home`/`Balay`, `Programs`/`Programa`, `Impact`/`Kalampusan`, `News`/`Pahibalo`, `Gallery`/`Galeriya`, `19 Towns`/`19 Lungsod`, `Map`/`Mapa`, `Action Center`/`Aksyon`, `About`/`Mahitungod`).
+  - [x] Reduced navigation padding to `px-2.5 2xl:px-3 py-1.5` and set right actions to responsive visibility (compact `EN`/`CEB` toggle on `xl`, full language name and "Track Ticket" button on `2xl`).
+  - [x] Ensured top micro-bar has `min-w-0` on flex items and `truncate` on text to prevent flexbox child expansion.
+  - [x] Standardized logo subtitle to `truncate` and responsive visibility (full name on `2xl:block`, concise `Bohol 3rd District` on smaller screens).
+- [x] **12.4 Verification**:
+  - [x] Verified zero horizontal overflow on desktop and mobile viewports.
+  - [x] Production build verified via `npm run build` (1979 modules transformed, 18.79s, exit code 0).
+
+
