@@ -64,10 +64,11 @@ export interface SiteSettings {
   official_email: string;
   main_office_address: string;
   main_office_phone: string;
+  facebook_page_official?: string;
   facebook_page_alexie_besas_tutor: string;
-  facebook_page_alexie_b_tutor: string;
-  facebook_page_team_kumbati: string;
-  facebook_page_ptv_official: string;
+  facebook_page_alexie_b_tutor?: string;
+  facebook_page_team_kumbati?: string;
+  facebook_page_ptv_official?: string;
   created_at?: string;
   updated_at?: string;
 }

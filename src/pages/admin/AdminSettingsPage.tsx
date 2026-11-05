@@ -59,7 +59,7 @@ export const AdminSettingsPage: React.FC = () => {
             Site Settings & Social Channels
           </h2>
           <p className="text-xs text-slate-400">
-            Edit bilingual headlines, representative bio, contact details, and the 4 verified Facebook pages.
+            Edit bilingual headlines, representative bio, contact details, and the official Facebook page.
           </p>
         </div>
 
@@ -302,81 +302,33 @@ export const AdminSettingsPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Section 4: 4 Official Facebook Channels */}
+        {/* Section 4: Official Facebook Channel */}
         <div className="bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-8 space-y-6">
           <h3 className="text-sm font-black uppercase tracking-wider text-orange-400 flex items-center gap-2 border-b border-slate-800 pb-3">
             <Facebook className="w-4 h-4 text-blue-400" />
-            <span>4. The 4 Official Facebook Pages</span>
+            <span>4. Official Facebook Page</span>
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-xs font-bold text-slate-300 mb-1">
-                Alexie Besas Tutor (Official Representative Page)
-              </label>
-              <input
-                type="url"
-                value={settings.facebook_page_alexie_besas_tutor}
-                onChange={(e) =>
-                  setSettings({
-                    ...settings,
-                    facebook_page_alexie_besas_tutor: e.target.value,
-                  })
-                }
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-slate-300 mb-1">
-                Alexie B. Tutor (Public Profile)
-              </label>
-              <input
-                type="url"
-                value={settings.facebook_page_alexie_b_tutor}
-                onChange={(e) =>
-                  setSettings({
-                    ...settings,
-                    facebook_page_alexie_b_tutor: e.target.value,
-                  })
-                }
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-slate-300 mb-1">
-                Congw. Alexie Tutor Team Kumbati (Community Outreach)
-              </label>
-              <input
-                type="url"
-                value={settings.facebook_page_team_kumbati}
-                onChange={(e) =>
-                  setSettings({
-                    ...settings,
-                    facebook_page_team_kumbati: e.target.value,
-                  })
-                }
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-slate-300 mb-1">
-                Cong. Alexie B. Tutor Patient Transport Vehicle Official (PTV)
-              </label>
-              <input
-                type="url"
-                value={settings.facebook_page_ptv_official}
-                onChange={(e) =>
-                  setSettings({
-                    ...settings,
-                    facebook_page_ptv_official: e.target.value,
-                  })
-                }
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
-              />
-            </div>
+          <div>
+            <label className="block text-xs font-bold text-slate-300 mb-1">
+              Official Facebook Page URL (Cong. Alexie Tutor)
+            </label>
+            <input
+              type="url"
+              value={settings.facebook_page_official || settings.facebook_page_alexie_besas_tutor || 'https://www.facebook.com/Cong.AlexieTutor'}
+              onChange={(e) =>
+                setSettings({
+                  ...settings,
+                  facebook_page_official: e.target.value,
+                  facebook_page_alexie_besas_tutor: e.target.value,
+                })
+              }
+              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 font-mono"
+              placeholder="https://www.facebook.com/Cong.AlexieTutor"
+            />
+            <p className="text-[11px] text-slate-500 mt-1.5">
+              The verified official Facebook page of Congresswoman Alexie Tutor for public constituent updates, PTV dispatch advisories, and district accomplishments.
+            </p>
           </div>
         </div>
 

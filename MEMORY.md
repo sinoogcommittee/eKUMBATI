@@ -24,10 +24,7 @@
 ---
 
 ## 3. Official External Channels
-1. **Alexie Besas Tutor**: `https://www.facebook.com/alexiebesastutor`
-2. **Alexie B. Tutor**: `https://www.facebook.com/alexie.tutor`
-3. **Congw. Alexie Tutor Team Kumbati**: `https://www.facebook.com/teamkumbati`
-4. **Cong. Alexie B. Tutor Patient Transport Vehicle Official**: `https://www.facebook.com/AlexieTutorPTV`
+1. **Cong. Alexie Tutor (Only Official Page)**: `https://www.facebook.com/Cong.AlexieTutor`
 
 ---
 
@@ -209,3 +206,10 @@
   - Added authentic Candijay National Science High School digital library & StarBooks educational turnover photo (`public/images/gallery/candijay_science_turnover.webp`, 108 KB) featuring Rep. Alexie Tutor and science educators in Candijay.
   - Updated `INITIAL_GALLERY_ALBUMS` and `INITIAL_GALLERY_MEDIA` in `src/lib/constants.ts` with bilingual captions for both Carmen Municipal College and Candijay National Science High School.
   - Verified production build (`npm run build`) passed with exit code 0 (1980 modules transformed in 10.44s).
+- **2026-11-05**: Single Official Facebook Page Consolidation:
+  - Per constituent instruction, consolidated all Facebook channels across the web portal to the single verified official page: `https://www.facebook.com/Cong.AlexieTutor`.
+  - Removed all previous secondary/alternative Facebook links (`alexiebesastutor`, `alexie.tutor`, `teamkumbati`, `AlexieTutorPTV`).
+  - Redesigned Homepage Social Media section into a prominent official channel banner card linking exclusively to `facebook.com/Cong.AlexieTutor`.
+  - Updated Footer Column 2 to display the verified `Cong. Alexie Tutor` page card with direct link.
+  - Updated Admin Settings (`AdminSettingsPage.tsx`) to manage the single official Facebook URL.
+  - Updated `AGENTS.md`, `MEMORY.md`, `TASKS.md`, `constants.ts`, and `kumbati.types.ts`.

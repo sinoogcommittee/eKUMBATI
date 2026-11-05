@@ -432,6 +432,19 @@
 - [x] **19.4 Verification & Production Build**:
   - [x] Verified production build (`npm run build`) completed with code 0 (1980 modules transformed in 10.44s).
 
+---
+
+### Phase 20: Single Official Facebook Page Consolidation
+- [x] **20.1 Facebook Channel Unification**:
+  - [x] Removed outdated/alternative Facebook links (`alexiebesastutor`, `alexie.tutor`, `teamkumbati`, `AlexieTutorPTV`).
+  - [x] Established `https://www.facebook.com/Cong.AlexieTutor` as the sole official Facebook channel across all portal touchpoints.
+- [x] **20.2 UI & Component Redesign**:
+  - [x] Updated Homepage Social Media section into a prominent official channel banner card linking exclusively to `facebook.com/Cong.AlexieTutor`.
+  - [x] Updated Footer Column 2 to display the verified `Cong. Alexie Tutor` page card with direct link.
+  - [x] Updated Admin Settings (`AdminSettingsPage.tsx`) to manage the single official Facebook URL.
+- [x] **20.3 Documentation & Architecture Updates**:
+  - [x] Updated `constants.ts`, `kumbati.types.ts`, `AGENTS.md`, `MEMORY.md`, and `TASKS.md`.
+
 
 
 

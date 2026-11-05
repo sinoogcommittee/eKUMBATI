@@ -56,10 +56,8 @@ export const INITIAL_SITE_SETTINGS: SiteSettings = {
   official_email: 'office@kumbati.bohol3.gov.ph',
   main_office_address: 'District Headquarters, Poblacion, Candijay, Bohol 6312 / House of Representatives, Batasan Complex, Quezon City',
   main_office_phone: '(038) 526-0123 / +63 917 832 6284',
-  facebook_page_alexie_besas_tutor: 'https://www.facebook.com/alexiebesastutor',
-  facebook_page_alexie_b_tutor: 'https://www.facebook.com/alexie.tutor',
-  facebook_page_team_kumbati: 'https://www.facebook.com/teamkumbati',
-  facebook_page_ptv_official: 'https://www.facebook.com/AlexieTutorPTV',
+  facebook_page_official: 'https://www.facebook.com/Cong.AlexieTutor',
+  facebook_page_alexie_besas_tutor: 'https://www.facebook.com/Cong.AlexieTutor',
 };
 
 // ============================================================================

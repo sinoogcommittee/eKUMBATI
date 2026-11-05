@@ -481,71 +481,56 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* =====================================================================
-          7. OFFICIAL FACEBOOK CHANNELS STRIP
+          7. OFFICIAL FACEBOOK CHANNEL STRIP
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-10 border border-slate-800 shadow-sinoog">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-            <div>
-              <div className="flex items-center gap-2 text-blue-400 text-xs font-bold uppercase tracking-wider mb-1">
-                <Facebook className="w-4 h-4" />
-                <span>{t('Stay Updated on Social Media', 'Sunda ang mga Balita')}</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
-                {t('Connect with Congw. Alexie Tutor', 'Konektar kang Congw. Alexie Tutor')}
-              </h2>
-            </div>
-            <span className="text-xs text-slate-400">
-              {t('4 Verified Official Facebook Pages', '4 ka Opisyal nga Panid sa Facebook')}
-            </span>
-          </div>
+        <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-3xl p-8 sm:p-12 border border-slate-800 shadow-sinoog relative overflow-hidden">
+          {/* Subtle decorative background glow */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              {
-                title: 'Alexie Besas Tutor',
-                tag: 'Official Public Profile',
-                url: INITIAL_SITE_SETTINGS.facebook_page_alexie_besas_tutor,
-              },
-              {
-                title: 'Alexie B. Tutor',
-                tag: 'Legislative Updates',
-                url: INITIAL_SITE_SETTINGS.facebook_page_alexie_b_tutor,
-              },
-              {
-                title: 'Team Kumbati',
-                tag: 'Community Outreaches',
-                url: INITIAL_SITE_SETTINGS.facebook_page_team_kumbati,
-              },
-              {
-                title: 'PTV Official Page',
-                tag: '24/7 Patient Dispatch',
-                url: INITIAL_SITE_SETTINGS.facebook_page_ptv_official,
-              },
-            ].map((fb, idx) => (
+          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            <div className="max-w-2xl space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-wider">
+                <Facebook className="w-3.5 h-3.5 fill-current" />
+                <span>{t('Only Official Social Media Channel', 'Bugtong Opisyal nga Panid sa Social Media')}</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight">
+                {t('Follow Cong. Alexie Tutor on Facebook', 'Sunda si Cong. Alexie Tutor sa Facebook')}
+              </h2>
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                {t(
+                  'Stay connected with the official Facebook page of Congresswoman Kristine Alexie Besas Tutor for authentic public announcements, PTV 24/7 medical dispatch coordination, CHED-TDP scholarship advisories, Kumbati clinic schedules, and 19-town constituent assistance.',
+                  'Magpabiling updated sa bugtong opisyal nga panid sa Facebook ni Congresswoman Kristine Alexie Besas Tutor alang sa mga pahibalo sa distrito, serbisyo sa PTV 24/7, scholarship sa CHED-TDP, Kumbati clinic, ug tabang sa 19 ka mga lungsod sa Ikatulong Distrito.'
+                )}
+              </p>
+              <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400 pt-1">
+                <span className="flex items-center gap-1.5 font-semibold text-slate-300">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  {t('Verified Official Presence', 'Beripikadong Opisyal nga Panid')}
+                </span>
+                <span>•</span>
+                <span className="font-mono text-blue-400">facebook.com/Cong.AlexieTutor</span>
+                <span>•</span>
+                <span>{t('Serving 19 Municipalities', 'Naga-alagad sa 19 ka Lungsod')}</span>
+              </div>
+            </div>
+
+            <div className="shrink-0 flex flex-col sm:flex-row lg:flex-col gap-3">
               <a
-                key={idx}
-                href={fb.url}
+                href={INITIAL_SITE_SETTINGS.facebook_page_official || 'https://www.facebook.com/Cong.AlexieTutor'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group p-5 rounded-2xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/70 hover:border-orange-500/50 shadow-xs hover:shadow-sinoog hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-base shadow-lg hover:shadow-blue-600/30 hover:-translate-y-0.5 transition-all duration-200 group"
               >
-                <div>
-                  <div className="flex items-center justify-between text-blue-400 mb-2">
-                    <Facebook className="w-5 h-5" />
-                    <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-orange-400 transition-colors" />
-                  </div>
-                  <h4 className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors">
-                    {fb.title}
-                  </h4>
-                  <p className="text-[11px] text-slate-400 mt-0.5">{fb.tag}</p>
-                </div>
-                <div className="text-[11px] text-orange-400 font-semibold mt-4 flex items-center gap-1">
-                  <span>Follow Page</span>
-                  <ChevronRight className="w-3 h-3" />
-                </div>
+                <Facebook className="w-5 h-5 fill-current" />
+                <span>{t('Visit Official Facebook Page', 'Bisitaha ang Opisyal nga Page')}</span>
+                <ExternalLink className="w-4 h-4 ml-1 text-blue-200 group-hover:text-white transition-colors" />
               </a>
-            ))}
+              <div className="text-center text-[11px] text-slate-400">
+                {t('Official Channel • Office of Congw. Alexie Tutor', 'Opisyal nga Panid • Buhatan ni Congw. Alexie Tutor')}
+              </div>
+            </div>
           </div>
         </div>
       </section>

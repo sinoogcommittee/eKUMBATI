@@ -151,12 +151,9 @@ Any feature, filter, dropdown, or directory referencing municipalities must supp
 
 ## 5. Official External Channels & Social Links
 
-Always use these official Facebook channel URLs for Congw. Alexie Besas Tutor:
+Always use the single verified official Facebook channel URL for Congw. Alexie Besas Tutor:
 
-1. **Alexie Besas Tutor**: `https://www.facebook.com/alexiebesastutor`
-2. **Alexie B. Tutor**: `https://www.facebook.com/alexie.tutor`
-3. **Congw. Alexie Tutor Team Kumbati**: `https://www.facebook.com/teamkumbati`
-4. **Cong. Alexie B. Tutor Patient Transport Vehicle Official**: `https://www.facebook.com/AlexieTutorPTV`
+1. **Cong. Alexie Tutor (Official Page)**: `https://www.facebook.com/Cong.AlexieTutor`
 
 ---
 
