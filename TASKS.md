@@ -186,7 +186,7 @@
 - [x] **9.1 Core Constants & Seed Data (`src/lib/constants.ts`)**:
   - [x] Advanced temporal context to 2027 across all seed data and gallery albums.
   - [x] Updated 7 Flagship KUMBATI Metrics to 2027 cumulative verified numbers:
-    - Pabahay ni Kumbati: **310+** homes handed over.
+    - Pabahay: **310+** homes handed over.
     - Patient Transport Vehicles (PTV): **4** active emergency vehicles, **6,200+** zero-fare patient transits.
     - Tambayan ni Kumbati for Dialysis Patients: **1** haven in Tagbilaran City.
     - KUMBATI Community Beneficiaries: **36+** energized communities & priority sitios.
@@ -391,7 +391,7 @@
 - [x] **18.1 Photo Research & Discovery via Web**:
   - [x] Searched regional journalism portals (Bohol Island News, The Bohol Tribune, PIA) and indexed verified authentic photos of Rep. Kristine Alexie Besas Tutor's projects across Bohol District 3.
   - [x] Discovered authentic coverage of:
-    - Pabahay ni Kumbati 244th Home Turnover in Lila and Loboc beneficiary homes.
+    - Pabahay 244th Home Turnover in Lila and Loboc beneficiary homes.
     - Patient Transport Vehicle (PTV) medical transport fleet and deployments.
     - Kumbati Medical Clinic opening in Candijay and free consultations.
     - CHED-TDP and District Tertiary Scholars assemblies with Congw. Alexie Tutor.

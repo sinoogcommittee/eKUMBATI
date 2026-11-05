@@ -22,7 +22,7 @@ The portal is designed with a hybrid resilient architecture: it operates dynamic
 
 ## 3. The 7 Flagship 2027 KUMBATI Impact Metrics
 The portal prominently showcases the official 2027 verified figures:
-1. **Pabahay ni Kumbati**: **310+** Safe & Resilient Housing Beneficiaries.
+1. **Pabahay**: **310+** Safe & Resilient Housing Beneficiaries.
 2. **Patient Transport Vehicles (PTV)**: **4** Dedicated Emergency Medical & Referral Vehicles in 24/7 service (6,200+ indigent patient transports completed).
 3. **Tambayan ni Kumbati for Dialysis Patients**: **1** Free Patient & Watcher Haven in Tagbilaran City offering free lodging, meals, and rest for dialysis patients.
 4. **KUMBATI Community Beneficiaries**: **36+** Communities empowered through rural electrification, water systems, and communal infrastructure.

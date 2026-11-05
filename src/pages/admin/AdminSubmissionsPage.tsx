@@ -38,9 +38,9 @@ export const AdminSubmissionsPage: React.FC = () => {
         email: 'rolando@gmail.com',
         municipality: 'Candijay',
         barangay: 'Panadtaran',
-        subject: 'Pabahay ni Kumbati Beneficiary Inspection',
+        subject: 'Pabahay Beneficiary Inspection',
         message: 'Inquiring regarding site inspection for concrete socialized housing unit after typhoon damage.',
-        program_category: 'Pabahay ni Kumbati',
+        program_category: 'Pabahay',
         created_at: new Date(Date.now() - 3600000 * 2).toISOString(),
       },
       {

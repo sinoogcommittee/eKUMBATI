@@ -43,9 +43,9 @@ export const AdminDashboardPage: React.FC = () => {
             contact_number: '0917-123-9874',
             municipality: 'Candijay',
             barangay: 'Panadtaran',
-            subject: 'Pabahay ni Kumbati Beneficiary Inspection',
+            subject: 'Pabahay Beneficiary Inspection',
             message: 'Inquiring regarding site inspection for concrete socialized housing unit.',
-            program_category: 'Pabahay ni Kumbati',
+            program_category: 'Pabahay',
             created_at: new Date(Date.now() - 3600000 * 2).toISOString(),
           },
           {

@@ -13,7 +13,7 @@
 ---
 
 ## 2. Verified 2027 Flagship Metrics
-1. **Pabahay ni Kumbati**: 310+ Housing Beneficiaries
+1. **Pabahay**: 310+ Housing Beneficiaries
 2. **PTV (Patient Transport Vehicles)**: 4 24/7 Medical Transport Vans (6,200+ patient runs)
 3. **Tambayan ni Kumbati for Dialysis Patients**: 1 Free Patient Haven in Tagbilaran City
 4. **KUMBATI Community Beneficiaries**: 36+ Empowered Rural Communities
@@ -190,7 +190,7 @@
 - **2026-11-05**: Authentic Project & Program Photo Integration:
   - Researched regional news sources (Bohol Island News, The Bohol Tribune, PIA) and acquired verified authentic photos of Rep. Kristine Alexie Besas Tutor's flagship projects in Bohol 3rd District.
   - Downloaded and converted 20 high-resolution photos into fast-loading WebP assets under `public/images/programs/`, `public/images/gallery/`, and `public/images/news/`:
-    - Pabahay ni Kumbati: Turnovers in Lila, Loboc, and Candijay.
+    - Pabahay: Turnovers in Lila, Loboc, and Candijay.
     - PTV 24/7: Medical transport fleet deployments.
     - Kumbati Medical Clinic: Outpatient clinic opening in Candijay and free consultations.
     - Tambayan ni Kumbati: Dialysis haven and hospital facilities.

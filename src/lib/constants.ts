@@ -68,8 +68,8 @@ export const INITIAL_METRICS: ImpactMetric[] = [
   {
     id: 'metric-1-pabahay',
     metric_key: 'pabahay',
-    title_en: 'Pabahay ni Kumbati Beneficiaries',
-    title_ceb: 'Benepisyaryo sa Pabahay ni Kumbati',
+    title_en: 'Pabahay Beneficiaries',
+    title_ceb: 'Benepisyaryo sa Pabahay',
     value_numeric: 310,
     suffix: '+',
     display_order: 1,
@@ -171,16 +171,16 @@ export const INITIAL_METRICS: ImpactMetric[] = [
 export const INITIAL_PROGRAMS: ProgramAdvocacy[] = [
   {
     id: 'prog-pabahay',
-    slug: 'pabahay-ni-kumbati',
-    title_en: 'Pabahay ni Kumbati Socialized Housing',
-    title_ceb: 'Pabahay ni Kumbati Desenteng Panimalay',
+    slug: 'pabahay',
+    title_en: 'Pabahay Socialized Housing',
+    title_ceb: 'Pabahay Desenteng Panimalay',
     category: 'Housing',
     summary_en: 'Providing dignified, durable disaster-resilient housing units to underprivileged families, disaster victims, and informal settlers.',
     summary_ceb: 'Paghatag og desente, lig-on, ug luwas nga panimalay alang sa mga kabus nga pamilya, biktima sa kalamidad, ug walay kaugalingong luna.',
     full_description_en:
-      'The Pabahay ni Kumbati program is Congw. Alexie Tutor’s flagship socialized housing initiative. Built with reinforced concrete, steel roofing, and sustainable sanitation systems, over 310+ units have been turned over to vulnerable households across Bohol District 3, ensuring long-term family dignity and safety from typhoons.',
+      'The Pabahay program is Congw. Alexie Tutor’s flagship socialized housing initiative. Built with reinforced concrete, steel roofing, and sustainable sanitation systems, over 310+ units have been turned over to vulnerable households across Bohol District 3, ensuring long-term family dignity and safety from typhoons.',
     full_description_ceb:
-      'Ang programang Pabahay ni Kumbati mao ang nag-unang inisyatiba sa pabalay ni Congw. Alexie Tutor. Gitukod gamit ang semento, lig-on nga atop, ug husto nga pansayan, kapin 310+ ka pamilya na ang nakadawat og yawi sa bag-ong balay aron mapanalipdan sila batok sa mga bagyo ug kalamidad.',
+      'Ang programang Pabahay mao ang nag-unang inisyatiba sa pabalay ni Congw. Alexie Tutor. Gitukod gamit ang semento, lig-on nga atop, ug husto nga pansayan, kapin 310+ ka pamilya na ang nakadawat og yawi sa bag-ong balay aron mapanalipdan sila batok sa mga bagyo ug kalamidad.',
     requirements_en: [
       'Certificate of Indigency from Barangay Captain',
       'Proof of Lot Ownership or Certificate of Land Usufruct / Permission',
@@ -389,8 +389,8 @@ export const INITIAL_PROGRAMS: ProgramAdvocacy[] = [
 export const INITIAL_ALBUMS: GalleryAlbum[] = [
   {
     id: 'album-pabahay-turnover',
-    title_en: 'Pabahay ni Kumbati 300th Home Turnover Ceremonies',
-    title_ceb: 'Turnover sa Ika-300 nga Balay sa Pabahay ni Kumbati',
+    title_en: 'Pabahay 300th Home Turnover Ceremonies',
+    title_ceb: 'Turnover sa Ika-300 nga Balay sa Pabahay',
     description_en: 'Heartwarming handover of concrete housing units to grateful Boholano families across Candijay, Guindulman, and Carmen.',
     description_ceb: 'Mabungahong pagtugyan sa mga yawi sa sementadong panimalay sa mga pamilya sa Candijay, Guindulman, ug Carmen.',
     cover_image_url: '/images/gallery/pabahay_turnover_lila.webp',
@@ -732,8 +732,8 @@ export const INITIAL_MAP_LOCATIONS: MapLocation[] = [
   },
   {
     id: 'loc-pabahay-site-candijay',
-    title_en: 'Pabahay ni Kumbati Village - Candijay Site',
-    title_ceb: 'Pabahay ni Kumbati Balangay - Candijay',
+    title_en: 'Pabahay Village - Candijay Site',
+    title_ceb: 'Pabahay Balangay - Candijay',
     category: 'pabahay_site',
     municipality: 'Candijay',
     address: 'Barangay Panadtaran, Candijay, Bohol',
@@ -1012,11 +1012,11 @@ Tawag o pakig-alayon sa Tambayan Coordinator sa +63 917 832 6284 labing menos 24
   },
   {
     id: 'news-pabahay-site-assessment',
-    title_en: 'Pabahay ni Kumbati Phase 4 Site Assessment: 40 More Resilient Homes Slated for Coastal Municipalities',
-    title_ceb: 'Pabahay ni Kumbati Phase 4: Dugang 40 ka Balay ang Pagatukuron sa mga Baybayong Lungsod',
+    title_en: 'Pabahay Phase 4 Site Assessment: 40 More Resilient Homes Slated for Coastal Municipalities',
+    title_ceb: 'Pabahay Phase 4: Dugang 40 ka Balay ang Pagatukuron sa mga Baybayong Lungsod',
     excerpt_en: 'Technical validation conducted in partnership with LGU engineers to finalize beneficiary masterlists for typhoon-resilient concrete housing units.',
     excerpt_ceb: 'Gipahigayon ang inspeksyon ug pagsusi sa listahan sa mga benepisyaryo sa bag-ong sementadong balay nga dili maguba sa katalagman.',
-    content_en: `Engineers from the District Technical Planning Office, in coordination with municipal social welfare officers from Dimiao, Garcia Hernandez, Valencia, and Lila, have concluded initial ground validations for Phase 4 of Pabahay ni Kumbati.
+    content_en: `Engineers from the District Technical Planning Office, in coordination with municipal social welfare officers from Dimiao, Garcia Hernandez, Valencia, and Lila, have concluded initial ground validations for Phase 4 of Pabahay.
 
 This flagship socialized shelter program of Congw. Alexie Tutor has already turned over 310+ concrete homes to landless, indigent families living in danger zones or disaster-vulnerable shorelines.
 
@@ -1027,7 +1027,7 @@ Key Specifications of Each Pabahay Unit:
 - Solar perimeter lighting for community safety
 
 Beneficiary selection is strictly vetted through municipal MSWDO assessments, focusing on families without legal land tenure or residing in high-risk cliffside and storm-surge hazard zones.`,
-    content_ceb: `Ang mga inhenyero sa Distrito, kauban ang mga MSWDO sa Dimiao, Garcia Hernandez, Valencia, ug Lila, nakahuman na sa validation alang sa Phase 4 sa Pabahay ni Kumbati.
+    content_ceb: `Ang mga inhenyero sa Distrito, kauban ang mga MSWDO sa Dimiao, Garcia Hernandez, Valencia, ug Lila, nakahuman na sa validation alang sa Phase 4 sa Pabahay.
 
 Kini nga programa ni Congw. Alexie Tutor nakahatag na og kapin 310+ ka sementadong panimalay sa mga kabus nga pamilya nga nagpuyo sa danger zones o daplin sa baybayon.
 

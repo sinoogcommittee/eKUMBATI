@@ -111,7 +111,7 @@ All agents must strictly preserve the data integrity of these 7 core metrics acr
 
 | # | Metric Key | English Title | Cebuano Title | Value | Suffix | Category |
 |---|---|---|---|:---:|:---:|---|
-| 1 | `pabahay` | Pabahay ni Kumbati Beneficiaries | Benepisyaryo sa Pabahay ni Kumbati | **310** | `+` | Housing |
+| 1 | `pabahay` | Pabahay Beneficiaries | Benepisyaryo sa Pabahay | **310** | `+` | Housing |
 | 2 | `ptv` | Patient Transport Vehicles (PTV) | Patient Transport Vehicles (PTV) | **4** | *(none)* | Health |
 | 3 | `dialysis_tambayan` | Tambayan ni Kumbati for Dialysis Patients | Tambayan ni Kumbati sa mga Dialysis Patients | **1** | *(none)* | Health |
 | 4 | `community_beneficiaries` | KUMBATI Community Beneficiaries | Benepisyaryong Komunidad sa KUMBATI | **36** | `+` | Community |

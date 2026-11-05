@@ -57,7 +57,7 @@ export const AboutPage: React.FC = () => {
       titleEn: 'Dignified Socialized Shelter',
       titleCeb: 'Desente ug Luwas nga Panimalay',
       descEn:
-        'Pabahay ni Kumbati provides typhoon-proof concrete homes to 310+ underprivileged families with land security.',
+        'Pabahay provides typhoon-proof concrete homes to 310+ underprivileged families with land security.',
       descCeb:
         'Paghatag og sementado ug lig-on nga panimalay sa kapin 310+ ka kabus nga pamilya lukop sa 19 ka lungsod.',
       icon: Home,
@@ -335,7 +335,7 @@ export const AboutPage: React.FC = () => {
 
               <p>
                 {t(
-                  'Congw. Tutor\'s legislative compass is guided by one core doctrine: public office must deliver tangible, life-saving, and dignity-restoring results directly to constituents ("Serbisyo Diretso sa Katawhan"). This governance philosophy gave birth to the KUMBATI brand—a dynamic public service network encompassing typhoon-resilient concrete housing (Pabahay ni Kumbati), free 24/7 emergency medical transit (Patient Transport Vehicles), patient boarding havens (Tambayan ni Kumbati for Dialysis Patients in Tagbilaran), and comprehensive scholarship assistance for thousands of Boholano youth.',
+                  'Congw. Tutor\'s legislative compass is guided by one core doctrine: public office must deliver tangible, life-saving, and dignity-restoring results directly to constituents ("Serbisyo Diretso sa Katawhan"). This governance philosophy gave birth to the KUMBATI brand—a dynamic public service network encompassing typhoon-resilient concrete housing (Pabahay), free 24/7 emergency medical transit (Patient Transport Vehicles), patient boarding havens (Tambayan ni Kumbati for Dialysis Patients in Tagbilaran), and comprehensive scholarship assistance for thousands of Boholano youth.',
                   'Ang pagserbisyo ni Congw. Tutor gipasukad sa usa ka baruganan: ang gahum sa kagamhanan kinahanglang maghatag og tinuod nga kaayohan, proteksyon, ug dignidad direkta sa katawhan ("Serbisyo Diretso sa Katawhan"). Kini ang nagmugna sa kalihukang KUMBATI—nga naghatag og libreng pabalay nga kongkreto, 24/7 nga sakyanan medikal (PTV), pahuwayan sa dialysis patients sa Tagbilaran, ug liboan ka scholarships sa mga batan-ong Boholano.'
                 )}
               </p>

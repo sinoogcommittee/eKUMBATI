@@ -10,7 +10,7 @@
 ## 🌟 The 7 Flagship 2027 KUMBATI Impact Metrics
 
 The portal prominently tracks and verifies the 7 flagship district accomplishments:
-1. **Pabahay ni Kumbati**: **310+** Safe & Resilient Concrete Housing Beneficiaries.
+1. **Pabahay**: **310+** Safe & Resilient Concrete Housing Beneficiaries.
 2. **Patient Transport Vehicles (PTV)**: **4** Dedicated 24/7 Emergency Medical & Referral Vans (6,200+ patient runs).
 3. **Tambayan ni Kumbati for Dialysis Patients**: **1** Free Patient Haven in Tagbilaran City offering free air-conditioned beds and meals.
 4. **KUMBATI Community Beneficiaries**: **36+** Grassroots Communities empowered through solar electrification, water supply, and access paths.

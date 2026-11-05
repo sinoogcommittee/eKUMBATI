@@ -44,7 +44,7 @@ export const ActionCenterPage: React.FC = () => {
     email: '',
     municipality: BOHOL_DISTRICT_3_TOWNS[4] as string, // Default Candijay
     barangay: '',
-    program_category: prefillProgram ? prefillProgram : 'Pabahay ni Kumbati',
+    program_category: prefillProgram ? prefillProgram : 'Pabahay',
     subject: '',
     message: '',
   });
@@ -193,9 +193,9 @@ export const ActionCenterPage: React.FC = () => {
         contact_number: '0917-882-9901',
         municipality: 'Candijay',
         barangay: 'Panadtaran',
-        subject: 'Pabahay ni Kumbati Application Inspection',
+        subject: 'Pabahay Application Inspection',
         message: 'Requesting validation of barangay indigency certificate for housing unit.',
-        program_category: 'Pabahay ni Kumbati',
+        program_category: 'Pabahay',
         admin_notes: 'Endorsed to District Field Engineer for land lot verification. Scheduled visit on Friday.',
         created_at: '2027-02-14T08:30:00Z',
       };
