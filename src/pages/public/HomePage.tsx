@@ -130,7 +130,7 @@ export const HomePage: React.FC = () => {
                 {/* Decorative Frame */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-orange-500 to-amber-400 rounded-3xl rotate-2 shadow-sinoog -z-10 opacity-75" />
 
-                <div className="bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-7 border border-orange-200/80 shadow-sinoog hover:shadow-sinoog-hover transition-all duration-300 overflow-hidden">
+                <div className="bg-gradient-to-b from-white via-white/95 to-amber-50/20 backdrop-blur-md rounded-3xl p-6 sm:p-7 border border-orange-200/70 border-t-white/95 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
                   <div className="relative h-72 sm:h-80 w-full rounded-2xl overflow-hidden mb-5 bg-slate-100">
                     <img
                       src="/images/cong_alexie.webp"
@@ -221,7 +221,7 @@ export const HomePage: React.FC = () => {
           ))}
 
           {/* District 3 Summary Block as the 8th Tile */}
-          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-sinoog border border-slate-800 hover:border-orange-500/30 transition-all duration-300">
+          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-sinoog border border-slate-800 border-t-slate-700/80 hover:border-orange-500/30 hover:-translate-y-1.5 transition-all duration-300">
             <div>
               <div className="flex items-center justify-between mb-3">
                 <Badge variant="orange" size="sm">
@@ -279,7 +279,7 @@ export const HomePage: React.FC = () => {
           {featuredPrograms.map((prog) => (
             <div
               key={prog.id}
-              className="bg-white/95 rounded-3xl border border-orange-200/70 overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md"
+              className="bg-gradient-to-b from-white via-white/95 to-amber-50/20 rounded-3xl border border-orange-200/70 border-t-white/95 overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md"
             >
               <div>
                 {/* Cover Image */}
@@ -441,7 +441,7 @@ export const HomePage: React.FC = () => {
             <Link
               key={album.id}
               to={`/gallery?album=${album.id}`}
-              className="group block bg-white rounded-3xl border border-orange-200/70 overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300"
+              className="group block bg-gradient-to-b from-white via-white/95 to-amber-50/20 rounded-3xl border border-orange-200/70 border-t-white/95 overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300"
             >
               <div className="relative h-56 w-full overflow-hidden bg-slate-100">
                 <img

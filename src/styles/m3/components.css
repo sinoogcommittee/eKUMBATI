@@ -217,22 +217,23 @@
 }
 
 /* ---------- Card ---------- */
-/* Sinoog pop-shadow system: layered orange/slate lifts */
+/* Sinoog pop-shadow system: layered floating orange/slate lifts with top specular light highlight */
 .m3-card {
   display: block;
   box-sizing: border-box;
   padding: var(--md-space-4);
   border-radius: var(--md-sys-shape-corner-large);
   color: var(--md-sys-color-on-surface);
-  background: color-mix(in srgb, var(--md-sys-color-surface-container-lowest) 94%, #fffaf5);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 252, 248, 0.94) 100%);
   border: var(--sinoog-border-card);
+  border-top-color: rgba(255, 255, 255, 0.95);
   box-shadow: var(--sinoog-shadow-card);
   -webkit-backdrop-filter: blur(10px) saturate(112%);
   backdrop-filter: blur(10px) saturate(112%);
   transition:
-    transform 180ms var(--sinoog-ease-card),
-    box-shadow 180ms var(--sinoog-ease-card),
-    border-color 180ms ease;
+    transform 220ms var(--sinoog-ease-card),
+    box-shadow 220ms var(--sinoog-ease-card),
+    border-color 220ms ease;
 }
 @media (min-width: 840px) {
   .m3-card {
@@ -240,21 +241,26 @@
   }
 }
 .m3-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
   box-shadow: var(--sinoog-shadow-card-hover);
-  border: var(--sinoog-border-card-hover);
+  border-color: var(--sinoog-border-card-hover);
+  border-top-color: #ffffff;
 }
 
 .m3-card--filled {
-  background: color-mix(in srgb, var(--md-sys-color-surface-container) 88%, white);
+  background: linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, var(--md-sys-color-surface-container) 85%, white) 100%);
+  border-top-color: rgba(255, 255, 255, 0.95);
 }
 .m3-card--elevated {
-  background: #ffffff;
+  background: linear-gradient(180deg, #ffffff 0%, #fffdf9 100%);
+  border-top-color: #ffffff;
   box-shadow: var(--sinoog-shadow-card-raised);
 }
 .m3-card--outlined {
-  background: var(--md-sys-color-surface);
+  background: linear-gradient(180deg, #ffffff 0%, #fffdf9 100%);
   border: 1px solid var(--md-sys-color-outline);
+  border-top-color: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--sinoog-shadow-card);
 }
 
 /* ---------- Chip ---------- */

@@ -83,7 +83,7 @@ export const StatCounter: React.FC<StatCounterProps> = ({
 
   return (
     <div
-      className={`group relative bg-white/95 rounded-3xl p-6 sm:p-7 border border-orange-200/70 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden backdrop-blur-md ${className}`}
+      className={`group relative rounded-3xl p-6 sm:p-7 border border-orange-200/70 border-t-white/95 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden backdrop-blur-md bg-gradient-to-b from-white via-white/95 to-amber-50/20 ${className}`}
     >
       {/* Decorative Warm Gradient Ambient Corner */}
       <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-orange-100/50 via-amber-50/20 to-transparent rounded-bl-full pointer-events-none transition-transform group-hover:scale-110" />

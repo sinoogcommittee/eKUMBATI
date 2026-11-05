@@ -308,6 +308,30 @@
 - [x] **14.3 Build Verification**:
   - [x] Verified production build (`npm run build`) passed with exit code 0 (1980 modules transformed).
 
+---
+
+### Phase 15: Sinoog 2027 3D Floating Cards & Top Specular Light Effect
+- [x] **15.1 Multi-Layer Floating Drop-Shadow Architecture**:
+  - [x] Upgraded `--sinoog-shadow-card`, `--sinoog-shadow-card-hover`, and `--sinoog-shadow-card-raised` in `tokens.css`, `index.css`, and `tailwind.config.js` to a 5-layer optical elevation system:
+    - Layer 1: Crisp contact shadow (`0 1px 3px rgba(15, 23, 42, 0.05)`).
+    - Layer 2: Warm ambient terracotta/orange floor reflection (`0 12px 28px -6px rgba(194, 65, 12, 0.20)`).
+    - Layer 3: Deep diffuse ambient floor shadow (`0 30px 60px -16px rgba(15, 23, 42, 0.16)`).
+    - Layer 4: Razor-sharp top white rim specular highlight (`inset 0 1.5px 0 0 rgba(255, 255, 255, 1)`).
+    - Layer 5: Downward diffuse top light sheen (`inset 0 8px 20px -2px rgba(255, 255, 255, 0.85)`).
+- [x] **15.2 Top Edge Light & Bevel Treatment**:
+  - [x] Added `border-top-color: rgba(255, 255, 255, 0.95)` and pure white hover top rim (`border-top-color: #ffffff`) across `.m3-card`, `.sinoog-card`, and card components.
+  - [x] Applied top-down subtle linear gradient backgrounds (`linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 252, 248, 0.94) 100%)`) to create realistic directional light from above.
+  - [x] Configured smooth 220ms cubic-bezier transitions with dynamic `-4px` vertical float on hover.
+- [x] **15.3 Component & Public Page Card Upgrades**:
+  - [x] Upgraded `.m3-card` (`filled`, `elevated`, `outlined`) in `src/styles/m3/components.css`.
+  - [x] Upgraded `StatCounter.tsx` (the 7 flagship metrics) with top light border and warm floating shadow.
+  - [x] Upgraded `HomePage.tsx` (spotlight photo card, district summary card, featured programs, and photo albums).
+  - [x] Upgraded `ProgramsPage.tsx` (flagship program detail cards).
+  - [x] Upgraded `AboutPage.tsx` (biography card and legislative measures cards).
+- [x] **15.4 Build Verification**:
+  - [x] Verified production build (`npm run build`) passed with exit code 0 in 9.40s.
+
+
 
 
 

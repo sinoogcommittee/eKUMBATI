@@ -211,7 +211,7 @@ export const AboutPage: React.FC = () => {
           <div className="lg:col-span-5">
             <div className="relative">
               <div className="absolute -inset-2 bg-gradient-to-tr from-orange-500 to-amber-400 rounded-3xl blur-md opacity-30 shadow-sinoog" />
-              <div className="relative bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-7 border border-orange-200/80 shadow-sinoog hover:shadow-sinoog-hover transition-all duration-300 overflow-hidden">
+              <div className="relative bg-gradient-to-b from-white via-white/95 to-amber-50/20 backdrop-blur-md rounded-3xl p-6 sm:p-7 border border-orange-200/70 border-t-white/95 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
                 <img
                   src="/images/cong_alexie.webp"
                   alt={INITIAL_SITE_SETTINGS.congresswoman_name}

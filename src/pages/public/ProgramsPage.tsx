@@ -97,7 +97,7 @@ export const ProgramsPage: React.FC = () => {
               <div
                 key={prog.id}
                 id={prog.slug}
-                className="bg-white/95 rounded-3xl border border-orange-200/70 shadow-sinoog hover:shadow-sinoog-hover transition-all duration-300 overflow-hidden backdrop-blur-md"
+                className="bg-gradient-to-b from-white via-white/95 to-amber-50/20 rounded-3xl border border-orange-200/70 border-t-white/95 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300 overflow-hidden backdrop-blur-md"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 sm:p-10">
                   {/* Left Column: Image with Category Tag */}

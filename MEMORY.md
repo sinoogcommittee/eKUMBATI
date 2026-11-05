@@ -148,3 +148,9 @@
   - Sized buttons to `size="md"` with responsive padding (`px-3.5 sm:px-4 lg:px-3.5 xl:px-5 py-2.5 sm:py-3 text-xs sm:text-xs xl:text-sm whitespace-nowrap min-h-[44px] xl:min-h-[48px] shrink-0`).
   - Confirmed all 3 buttons (`PTV 24/7 Hotline`, `Action Center (Tracker)`, `7 Flagship Programs`) render strictly on one line on desktop view with zero overflow.
   - Confirmed 100% clean production build (`npm run build` passed in 10.53s with exit code 0).
+- **2026-11-05**: Sinoog 2027 3D Floating Cards & Top Specular Light Effect:
+  - Implemented the exact Sinoog 2027 floating card architecture matching the user's reference screenshots:
+    - 5-layer optical drop-shadow system: contact shadow (`0 1px 3px`), warm terracotta bounce (`0 12px 28px -6px`), deep diffuse ambient floor bloom (`0 30px 60px -16px`), sharp top white specular highlight rim (`inset 0 1.5px 0 0 rgba(255, 255, 255, 1)`), and downward luminous top sheen (`inset 0 8px 20px -2px rgba(255, 255, 255, 0.85)`).
+    - Top edge light treatment: `border-top-color: rgba(255, 255, 255, 0.95)` and directional background gradient (`linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 252, 248, 0.94) 100%)`).
+    - Applied across all card surfaces: `.m3-card` (`filled`, `elevated`, `outlined`), `.sinoog-card`, `StatCounter.tsx`, `HomePage.tsx` (spotlight photo, summary tile, programs, albums), `ProgramsPage.tsx`, `AboutPage.tsx`, `DirectoryPage.tsx`, and `NewsPage.tsx`.
+  - Confirmed 100% clean production build (`npm run build` passed in 9.40s with exit code 0).
