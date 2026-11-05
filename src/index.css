@@ -3,6 +3,58 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Sinoog 2027 Material Design 3 Pop Shadow System (Adapted for KUMBATI Palette) */
+    --sinoog-shadow-card:
+      0 1px 2px rgba(15, 23, 42, 0.05),
+      0 10px 28px -10px rgba(234, 88, 12, 0.12),
+      0 24px 50px -30px rgba(15, 23, 42, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.88);
+
+    --sinoog-shadow-card-hover:
+      0 2px 4px rgba(15, 23, 42, 0.06),
+      0 16px 36px -10px rgba(234, 88, 12, 0.22),
+      0 32px 60px -28px rgba(249, 115, 22, 0.20),
+      inset 0 1px 0 rgba(255, 255, 255, 0.98);
+
+    --sinoog-shadow-card-raised:
+      0 4px 8px rgba(15, 23, 42, 0.08),
+      0 20px 42px -10px rgba(234, 88, 12, 0.24),
+      0 36px 64px -26px rgba(15, 23, 42, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+
+    --sinoog-border-card: 1px solid color-mix(in srgb, #fed7aa 60%, rgba(226, 232, 240, 0.9));
+    --sinoog-border-card-hover: 1px solid color-mix(in srgb, #f97316 55%, #fed7aa);
+    --sinoog-ease-card: cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* Sinoog 2027 Adaptive Spacing & Rhythm */
+    --layout-gutter: 16px;
+    --layout-section-gap: 48px;
+    --target-touch-min: 44px;
+    --target-touch-comfortable: 48px;
+  }
+
+  @media (min-width: 640px) {
+    :root {
+      --layout-gutter: 24px;
+      --layout-section-gap: 64px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --layout-gutter: 32px;
+      --layout-section-gap: 80px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    :root {
+      --layout-gutter: 48px;
+      --layout-section-gap: 96px;
+    }
+  }
+
   html {
     scroll-behavior: smooth;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
@@ -12,6 +64,64 @@
     background-color: #FFFDF9;
     color: #0F172A;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  /* Sinoog 2027 Card Architecture */
+  .sinoog-card {
+    display: block;
+    box-sizing: border-box;
+    padding: 1.25rem;
+    border-radius: 1.5rem;
+    background: color-mix(in srgb, #ffffff 94%, #fffaf5);
+    border: var(--sinoog-border-card);
+    box-shadow: var(--sinoog-shadow-card);
+    -webkit-backdrop-filter: blur(10px) saturate(112%);
+    backdrop-filter: blur(10px) saturate(112%);
+    transition:
+      transform 180ms var(--sinoog-ease-card),
+      box-shadow 180ms var(--sinoog-ease-card),
+      border-color 180ms ease;
+  }
+
+  @media (min-width: 640px) {
+    .sinoog-card {
+      padding: 1.75rem;
+    }
+  }
+
+  .sinoog-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sinoog-shadow-card-hover);
+    border: var(--sinoog-border-card-hover);
+  }
+
+  .sinoog-card--elevated {
+    background: #ffffff;
+    box-shadow: var(--sinoog-shadow-card-raised);
+  }
+
+  .sinoog-card--filled {
+    background: color-mix(in srgb, #fff7ed 85%, white);
+  }
+
+  .sinoog-card--dark {
+    background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+    border: 1px solid rgba(249, 115, 22, 0.22);
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.4),
+      0 10px 28px -10px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+  }
+
+  .sinoog-card--dark:hover {
+    border-color: rgba(249, 115, 22, 0.45);
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.4),
+      0 16px 36px -10px rgba(249, 115, 22, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
   }
 }
 

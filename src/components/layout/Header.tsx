@@ -83,9 +83,9 @@ export const Header: React.FC<HeaderProps> = ({
               key={item.to}
               to={item.to}
               className={({ isActive }) =>
-                `px-3 py-2 rounded-xl text-xs font-bold transition-all duration-200 ${
+                `px-3.5 py-1.5 rounded-full text-xs font-bold transition-all duration-200 ${
                   isActive
-                    ? 'text-orange-600 bg-orange-50 font-black'
+                    ? 'text-orange-600 bg-orange-50 font-black shadow-xs'
                     : 'text-slate-600 hover:text-orange-600 hover:bg-orange-50/50'
                 }`
               }
@@ -100,7 +100,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Language Toggle Button */}
           <button
             onClick={toggleLang}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-orange-200 text-xs font-bold text-orange-950 bg-orange-50/70 hover:bg-orange-100 transition-colors shadow-2xs"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-orange-200 text-xs font-bold text-orange-950 bg-orange-50/80 hover:bg-orange-100 hover:border-orange-300 shadow-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer min-h-[40px]"
             title="Switch Language (English / Cebuano)"
           >
             <Languages className="w-3.5 h-3.5 text-orange-600" />
@@ -114,7 +114,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Action Center Tracker Shortcut */}
           <Link
             to="/action-center"
-            className="hidden lg:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 bg-white hover:bg-slate-50 transition-colors shadow-2xs"
+            className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-700 bg-white hover:bg-orange-50/50 hover:border-orange-300 shadow-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[40px]"
           >
             <ShieldCheck className="w-4 h-4 text-orange-500" />
             <span>{t('Track Ticket', 'Susiha ang Ticket')}</span>
@@ -123,7 +123,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Quick PTV Emergency Dial Button */}
           <button
             onClick={onOpenHotlineModal}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-red-600 to-orange-600 text-white text-xs font-black shadow-md hover:shadow-lg hover:from-red-700 hover:to-orange-700 transition-all active:scale-95"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-red-600 via-rose-600 to-orange-600 text-white text-xs font-black shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[40px] cursor-pointer"
           >
             <PhoneCall className="w-3.5 h-3.5 animate-bounce" />
             <span>{t('Hotlines', 'Mga Hotline')}</span>

@@ -38,7 +38,7 @@ export const ProgramsPage: React.FC = () => {
   });
 
   return (
-    <div className="space-y-12 sm:space-y-16 pb-16">
+    <div className="space-y-16 sm:space-y-24 pb-16">
       {/* =====================================================================
           1. PROGRAMS HERO BANNER
          ===================================================================== */}
@@ -75,10 +75,10 @@ export const ProgramsPage: React.FC = () => {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 ${
+              className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all shrink-0 cursor-pointer ${
                 selectedCategory === cat
-                  ? 'bg-orange-500 text-white shadow-kumbati scale-102 font-black'
-                  : 'bg-white border border-slate-200 text-slate-700 hover:border-orange-300 hover:bg-orange-50/50'
+                  ? 'bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-sinoog font-black'
+                  : 'bg-white border border-slate-200 text-slate-700 hover:border-orange-300 hover:bg-orange-50/50 shadow-2xs'
               }`}
             >
               {cat === 'All'
@@ -97,7 +97,7 @@ export const ProgramsPage: React.FC = () => {
               <div
                 key={prog.id}
                 id={prog.slug}
-                className="bg-white rounded-3xl border border-orange-100 shadow-sm hover:shadow-kumbati-hover transition-all duration-300 overflow-hidden"
+                className="bg-white/95 rounded-3xl border border-orange-200/70 shadow-sinoog hover:shadow-sinoog-hover transition-all duration-300 overflow-hidden backdrop-blur-md"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 sm:p-10">
                   {/* Left Column: Image with Category Tag */}
@@ -179,7 +179,7 @@ export const ProgramsPage: React.FC = () => {
 
                       <button
                         onClick={() => setActiveModalProgram(prog)}
-                        className="px-4 py-2.5 rounded-2xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-bold transition-colors inline-flex items-center gap-1.5"
+                        className="px-5 py-2.5 rounded-full border-2 border-orange-200/90 hover:border-orange-500 hover:bg-orange-50/70 text-slate-700 text-xs font-bold shadow-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 transition-all inline-flex items-center gap-1.5 min-h-[44px] cursor-pointer"
                       >
                         <HelpCircle className="w-4 h-4 text-orange-500" />
                         <span>{t('Eligibility Details', 'Kwalipikasyon')}</span>
@@ -188,7 +188,7 @@ export const ProgramsPage: React.FC = () => {
                       {prog.slug === 'patient-transport-vehicles' && (
                         <a
                           href="tel:+639178326284"
-                          className="px-4 py-2.5 rounded-2xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-sm transition-colors inline-flex items-center gap-1.5"
+                          className="px-5 py-2.5 rounded-full bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-bold shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-0.5 active:translate-y-0 transition-all inline-flex items-center gap-1.5 min-h-[44px]"
                         >
                           <PhoneCall className="w-4 h-4 animate-bounce" />
                           <span>{t('Call PTV: 0917-832-6284', 'Tawag PTV: 0917-832-6284')}</span>
@@ -207,9 +207,9 @@ export const ProgramsPage: React.FC = () => {
           3. HOW TO AVAIL: 3-STEP CONSTITUENT GUIDE
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 border border-slate-800">
+        <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 border border-slate-800 shadow-sinoog">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs font-bold uppercase tracking-wider text-orange-400 bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">
+            <span className="text-xs font-bold uppercase tracking-wider text-orange-400 bg-orange-500/10 px-3.5 py-1 rounded-full border border-orange-500/20">
               {t('Simple 3-Step Process', '3 ka Sayon nga Lakang')}
             </span>
             <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-2">
@@ -218,8 +218,8 @@ export const ProgramsPage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl bg-slate-800/80 border border-slate-700">
-              <div className="w-9 h-9 rounded-xl bg-orange-500 text-white font-black text-sm flex items-center justify-center mb-4">
+            <div className="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/80 hover:border-orange-500/40 shadow-xs hover:shadow-sinoog hover:-translate-y-1 transition-all">
+              <div className="w-9 h-9 rounded-xl bg-orange-500 text-white font-black text-sm flex items-center justify-center mb-4 shadow-sinoog">
                 1
               </div>
               <h3 className="text-base font-bold text-white mb-2">
@@ -233,8 +233,8 @@ export const ProgramsPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-slate-800/80 border border-slate-700">
-              <div className="w-9 h-9 rounded-xl bg-orange-500 text-white font-black text-sm flex items-center justify-center mb-4">
+            <div className="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/80 hover:border-orange-500/40 shadow-xs hover:shadow-sinoog hover:-translate-y-1 transition-all">
+              <div className="w-9 h-9 rounded-xl bg-orange-500 text-white font-black text-sm flex items-center justify-center mb-4 shadow-sinoog">
                 2
               </div>
               <h3 className="text-base font-bold text-white mb-2">
@@ -248,8 +248,8 @@ export const ProgramsPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-slate-800/80 border border-slate-700">
-              <div className="w-9 h-9 rounded-xl bg-orange-500 text-white font-black text-sm flex items-center justify-center mb-4">
+            <div className="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/80 hover:border-orange-500/40 shadow-xs hover:shadow-sinoog hover:-translate-y-1 transition-all">
+              <div className="w-9 h-9 rounded-xl bg-orange-500 text-white font-black text-sm flex items-center justify-center mb-4 shadow-sinoog">
                 3
               </div>
               <h3 className="text-base font-bold text-white mb-2">
@@ -258,7 +258,7 @@ export const ProgramsPage: React.FC = () => {
               <p className="text-xs text-slate-400 leading-relaxed">
                 {t(
                   'Receive a unique tracking code (e.g., KMB-2025-XXXXX) to check real-time approval status and payout schedules.',
-                  'Dawata ang imong tracking code aron masubay kung naaprobahan na ug kanus-a ang pagdawat sa hinabang.'
+                  'Gamita ang Reference Code aron masayran ang pag-apruba, iskedyul sa sakyanan, o petsa sa payout sa imong ayuda.'
                 )}
               </p>
             </div>

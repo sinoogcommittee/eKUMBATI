@@ -38,6 +38,9 @@ export default {
       boxShadow: {
         'kumbati': '0 10px 25px -5px rgba(249, 115, 22, 0.1), 0 8px 10px -6px rgba(249, 115, 22, 0.1)',
         'kumbati-hover': '0 20px 30px -10px rgba(249, 115, 22, 0.2), 0 10px 15px -5px rgba(249, 115, 22, 0.15)',
+        'sinoog': '0 1px 2px rgba(15, 23, 42, 0.05), 0 10px 28px -10px rgba(234, 88, 12, 0.12), 0 24px 50px -30px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.85)',
+        'sinoog-hover': '0 2px 4px rgba(15, 23, 42, 0.06), 0 16px 36px -10px rgba(234, 88, 12, 0.22), 0 32px 60px -28px rgba(249, 115, 22, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.95)',
+        'sinoog-raised': '0 4px 8px rgba(15, 23, 42, 0.08), 0 20px 42px -10px rgba(234, 88, 12, 0.24), 0 36px 64px -26px rgba(15, 23, 42, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.95)',
       },
       borderRadius: {
         '2xl': '1rem',

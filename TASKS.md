@@ -144,3 +144,32 @@
   - [x] Added News & Updates to `Header.tsx`, `MobileNav.tsx`, `Footer.tsx`, and `AdminSidebar.tsx`.
   - [x] Preserved navigation sequence: `Home` → `Programs` → `Impact` → `News & Updates` → `Gallery` → `19 Towns` → `District Map` → `Action Center` → `About`.
   - [x] Verified `npm run build` succeeds with exit code 0.
+
+---
+
+### Phase 8: Sinoog 2027 Design System Styling & Adaptive Spacing
+- [x] **8.1 Design Tokens & Shadow Hierarchy (`tailwind.config.js`, `src/index.css`)**:
+  - [x] Implemented Sinoog 2027's Material Design 3 3-layer pop shadows:
+    - `shadow-sinoog`: Ambient + directional + brand tint (`rgba(234, 88, 12, 0.12)`) + inner specular top glaze (`inset 0 1px 0 rgba(255, 255, 255, 0.88)`).
+    - `shadow-sinoog-hover`: Elevated hover shadow with enhanced orange glow (`rgba(249, 115, 22, 0.20)`).
+    - `shadow-sinoog-raised`: High-elevation pop shadow for hero elements, modal sheets, and urgent advisories.
+  - [x] Added `.sinoog-card` variants (`default`, `elevated`, `filled`, `dark`) with `-webkit-backdrop-filter: blur(10px) saturate(112%)` and smooth 180ms bezier curves.
+- [x] **8.2 Pill Button Architecture (`src/components/common/Button.tsx`)**:
+  - [x] Converted all button scales to full pill shape (`rounded-full` / `border-radius: 9999px`).
+  - [x] Adopted Sinoog 2027 touch target metrics: Small (`min-h-[40px] px-4`), Medium (`min-h-[48px] px-6`), Large (`min-h-[52px] px-8`).
+  - [x] Added multi-stop gradient overlay with top specular highlight border (`border-orange-400` / `border-red-400`) and hover lift (`-translate-y-0.5`).
+  - [x] Created reusable `Card.tsx` component mirroring Sinoog 2027's `Card.tsx`.
+  - [x] Upgraded `Badge.tsx` and `StatCounter.tsx` to match the pill aesthetic and `rounded-3xl` card depth.
+- [x] **8.3 Comprehensive Spacing & Rhythm Across All Public Pages**:
+  - [x] Standardized section gap cadence to `space-y-16 sm:space-y-24 pb-16` across all views.
+  - [x] `HomePage.tsx`: Upgraded hero spotlight card, 7 metrics + 8th tile, featured programs, Action Center CTA banner, photo highlights, and official Facebook cards.
+  - [x] `AboutPage.tsx`: Upgraded portrait card, committee leadership cards, majority membership cards, bill category pills, principal authored bills, co-authored laws, manifesto container, and 19 towns box.
+  - [x] `ProgramsPage.tsx`: Upgraded category pills, 7 program cards with glassmorphism backdrop, eligibility detail buttons, PTV hotline button, and 3-step guide cards.
+  - [x] `NewsPage.tsx`: Upgraded urgent pinned advisory banner, search and municipality dropdown, sector pills, and announcement cards.
+  - [x] `DirectoryPage.tsx`: Upgraded priority emergency dispatch strip, search inputs, emergency toggle button, and 19 town directory cards.
+  - [x] `ImpactPage.tsx`: Upgraded 100% reach card, municipal distribution table card, milestone chronicle cards, and transparency report CTA.
+  - [x] `ActionCenterPage.tsx`: Upgraded dual-mode pill tab switcher, submission form card, assistance type pills, and live tracking ticket card.
+  - [x] `MapPage.tsx`: Upgraded emergency dispatch advisory banner, facility catalog category pills, and physical location directory cards.
+  - [x] `Header.tsx` & `StickyHotlineBar.tsx`: Upgraded navigation pills, language switcher, ticket tracking link, hotline action button, and mobile emergency bar.
+- [x] **8.4 Build Verification**:
+  - [x] Verified `npm run build` passes with exit code 0 and zero errors/warnings.

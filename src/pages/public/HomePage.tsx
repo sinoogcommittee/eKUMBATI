@@ -122,9 +122,9 @@ export const HomePage: React.FC = () => {
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative w-full max-w-md">
                 {/* Decorative Frame */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-orange-500 to-amber-400 rounded-3xl rotate-2 shadow-kumbati -z-10 opacity-75" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-orange-500 to-amber-400 rounded-3xl rotate-2 shadow-sinoog -z-10 opacity-75" />
 
-                <div className="bg-white rounded-3xl p-6 border border-orange-100 shadow-xl overflow-hidden">
+                <div className="bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-7 border border-orange-200/80 shadow-sinoog hover:shadow-sinoog-hover transition-all duration-300 overflow-hidden">
                   <div className="relative h-72 sm:h-80 w-full rounded-2xl overflow-hidden mb-5 bg-slate-100">
                     <img
                       src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
@@ -154,7 +154,7 @@ export const HomePage: React.FC = () => {
                   <div className="flex items-center justify-between border-t border-slate-100 pt-3 text-xs">
                     <Link
                       to="/about"
-                      className="inline-flex items-center gap-1 font-bold text-orange-600 hover:text-orange-700"
+                      className="inline-flex items-center gap-1.5 font-bold text-orange-600 hover:text-orange-700 transition-colors"
                     >
                       <span>{t('Read Full Biography & Bills', 'Basaha ang Tibuok Kasaysayan')}</span>
                       <ChevronRight className="w-4 h-4" />
@@ -215,7 +215,7 @@ export const HomePage: React.FC = () => {
           ))}
 
           {/* District 3 Summary Block as the 8th Tile */}
-          <div className="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-2xl p-6 flex flex-col justify-between shadow-md">
+          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-sinoog border border-slate-800 hover:border-orange-500/30 transition-all duration-300">
             <div>
               <div className="flex items-center justify-between mb-3">
                 <Badge variant="orange" size="sm">
@@ -240,7 +240,7 @@ export const HomePage: React.FC = () => {
             <div className="border-t border-slate-800 pt-3 mt-4">
               <Link
                 to="/directory"
-                className="text-xs font-bold text-orange-400 hover:text-orange-300 inline-flex items-center gap-1"
+                className="text-xs font-bold text-orange-400 hover:text-orange-300 inline-flex items-center gap-1.5 transition-colors"
               >
                 <span>{t('Browse 19 Municipalities', 'Susiha ang 19 ka Lungsod')}</span>
                 <ChevronRight className="w-3.5 h-3.5" />
@@ -273,7 +273,7 @@ export const HomePage: React.FC = () => {
           {featuredPrograms.map((prog) => (
             <div
               key={prog.id}
-              className="bg-white rounded-3xl border border-orange-100 overflow-hidden shadow-sm hover:shadow-kumbati-hover hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+              className="bg-white/95 rounded-3xl border border-orange-200/70 overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md"
             >
               <div>
                 {/* Cover Image */}
@@ -291,7 +291,7 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 {/* Card Body */}
-                <div className="p-6">
+                <div className="p-6 sm:p-7">
                   <h3 className="text-lg font-black text-slate-900 leading-snug mb-2">
                     {t(prog.title_en, prog.title_ceb)}
                   </h3>
@@ -300,8 +300,8 @@ export const HomePage: React.FC = () => {
                   </p>
 
                   {/* Requirements Snippet */}
-                  <div className="bg-orange-50/60 rounded-xl p-3 border border-orange-100">
-                    <div className="text-[11px] font-bold text-orange-900 uppercase tracking-wider mb-1 flex items-center gap-1">
+                  <div className="bg-orange-50/70 rounded-2xl p-3.5 border border-orange-100/80">
+                    <div className="text-[11px] font-bold text-orange-950 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
                       <FileText className="w-3.5 h-3.5 text-orange-600" />
                       <span>{t('Key Requirements', 'Mga Panginahanglanon')}:</span>
                     </div>
@@ -317,10 +317,10 @@ export const HomePage: React.FC = () => {
               </div>
 
               {/* Card Footer Link */}
-              <div className="px-6 pb-6 pt-2">
+              <div className="px-6 pb-6 pt-1">
                 <Link
                   to={`/programs#${prog.slug}`}
-                  className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-orange-50 hover:bg-orange-500 hover:text-white text-orange-700 font-bold text-xs transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-1.5 py-3 px-5 rounded-full bg-orange-50/80 hover:bg-orange-500 hover:text-white text-orange-700 font-bold text-xs shadow-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[44px]"
                 >
                   <span>{t('View Requirements & Guidelines', 'Tan-awa ang mga Kinahanglanon')}</span>
                   <ChevronRight className="w-3.5 h-3.5" />
@@ -343,10 +343,10 @@ export const HomePage: React.FC = () => {
           4. ACTION CENTER CTA BANNER (CONSTITUENT DESK)
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 text-white p-8 sm:p-12 overflow-hidden shadow-kumbati">
+        <div className="relative rounded-3xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 text-white p-8 sm:p-12 overflow-hidden shadow-sinoog-raised border border-orange-400/40">
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-3">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/20 text-white text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
                 <ShieldCheck className="w-4 h-4" />
                 <span>{t('Digital Constituent Assistance Desk', 'Digital nga Sentro sa Aksyon')}</span>
               </div>
@@ -365,13 +365,13 @@ export const HomePage: React.FC = () => {
             </div>
 
             <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center">
-              <Link to="/action-center">
-                <button className="w-full py-3.5 px-6 rounded-2xl bg-white text-orange-700 hover:bg-orange-50 font-black text-sm shadow-md transition-all active:scale-95 text-center">
+              <Link to="/action-center" className="w-full">
+                <button className="w-full py-3.5 px-6 rounded-full bg-white text-orange-700 hover:bg-orange-50 font-black text-sm shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-center min-h-[48px] flex items-center justify-center cursor-pointer">
                   {t('File an Assistance Request', 'Pagsumite og Hangyo / Sumbong')}
                 </button>
               </Link>
-              <Link to="/action-center?tab=track">
-                <button className="w-full py-3 px-6 rounded-2xl bg-slate-900/40 hover:bg-slate-900/60 text-white border border-white/30 font-bold text-sm transition-all text-center">
+              <Link to="/action-center?tab=track" className="w-full">
+                <button className="w-full py-3.5 px-6 rounded-full bg-slate-900/50 hover:bg-slate-900/80 text-white border-2 border-white/40 font-bold text-sm shadow-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-center min-h-[48px] flex items-center justify-center backdrop-blur-sm cursor-pointer">
                   {t('Track Existing Code', 'Susiha ang Reference Code')}
                 </button>
               </Link>
@@ -435,7 +435,7 @@ export const HomePage: React.FC = () => {
             <Link
               key={album.id}
               to={`/gallery?album=${album.id}`}
-              className="group block bg-white rounded-3xl border border-orange-100 overflow-hidden shadow-sm hover:shadow-kumbati-hover hover:-translate-y-1 transition-all duration-300"
+              className="group block bg-white rounded-3xl border border-orange-200/70 overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300"
             >
               <div className="relative h-56 w-full overflow-hidden bg-slate-100">
                 <img
@@ -450,15 +450,16 @@ export const HomePage: React.FC = () => {
                 </div>
                 {album.municipality && (
                   <div className="absolute top-3 right-3">
-                    <span className="px-2 py-0.5 rounded-lg bg-black/60 text-white text-[10px] font-bold">
+                    <span className="px-2.5 py-1 rounded-full bg-black/60 text-white text-[10px] font-bold backdrop-blur-xs">
                       {album.municipality}
                     </span>
                   </div>
                 )}
               </div>
-              <div className="p-5">
-                <div className="text-[11px] font-bold text-slate-400 mb-1">
-                  {album.event_date} &bull; {album.media_count || 1} {t('photos', 'litrato')}
+              <div className="p-6">
+                <div className="text-[11px] font-bold text-slate-400 mb-1.5 flex items-center gap-1.5">
+                  <ImageIcon className="w-3.5 h-3.5 text-orange-500" />
+                  <span>{album.event_date} &bull; {album.media_count || 1} {t('photos', 'litrato')}</span>
                 </div>
                 <h3 className="text-sm font-extrabold text-slate-900 group-hover:text-orange-600 transition-colors leading-snug">
                   {t(album.title_en, album.title_ceb)}
@@ -473,7 +474,7 @@ export const HomePage: React.FC = () => {
           7. OFFICIAL FACEBOOK CHANNELS STRIP
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-10 border border-slate-800">
+        <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-10 border border-slate-800 shadow-sinoog">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>
               <div className="flex items-center gap-2 text-blue-400 text-xs font-bold uppercase tracking-wider mb-1">
@@ -517,7 +518,7 @@ export const HomePage: React.FC = () => {
                 href={fb.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group p-4 rounded-2xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/70 hover:border-orange-500/50 transition-all flex flex-col justify-between"
+                className="group p-5 rounded-2xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/70 hover:border-orange-500/50 shadow-xs hover:shadow-sinoog hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between text-blue-400 mb-2">

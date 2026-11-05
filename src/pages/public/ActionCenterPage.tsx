@@ -238,7 +238,7 @@ export const ActionCenterPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-12 sm:space-y-16 pb-16">
+    <div className="space-y-16 sm:space-y-24 pb-16">
       {/* =====================================================================
           1. ACTION CENTER HERO
          ===================================================================== */}
@@ -265,43 +265,45 @@ export const ActionCenterPage: React.FC = () => {
           2. TWO-TAB INTERFACE: SUBMIT VS TRACK
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex border-b border-slate-200 mb-8 max-w-md">
-          <button
-            onClick={() => {
-              setActiveTab('submit');
-              setSearchParams({});
-            }}
-            className={`flex-1 py-3 text-center text-sm font-bold border-b-2 transition-all flex items-center justify-center gap-2 ${
-              activeTab === 'submit'
-                ? 'border-orange-500 text-orange-600 font-black'
-                : 'border-transparent text-slate-500 hover:text-slate-900'
-            }`}
-          >
-            <Send className="w-4 h-4" />
-            <span>{t('Submit Assistance / Query', 'Pagsumite og Hangyo')}</span>
-          </button>
+        <div className="flex justify-center sm:justify-start mb-8">
+          <div className="inline-flex p-1.5 rounded-full bg-slate-100 border border-slate-200 max-w-md w-full">
+            <button
+              onClick={() => {
+                setActiveTab('submit');
+                setSearchParams({});
+              }}
+              className={`flex-1 py-3 px-5 rounded-full text-center text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 min-h-[44px] cursor-pointer ${
+                activeTab === 'submit'
+                  ? 'bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 text-white shadow-sinoog font-black'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Send className="w-4 h-4" />
+              <span>{t('Submit Assistance / Query', 'Pagsumite og Hangyo')}</span>
+            </button>
 
-          <button
-            onClick={() => {
-              setActiveTab('track');
-              setSearchParams({ tab: 'track' });
-            }}
-            className={`flex-1 py-3 text-center text-sm font-bold border-b-2 transition-all flex items-center justify-center gap-2 ${
-              activeTab === 'track'
-                ? 'border-orange-500 text-orange-600 font-black'
-                : 'border-transparent text-slate-500 hover:text-slate-900'
-            }`}
-          >
-            <Search className="w-4 h-4" />
-            <span>{t('Track Existing Code', 'Susiha ang Reference Code')}</span>
-          </button>
+            <button
+              onClick={() => {
+                setActiveTab('track');
+                setSearchParams({ tab: 'track' });
+              }}
+              className={`flex-1 py-3 px-5 rounded-full text-center text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 min-h-[44px] cursor-pointer ${
+                activeTab === 'track'
+                  ? 'bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 text-white shadow-sinoog font-black'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Search className="w-4 h-4" />
+              <span>{t('Track Existing Code', 'Susiha ang Reference Code')}</span>
+            </button>
+          </div>
         </div>
 
         {/* TAB 1: SUBMISSION FORM */}
         {activeTab === 'submit' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             {/* Form Column */}
-            <div className="lg:col-span-8 bg-white rounded-3xl border border-orange-100 p-6 sm:p-10 shadow-sm">
+            <div className="lg:col-span-8 bg-white/95 rounded-3xl border border-orange-200/80 p-6 sm:p-10 shadow-sinoog backdrop-blur-md">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-slate-700 mb-2">
@@ -320,10 +322,10 @@ export const ActionCenterPage: React.FC = () => {
                         onClick={() =>
                           setFormData({ ...formData, type: typeOption.value as SubmissionType })
                         }
-                        className={`py-2 px-3 rounded-xl text-xs font-bold transition-all text-center ${
+                        className={`py-2.5 px-3.5 rounded-full text-xs font-bold transition-all text-center cursor-pointer ${
                           formData.type === typeOption.value
-                            ? 'bg-orange-500 text-white shadow-kumbati'
-                            : 'bg-slate-50 text-slate-700 border border-slate-200 hover:bg-orange-50'
+                            ? 'bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-sinoog font-black'
+                            : 'bg-slate-50 text-slate-700 border border-slate-200 hover:bg-orange-50/50 shadow-2xs'
                         }`}
                       >
                         {t(typeOption.labelEn, typeOption.labelCeb)}
@@ -479,8 +481,8 @@ export const ActionCenterPage: React.FC = () => {
 
             {/* Explanatory Sidebar Column */}
             <div className="lg:col-span-4 space-y-6">
-              <div className="bg-orange-50/70 rounded-3xl p-6 border border-orange-200 space-y-3">
-                <div className="w-10 h-10 rounded-2xl bg-orange-500 text-white flex items-center justify-center font-bold">
+              <div className="bg-orange-50/80 rounded-3xl p-6 sm:p-7 border border-orange-200/80 shadow-sinoog space-y-3">
+                <div className="w-10 h-10 rounded-2xl bg-orange-500 text-white flex items-center justify-center font-bold shadow-sinoog">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <h3 className="text-base font-black text-slate-900">
@@ -518,7 +520,7 @@ export const ActionCenterPage: React.FC = () => {
               </div>
 
               {/* Sample Code Quick Search Card */}
-              <div className="bg-white rounded-3xl p-6 border border-slate-200 space-y-3">
+              <div className="bg-white/95 rounded-3xl p-6 sm:p-7 border border-orange-200/70 shadow-sinoog space-y-3">
                 <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
                   Demo Preview Code
                 </span>
@@ -535,7 +537,7 @@ export const ActionCenterPage: React.FC = () => {
                     setSearchCode('KMB-2025-DEMO1');
                     handleTrackTicket('KMB-2025-DEMO1');
                   }}
-                  className="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-orange-50 hover:text-orange-600 text-xs font-mono font-bold text-slate-800 transition-colors text-center border border-slate-200"
+                  className="w-full py-2.5 px-4 rounded-full bg-slate-100 hover:bg-orange-50 hover:text-orange-600 text-xs font-mono font-bold text-slate-800 transition-all text-center border border-slate-200 shadow-2xs cursor-pointer"
                 >
                   KMB-2025-DEMO1 &rarr;
                 </button>
@@ -548,7 +550,7 @@ export const ActionCenterPage: React.FC = () => {
         {activeTab === 'track' && (
           <div className="max-w-3xl mx-auto space-y-8">
             {/* Search Box */}
-            <div className="bg-white rounded-3xl border border-orange-100 p-6 sm:p-8 shadow-sm">
+            <div className="bg-white/95 rounded-3xl border border-orange-200/80 p-6 sm:p-8 shadow-sinoog backdrop-blur-md">
               <h3 className="text-lg font-black text-slate-900 mb-2">
                 {t('Enter Reference Tracking Code', 'Ibutang ang Reference Code')}
               </h3>
@@ -561,13 +563,13 @@ export const ActionCenterPage: React.FC = () => {
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="relative flex-1">
-                  <Search className="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     placeholder="e.g. KMB-2025-DEMO1"
                     value={searchCode}
                     onChange={(e) => setSearchCode(e.target.value.toUpperCase())}
-                    className="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 text-sm font-mono font-bold tracking-wider focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full pl-11 pr-4 py-3 rounded-full border border-slate-200 text-sm font-mono font-bold tracking-wider focus:outline-none focus:ring-2 focus:ring-orange-500 shadow-2xs"
                   />
                 </div>
                 <Button
@@ -591,7 +593,7 @@ export const ActionCenterPage: React.FC = () => {
 
             {/* Tracked Ticket Resolution Timeline & Card */}
             {trackedTicket && (
-              <div className="bg-white rounded-3xl border border-orange-200 p-6 sm:p-10 shadow-lg space-y-8">
+              <div className="bg-white/95 rounded-3xl border border-orange-200/80 p-6 sm:p-10 shadow-sinoog space-y-8 backdrop-blur-md">
                 {/* Header: Code & Status */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-6">
                   <div>

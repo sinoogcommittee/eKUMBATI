@@ -18,7 +18,7 @@ export const StickyHotlineBar: React.FC<StickyHotlineBarProps> = ({
         {/* Button 1: One-touch Emergency Call to PTV Dispatch */}
         <a
           href="tel:+639178326284"
-          className="flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-gradient-to-r from-red-600 to-orange-600 text-white font-black shadow-sm active:scale-95 transition-all text-center"
+          className="flex flex-col items-center justify-center py-2 px-1 rounded-2xl bg-gradient-to-r from-red-600 to-orange-600 text-white font-black shadow-sinoog active:scale-95 transition-all text-center"
         >
           <PhoneCall className="w-4 h-4 mb-0.5 animate-bounce" />
           <span className="text-[10px] uppercase tracking-wider leading-none">
@@ -30,7 +30,7 @@ export const StickyHotlineBar: React.FC<StickyHotlineBarProps> = ({
         {/* Button 2: Action Center */}
         <Link
           to="/action-center"
-          className="flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-orange-500 text-white font-black shadow-sm active:scale-95 transition-all text-center"
+          className="flex flex-col items-center justify-center py-2 px-1 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-600 text-white font-black shadow-sinoog active:scale-95 transition-all text-center"
         >
           <ShieldCheck className="w-4 h-4 mb-0.5" />
           <span className="text-[10px] uppercase tracking-wider leading-none">
@@ -44,7 +44,7 @@ export const StickyHotlineBar: React.FC<StickyHotlineBarProps> = ({
         {/* Button 3: All 19 Towns & Hotlines Dialog */}
         <button
           onClick={onOpenHotlineModal}
-          className="flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold active:scale-95 transition-all text-center"
+          className="flex flex-col items-center justify-center py-2 px-1 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold shadow-xs active:scale-95 transition-all text-center cursor-pointer"
         >
           <MapPin className="w-4 h-4 mb-0.5 text-orange-600" />
           <span className="text-[10px] uppercase tracking-wider leading-none">

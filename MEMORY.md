@@ -85,3 +85,13 @@
   - Added direct Google Maps turn-by-turn route navigation (`https://www.google.com/maps/dir/?api=1&destination=...`) and interactive Google Maps Embed preview modal in `MapPage.tsx`.
   - Updated all navigation menus (`Header.tsx`, `MobileNav.tsx`, `Footer.tsx`, `AdminSidebar.tsx`) preserving sequence with About after Action Center.
   - Confirmed clean production build (`npm run build` passed in 21.45s with exit code 0).
+- **2026-11-05**: Sinoog 2027 Design System Styling & Adaptive Spacing:
+  - Audited and adapted design patterns from `E:\Programs\Sinoog 2027`:
+    - Material Design 3 3-layer pop shadows (`shadow-sinoog`, `shadow-sinoog-hover`, `shadow-sinoog-raised`) with subtle ambient, directional, orange brand glow (`rgba(249, 115, 22, 0.20)`), and tactile inner top specular glaze (`inset 0 1px 0 rgba(255, 255, 255, 0.88)`).
+    - Added `.sinoog-card` variants in `src/index.css` with `-webkit-backdrop-filter: blur(10px) saturate(112%)` and smooth 180ms cubic-bezier transition curves.
+    - Upgraded `Button.tsx` to full pill geometry (`rounded-full`) with touch target standards (40px sm, 48px md, 52px lg), multi-stop gradients, top highlight border, state layer, and hover lift.
+    - Created reusable `Card.tsx` component mirroring Sinoog 2027's `Card.tsx`.
+    - Upgraded `Badge.tsx` and `StatCounter.tsx` to pill shapes and `rounded-3xl` cards.
+    - Standardized section spacing rhythm to `space-y-16 sm:space-y-24 pb-16` across all views.
+    - Rolled out Sinoog 2027 cards, pill buttons, and responsive spacing across all public pages (`HomePage.tsx`, `AboutPage.tsx`, `ProgramsPage.tsx`, `NewsPage.tsx`, `DirectoryPage.tsx`, `ImpactPage.tsx`, `ActionCenterPage.tsx`, `MapPage.tsx`, `GalleryPage.tsx`, `Header.tsx`, `StickyHotlineBar.tsx`).
+  - Confirmed 100% clean production build (`npm run build` passed in 15.13s with exit code 0).

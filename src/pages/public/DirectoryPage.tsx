@@ -47,7 +47,7 @@ export const DirectoryPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-12 sm:space-y-16 pb-16">
+    <div className="space-y-16 sm:space-y-24 pb-16">
       {/* =====================================================================
           1. DIRECTORY HERO BANNER
          ===================================================================== */}
@@ -74,7 +74,7 @@ export const DirectoryPage: React.FC = () => {
           2. PRIORITY DISTRICT-WIDE 24/7 HOTLINES CAROUSEL / CARDS
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-r from-red-600 via-orange-600 to-amber-600 text-white rounded-3xl p-6 sm:p-8 shadow-md">
+        <div className="bg-gradient-to-r from-red-600 via-rose-600 to-orange-600 text-white rounded-3xl p-6 sm:p-8 shadow-sinoog-raised border border-red-400/30">
           <div className="flex items-center gap-2 mb-4">
             <AlertCircle className="w-5 h-5 text-amber-200 animate-pulse" />
             <h2 className="text-lg font-black uppercase tracking-wider text-white">
@@ -84,7 +84,7 @@ export const DirectoryPage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* PTV Dispatch */}
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20">
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 shadow-xs">
               <span className="text-[10px] font-black uppercase tracking-wider text-amber-200">
                 24/7 Patient Transit
               </span>
@@ -94,7 +94,7 @@ export const DirectoryPage: React.FC = () => {
               </div>
               <a
                 href="tel:+639178326284"
-                className="inline-flex items-center justify-center gap-1.5 w-full py-1.5 px-3 rounded-xl bg-white text-red-600 font-bold text-xs hover:bg-red-50 transition-colors shadow-sm"
+                className="inline-flex items-center justify-center gap-1.5 w-full py-2 px-4 rounded-full bg-white text-red-600 font-bold text-xs hover:bg-red-50 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[38px]"
               >
                 <Phone className="w-3.5 h-3.5" />
                 <span>{t('Call Now', 'Tawag Na')}</span>
@@ -102,7 +102,7 @@ export const DirectoryPage: React.FC = () => {
             </div>
 
             {/* Candijay District Headquarters */}
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20">
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 shadow-xs">
               <span className="text-[10px] font-black uppercase tracking-wider text-amber-200">
                 Congressional HQ
               </span>
@@ -112,7 +112,7 @@ export const DirectoryPage: React.FC = () => {
               </div>
               <a
                 href="tel:0385260123"
-                className="inline-flex items-center justify-center gap-1.5 w-full py-1.5 px-3 rounded-xl bg-white text-orange-600 font-bold text-xs hover:bg-orange-50 transition-colors shadow-sm"
+                className="inline-flex items-center justify-center gap-1.5 w-full py-2 px-4 rounded-full bg-white text-orange-600 font-bold text-xs hover:bg-orange-50 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[38px]"
               >
                 <Phone className="w-3.5 h-3.5" />
                 <span>{t('Call Office', 'Tawag sa Opisina')}</span>
@@ -120,7 +120,7 @@ export const DirectoryPage: React.FC = () => {
             </div>
 
             {/* Tambayan ni Kumbati */}
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20">
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 shadow-xs">
               <span className="text-[10px] font-black uppercase tracking-wider text-amber-200">
                 Dialysis Haven
               </span>
@@ -130,7 +130,7 @@ export const DirectoryPage: React.FC = () => {
               </div>
               <a
                 href="tel:+639194432199"
-                className="inline-flex items-center justify-center gap-1.5 w-full py-1.5 px-3 rounded-xl bg-white text-purple-700 font-bold text-xs hover:bg-purple-50 transition-colors shadow-sm"
+                className="inline-flex items-center justify-center gap-1.5 w-full py-2 px-4 rounded-full bg-white text-purple-700 font-bold text-xs hover:bg-purple-50 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[38px]"
               >
                 <Phone className="w-3.5 h-3.5" />
                 <span>{t('Call Haven', 'Tawag sa Tambayan')}</span>
@@ -138,7 +138,7 @@ export const DirectoryPage: React.FC = () => {
             </div>
 
             {/* Kumbati Clinic */}
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20">
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 shadow-xs">
               <span className="text-[10px] font-black uppercase tracking-wider text-amber-200">
                 Free Clinic & Rx
               </span>
@@ -148,7 +148,7 @@ export const DirectoryPage: React.FC = () => {
               </div>
               <a
                 href="tel:+639175582210"
-                className="inline-flex items-center justify-center gap-1.5 w-full py-1.5 px-3 rounded-xl bg-white text-emerald-700 font-bold text-xs hover:bg-emerald-50 transition-colors shadow-sm"
+                className="inline-flex items-center justify-center gap-1.5 w-full py-2 px-4 rounded-full bg-white text-emerald-700 font-bold text-xs hover:bg-emerald-50 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[38px]"
               >
                 <Phone className="w-3.5 h-3.5" />
                 <span>{t('Call Clinic', 'Tawag sa Klinika')}</span>
@@ -165,23 +165,23 @@ export const DirectoryPage: React.FC = () => {
         {/* Search & Toggle Bar */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8">
           <div className="relative flex-1 max-w-md">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               placeholder={t('Search municipality (e.g. Carmen, Jagna, Anda)...', 'Pangitaa ang lungsod (e.g. Carmen, Jagna, Anda)...')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-2xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
+              className="w-full pl-11 pr-4 py-3 rounded-full border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white shadow-2xs"
             />
           </div>
 
           <div className="flex items-center gap-3">
             <button
               onClick={() => setEmergencyOnly(!emergencyOnly)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+              className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 cursor-pointer min-h-[44px] ${
                 emergencyOnly
-                  ? 'bg-red-600 text-white shadow-sm'
-                  : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
+                  ? 'bg-red-600 text-white shadow-sinoog'
+                  : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 shadow-2xs'
               }`}
             >
               <ShieldAlert className="w-4 h-4" />
@@ -198,13 +198,13 @@ export const DirectoryPage: React.FC = () => {
             return (
               <div
                 key={town}
-                className="bg-white rounded-3xl border border-orange-100 p-6 shadow-sm hover:shadow-kumbati-hover transition-all duration-300 flex flex-col justify-between"
+                className="bg-white/95 rounded-3xl border border-orange-200/70 p-6 sm:p-7 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md"
               >
                 <div>
                   {/* Town Header */}
                   <div className="flex items-center justify-between mb-3 border-b border-slate-100 pb-3">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center font-black text-sm">
+                      <div className="w-9 h-9 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center font-black text-sm shadow-2xs">
                         {town.charAt(0)}
                       </div>
                       <div>
@@ -219,7 +219,7 @@ export const DirectoryPage: React.FC = () => {
 
                     <Link
                       to={`/map?town=${encodeURIComponent(town)}`}
-                      className="text-xs font-bold text-orange-600 hover:text-orange-700 flex items-center gap-1"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-orange-50 hover:bg-orange-100 text-xs font-bold text-orange-600 transition-colors"
                       title={t('View on Map', 'Tan-awa sa Mapa')}
                     >
                       <MapPin className="w-3.5 h-3.5" />
@@ -233,7 +233,7 @@ export const DirectoryPage: React.FC = () => {
                       hotlines.map((h) => (
                         <div
                           key={h.id}
-                          className="p-3 rounded-xl bg-orange-50/50 border border-orange-100 space-y-1.5"
+                          className="p-3.5 rounded-2xl bg-orange-50/60 border border-orange-100 space-y-1.5"
                         >
                           <div className="flex items-center justify-between">
                             <span className="text-xs font-bold text-slate-900">

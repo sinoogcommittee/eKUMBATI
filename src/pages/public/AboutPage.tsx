@@ -470,14 +470,14 @@ export const AboutPage: React.FC = () => {
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <a
                 href="#committees"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-orange-600 text-white font-bold text-xs hover:bg-orange-700 transition-colors shadow-sm"
+                className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[44px]"
               >
                 <Landmark className="w-3.5 h-3.5" />
                 <span>{t('Committee Leadership', 'Mga Komitiba sa Kongreso')}</span>
               </a>
               <a
                 href="#bills"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white border border-orange-200 text-slate-800 font-bold text-xs hover:bg-orange-50 transition-colors shadow-sm"
+                className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-white border border-orange-200 text-slate-800 font-bold text-xs hover:bg-orange-50 transition-all shadow-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 min-h-[44px]"
               >
                 <BookOpen className="w-3.5 h-3.5 text-orange-600" />
                 <span>{t('Authored Bills & Enacted Laws', 'Mga Balaodnon ug Naipasang Balaod')}</span>
@@ -486,7 +486,7 @@ export const AboutPage: React.FC = () => {
                 href="https://www.congress.gov.ph/house-members/view/J075"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-slate-800 transition-colors shadow-sm"
+                className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[44px]"
               >
                 <span>{t('Official Congress Record (J075)', 'Opisyal nga Rekord sa Kongreso')}</span>
                 <ExternalLink className="w-3 h-3 text-orange-400" />
@@ -504,8 +504,8 @@ export const AboutPage: React.FC = () => {
           {/* Portrait & Credentials Column */}
           <div className="lg:col-span-5">
             <div className="relative">
-              <div className="absolute -inset-2 bg-gradient-to-tr from-orange-500 to-amber-400 rounded-3xl blur-md opacity-30" />
-              <div className="relative bg-white rounded-3xl p-6 border border-orange-100 shadow-xl overflow-hidden">
+              <div className="absolute -inset-2 bg-gradient-to-tr from-orange-500 to-amber-400 rounded-3xl blur-md opacity-30 shadow-sinoog" />
+              <div className="relative bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-7 border border-orange-200/80 shadow-sinoog hover:shadow-sinoog-hover transition-all duration-300 overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
                   alt={INITIAL_SITE_SETTINGS.congresswoman_name}
@@ -527,10 +527,10 @@ export const AboutPage: React.FC = () => {
 
                   {/* Badges of Distinction */}
                   <div className="flex flex-wrap gap-1.5 pt-1">
-                    <span className="px-2.5 py-1 rounded-lg bg-orange-100 text-orange-800 text-[11px] font-bold">
+                    <span className="px-3 py-1 rounded-full bg-orange-100 text-orange-800 text-[11px] font-bold">
                       {t('Chairperson: Civil Service & PRC', 'Chairperson: Serbisyo Sibil ug PRC')}
                     </span>
-                    <span className="px-2.5 py-1 rounded-lg bg-red-100 text-red-800 text-[11px] font-bold">
+                    <span className="px-3 py-1 rounded-full bg-red-100 text-red-800 text-[11px] font-bold">
                       {t('Vice Chairperson: Health', 'Vice Chairperson: Panglawas')}
                     </span>
                   </div>
@@ -599,10 +599,10 @@ export const AboutPage: React.FC = () => {
                       href="https://www.congress.gov.ph/house-members/view/J075"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-orange-50 border border-orange-200 text-orange-800 hover:bg-orange-100 font-bold text-xs transition-colors"
+                      className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-orange-50/80 hover:bg-orange-500 text-orange-800 hover:text-white border border-orange-200/90 font-bold text-xs shadow-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[44px]"
                     >
                       <span>{t('View Verified House Profile (J075)', 'Tan-awa ang Opisyal nga Profile sa Kongreso')}</span>
-                      <ExternalLink className="w-3.5 h-3.5 text-orange-600" />
+                      <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   </div>
                 </div>
@@ -689,18 +689,18 @@ export const AboutPage: React.FC = () => {
             return (
               <div
                 key={idx}
-                className={`relative rounded-3xl p-8 border transition-all duration-300 shadow-md ${
+                className={`relative rounded-3xl p-8 border transition-all duration-300 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1 ${
                   isChair
-                    ? 'bg-gradient-to-br from-orange-500/10 via-amber-500/5 to-white border-orange-300 shadow-orange-100 hover:shadow-xl'
-                    : 'bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-white border-emerald-300 shadow-emerald-100 hover:shadow-xl'
+                    ? 'bg-gradient-to-br from-orange-500/10 via-amber-500/5 to-white border-orange-300/80 shadow-orange-100/50'
+                    : 'bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-white border-emerald-300/80 shadow-emerald-100/50'
                 }`}
               >
                 <div className="flex items-start justify-between gap-4 mb-4">
                   <div
                     className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${
                       isChair
-                        ? 'bg-orange-600 text-white shadow-md shadow-orange-200'
-                        : 'bg-emerald-600 text-white shadow-md shadow-emerald-200'
+                        ? 'bg-orange-600 text-white shadow-sinoog'
+                        : 'bg-emerald-600 text-white shadow-sinoog'
                     }`}
                   >
                     <Icon className="w-6 h-6" />
@@ -738,7 +738,7 @@ export const AboutPage: React.FC = () => {
         </div>
 
         {/* Member for the Majority Committees */}
-        <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200">
+        <div className="bg-slate-50/80 rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sinoog">
           <div className="flex items-center gap-2 mb-6">
             <Badge variant="slate" size="sm">
               {t('Committee Memberships', 'Mga Komitiba Isip Miyembro')}
@@ -754,7 +754,7 @@ export const AboutPage: React.FC = () => {
               return (
                 <div
                   key={cIdx}
-                  className="bg-white p-5 rounded-2xl border border-slate-200 hover:border-orange-300 transition-colors shadow-sm"
+                  className="bg-white p-5 rounded-2xl border border-slate-200/80 hover:border-orange-300 transition-all shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div className="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center">
@@ -798,33 +798,33 @@ export const AboutPage: React.FC = () => {
 
         {/* Dual Mode Switcher Tabs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
-          <div className="inline-flex p-1.5 rounded-2xl bg-slate-100 border border-slate-200">
+          <div className="inline-flex p-1.5 rounded-full bg-slate-100 border border-slate-200">
             <button
               onClick={() => setActiveTab('principal')}
-              className={`px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 ${
+              className={`px-6 py-2.5 rounded-full font-bold text-xs sm:text-sm transition-all flex items-center gap-2 min-h-[44px] cursor-pointer ${
                 activeTab === 'principal'
-                  ? 'bg-orange-600 text-white shadow-md shadow-orange-200'
+                  ? 'bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 text-white shadow-sinoog'
                   : 'text-slate-700 hover:text-slate-900'
               }`}
             >
               <BookOpen className="w-4 h-4" />
               <span>{t('Principal Authored Bills', 'Panguna nga Gipanday nga Balaodnon')}</span>
-              <span className={`px-2 py-0.5 rounded-full text-xs ${activeTab === 'principal' ? 'bg-orange-700 text-white' : 'bg-slate-200 text-slate-700'}`}>
+              <span className={`px-2 py-0.5 rounded-full text-xs ${activeTab === 'principal' ? 'bg-orange-800 text-white' : 'bg-slate-200 text-slate-700'}`}>
                 {principalAuthoredBills.length}
               </span>
             </button>
 
             <button
               onClick={() => setActiveTab('coauthored')}
-              className={`px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 ${
+              className={`px-6 py-2.5 rounded-full font-bold text-xs sm:text-sm transition-all flex items-center gap-2 min-h-[44px] cursor-pointer ${
                 activeTab === 'coauthored'
-                  ? 'bg-orange-600 text-white shadow-md shadow-orange-200'
+                  ? 'bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 text-white shadow-sinoog'
                   : 'text-slate-700 hover:text-slate-900'
               }`}
             >
               <Award className="w-4 h-4" />
               <span>{t('Co-Authored Landmark Laws', 'Gipaluyohan nga Landmark Republic Acts')}</span>
-              <span className={`px-2 py-0.5 rounded-full text-xs ${activeTab === 'coauthored' ? 'bg-orange-700 text-white' : 'bg-slate-200 text-slate-700'}`}>
+              <span className={`px-2 py-0.5 rounded-full text-xs ${activeTab === 'coauthored' ? 'bg-orange-800 text-white' : 'bg-slate-200 text-slate-700'}`}>
                 {coAuthoredLaws.length}
               </span>
             </button>
@@ -847,9 +847,9 @@ export const AboutPage: React.FC = () => {
                 <button
                   key={cat.id}
                   onClick={() => setBillCategory(cat.id)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors ${
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
                     billCategory === cat.id
-                      ? 'bg-slate-900 text-white'
+                      ? 'bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-sinoog font-black'
                       : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
                   }`}
                 >
@@ -863,11 +863,11 @@ export const AboutPage: React.FC = () => {
               {filteredBills.map((bill, bIdx) => (
                 <div
                   key={bIdx}
-                  className="p-6 rounded-3xl bg-white border border-orange-100 shadow-sm hover:shadow-kumbati-hover transition-all duration-300 flex flex-col justify-between"
+                  className="p-6 sm:p-7 rounded-3xl bg-white border border-orange-200/70 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-orange-100 text-orange-900 text-xs font-black">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-orange-900 text-xs font-black">
                         <FileText className="w-3.5 h-3.5 text-orange-600" />
                         <span>{bill.billNumber}</span>
                       </span>
@@ -905,7 +905,7 @@ export const AboutPage: React.FC = () => {
               return (
                 <div
                   key={lIdx}
-                  className="p-6 rounded-3xl bg-white border border-orange-100 shadow-sm hover:shadow-kumbati-hover transition-all duration-300 flex flex-col justify-between"
+                  className="p-6 sm:p-7 rounded-3xl bg-white border border-orange-200/70 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
                     <div className="w-10 h-10 rounded-2xl bg-orange-50 text-orange-600 border border-orange-200/60 flex items-center justify-center mb-4">
@@ -936,7 +936,7 @@ export const AboutPage: React.FC = () => {
         )}
 
         {/* Official House Verification Callout Banner */}
-        <div className="mt-10 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="mt-10 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-950 text-white shadow-sinoog-raised border border-slate-700/60 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 text-xs font-bold uppercase tracking-wider">
               <Landmark className="w-3.5 h-3.5" />
@@ -957,7 +957,7 @@ export const AboutPage: React.FC = () => {
             href="https://www.congress.gov.ph/house-members/view/J075"
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs sm:text-sm transition-all shadow-lg hover:shadow-orange-500/20"
+            className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold text-xs sm:text-sm transition-all shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-0.5 active:translate-y-0 min-h-[48px]"
           >
             <span>{t('Open congress.gov.ph Profile', 'Ablihi ang congress.gov.ph Profile')}</span>
             <ExternalLink className="w-4 h-4" />
@@ -969,7 +969,7 @@ export const AboutPage: React.FC = () => {
           5. THE KUMBATI MANIFESTO & 5 PILLARS
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-3xl p-8 sm:p-14 shadow-xl">
+        <div className="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-3xl p-8 sm:p-14 shadow-sinoog border border-slate-800">
           <div className="max-w-3xl mb-12">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 text-xs font-bold uppercase tracking-wider mb-3">
               <Award className="w-3.5 h-3.5" />
@@ -992,7 +992,7 @@ export const AboutPage: React.FC = () => {
               return (
                 <div
                   key={idx}
-                  className="p-6 rounded-2xl bg-slate-850/80 border border-slate-800 hover:border-orange-500/40 transition-colors"
+                  className="p-6 rounded-2xl bg-slate-800/80 border border-slate-800 hover:border-orange-500/40 shadow-xs hover:shadow-sinoog hover:-translate-y-1 transition-all"
                 >
                   <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/30 text-orange-400 flex items-center justify-center mb-4">
                     <Icon className="w-5 h-5" />
@@ -1014,7 +1014,7 @@ export const AboutPage: React.FC = () => {
           6. BOHOL DISTRICT 3 PROFILE & 19 TOWNS
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-orange-50/70 rounded-3xl p-8 sm:p-12 border border-orange-200">
+        <div className="bg-orange-50/70 rounded-3xl p-8 sm:p-12 border border-orange-200/80 shadow-sinoog">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7 space-y-4">
               <Badge variant="orange" size="sm">
@@ -1035,7 +1035,7 @@ export const AboutPage: React.FC = () => {
 
               <div className="pt-2">
                 <Link to="/directory">
-                  <Button variant="primary" size="sm" icon={<MapPin className="w-4 h-4" />}>
+                  <Button variant="primary" size="md" icon={<MapPin className="w-4 h-4" />}>
                     {t('View 19-Town Municipal Directory & Hotlines', 'Tan-awa ang Direktoryo sa 19 ka Lungsod')}
                   </Button>
                 </Link>
@@ -1043,7 +1043,7 @@ export const AboutPage: React.FC = () => {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="bg-white rounded-2xl p-5 border border-orange-200 shadow-sm">
+              <div className="bg-white rounded-2xl p-6 border border-orange-200/80 shadow-sinoog">
                 <h4 className="text-xs font-black uppercase tracking-wider text-slate-900 mb-3 flex items-center justify-between">
                   <span>{t('Municipalities List', 'Listahan sa mga Lungsod')}</span>
                   <span className="text-orange-600 font-bold">19 Towns</span>
@@ -1053,7 +1053,7 @@ export const AboutPage: React.FC = () => {
                     <Link
                       key={town}
                       to={`/directory?town=${encodeURIComponent(town)}`}
-                      className="p-1.5 rounded-lg bg-orange-50/50 hover:bg-orange-100 text-slate-700 hover:text-orange-700 font-semibold transition-colors flex items-center justify-between"
+                      className="p-2 rounded-xl bg-orange-50/50 hover:bg-orange-100 text-slate-700 hover:text-orange-700 font-semibold transition-all flex items-center justify-between hover:translate-x-0.5"
                     >
                       <span>{town}</span>
                       <ChevronRight className="w-3 h-3 text-orange-400" />

@@ -58,7 +58,7 @@ export const Badge: React.FC<BadgeProps> = ({
 
   return (
     <span
-      className={`inline-flex items-center font-bold uppercase tracking-wider rounded-lg border ${sizeClasses[size]} ${currentVariant.container} ${className}`}
+      className={`inline-flex items-center font-bold uppercase tracking-wider rounded-full border shadow-2xs ${sizeClasses[size]} ${currentVariant.container} ${className}`}
     >
       {dot && <span className={`w-1.5 h-1.5 rounded-full ${currentVariant.dot}`} />}
       <span>{children}</span>

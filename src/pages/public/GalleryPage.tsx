@@ -50,7 +50,7 @@ export const GalleryPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-12 sm:space-y-16 pb-16">
+    <div className="space-y-16 sm:space-y-24 pb-16">
       {/* =====================================================================
           1. GALLERY HERO BANNER
          ===================================================================== */}
@@ -89,10 +89,10 @@ export const GalleryPage: React.FC = () => {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
+                className={`px-4 py-2 rounded-full text-xs font-bold transition-all shrink-0 cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-orange-500 text-white shadow-kumbati scale-102 font-black'
-                    : 'bg-white border border-slate-200 text-slate-700 hover:border-orange-300 hover:bg-orange-50/50'
+                    ? 'bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-sinoog font-black'
+                    : 'bg-white border border-slate-200 text-slate-700 hover:border-orange-300 hover:bg-orange-50/50 shadow-2xs'
                 }`}
               >
                 {cat}
@@ -105,7 +105,7 @@ export const GalleryPage: React.FC = () => {
             <select
               value={selectedTown}
               onChange={(e) => setSelectedTown(e.target.value)}
-              className="w-full sm:w-auto px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 bg-white hover:border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer"
+              className="w-full sm:w-auto px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-700 bg-white hover:border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer shadow-2xs"
             >
               <option value="All">{t('All 19 Municipalities', 'Tanan nga 19 ka Lungsod')}</option>
               {BOHOL_DISTRICT_3_TOWNS.map((town) => (
@@ -133,7 +133,7 @@ export const GalleryPage: React.FC = () => {
             {INITIAL_ALBUMS.map((album) => (
               <div
                 key={album.id}
-                className="bg-white rounded-3xl border border-orange-100 overflow-hidden shadow-sm hover:shadow-kumbati-hover transition-all duration-300 flex flex-col justify-between"
+                className="bg-white/95 rounded-3xl border border-orange-200/70 overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md"
               >
                 <div className="relative h-44 w-full bg-slate-100 overflow-hidden">
                   <img
@@ -148,14 +148,14 @@ export const GalleryPage: React.FC = () => {
                   </div>
                   {album.municipality && (
                     <div className="absolute top-2.5 right-2.5">
-                      <span className="px-2 py-0.5 rounded-md bg-black/70 text-white text-[10px] font-bold">
+                      <span className="px-2.5 py-0.5 rounded-full bg-black/70 text-white text-[10px] font-bold backdrop-blur-xs">
                         {album.municipality}
                       </span>
                     </div>
                   )}
                 </div>
 
-                <div className="p-4 flex-1 flex flex-col justify-between">
+                <div className="p-5 flex-1 flex flex-col justify-between">
                   <div>
                     <div className="text-[10px] text-slate-400 font-semibold mb-1 flex items-center gap-1">
                       <Calendar className="w-3 h-3 text-orange-500" />
@@ -194,7 +194,7 @@ export const GalleryPage: React.FC = () => {
                 <div
                   key={media.id}
                   onClick={() => setLightboxMedia(media)}
-                  className="group relative bg-white rounded-3xl border border-orange-100 overflow-hidden shadow-sm hover:shadow-kumbati-hover cursor-pointer transition-all duration-300"
+                  className="group relative bg-white/95 rounded-3xl border border-orange-200/70 overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 cursor-pointer transition-all duration-300 backdrop-blur-md"
                 >
                   <div className="relative h-64 w-full bg-slate-100 overflow-hidden">
                     <img

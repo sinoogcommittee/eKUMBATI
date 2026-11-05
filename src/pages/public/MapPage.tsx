@@ -56,14 +56,14 @@ export const MapPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-10 sm:space-y-12 pb-16">
+    <div className="space-y-16 sm:space-y-24 pb-16">
       {/* =====================================================================
           1. MAP HERO BANNER
          ===================================================================== */}
       <section className="bg-gradient-to-b from-orange-50/80 via-amber-50/20 to-transparent pt-10 pb-8 border-b border-orange-100/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-800 text-xs font-bold uppercase tracking-wider mb-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-800 text-xs font-bold uppercase tracking-wider mb-2 shadow-2xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span>{t('Google Maps Geospatial District Facilities', 'Google Maps sa mga Pasilidad sa Distrito')}</span>
             </div>
@@ -84,7 +84,7 @@ export const MapPage: React.FC = () => {
           2. EMERGENCY DISPATCH ADVISORY
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-4 rounded-2xl bg-gradient-to-r from-red-600 to-orange-600 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-md">
+        <div className="p-4 sm:p-5 rounded-3xl bg-gradient-to-r from-red-600 via-rose-600 to-orange-600 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sinoog-raised border border-red-400/30">
           <div className="flex items-center gap-3">
             <AlertCircle className="w-5 h-5 text-amber-200 shrink-0 animate-pulse" />
             <div className="text-xs sm:text-sm">
@@ -101,7 +101,7 @@ export const MapPage: React.FC = () => {
           </div>
           <a
             href="tel:+639178326284"
-            className="px-4 py-2 rounded-xl bg-white text-red-600 font-black text-xs shrink-0 text-center hover:bg-red-50 transition-colors shadow-sm"
+            className="px-5 py-2.5 rounded-full bg-white text-red-600 font-black text-xs shrink-0 text-center hover:bg-red-50 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[40px] flex items-center justify-center"
           >
             {t('Call 0917-832-6284', 'Tawag 0917-832-6284')}
           </a>
@@ -175,10 +175,10 @@ export const MapPage: React.FC = () => {
             <button
               key={cat.value}
               onClick={() => setSelectedCategory(cat.value as LocationCategory | 'all')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all shrink-0 cursor-pointer ${
                 selectedCategory === cat.value
-                  ? 'bg-orange-500 text-white shadow-kumbati'
-                  : 'bg-white border border-slate-200 text-slate-700 hover:bg-orange-50'
+                  ? 'bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-sinoog font-black'
+                  : 'bg-white border border-slate-200 text-slate-700 hover:bg-orange-50/50 shadow-2xs'
               }`}
             >
               {t(cat.labelEn, cat.labelCeb)}
@@ -193,14 +193,14 @@ export const MapPage: React.FC = () => {
             return (
               <div
                 key={loc.id}
-                className="bg-white rounded-3xl border border-orange-100 p-6 shadow-sm hover:shadow-kumbati-hover transition-all duration-300 flex flex-col justify-between"
+                className="bg-white/95 rounded-3xl border border-orange-200/70 p-6 sm:p-7 shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <Badge variant={loc.category === 'clinic' ? 'red' : 'orange'} size="sm">
                       {loc.municipality}
                     </Badge>
-                    <div className="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center shadow-2xs">
                       <IconComponent className="w-4 h-4" />
                     </div>
                   </div>
@@ -236,7 +236,7 @@ export const MapPage: React.FC = () => {
                     {loc.phone ? (
                       <a
                         href={`tel:${loc.phone.replace(/[^0-9+]/g, '')}`}
-                        className="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-orange-50 hover:bg-orange-500 hover:text-white text-orange-700 font-bold text-xs transition-colors"
+                        className="inline-flex items-center justify-center gap-1.5 py-2.5 px-3.5 rounded-full bg-orange-50 hover:bg-orange-500 hover:text-white text-orange-700 font-bold text-xs shadow-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[40px]"
                       >
                         <Phone className="w-3.5 h-3.5" />
                         <span>{t('Call', 'Tawag')}</span>
@@ -249,7 +249,7 @@ export const MapPage: React.FC = () => {
                       href={`https://www.google.com/maps/dir/?api=1&destination=${loc.latitude},${loc.longitude}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-700 font-bold text-xs transition-colors"
+                      className="inline-flex items-center justify-center gap-1.5 py-2.5 px-3.5 rounded-full bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-700 font-bold text-xs shadow-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 transition-all min-h-[40px]"
                       title="Open Google Maps Turn-by-Turn Directions"
                     >
                       <Navigation className="w-3.5 h-3.5 text-blue-600 hover:text-white" />
@@ -261,7 +261,7 @@ export const MapPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setPreviewLocation(loc)}
-                    className="w-full text-center text-[11px] font-bold text-slate-500 hover:text-orange-600 transition-colors py-1"
+                    className="w-full text-center text-[11px] font-bold text-slate-500 hover:text-orange-600 transition-colors py-1 cursor-pointer"
                   >
                     {t('Preview Google Maps Satellite View', 'I-preview sa Google Maps')}
                   </button>

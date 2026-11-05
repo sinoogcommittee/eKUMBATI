@@ -195,7 +195,7 @@ export const NewsPage: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-12 sm:space-y-16 pb-16">
+    <div className="space-y-16 sm:space-y-24 pb-16">
       {/* =====================================================================
           1. HERO BANNER
          ===================================================================== */}
@@ -224,7 +224,7 @@ export const NewsPage: React.FC = () => {
          ===================================================================== */}
       {urgentPinnedPost && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-red-600 via-orange-600 to-amber-600 text-white shadow-xl overflow-hidden border border-red-400/40">
+          <div className="relative rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white shadow-sinoog-raised overflow-hidden border border-red-400/50">
             <div className="absolute top-0 right-0 -mr-8 -mt-8 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none" />
 
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative z-10">
@@ -257,7 +257,7 @@ export const NewsPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setSelectedAnnouncement(urgentPinnedPost)}
-                  className="px-5 py-3 rounded-2xl bg-white text-red-700 hover:bg-red-50 font-black text-xs sm:text-sm transition-all shadow-md hover:scale-102 flex items-center gap-1.5 cursor-pointer"
+                  className="px-6 py-3 rounded-full bg-white text-red-700 hover:bg-red-50 font-black text-xs sm:text-sm shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-1.5 cursor-pointer min-h-[44px]"
                 >
                   <span>{t('Read Full Advisory', 'Basaha ang Tibuok Pahibalo')}</span>
                   <ChevronRight className="w-4 h-4" />
@@ -272,7 +272,7 @@ export const NewsPage: React.FC = () => {
           3. SEARCH & SECTOR FILTERS
          ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-3xl p-6 border border-orange-100 shadow-sm space-y-4">
+        <div className="bg-white/95 rounded-3xl p-6 sm:p-7 border border-orange-200/80 shadow-sinoog space-y-4 backdrop-blur-md">
           <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
             {/* Search Input */}
             <div className="relative flex-1">
@@ -285,13 +285,13 @@ export const NewsPage: React.FC = () => {
                   'Search announcements, payouts, medical missions, or keywords...',
                   'Pangitaa ang mga pahibalo, payout, medical mission, o pulong...'
                 )}
-                className="w-full pl-11 pr-4 py-2.5 rounded-2xl border border-slate-200 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500 bg-slate-50/50"
+                className="w-full pl-11 pr-4 py-3 rounded-full border border-slate-200 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500 bg-slate-50/50 shadow-2xs"
               />
               {searchQuery && (
                 <button
                   type="button"
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400 hover:text-slate-600"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400 hover:text-slate-600 cursor-pointer"
                 >
                   ✕
                 </button>
@@ -304,7 +304,7 @@ export const NewsPage: React.FC = () => {
               <select
                 value={selectedTown}
                 onChange={(e) => setSelectedTown(e.target.value)}
-                className="px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 bg-white hover:border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500 shadow-sm"
+                className="px-4 py-2.5 rounded-full border border-slate-200 text-xs font-bold text-slate-700 bg-white hover:border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500 shadow-2xs"
               >
                 <option value="all">{t('District-wide & All 19 Towns', 'Tibuok Distrito & 19 ka Lungsod')}</option>
                 {BOHOL_DISTRICT_3_TOWNS.map((town) => (
@@ -326,10 +326,10 @@ export const NewsPage: React.FC = () => {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                className={`px-4 py-2 rounded-full text-xs font-bold transition-all shrink-0 cursor-pointer ${
                   selectedCategory === cat.id
-                    ? 'bg-orange-600 text-white shadow-kumbati scale-102'
-                    : 'bg-slate-100 hover:bg-orange-50 text-slate-700'
+                    ? 'bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-sinoog font-black'
+                    : 'bg-slate-100 hover:bg-orange-50 text-slate-700 shadow-2xs'
                 }`}
               >
                 {t(cat.labelEn, cat.labelCeb)}
@@ -382,7 +382,7 @@ export const NewsPage: React.FC = () => {
               return (
                 <div
                   key={post.id}
-                  className="bg-white rounded-3xl border border-orange-100 overflow-hidden shadow-sm hover:shadow-kumbati-hover transition-all duration-300 flex flex-col justify-between group"
+                  className="bg-white/95 rounded-3xl border border-orange-200/70 overflow-hidden shadow-sinoog hover:shadow-sinoog-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group backdrop-blur-md"
                 >
                   <div>
                     {/* Featured Image */}
@@ -395,18 +395,18 @@ export const NewsPage: React.FC = () => {
                         />
                         <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
                           {post.priority === 'urgent' && (
-                            <span className="px-2.5 py-1 rounded-lg bg-red-600 text-white text-[10px] font-black uppercase tracking-wider shadow-sm flex items-center gap-1">
+                            <span className="px-3 py-1 rounded-full bg-red-600 text-white text-[10px] font-black uppercase tracking-wider shadow-sm flex items-center gap-1">
                               <AlertTriangle className="w-3 h-3" />
                               <span>Urgent</span>
                             </span>
                           )}
                           {post.is_pinned && post.priority !== 'urgent' && (
-                            <span className="px-2.5 py-1 rounded-lg bg-orange-600 text-white text-[10px] font-black uppercase tracking-wider shadow-sm flex items-center gap-1">
+                            <span className="px-3 py-1 rounded-full bg-orange-600 text-white text-[10px] font-black uppercase tracking-wider shadow-sm flex items-center gap-1">
                               <Sparkles className="w-3 h-3" />
                               <span>Pinned</span>
                             </span>
                           )}
-                          <span className="px-2.5 py-1 rounded-lg bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold">
+                          <span className="px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold">
                             {t(catLabel.en, catLabel.ceb)}
                           </span>
                         </div>
@@ -416,7 +416,7 @@ export const NewsPage: React.FC = () => {
                         <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-600 flex items-center justify-center">
                           <CategoryIcon className="w-5 h-5" />
                         </div>
-                        <span className="px-2.5 py-1 rounded-lg bg-white border border-orange-200 text-orange-700 text-[10px] font-bold">
+                        <span className="px-3 py-1 rounded-full bg-white border border-orange-200 text-orange-700 text-[10px] font-bold shadow-2xs">
                           {t(catLabel.en, catLabel.ceb)}
                         </span>
                       </div>
@@ -460,7 +460,7 @@ export const NewsPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setSelectedAnnouncement(post)}
-                      className="w-full inline-flex items-center justify-between p-2.5 rounded-xl bg-orange-50 hover:bg-orange-500 text-orange-700 hover:text-white font-bold text-xs transition-all cursor-pointer group/btn"
+                      className="w-full inline-flex items-center justify-between px-5 py-3 rounded-full bg-orange-50/80 hover:bg-orange-500 text-orange-700 hover:text-white font-bold text-xs shadow-xs hover:shadow-sinoog hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer group/btn min-h-[44px]"
                     >
                       <span>{t('Read Full Announcement', 'Basaha ang Tibuok Pahibalo')}</span>
                       <ChevronRight className="w-4 h-4 text-orange-400 group-hover/btn:text-white transition-colors" />
