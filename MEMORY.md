@@ -63,3 +63,16 @@
   - Restored 100% of the original visual design across all 8 public and 8 admin pages, layouts, and components.
   - Implemented requested navigation hierarchy: About page moved after Action Center (`Home` → `Programs` → `Impact` → `Gallery` → `19 Towns` → `District Map` → `Action Center` → `About`) across `Header.tsx`, `MobileNav.tsx`, `Footer.tsx`, and `App.tsx`.
   - Confirmed clean production build (`npm run build`) with zero errors.
+- **2026-11-05**: Official Legislative Profile Integration (`https://www.congress.gov.ph/house-members/view/J075`):
+  - Updated Rep. Kristine Alexie Besas Tutor's professional credentials from placeholder text to her verified real credentials: **Licensed Physical Therapist (BSPT, Velez College, Cebu City)** and **Bachelor of Laws (LL.B / Law Graduate)**.
+  - Updated `INITIAL_SITE_SETTINGS.bio_summary_en` and `bio_summary_ceb` in `src/lib/constants.ts` and `src/pages/public/HomePage.tsx`.
+  - Upgraded `src/pages/public/AboutPage.tsx` with:
+    - **19th Congress Committee Leadership**:
+      - **Chairperson**: Committee on Civil Service and Professional Regulation
+      - **Vice Chairperson**: Committee on Health
+      - **Member for the Majority**: Appropriations, Basic Education & Culture, Overseas Workers Affairs, Visayas Development, Special Committee on Globalization and WTO
+    - **Dual-Tab Legislative Portfolio**:
+      - **Principal Authored Bills**: HB 8970 (Enacted as RA 11883 - Simeon Toribio Hospital Upgrade), HB 2043 (Candijay District Hospital Upgrade), HB 8494 (Jagna Hospital Upgrade), HB 7771 (Can-umantad Falls Ecotourism Act), HB 10438 & HB 831 (Chocolate Hills Protection & PAMB Reform), HB 2047 (Candijay TESDA Center), HB 5041 (Senior Citizen Pension), HB 9764 (5-Year PRC ID Validity), HB 1581 (Civil Service for Casual/JO Workers), HB 5308 (Textbook Error Review Act), HB 835/838/840 (Healthcare Workers Magna Carta).
+      - **Co-Authored Landmark Laws**: RA 11997 (*Kabalikat sa Pagtuturo Act*), RA 11934 (*SIM Registration Act*), Magna Carta of Barangay Health Workers (BHWs), Magna Carta of Filipino Seafarers, Universal Health Care (RA 11223) & Malasakit Centers (RA 11463), Anti-Hospital Deposit Law Enforcement (RA 10932).
+    - **Official House Verification Banner**: Direct link to House Member Code `J075` on `https://www.congress.gov.ph/house-members/view/J075`.
+  - Confirmed 100% clean production build (`npm run build` in 14.18s with exit code 0).

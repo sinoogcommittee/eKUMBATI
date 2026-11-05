@@ -71,7 +71,7 @@
 
 ### Phase 3: 8 Public Portal Pages (`src/pages/public/`)
 - [x] **3.1 Home Page (`HomePage.tsx`)**: Hero banner, 7 animated counters, quick links, featured programs
-- [x] **3.2 About Page (`AboutPage.tsx`)**: Congw. Alexie bio, 19th Congress committee work, District 3 history
+- [x] **3.2 About Page (`AboutPage.tsx`)**: Congw. Alexie bio, verified credentials (Licensed Physical Therapist, BSPT Velez College • Law Graduate LL.B), 19th Congress committee leadership (Chairperson: Civil Service & PRC, Vice Chairperson: Health), 5 Majority committee memberships, interactive dual-tab legislative portfolio featuring Principal Authored Bills (HB 8970/RA 11883, HB 2043, HB 8494, HB 7771, HB 10438, HB 2047, HB 5041, HB 9764, HB 1581, HB 5308, HB 835) and Co-Authored Landmark Laws (RA 11997 Kabalikat sa Pagtuturo, RA 11934 SIM Registration, Magna Carta of BHWs, Magna Carta of Seafarers, UHC RA 11223 & Malasakit RA 11463), verified congress.gov.ph (J075) portal CTA, and 19-town directory
 - [x] **3.3 Programs Page (`ProgramsPage.tsx`)**: 7 Flagship programs with bilingual requirements checklist
 - [x] **3.4 Impact & Metrics Page (`ImpactPage.tsx`)**: In-depth stats, charts, municipal breakdown
 - [x] **3.5 Multimedia Gallery Page (`GalleryPage.tsx`)**: Categorized photo albums with modal lightbox

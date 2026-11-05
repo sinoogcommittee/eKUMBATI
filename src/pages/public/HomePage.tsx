@@ -146,8 +146,8 @@ export const HomePage: React.FC = () => {
 
                   <p className="text-xs text-slate-600 leading-relaxed mb-4">
                     {t(
-                      'Dedicated registered nurse, grassroots champion, and author of landmark healthcare, labor, and housing bills for the third district.',
-                      'Propesyonal nga nars, tigpanalipod sa mga kabus, ug tagsulat sa mahinungdanong balaod sa panglawas, pabalay, ug panginabuhian.'
+                      'Licensed physical therapist, law graduate, and author of landmark healthcare, civil service, and housing bills for the third district.',
+                      'Lisensyadong physical therapist, gradwado sa balaod, ug tagsulat sa mahinungdanong balaod sa panglawas, serbisyo sibil, ug pabalay sa Ikatulong Distrito.'
                     )}
                   </p>
 
