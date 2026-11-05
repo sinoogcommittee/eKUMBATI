@@ -53,8 +53,7 @@ export const AdminProgramsPage: React.FC = () => {
       full_description_ceb: 'Kompletong pamaagi ug katuyoan sa programa.',
       requirements_en: ['Certificate of Indigency from Barangay', 'Valid Government ID'],
       requirements_ceb: ['Barangay Indigency gikan sa Kapitan', 'Valid Government ID'],
-      cover_image_url:
-        'https://images.unsplash.com/photo-1541888946425-d0fbb186156f?auto=format&fit=crop&w=800&q=80',
+      cover_image_url: '/images/programs/pabahay.webp',
       icon_name: 'Heart',
       display_order: programs.length + 1,
       is_featured: true,

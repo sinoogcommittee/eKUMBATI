@@ -379,6 +379,32 @@
 - [x] **17.4 Verification & Production Build**:
   - [x] Verified production build (`npm run build`) completed with code 0 (1980 modules transformed in 16.99s).
 
+---
+
+### Phase 18: Authentic Project & Program Photo Integration
+- [x] **18.1 Photo Research & Discovery via Web**:
+  - [x] Searched regional journalism portals (Bohol Island News, The Bohol Tribune, PIA) and indexed verified authentic photos of Rep. Kristine Alexie Besas Tutor's projects across Bohol District 3.
+  - [x] Discovered authentic coverage of:
+    - Pabahay ni Kumbati 244th Home Turnover in Lila and Loboc beneficiary homes.
+    - Patient Transport Vehicle (PTV) medical transport fleet and deployments.
+    - Kumbati Medical Clinic opening in Candijay and free consultations.
+    - CHED-TDP and District Tertiary Scholars assemblies with Congw. Alexie Tutor.
+    - Sustainable livelihood coconut processing facility in Mabini and agricultural programs.
+    - Tabajan Bridge engineering inspection and rural community infrastructure.
+- [x] **18.2 WebP Asset Optimization (`public/images/`)**:
+  - [x] Downloaded and optimized 20 authentic high-resolution photos using ffmpeg Lanczos resampling at `q=85`:
+    - `public/images/programs/`: `pabahay.webp` (238 KB), `ptv.webp` (112 KB), `dialysis-tambayan.webp` (226 KB), `clinic.webp` (111 KB), `scholars.webp` (37 KB), `livelihood.webp` (297 KB), `infrastructure.webp` (357 KB).
+    - `public/images/gallery/`: `pabahay_turnover_lila.webp` (238 KB), `pabahay_loboc_families.webp` (338 KB), `pabahay_candijay_village.webp` (140 KB), `ptv_medical_dispatch.webp` (112 KB), `kumbati_clinic_opening.webp` (111 KB), `dialysis_haven_hospital.webp` (226 KB), `scholar_assembly_tutor.webp` (37 KB).
+    - `public/images/news/`: `pabahay_turnover.webp` (190 KB), `scholar_assembly.webp` (37 KB), `kumbati_clinic.webp` (85 KB), `ptv_dispatch.webp` (111 KB), `livelihood_equipment.webp` (212 KB), `bridge_inspection.webp` (263 KB).
+    - Optimized newly provided `kumbati_logo_horizontal.webp` (204 KB).
+- [x] **18.3 Codebase Stock Image Replacement**:
+  - [x] Replaced all 24 stock Unsplash URLs in `src/lib/constants.ts` with authentic local WebP paths across programs, gallery albums, gallery media items, and news postings.
+  - [x] Replaced Unsplash fallback in `src/pages/admin/AdminGalleryPage.tsx` with `/images/gallery/pabahay_turnover_lila.webp`.
+  - [x] Replaced Unsplash fallback in `src/pages/admin/AdminProgramsPage.tsx` with `/images/programs/pabahay.webp`.
+  - [x] Verified zero generic Unsplash URLs remain across the entire codebase.
+- [x] **18.4 Verification & Production Build**:
+  - [x] Verified production build (`npm run build`) completed with code 0 (1980 modules transformed in 14.78s).
+
 
 
 

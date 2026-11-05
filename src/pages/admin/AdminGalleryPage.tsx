@@ -59,8 +59,7 @@ export const AdminGalleryPage: React.FC = () => {
     category: 'Housing',
     municipality: 'Candijay',
     event_date: new Date().toISOString().split('T')[0],
-    cover_image_url:
-      'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80',
+    cover_image_url: '/images/gallery/pabahay_turnover_lila.webp',
   });
 
   const currentAlbum = albums.find((a) => a.id === selectedAlbumId);
