@@ -27,9 +27,6 @@ dist-ssr
 .env
 .env.production
 
-# Cloned External Repositories
-/unslop/
-
 # High-Res Master Assets (Preserved locally, not committed)
 public/images/*_orig.*
 

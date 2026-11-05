@@ -484,14 +484,14 @@
 
 ---
 
-### Phase 27: Remove Redundant Official Social Media Strip from Homepage
-- [x] **27.1 Social Media Section Removal**:
-  - [x] Removed redundant Section 6 ("Verified Official Social Media / Connect with Congw. Alexie Tutor & KUMBATI Cares") from `src/pages/public/HomePage.tsx`.
-  - [x] Preserved official Facebook page links in the global Footer (`Footer.tsx`) and Admin Settings (`AdminSettingsPage.tsx`).
-  - [x] Cleaned up unused `Facebook` and `ExternalLink` imports in `HomePage.tsx`.
-- [x] **27.2 Verification & Bundle Optimization**:
-  - [x] Reduced Homepage JS bundle size from 22.34 kB to 16.36 kB (-26.7%).
-  - [x] Verified `npm run build` completed with code 0 (1980 modules transformed in 27.41s).
+### Phase 28: Remove Cloned unslop Repository & Skills from Workspace
+- [x] **28.1 Remove Nested Git Repository**:
+  - [x] Deleted cloned external repository `unslop/` and its `.git` folder, immediately resolving the duplicate repository entry in VS Code Source Control panel and status bar.
+  - [x] Removed `.agents/skills/unslop` from git tracking.
+  - [x] Cleaned `.gitignore` entries for `unslop`.
+- [x] **28.2 Verification & Build**:
+  - [x] Verified `npm run build` completed with code 0.
+
 
 
 

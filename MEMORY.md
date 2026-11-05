@@ -253,3 +253,8 @@
   - Removed Section 6 ("Verified Official Social Media") from `HomePage.tsx` to streamline the homepage flow and avoid duplication with the global footer social links.
   - Cleaned up unused icons (`Facebook`, `ExternalLink`) reducing homepage bundle size to 16.36 kB.
   - Verified `npm run build` completed with code 0.
+- **2026-11-05**: Removed External unslop Repository & Skills from Workspace:
+  - Deleted cloned external repository `unslop/` and its `.git` sub-repository.
+  - Removed `.agents/skills/unslop` from git tracking and cleaned `.gitignore`.
+  - Verified `unslop` no longer appears in VS Code Source Control panel or status bar.
+  - Verified `npm run build` completed with code 0.
