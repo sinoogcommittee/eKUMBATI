@@ -213,3 +213,7 @@
   - Updated Footer Column 2 to display the verified `Cong. Alexie Tutor` page card with direct link.
   - Updated Admin Settings (`AdminSettingsPage.tsx`) to manage the single official Facebook URL.
   - Updated `AGENTS.md`, `MEMORY.md`, `TASKS.md`, `constants.ts`, and `kumbati.types.ts`.
+- **2026-11-05**: Fixed Overlapping Milestone Years on Impact Page:
+  - Removed redundant absolute-positioned background year text watermark in `src/pages/public/ImpactPage.tsx` (`The Journey of KUMBATI Deliverables` section).
+  - Eliminated visual collision with the milestone calendar badges for `2023–2024`, `2025`, `2026`, and `2027`.
+  - Confirmed 100% clean build (`npm run build` passed in 12.47s with exit code 0).

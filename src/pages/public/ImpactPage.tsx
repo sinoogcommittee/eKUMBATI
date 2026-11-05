@@ -245,9 +245,6 @@ export const ImpactPage: React.FC = () => {
               key={idx}
               className="bg-gradient-to-b from-white via-white/98 to-amber-50/25 rounded-3xl p-6 sm:p-7 border border-orange-200/80 border-t-white shadow-sinoog hover:shadow-sinoog-hover hover:border-orange-400 hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden backdrop-blur-md"
             >
-              <div className="text-3xl font-black text-orange-500/15 absolute top-4 right-4 font-sans select-none">
-                {item.year}
-              </div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white border border-orange-200/70 border-t-white shadow-sinoog-inner text-orange-800 text-xs font-bold mb-3">
                 <Calendar className="w-3.5 h-3.5 text-orange-600" />
                 <span>{item.year} Milestone</span>

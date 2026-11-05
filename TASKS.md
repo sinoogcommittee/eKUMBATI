@@ -445,6 +445,15 @@
 - [x] **20.3 Documentation & Architecture Updates**:
   - [x] Updated `constants.ts`, `kumbati.types.ts`, `AGENTS.md`, `MEMORY.md`, and `TASKS.md`.
 
+---
+
+### Phase 21: Fix Overlapping Years in Impact Page Chronicle of Service
+- [x] **21.1 Remove Redundant Watermark Year**:
+  - [x] Removed absolute-positioned background year text (`text-3xl font-black text-orange-500/15 absolute top-4 right-4`) in `src/pages/public/ImpactPage.tsx`.
+  - [x] Eliminated text collision/overlap with the `[item.year] Milestone` badge across 2023-2024, 2025, 2026, and 2027 milestone cards.
+- [x] **21.2 Verification & Build**:
+  - [x] Verified production build (`npm run build`) completed with code 0 (1980 modules transformed in 12.47s).
+
 
 
 
