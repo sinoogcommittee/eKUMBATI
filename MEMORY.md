@@ -491,6 +491,14 @@
   - **Program Pills Right-Edge Fade & Spacer Tightening**: Reduced gap above pills by 24px (`mb-3 sm:mb-4`) for 16px of breathing room above the bottom dock. Applied exact CSS scroll fade mask (`linear-gradient(to right, #000 82%, transparent 100%)`).
   - **Micro-Polish Glass Effects**: Added `bg-white/[0.08] hover:bg-white/[0.15] border-white/[0.28] backdrop-blur-md` on secondary button (*"Track Request / Apply"*) and `backdrop-blur-[10px] border-white/[0.14] bg-slate-900/65` on the 4 stat cards.
   - Verified `npm run build` completed with code 0 (1985 modules transformed in 19.98s).
+- **2026-11-06**: Multi-Viewport Spatial Harmony, Action Center Pill Removal & Edge-to-Edge Sticky Bar (`HomePage.tsx`, `StickyHotlineBar.tsx`):
+  - **Removed Action Center Pill Across All Views**: Completely removed *"Bohol 3rd District Action Center"* badge pill above the hero headline.
+  - **Strict 2-Line Desktop Headline**: Formatted H1 with `md:block whitespace-normal md:whitespace-nowrap` guaranteeing Line 1 (*"Serbisyo Diretso sa Katawhan:"*) and Line 2 (*"Padayon ang Kumbati!"*) on desktop and tablet without wrapping into 3 lines.
+  - **Tablet Typography Scaling & Void Elimination**: Scaled headline to `md:text-5xl font-black`, subheadline to `md:text-lg`, CTAs to `md:py-4 md:px-8`, and 4 stat cards to `md:p-4 md:text-2xl`, completely eliminating the cavernous empty center space on Galaxy Tab S7.
+  - **Mobile Breathing Space**: Vertically centered hero content with `my-auto` on iPhone 17 Pro and Galaxy A27 5G, distributing whitespace naturally and eliminating the artificial empty gap before the bottom dock.
+  - **Removed Desktop Post-Hero 3 Buttons**: Deleted the 3-button quick-action dock straddling the bottom of the hero section on desktop, allowing Flagship Programs to flow directly below the hero.
+  - **Edge-to-Edge Translucent Sticky Bar**: Set dock container to stick directly to the bottom screen edge (`fixed bottom-0 left-0 right-0 z-30 lg:hidden w-full`) with zero white gap underneath on scroll, enhanced transparency (`bg-[#0a0f1d]/75 backdrop-blur-xl border-t border-white/15`), and proportional sizing for tablet.
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 13.86s).
 
 
 

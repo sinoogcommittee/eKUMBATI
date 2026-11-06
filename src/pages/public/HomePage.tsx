@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import {
@@ -10,7 +10,6 @@ import {
 import StatCounter from '../../components/common/StatCounter';
 import Button from '../../components/common/Button';
 import Badge from '../../components/common/Badge';
-import HotlineModal from '../../components/common/HotlineModal';
 import { triggerHaptic } from '../../lib/haptics';
 import {
   ShieldCheck,
@@ -19,8 +18,6 @@ import {
   Heart,
   Layers,
   Image as ImageIcon,
-  PhoneCall,
-  MapPin,
 } from 'lucide-react';
 
 const FLAGSHIP_QUICK_PILLS = [
@@ -35,7 +32,6 @@ const FLAGSHIP_QUICK_PILLS = [
 
 export const HomePage: React.FC = () => {
   const { t } = useLanguage();
-  const [isHotlineModalOpen, setIsHotlineModalOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -113,35 +109,40 @@ export const HomePage: React.FC = () => {
         {/* Subtle Ambient Warm Glow */}
         <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-full max-w-4xl h-96 bg-gradient-to-tr from-orange-600/20 via-amber-500/10 to-transparent blur-3xl pointer-events-none rounded-full z-1" />
 
-        <div className="w-full max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center pt-6 sm:pt-8 lg:pt-8 pb-4 sm:pb-6 flex-1 justify-between">
-          {/* Upper Content Stack (Shifted upward to open video showcase zone below) */}
-          <div className="w-full max-w-4xl flex flex-col items-center">
-            {/* Context Pill above Headline with pulsing live indicator */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs font-bold shadow-lg shadow-black/40 ring-1 ring-white/10 shrink-0 mb-3 sm:mb-4">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-              <span className="tracking-wide">
-                {t('Bohol 3rd District Action Center', 'Sentro sa Aksyon sa Ikatulong Distrito sa Bohol')}
+        <div className="w-full max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center flex-1 justify-between pt-6 sm:pt-10 md:pt-12 lg:pt-10 pb-4 sm:pb-6">
+          {/* Main Hero Content Block (Vertically centered with generous breathing space) */}
+          <div className="w-full max-w-4xl flex flex-col items-center my-auto py-2 sm:py-4 md:py-6">
+            {/* Fluid & Responsive Headline:
+                - Desktop: Exactly 2 lines (Line 1: "Serbisyo Diretso sa Katawhan:", Line 2: "Padayon ang Kumbati!")
+                - Tablet: Scaled UP with commanding text size (md:text-5xl) and rich civic presence
+                - Mobile: Fluid typography wrapping naturally without edge clipping
+            */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] font-black text-white tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] max-w-5xl mx-auto leading-[1.16] mb-3 sm:mb-4 md:mb-6 text-balance">
+              <span className="md:block whitespace-normal md:whitespace-nowrap">
+                {t('Serbisyo Diretso sa Katawhan:', 'Serbisyo Diretso sa Katawhan:')}
               </span>
-            </div>
-
-            {/* Fluid Headline: 2 lines on desktop (20ch / 780px), wraps cleanly into 3 lines on mobile without overflow */}
-            <h1 className="text-[clamp(1.85rem,5vw,3.75rem)] leading-[1.15] font-black text-white tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] max-w-full md:max-w-[780px] lg:max-w-[20ch] xl:max-w-[780px] mx-auto mb-3 sm:mb-4 text-balance">
-              {t(INITIAL_SITE_SETTINGS.hero_headline_en, INITIAL_SITE_SETTINGS.hero_headline_ceb)}
+              <span className="md:block whitespace-normal md:whitespace-nowrap mt-1 md:mt-2 text-white">
+                {t('Padayon ang Kumbati!', 'Padayon ang Kumbati!')}
+              </span>
             </h1>
 
-            {/* Lead Paragraph with subtle text shadow */}
-            <p className="text-xs sm:text-sm md:text-base text-white/85 leading-relaxed max-w-[58ch] mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] mb-4 sm:mb-6 font-normal">
+            {/* Subheadline with balanced breathing space and scaled typography for tablet */}
+            <p className="text-xs sm:text-sm md:text-lg lg:text-xl text-white/85 md:text-white/90 leading-relaxed max-w-md sm:max-w-lg md:max-w-2xl mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] mb-5 sm:mb-6 md:mb-8 font-normal">
               {t(INITIAL_SITE_SETTINGS.hero_subtext_en, INITIAL_SITE_SETTINGS.hero_subtext_ceb)}
             </p>
 
-            {/* Dual Hero CTAs: Stacked with 12px gap on narrow mobile, side-by-side from 480px up */}
-            <div className="w-full max-w-md sm:max-w-none flex flex-col sm:flex-row items-center justify-center gap-3 px-0 sm:px-4 mb-3 sm:mb-4">
+            {/* Dual Hero CTAs:
+                - Mobile: Stacked with comfortable touch targets and breathing space
+                - Tablet: Larger tactile buttons (md:py-4 md:px-8 md:text-base) filling space naturally
+                - Desktop: Side-by-side solid + glassmorphic outline
+            */}
+            <div className="w-full max-w-md sm:max-w-none flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-0 sm:px-4">
               <a href="#flagship-programs" className="w-full sm:w-auto shrink-0">
                 <Button
                   variant="primary"
                   size="lg"
                   icon={<Layers className="w-5 h-5 shrink-0" />}
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3.5 rounded-xl text-xs sm:text-sm font-black whitespace-normal sm:whitespace-nowrap min-h-[48px] shadow-xl shadow-orange-950/60 hover:shadow-orange-500/40 border border-orange-400/40 hover:scale-105 transition-all text-center flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-6 sm:px-8 md:px-9 py-3.5 md:py-4 rounded-xl md:rounded-2xl text-xs sm:text-sm md:text-base font-black whitespace-normal sm:whitespace-nowrap min-h-[48px] md:min-h-[54px] shadow-xl shadow-orange-950/60 hover:shadow-orange-500/40 border border-orange-400/40 hover:scale-105 transition-all text-center flex items-center justify-center gap-2"
                 >
                   {t('Explore 7 Flagship Programs', 'Susiha ang 7 ka Programa')}
                 </Button>
@@ -151,40 +152,38 @@ export const HomePage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => triggerHaptic('light')}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.15] active:scale-95 text-white font-bold border border-white/[0.28] hover:border-white/50 backdrop-blur-md shadow-lg shadow-black/40 hover:shadow-white/10 text-xs sm:text-sm min-h-[48px] transition-all cursor-pointer whitespace-normal sm:whitespace-nowrap"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-7 md:px-8 py-3.5 md:py-4 rounded-xl md:rounded-2xl bg-white/[0.08] hover:bg-white/[0.15] active:scale-95 text-white font-bold border border-white/[0.28] hover:border-white/50 backdrop-blur-md shadow-lg shadow-black/40 hover:shadow-white/10 text-xs sm:text-sm md:text-base min-h-[48px] md:min-h-[54px] transition-all cursor-pointer whitespace-normal sm:whitespace-nowrap"
                 >
-                  <ShieldCheck className="w-4 h-4 text-orange-400 shrink-0" />
+                  <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-orange-400 shrink-0" />
                   <span>{t('Track Request / Apply', 'Subaya ang Hangyo / Pag-apply')}</span>
                 </button>
               </Link>
             </div>
           </div>
 
-          {/* Unobstructed Video Showcase Zone (~48px-80px vertical clearance) */}
-
           {/* Bottom Anchor: 4 Impact Stat Cards (Tablet & Desktop) / Masked Program Pills (Mobile) */}
-          <div className="w-full mt-4 sm:mt-8 lg:mt-14 pt-1 sm:pt-2 pb-16 sm:pb-20 lg:pb-0">
-            {/* 4 Impact Stat Cards (Tablet & Desktop Trust Signals with Glass Effect) */}
-            <div className="hidden md:grid grid-cols-4 gap-2.5 sm:gap-3 w-full max-w-2xl lg:max-w-4xl mx-auto">
-              <div className="bg-slate-900/65 backdrop-blur-[10px] border border-white/[0.14] rounded-2xl p-2.5 sm:p-3 text-center shadow-xl hover:border-orange-500/40 transition-all">
-                <div className="text-base sm:text-xl font-black text-white">4 PTVs</div>
-                <div className="text-[10px] sm:text-xs text-orange-300 font-bold uppercase truncate">{t('24/7 Dispatch', '24/7 Biyahe')}</div>
+          <div className="w-full pt-2 sm:pt-4 pb-20 sm:pb-24 md:pb-6 lg:pb-2">
+            {/* 4 Impact Stat Cards (Tablet & Desktop Trust Signals scaled with Glass Effect) */}
+            <div className="hidden md:grid grid-cols-4 gap-3 sm:gap-3.5 md:gap-4 w-full max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto">
+              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-4 text-center shadow-xl hover:border-orange-500/40 transition-all">
+                <div className="text-base sm:text-xl md:text-2xl lg:text-3xl font-black text-white">4 PTVs</div>
+                <div className="text-[10px] sm:text-xs md:text-sm text-orange-300 font-bold uppercase truncate mt-0.5">{t('24/7 Dispatch', '24/7 Biyahe')}</div>
               </div>
-              <div className="bg-slate-900/65 backdrop-blur-[10px] border border-white/[0.14] rounded-2xl p-2.5 sm:p-3 text-center shadow-xl hover:border-orange-500/40 transition-all">
-                <div className="text-base sm:text-xl font-black text-white">3,200+</div>
-                <div className="text-[10px] sm:text-xs text-orange-300 font-bold uppercase truncate">{t('Clinic Patients', 'Pasyente')}</div>
+              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-4 text-center shadow-xl hover:border-orange-500/40 transition-all">
+                <div className="text-base sm:text-xl md:text-2xl lg:text-3xl font-black text-white">3,200+</div>
+                <div className="text-[10px] sm:text-xs md:text-sm text-orange-300 font-bold uppercase truncate mt-0.5">{t('Clinic Patients', 'Pasyente')}</div>
               </div>
-              <div className="bg-slate-900/65 backdrop-blur-[10px] border border-white/[0.14] rounded-2xl p-2.5 sm:p-3 text-center shadow-xl hover:border-orange-500/40 transition-all">
-                <div className="text-base sm:text-xl font-black text-white">310+</div>
-                <div className="text-[10px] sm:text-xs text-orange-300 font-bold uppercase truncate">{t('Housing Units', 'Pabahay')}</div>
+              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-4 text-center shadow-xl hover:border-orange-500/40 transition-all">
+                <div className="text-base sm:text-xl md:text-2xl lg:text-3xl font-black text-white">310+</div>
+                <div className="text-[10px] sm:text-xs md:text-sm text-orange-300 font-bold uppercase truncate mt-0.5">{t('Housing Units', 'Pabahay')}</div>
               </div>
-              <div className="bg-slate-900/65 backdrop-blur-[10px] border border-white/[0.14] rounded-2xl p-2.5 sm:p-3 text-center shadow-xl hover:border-orange-500/40 transition-all">
-                <div className="text-base sm:text-xl font-black text-white">4,500+</div>
-                <div className="text-[10px] sm:text-xs text-orange-300 font-bold uppercase truncate">{t('Scholars', 'Iskolar')}</div>
+              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-4 text-center shadow-xl hover:border-orange-500/40 transition-all">
+                <div className="text-base sm:text-xl md:text-2xl lg:text-3xl font-black text-white">4,500+</div>
+                <div className="text-[10px] sm:text-xs md:text-sm text-orange-300 font-bold uppercase truncate mt-0.5">{t('Scholars', 'Iskolar')}</div>
               </div>
             </div>
 
-            {/* Mobile Swipeable Ticker with Right-Side Fade Mask (Aligned with 20px padding) */}
+            {/* Mobile Swipeable Ticker with Right-Side Fade Mask */}
             <div
               className="block md:hidden w-full overflow-hidden"
               style={{
@@ -208,93 +207,6 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* =====================================================================
-          DESKTOP QUICK-ACTION DOCK (Straddling bottom edge of Hero Section)
-         ===================================================================== */}
-      <div className="hidden lg:block relative -mt-7 z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-slate-950/85 backdrop-blur-xl border border-white/20 rounded-3xl p-3 shadow-2xl shadow-black/80 ring-1 ring-white/10">
-          <div className="grid grid-cols-3 gap-3.5">
-            {/* Card 1: One-touch Emergency Call to PTV Dispatch */}
-            <a
-              href="tel:+639178326284"
-              onClick={() => triggerHaptic('emergency')}
-              className="group relative flex items-center gap-3.5 p-3.5 rounded-2xl bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-500 hover:to-orange-500 text-white font-black shadow-sinoog hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all border border-red-400/40"
-            >
-              <div className="w-11 h-11 rounded-xl bg-white/15 backdrop-blur-md flex items-center justify-center shrink-0 border border-white/20 group-hover:scale-105 transition-transform">
-                <PhoneCall className="w-5 h-5 text-white animate-bounce" />
-              </div>
-              <div className="text-left flex-1 min-w-0">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-xs font-black uppercase tracking-wider text-white">
-                    {t('Call PTV', 'Tawag PTV')}
-                  </span>
-                  <span className="px-1.5 py-0.5 rounded-full bg-white/20 text-[9px] font-bold uppercase tracking-wider">
-                    24/7
-                  </span>
-                </div>
-                <p className="text-[11px] text-red-100 font-medium truncate mt-0.5">
-                  {t('Emergency Patient Transport', 'Sakyanan sa Pasyente')}
-                </p>
-              </div>
-              <ChevronRight className="w-4 h-4 text-white/70 group-hover:text-white group-hover:translate-x-0.5 transition-all shrink-0" />
-            </a>
-
-            {/* Card 2: Action Center Tracker */}
-            <Link
-              to="/action-center"
-              onClick={() => triggerHaptic('light')}
-              className="group relative flex items-center gap-3.5 p-3.5 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-400 hover:to-amber-500 text-white font-black shadow-sinoog hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all border border-orange-300/40"
-            >
-              <div className="w-11 h-11 rounded-xl bg-white/15 backdrop-blur-md flex items-center justify-center shrink-0 border border-white/20 group-hover:scale-105 transition-transform">
-                <ShieldCheck className="w-5 h-5 text-white" />
-              </div>
-              <div className="text-left flex-1 min-w-0">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-xs font-black uppercase tracking-wider text-white">
-                    {t('Action Desk', 'Aksyon Desk')}
-                  </span>
-                  <span className="px-1.5 py-0.5 rounded-full bg-white/20 text-[9px] font-bold uppercase tracking-wider">
-                    {t('Tracker', 'Tracker')}
-                  </span>
-                </div>
-                <p className="text-[11px] text-orange-100 font-medium truncate mt-0.5">
-                  {t('Track Ticket & Request Aid', 'Subaya ang Reference Code')}
-                </p>
-              </div>
-              <ChevronRight className="w-4 h-4 text-white/70 group-hover:text-white group-hover:translate-x-0.5 transition-all shrink-0" />
-            </Link>
-
-            {/* Card 3: All 19 Towns & Hotlines Dialog - Light Gray Gradient Button */}
-            <button
-              type="button"
-              onClick={() => {
-                triggerHaptic('light');
-                setIsHotlineModalOpen(true);
-              }}
-              className="group relative flex items-center gap-3.5 p-3.5 rounded-2xl bg-gradient-to-b from-slate-100 via-slate-200 to-slate-300 hover:from-slate-200 hover:to-slate-400 text-slate-900 font-black shadow-sinoog hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all border border-slate-300/90 border-t-white text-left cursor-pointer"
-            >
-              <div className="w-11 h-11 rounded-xl bg-white/80 shadow-xs flex items-center justify-center shrink-0 border border-slate-300/60 group-hover:scale-105 transition-transform">
-                <MapPin className="w-5 h-5 text-orange-600 drop-shadow-2xs" />
-              </div>
-              <div className="text-left flex-1 min-w-0">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-xs font-black uppercase tracking-wider text-slate-900">
-                    {t('Hotlines', 'Hotlines')}
-                  </span>
-                  <span className="px-1.5 py-0.5 rounded-full bg-orange-500/15 text-orange-700 text-[9px] font-black uppercase tracking-wider">
-                    {t('19 Towns', '19 Lungsod')}
-                  </span>
-                </div>
-                <p className="text-[11px] text-slate-600 font-medium truncate mt-0.5">
-                  {t('MDRRMO, Police & Hospitals', 'MDRRMO, Pulis ug Ospital')}
-                </p>
-              </div>
-              <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-slate-800 group-hover:translate-x-0.5 transition-all shrink-0" />
-            </button>
-          </div>
-        </div>
-      </div>
 
       {/* =====================================================================
           2. FEATURED FLAGSHIP PROGRAMS OF TEAM KUMBATI (Immediate Utility)
@@ -672,12 +584,6 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* Hotline Modal */}
-      <HotlineModal
-        isOpen={isHotlineModalOpen}
-        onClose={() => setIsHotlineModalOpen(false)}
-      />
     </div>
   );
 };
