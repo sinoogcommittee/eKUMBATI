@@ -450,6 +450,12 @@
   - **Removed Desktop Right-Side Video**: In [`src/pages/public/HomePage.tsx`](file:///e:/Programs/e-KUMBATI/src/pages/public/HomePage.tsx), eliminated the foreground video player card from the desktop hero section, strictly adhering to the architectural standard that videos in the hero section are exclusively for the full-bleed ambient background.
   - **Centered 1-Screen View Presentation**: Re-architected the hero content as an executive centered presentation with fluid typography, trimmed subheadline, and single focused CTA, keeping the background video vertically and horizontally centered (`object-cover object-center`) with zero scroll required above the fold across mobile, tablet, and desktop viewports.
   - Verified `npm run build` completed with code 0 (1985 modules transformed in 16.80s).
+- **2026-11-06**: Mobile & Tablet Hero UX Upgrades & Floating Glassmorphic Dock (`HomePage.tsx`, `StickyHotlineBar.tsx`, `BackToTop.tsx`, `index.css`):
+  - **Context Pill Above Headline**: Integrated a subtle translucent badge above *"Serbisyo Diretso sa Katawhan"* with an emerald pulsing live indicator (`bg-slate-900/80 backdrop-blur-md border border-white/20 text-white`): *"● Bohol 3rd District Action Center"*, framing the headline and eliminating upper vertical gaps.
+  - **Reclaimed Vertical Space**: Shifted hero text block slightly higher (`pb-24 sm:pb-28 lg:pb-0 pt-2 sm:pt-4`) and populated the space between the CTA and dock with a smooth horizontal swipeable ticker of the 7 flagship programs (🚑 PTV 24/7, 🏥 Clinic, 🩺 Dialysis, 🏠 Pabahay, 🎓 Scholars, 🌾 Livelihood, 🤝 Community Aid) via `.no-scrollbar`.
+  - **Tablet Grid Optimization (Galaxy Tab S7 / iPad Portrait)**: Added a 4-card glassmorphic highlights grid on portrait tablets (`hidden md:grid lg:hidden grid-cols-4 gap-2.5 sm:gap-3`) highlighting 4 PTVs, 3,200+ Clinic Patients, 310+ Housing, and 4,500+ Scholars, preventing empty cavernous center screens on 16:10 and 4:3 tablets.
+  - **Floating Glassmorphic Bottom Dock**: Converted the mobile/tablet sticky bar into a floating glassmorphic dock (`bottom-3 sm:bottom-4 left-3 right-3 sm:left-4 sm:right-4 bg-slate-950/85 backdrop-blur-xl border border-white/20 rounded-3xl p-2 sm:p-2.5 shadow-2xl ring-1 ring-white/10`) that seamlessly integrates with the dark hero gradient and floats over all page sections. Raised [`BackToTop.tsx`](file:///e:/Programs/e-KUMBATI/src/components/common/BackToTop.tsx) to `bottom-24 sm:bottom-28 lg:bottom-6`.
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 9.32s).
 
 
 

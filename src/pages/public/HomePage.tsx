@@ -20,6 +20,16 @@ import {
   Image as ImageIcon,
 } from 'lucide-react';
 
+const FLAGSHIP_QUICK_PILLS = [
+  { id: 'ptv', icon: '🚑', labelEn: 'PTV 24/7', labelCeb: 'PTV 24/7' },
+  { id: 'clinic', icon: '🏥', labelEn: 'Kumbati Clinic', labelCeb: 'Kumbati Clinic' },
+  { id: 'dialysis', icon: '🩺', labelEn: 'Dialysis Tambayan', labelCeb: 'Dialysis Tambayan' },
+  { id: 'pabahay', icon: '🏠', labelEn: 'Pabahay', labelCeb: 'Pabahay' },
+  { id: 'scholars', icon: '🎓', labelEn: 'CHED Scholars', labelCeb: 'Iskolar' },
+  { id: 'livelihood', icon: '🌾', labelEn: 'Livelihood', labelCeb: 'Panginabuhian' },
+  { id: 'outreach', icon: '🤝', labelEn: 'Community Aid', labelCeb: 'Tabang Komunidad' },
+];
+
 export const HomePage: React.FC = () => {
   const { t } = useLanguage();
   const [isHotlineModalOpen, setIsHotlineModalOpen] = useState(false);
@@ -63,30 +73,74 @@ export const HomePage: React.FC = () => {
         {/* Subtle Ambient Warm Glow */}
         <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-full max-w-4xl h-96 bg-gradient-to-tr from-orange-600/20 via-amber-500/10 to-transparent blur-3xl pointer-events-none rounded-full z-1" />
 
-        <div className="w-full h-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col justify-center items-center text-center pb-20 lg:pb-0">
-          <div className="space-y-4 sm:space-y-6 max-w-3xl">
+        <div className="w-full h-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col justify-center items-center text-center pb-24 sm:pb-28 lg:pb-0 pt-2 sm:pt-4">
+          <div className="space-y-3.5 sm:space-y-5 max-w-3xl flex flex-col items-center">
+            {/* Context Pill above Headline with pulsing live indicator */}
+            <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs font-bold shadow-lg shadow-black/40 ring-1 ring-white/10 shrink-0">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+              <span className="tracking-wide">
+                {t('Bohol 3rd District Action Center', 'Sentro sa Aksyon sa Ikatulong Distrito sa Bohol')}
+              </span>
+            </div>
+
             {/* Headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white tracking-tight leading-[1.1] text-balance drop-shadow-md">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white tracking-tight leading-[1.1] text-balance drop-shadow-md">
               {t(INITIAL_SITE_SETTINGS.hero_headline_en, INITIAL_SITE_SETTINGS.hero_headline_ceb)}
             </h1>
 
             {/* Subtext */}
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-orange-100/90 leading-relaxed max-w-2xl mx-auto drop-shadow-xs font-normal">
+            <p className="text-xs sm:text-sm md:text-base lg:text-lg text-orange-100/90 leading-relaxed max-w-2xl mx-auto drop-shadow-xs font-normal">
               {t(INITIAL_SITE_SETTINGS.hero_subtext_en, INITIAL_SITE_SETTINGS.hero_subtext_ceb)}
             </p>
 
             {/* Single Hero CTA: Guides visitors smoothly to flagship programs */}
-            <div className="pt-2 sm:pt-4 flex justify-center">
+            <div className="pt-1 sm:pt-2 flex justify-center">
               <a href="#flagship-programs" className="w-full sm:w-auto shrink-0">
                 <Button
                   variant="primary"
                   size="lg"
                   icon={<Layers className="w-5 h-5 shrink-0" />}
-                  className="w-full sm:w-auto px-8 py-3.5 text-sm sm:text-base font-black whitespace-nowrap min-h-[48px] shadow-xl shadow-orange-950/60 hover:shadow-orange-500/40 border border-orange-400/40 hover:scale-105 transition-transform"
+                  className="w-full sm:w-auto px-7 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-sm font-black whitespace-nowrap min-h-[46px] shadow-xl shadow-orange-950/60 hover:shadow-orange-500/40 border border-orange-400/40 hover:scale-105 transition-transform"
                 >
                   {t('Explore 7 Flagship Programs', 'Susiha ang 7 ka Programa')}
                 </Button>
               </a>
+            </div>
+
+            {/* Tablet-Specific Grid (Galaxy Tab S7 / iPad Portrait) - Eliminates cavernous middle space */}
+            <div className="hidden md:grid lg:hidden grid-cols-4 gap-2.5 sm:gap-3 w-full max-w-2xl mx-auto pt-2">
+              <div className="bg-slate-900/60 backdrop-blur-md border border-white/15 rounded-2xl p-2.5 text-center shadow-lg">
+                <div className="text-base sm:text-lg font-black text-white">4 PTVs</div>
+                <div className="text-[10px] text-orange-300 font-bold uppercase truncate">{t('24/7 Dispatch', '24/7 Biyahe')}</div>
+              </div>
+              <div className="bg-slate-900/60 backdrop-blur-md border border-white/15 rounded-2xl p-2.5 text-center shadow-lg">
+                <div className="text-base sm:text-lg font-black text-white">3,200+</div>
+                <div className="text-[10px] text-orange-300 font-bold uppercase truncate">{t('Clinic Patients', 'Pasyente')}</div>
+              </div>
+              <div className="bg-slate-900/60 backdrop-blur-md border border-white/15 rounded-2xl p-2.5 text-center shadow-lg">
+                <div className="text-base sm:text-lg font-black text-white">310+</div>
+                <div className="text-[10px] text-orange-300 font-bold uppercase truncate">{t('Housing Units', 'Pabahay')}</div>
+              </div>
+              <div className="bg-slate-900/60 backdrop-blur-md border border-white/15 rounded-2xl p-2.5 text-center shadow-lg">
+                <div className="text-base sm:text-lg font-black text-white">4,500+</div>
+                <div className="text-[10px] text-orange-300 font-bold uppercase truncate">{t('Scholars', 'Iskolar')}</div>
+              </div>
+            </div>
+
+            {/* Horizontal Swipeable Ticker of the 7 Programs (Mobile & Desktop) */}
+            <div className="w-full max-w-full pt-1 sm:pt-2">
+              <div className="flex md:hidden lg:flex items-center justify-start lg:justify-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar scroll-smooth px-1 py-1">
+                {FLAGSHIP_QUICK_PILLS.map((pill) => (
+                  <a
+                    key={pill.id}
+                    href="#flagship-programs"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/70 hover:bg-slate-800/80 active:scale-95 text-white/95 text-[11px] font-bold border border-white/15 shadow-sm backdrop-blur-md whitespace-nowrap shrink-0 transition-transform"
+                  >
+                    <span>{pill.icon}</span>
+                    <span>{t(pill.labelEn, pill.labelCeb)}</span>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>

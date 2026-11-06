@@ -14,8 +14,12 @@ export const StickyHotlineBar: React.FC<StickyHotlineBarProps> = ({
   const { t } = useLanguage();
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-30 lg:hidden bg-white/95 backdrop-blur-md border-t border-orange-200/80 px-3 py-2 shadow-2xl pb-[max(0.5rem,env(safe-area-inset-bottom))]">
-      <div className="max-w-xl mx-auto grid grid-cols-3 gap-2 sm:gap-3">
+    <div
+      id="sticky-hotline-bar"
+      className="fixed bottom-3 sm:bottom-4 left-3 right-3 sm:left-4 sm:right-4 z-30 lg:hidden pointer-events-none pb-[env(safe-area-inset-bottom)]"
+    >
+      <div className="max-w-md sm:max-w-lg md:max-w-xl mx-auto bg-slate-950/85 backdrop-blur-xl border border-white/20 rounded-3xl p-2 sm:p-2.5 shadow-2xl shadow-black/70 ring-1 ring-white/10 pointer-events-auto">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
         {/* Button 1: One-touch Emergency Call to PTV Dispatch */}
         <a
           href="tel:+639178326284"
@@ -60,6 +64,7 @@ export const StickyHotlineBar: React.FC<StickyHotlineBarProps> = ({
             {t('19 Towns', '19 Lungsod')}
           </span>
         </button>
+        </div>
       </div>
     </div>
   );

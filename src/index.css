@@ -416,3 +416,14 @@ textarea:user-invalid:focus {
   }
 }
 
+/* =====================================================================
+   Horizontal Swipeable Utility (Hidden native scrollbars)
+   ===================================================================== */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

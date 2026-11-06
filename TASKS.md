@@ -1032,6 +1032,24 @@
 - [x] **59.3 Verification & Production Build**:
   - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 16.80s).
 
+---
+
+### Phase 60: Mobile & Tablet Hero UX Upgrades & Floating Glassmorphic Dock (`HomePage.tsx`, `StickyHotlineBar.tsx`, `BackToTop.tsx`, `index.css`)
+- [x] **60.1 Context Pill Above Headline (`HomePage.tsx`)**:
+  - [x] Placed a subtle translucent badge above *"Serbisyo Diretso sa Katawhan"* with an emerald pulsing live indicator (`bg-slate-900/80 backdrop-blur-md border border-white/20 text-white`): *"● Bohol 3rd District Action Center"*, framing the headline and filling upper vertical space naturally.
+- [x] **60.2 Reclaimed Vertical Space with Horizontal Program Ticker (`HomePage.tsx`, `index.css`)**:
+  - [x] Shifted the hero text block slightly higher (`pb-24 sm:pb-28 lg:pb-0 pt-2 sm:pt-4`) to eliminate cavernous dark voids above and below.
+  - [x] Added a smooth horizontal swipeable ticker of the 7 flagship programs (🚑 PTV 24/7, 🏥 Kumbati Clinic, 🩺 Dialysis, 🏠 Pabahay, 🎓 Scholars, 🌾 Livelihood, 🤝 Community Aid) between the primary CTA and bottom dock.
+  - [x] Added `.no-scrollbar` utility in `src/index.css` for clean touch scrolling.
+- [x] **60.3 Tablet Grid Optimization for Galaxy Tab S7 / iPad Portrait (`HomePage.tsx`)**:
+  - [x] Introduced a dedicated 4-card glassmorphic highlights grid on portrait tablets (`hidden md:grid lg:hidden grid-cols-4 gap-2.5 sm:gap-3`) showcasing 4 PTVs (24/7 Dispatch), 3,200+ Clinic Patients, 310+ Housing Units, and 4,500+ Scholars, preventing the layout from feeling stretched or empty on 16:10 / 4:3 tablet screens.
+- [x] **60.4 Floating Glassmorphic Action Dock (`StickyHotlineBar.tsx`, `BackToTop.tsx`)**:
+  - [x] Replaced the detached solid white bottom bar with an intentional floating glassmorphic dock (`bottom-3 sm:bottom-4 left-3 right-3 sm:left-4 sm:right-4 bg-slate-950/85 backdrop-blur-xl border border-white/20 rounded-3xl p-2 sm:p-2.5 shadow-2xl ring-1 ring-white/10`).
+  - [x] Blends seamlessly into the dark hero section and floats as a unified HUD controller across all page sections.
+  - [x] Raised `BackToTop.tsx` to `bottom-24 sm:bottom-28 lg:bottom-6` for clean separation.
+- [x] **60.5 Verification & Production Build**:
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 9.32s).
+
 
 
 
