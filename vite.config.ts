@@ -5,9 +5,9 @@ import { fileURLToPath, URL } from 'node:url';
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  const siteUrl = (env.VITE_SITE_URL || process.env.VITE_SITE_URL || 'https://e-kumbati.onrender.com').replace(/\/+$/, '');
+  const siteUrl = (env.VITE_SITE_URL || process.env.VITE_SITE_URL || 'https://ekumbatidemo.onrender.com').replace(/\/+$/, '');
 
-  let siteDomain = 'e-kumbati.onrender.com';
+  let siteDomain = 'ekumbatidemo.onrender.com';
   try {
     siteDomain = new URL(siteUrl).hostname;
   } catch {
