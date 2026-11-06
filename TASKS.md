@@ -1108,6 +1108,17 @@
 - [x] **64.3 Verification & Production Build**:
   - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 9.40s).
 
+---
+
+### Phase 65: Mobile Trust Strip Typography Optimization (`Header.tsx`)
+- [x] **65.1 Full-Phrase Display Without Truncation (`Header.tsx`)**:
+  - [x] Adjusted typography for the top institutional trust strip text from `text-[10px] truncate` to `text-[8px] xs:text-[9.5px] sm:text-xs tracking-tight whitespace-nowrap`, guaranteeing that the complete phrase (*"Official Constituent Portal of the 3rd District of Bohol"* / *"Opisyal nga Portal sa Katawhan sa Ikatulong Distrito sa Bohol"*) is rendered in full on small mobile screens without ellipses (`...`).
+- [x] **65.2 Proportional Micro-Layout Balancing (`Header.tsx`)**:
+  - [x] Scaled the Philippine flag SVG to `w-3.5 h-2 sm:w-5 sm:h-3` and adjusted strip container padding to `px-2.5 sm:px-4`.
+  - [x] Set the 24/7 hotline modal trigger button label to `hidden sm:inline` while keeping the pulsing phone and chevron icons visible on phone screens, eliminating horizontal competition against the official jurisdiction text.
+- [x] **65.3 Verification & Production Build**:
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 11.58s).
+
 
 
 

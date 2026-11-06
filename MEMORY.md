@@ -479,6 +479,10 @@
   - **Seamless White Section Blending**: Eliminates visual discordance and card clipping over white page sections (Impact, Programs, Directory, News, etc.) while keeping PTV emergency dispatch, Action Desk tracker, and 19 Towns hotlines immediately accessible.
   - **Back-to-Top Offset Alignment**: Sized [`src/components/common/BackToTop.tsx`](file:///e:/Programs/e-KUMBATI/src/components/common/BackToTop.tsx) offset to `bottom-20 lg:bottom-6`, cleanly floating directly above the bottom bar.
   - Verified `npm run build` completed with code 0 (1985 modules transformed in 9.40s).
+- **2026-11-06**: Mobile Trust Strip Typography Optimization (`Header.tsx`):
+  - **Full-Phrase Display Without Truncation**: Refactored the top institutional trust strip text in [`src/components/layout/Header.tsx`](file:///e:/Programs/e-KUMBATI/src/components/layout/Header.tsx) from `text-[10px] truncate` to `text-[8px] xs:text-[9.5px] sm:text-xs tracking-tight whitespace-nowrap`, ensuring that the full official jurisdiction title (*"Official Constituent Portal of the 3rd District of Bohol"* / *"Opisyal nga Portal sa Katawhan sa Ikatulong Distrito sa Bohol"*) renders without being cut off by ellipses (`...`) on mobile viewports.
+  - **Proportional Micro-Layout**: Scaled the Philippine flag SVG to `w-3.5 h-2 sm:w-5 sm:h-3`, padded the container with `px-2.5 sm:px-4`, and set the hotline modal trigger label to `hidden sm:inline` to avoid horizontal space conflicts on small smartphone screens.
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 11.58s).
 
 
 

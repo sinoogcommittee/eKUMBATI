@@ -55,17 +55,17 @@ export const Header: React.FC<HeaderProps> = ({
       <header className="sticky top-0 z-40 shadow-md transition-all w-full max-w-full overflow-hidden">
       {/* Top Institutional Trust Strip - Auto-hides on scroll */}
       <div
-        className={`bg-slate-950 text-slate-200 text-[10px] sm:text-xs font-semibold w-full border-b border-slate-800/90 shadow-2xs transition-all duration-300 ease-in-out overflow-hidden ${
+        className={`bg-slate-950 text-slate-200 text-[8px] xs:text-[9.5px] sm:text-xs font-semibold w-full border-b border-slate-800/90 shadow-2xs transition-all duration-300 ease-in-out overflow-hidden ${
           isScrolled
             ? 'max-h-0 opacity-0 -translate-y-2 py-0 border-b-0'
-            : 'max-h-12 opacity-100 translate-y-0 py-1 sm:py-1.5 px-3 sm:px-4'
+            : 'max-h-12 opacity-100 translate-y-0 py-1 sm:py-1.5 px-2.5 sm:px-4'
         }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-1.5 sm:gap-2 min-w-0">
           <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
             {/* Crisp Philippine Flag SVG */}
             <svg
-              className="w-4 h-2.5 sm:w-5 sm:h-3 rounded-xs shadow-xs shrink-0 ring-1 ring-white/10"
+              className="w-3.5 h-2 sm:w-5 sm:h-3 rounded-xs shadow-xs shrink-0 ring-1 ring-white/10"
               viewBox="0 0 600 300"
               aria-label="Flag of the Philippines"
               role="img"
@@ -76,8 +76,8 @@ export const Header: React.FC<HeaderProps> = ({
               <circle cx="86.6" cy="150" r="30" fill="#FCD116" />
             </svg>
 
-            {/* Official Portal Text */}
-            <span className="font-bold tracking-wide truncate text-white text-[10px] sm:text-xs">
+            {/* Official Portal Text - Sized to display full phrase without truncation on mobile */}
+            <span className="font-bold tracking-tight text-white text-[8px] xs:text-[9.5px] sm:text-xs whitespace-nowrap">
               {t(
                 'Official Constituent Portal of the 3rd District of Bohol',
                 'Opisyal nga Portal sa Katawhan sa Ikatulong Distrito sa Bohol'
@@ -95,11 +95,11 @@ export const Header: React.FC<HeaderProps> = ({
             </span>
             <button
               onClick={onOpenHotlineModal}
-              className="inline-flex items-center gap-1 text-slate-300 hover:text-white text-[10px] sm:text-[11px] font-bold transition-colors cursor-pointer py-0.5"
+              className="inline-flex items-center gap-1 text-slate-300 hover:text-white text-[9px] sm:text-[11px] font-bold transition-colors cursor-pointer py-0.5"
               title={t('View Emergency Lines', 'Tan-awa ang mga Hotline')}
             >
               <PhoneCall className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-orange-400 animate-pulse" />
-              <span className="hidden xs:inline">{t('24/7 Hotlines', '24/7 Hotlines')}</span>
+              <span className="hidden sm:inline">{t('24/7 Hotlines', '24/7 Hotlines')}</span>
               <ChevronRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-slate-400" />
             </button>
           </div>
