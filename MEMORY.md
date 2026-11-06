@@ -499,6 +499,12 @@
   - **Removed Desktop Post-Hero 3 Buttons**: Deleted the 3-button quick-action dock straddling the bottom of the hero section on desktop, allowing Flagship Programs to flow directly below the hero.
   - **Edge-to-Edge Translucent Sticky Bar**: Set dock container to stick directly to the bottom screen edge (`fixed bottom-0 left-0 right-0 z-30 lg:hidden w-full`) with zero white gap underneath on scroll, enhanced transparency (`bg-[#0a0f1d]/75 backdrop-blur-xl border-t border-white/15`), and proportional sizing for tablet.
   - Verified `npm run build` completed with code 0 (1985 modules transformed in 13.86s).
+- **2026-11-06**: Tablet Viewport Precision Optimization (Tab S7 & Tab S11 Ultra) (`HomePage.tsx`, `StickyHotlineBar.tsx`):
+  - **Fixed Bottom Dock Overlap**: Sized hero wrapper padding-bottom on tablet to `md:pb-[120px]`, lifting the 4 stat cards cleanly ~28px above the floating emergency dock, fully displaying all cards and labels without clipping.
+  - **Controlled Top Offset (Upper-Third Placement)**: Replaced `my-auto` centering on tablet with `md:pt-[72px] min-[900px]:pt-[96px]` and `md:my-0 md:py-0`, positioning the headline in the upper-third and freeing the middle-to-lower third as an unobstructed video showcase zone.
+  - **Restored Status Pill for Tablets**: Re-introduced the green-dot *"Bohol 3rd District Action Center"* pill exclusively on tablet viewports (`hidden md:inline-flex lg:hidden`) with `mb-[14px]` right above the H1 as a vital visual anchor.
+  - **Refined Floating Pill Dock Styling**: Styled tablet dock as a floating pill container (`sm:bottom-4 sm:w-max sm:max-w-[520px] sm:mx-auto sm:p-2 sm:rounded-[18px] sm:bg-[#0c1017]/85 sm:backdrop-blur-[16px] sm:border-white/[0.12] sm:shadow-2xl`), while preserving edge-to-edge flush coverage on mobile phones.
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 12.01s).
 
 
 

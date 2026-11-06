@@ -1190,6 +1190,23 @@
 - [x] **68.6 Verification & Production Build**:
   - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 13.86s).
 
+---
+
+### Phase 69: Tablet Viewport Precision Optimization (Tab S7 & Tab S11 Ultra) (`HomePage.tsx`, `StickyHotlineBar.tsx`)
+- [x] **69.1 Bottom Dock Collision Bug Fix (`HomePage.tsx`)**:
+  - [x] Added `md:pb-[120px]` to the hero content wrapper on tablet breakpoints so the 4 stat cards sit cleanly ~28px above the top edge of the floating emergency dock, eliminating card clipping and unhiding all labels.
+- [x] **69.2 Controlled Top Offset & Video Viewing Window (`HomePage.tsx`)**:
+  - [x] Replaced `my-auto` centering with a controlled top offset (`md:pt-[72px] min-[900px]:pt-[96px]`) and `md:my-0 md:py-0` on tablet, placing the headline in the upper-third of the screen.
+  - [x] Opened up the entire middle-to-lower third of the viewport as an unobstructed viewing window for the background video footage before reaching the 4 stat cards.
+- [x] **69.3 Status Pill Restoration for Tablets (`HomePage.tsx`)**:
+  - [x] Restored the green-dot status pill (*"Bohol 3rd District Action Center"*) specifically on tablet viewports (`hidden md:inline-flex lg:hidden`) with `mb-[14px]` right above the H1, acting as a crucial visual anchor on tall screens.
+- [x] **69.4 Refined Floating Pill Dock Styling (`StickyHotlineBar.tsx`)**:
+  - [x] Configured dock as a floating pill container on tablet (`sm:bottom-4 sm:w-max sm:max-w-[520px] sm:mx-auto sm:p-2 sm:rounded-[18px] sm:bg-[#0c1017]/85 sm:backdrop-blur-[16px] sm:border sm:border-white/[0.12] sm:shadow-2xl`).
+  - [x] Preserved flush edge-to-edge full-width coverage on mobile phones (`fixed bottom-0 w-full`) with zero white gap on scroll.
+- [x] **69.5 Verification & Production Build**:
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 12.01s).
+
+
 
 
 

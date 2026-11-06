@@ -109,9 +109,21 @@ export const HomePage: React.FC = () => {
         {/* Subtle Ambient Warm Glow */}
         <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-full max-w-4xl h-96 bg-gradient-to-tr from-orange-600/20 via-amber-500/10 to-transparent blur-3xl pointer-events-none rounded-full z-1" />
 
-        <div className="w-full max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center flex-1 justify-between pt-6 sm:pt-10 md:pt-12 lg:pt-10 pb-4 sm:pb-6">
-          {/* Main Hero Content Block (Vertically centered with generous breathing space) */}
-          <div className="w-full max-w-4xl flex flex-col items-center my-auto py-2 sm:py-4 md:py-6">
+        <div className="w-full max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center flex-1 justify-between pt-6 sm:pt-8 md:pt-[72px] min-[900px]:pt-[96px] lg:pt-8 pb-4 sm:pb-6 md:pb-[120px] lg:pb-4">
+          {/* Main Hero Content Block:
+              - Mobile: my-auto centers the text block in upper-middle view with balanced breathing space
+              - Tablet: md:my-0 md:py-0 anchors strictly at controlled top offset (72px on Tab S7, 96px on Tab S11 Ultra)
+              - Desktop: balanced placement above the fold
+          */}
+          <div className="w-full max-w-4xl flex flex-col items-center my-auto md:my-0 md:py-0">
+            {/* Status Pill: Restored for tablet viewports (Galaxy Tab S7 & Tab S11 Ultra) as crucial visual anchor */}
+            <div className="hidden md:inline-flex lg:hidden items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-xs font-bold shadow-lg shadow-black/40 ring-1 ring-white/10 shrink-0 mb-[14px]">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+              <span className="tracking-wide">
+                {t('Bohol 3rd District Action Center', 'Sentro sa Aksyon sa Ikatulong Distrito sa Bohol')}
+              </span>
+            </div>
+
             {/* Fluid & Responsive Headline:
                 - Desktop: Exactly 2 lines (Line 1: "Serbisyo Diretso sa Katawhan:", Line 2: "Padayon ang Kumbati!")
                 - Tablet: Scaled UP with commanding text size (md:text-5xl) and rich civic presence
@@ -161,8 +173,12 @@ export const HomePage: React.FC = () => {
             </div>
           </div>
 
+          {/* Unobstructed Video Showcase Zone:
+              Controlled top offset on tablet leaves the middle-to-lower third open for field action footage
+          */}
+
           {/* Bottom Anchor: 4 Impact Stat Cards (Tablet & Desktop) / Masked Program Pills (Mobile) */}
-          <div className="w-full pt-2 sm:pt-4 pb-20 sm:pb-24 md:pb-6 lg:pb-2">
+          <div className="w-full mt-auto pt-2 sm:pt-4 pb-20 sm:pb-24 md:pb-0">
             {/* 4 Impact Stat Cards (Tablet & Desktop Trust Signals scaled with Glass Effect) */}
             <div className="hidden md:grid grid-cols-4 gap-3 sm:gap-3.5 md:gap-4 w-full max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto">
               <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-4 text-center shadow-xl hover:border-orange-500/40 transition-all">
