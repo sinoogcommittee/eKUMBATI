@@ -53,59 +53,56 @@ export const Header: React.FC<HeaderProps> = ({
       </a>
 
       <header className="sticky top-0 z-40 shadow-md transition-all w-full max-w-full overflow-hidden">
-      {/* Top micro-bar for quick emergency announcement - Auto-hides on scroll */}
+      {/* Top Institutional Trust Strip - Auto-hides on scroll */}
       <div
-        className={`bg-white text-slate-800 text-[11px] sm:text-xs font-semibold w-full border-b border-orange-200/80 shadow-2xs transition-all duration-300 ease-in-out overflow-hidden ${
+        className={`bg-slate-950 text-slate-200 text-[11px] sm:text-xs font-semibold w-full border-b border-slate-800/90 shadow-2xs transition-all duration-300 ease-in-out overflow-hidden ${
           isScrolled
             ? 'max-h-0 opacity-0 -translate-y-2 py-0 border-b-0'
-            : 'max-h-14 opacity-100 translate-y-0 py-1.5 px-3 sm:px-4'
+            : 'max-h-12 opacity-100 translate-y-0 py-1 sm:py-1.5 px-3 sm:px-4'
         }`}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-center sm:justify-between gap-2 min-w-0">
-          <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
-            {/* Desktop / Tablet badge */}
-            <span className="hidden sm:inline-flex bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider shrink-0 border border-orange-200">
-              24/7 Hotline
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 min-w-0">
+          <div className="flex items-center gap-2 min-w-0">
+            {/* Crisp Philippine Flag SVG */}
+            <svg
+              className="w-4 h-2.5 sm:w-5 sm:h-3 rounded-xs shadow-xs shrink-0 ring-1 ring-white/10"
+              viewBox="0 0 600 300"
+              aria-label="Flag of the Philippines"
+              role="img"
+            >
+              <rect width="600" height="150" fill="#0038A8" />
+              <rect y="150" width="600" height="150" fill="#CE1126" />
+              <polygon points="0,0 259.8,150 0,300" fill="#FFFFFF" />
+              <circle cx="86.6" cy="150" r="30" fill="#FCD116" />
+            </svg>
+
+            {/* Official Portal Text */}
+            <span className="font-bold tracking-wide truncate text-white">
+              {t(
+                'Official Constituent Portal of the 3rd District of Bohol',
+                'Opisyal nga Portal sa Katawhan sa Ikatulong Distrito sa Bohol'
+              )}
             </span>
 
-            {/* Mobile text: "PTV Emergency Dispatch: 0917-832-6284" */}
-            <div className="sm:hidden flex items-center gap-1.5 text-[11px] font-bold text-slate-800 whitespace-nowrap">
-              <PhoneCall className="w-3 h-3 text-red-600 shrink-0 animate-pulse" />
-              <span className="text-slate-800 font-extrabold shrink-0">
-                PTV Emergency Dispatch:
-              </span>
-              <a
-                href="tel:09178326284"
-                className="font-black text-orange-600 hover:text-orange-700 hover:underline shrink-0"
-              >
-                0917-832-6284
-              </a>
-            </div>
-
-            {/* Desktop / Tablet text */}
-            <div className="hidden sm:flex items-center gap-1.5 text-xs text-slate-700 truncate">
-              <span>
-                {t(
-                  'PTV Patient Transport Vehicle Emergency Dispatch:',
-                  'PTV Libreng Sakyanan sa Pasyente 24/7:'
-                )}
-              </span>
-              <a
-                href="tel:09178326284"
-                className="font-black text-orange-600 hover:text-orange-700 hover:underline shrink-0"
-              >
-                0917-832-6284
-              </a>
-            </div>
+            <span className="hidden lg:inline text-slate-400 font-medium text-[11px]">
+              • Republic of the Philippines
+            </span>
           </div>
 
-          <button
-            onClick={onOpenHotlineModal}
-            className="hidden md:inline-flex items-center gap-1 text-slate-600 hover:text-orange-600 hover:underline text-xs font-bold shrink-0 ml-2 transition-colors cursor-pointer"
-          >
-            <span>{t('View All Emergency Lines', 'Tan-awa ang Tanan nga Hotline')}</span>
-            <ChevronRight className="w-3.5 h-3.5 text-orange-500" />
-          </button>
+          <div className="flex items-center gap-2.5 shrink-0">
+            <span className="hidden md:inline text-[10px] uppercase tracking-wider text-orange-400 font-black">
+              House of Representatives
+            </span>
+            <button
+              onClick={onOpenHotlineModal}
+              className="inline-flex items-center gap-1 text-slate-300 hover:text-white text-[11px] font-bold transition-colors cursor-pointer"
+              title={t('View Emergency Lines', 'Tan-awa ang mga Hotline')}
+            >
+              <PhoneCall className="w-3 h-3 text-orange-400 animate-pulse" />
+              <span className="hidden xs:inline">{t('24/7 Hotlines', '24/7 Hotlines')}</span>
+              <ChevronRight className="w-3 h-3 text-slate-400" />
+            </button>
+          </div>
         </div>
       </div>
 

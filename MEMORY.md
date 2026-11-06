@@ -432,6 +432,11 @@
   - **Active Focus Release on Close**: In `handleClose()`, added `(document.activeElement as HTMLElement)?.blur()` to immediately blur any clicked navigation link or button before drawer transition, releasing focus safely back to `document.body`.
   - **TypeScript HTMLAttributes Augmentation**: Added `inert?: string | boolean` in [`src/vite-env.d.ts`](file:///e:/Programs/e-KUMBATI/src/vite-env.d.ts) with `import 'react';` to support the modern `inert` attribute under strict TypeScript.
   - Verified `npm run build` completed with code 0 (1985 modules transformed in 6.37s).
+- **2026-11-06**: Executive Landing View Consolidation & Video Background Integration (`Header.tsx`, `HomePage.tsx`, `constants.ts`, `sw.js`):
+  - **Top Institutional Trust Strip**: In [`src/components/layout/Header.tsx`](file:///e:/Programs/e-KUMBATI/src/components/layout/Header.tsx), replaced the PTV dispatch micro-strip with a slim, high-contrast bar (`bg-slate-950 text-slate-200 border-b border-slate-800/90`) featuring a crisp Philippine Flag SVG icon, official bilingual jurisdiction text (*"Official Constituent Portal of the 3rd District of Bohol"* / *"Opisyal nga Portal sa Katawhan sa Ikatulong Distrito sa Bohol"*), institutional House of Representatives tagline, and a 24/7 hotline modal trigger.
+  - **Trimmed Copy & Single Primary Hero CTA**: In [`src/pages/public/HomePage.tsx`](file:///e:/Programs/e-KUMBATI/src/pages/public/HomePage.tsx), removed the redundant white pill badge to save ~40px of vertical space, shortened the subheadline to 2–3 crisp lines in [`src/lib/constants.ts`](file:///e:/Programs/e-KUMBATI/src/lib/constants.ts), and focused on a single hero CTA (*"Explore 7 Flagship Programs"*), leaving urgent actions to the sticky bottom bar.
+  - **Non-Distracting Video Background Guardrails**: Integrated a background video container with `<video poster="/images/hero_poster.webp">`, `autoPlay loop muted playsInline preload="none"`, heavy scrim overlay (`bg-gradient-to-b from-slate-950/85 via-slate-950/70 to-orange-950/90`), and `prefers-reduced-motion` image fallback. Pre-cached `hero_poster.webp` in [`public/sw.js`](file:///e:/Programs/e-KUMBATI/public/sw.js) (`ekumbati-cache-v3`).
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 17.24s).
 
 
 

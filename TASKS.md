@@ -964,6 +964,29 @@
 - [x] **55.3 Verification & Production Build**:
   - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 6.37s).
 
+---
+
+### Phase 56: Executive Landing View Consolidation & Video Background Integration (`Header.tsx`, `HomePage.tsx`, `constants.ts`, `sw.js`)
+- [x] **56.1 Top Institutional Trust Strip (`Header.tsx`)**:
+  - [x] Replaced previous PTV dispatch micro-bar with a slim, high-contrast institutional bar (`bg-slate-950 text-slate-200 border-b border-slate-800/90`).
+  - [x] Integrated crisp Philippine Flag SVG icon (2:1 geometry with hoist triangle, sun, and official colors).
+  - [x] Displayed official bilingual jurisdiction title: `{t('Official Constituent Portal of the 3rd District of Bohol', 'Opisyal nga Portal sa Katawhan sa Ikatulong Distrito sa Bohol')}` alongside `Republic of the Philippines` and `House of Representatives`.
+  - [x] Retained compact 24/7 emergency hotline modal trigger on the right side.
+  - [x] Preserved smooth auto-collapse on scroll (`isScrolled ? 'max-h-0 opacity-0 -translate-y-2 py-0' : 'max-h-12 opacity-100 translate-y-0 py-1'`).
+- [x] **56.2 Trimmed Copy & Single Focused Hero CTA (`HomePage.tsx`, `constants.ts`)**:
+  - [x] Removed redundant white pill badge above the hero headline, saving ~40px of vertical space and letting the Bisaya headline breathe.
+  - [x] Shortened subheadline copy in `src/lib/constants.ts` (`hero_subtext_en`, `hero_subtext_ceb`) and `HomePage.tsx`:
+    - English: *"Empowering all 19 municipalities of Bohol's 3rd District with transparent governance, emergency patient transport, healthcare, shelter, and education."*
+    - Cebuano: *"Pagpalig-on sa 19 ka mga lungsod sa Ikatulong Distrito sa Bohol pinaagi sa matinud-anong pagserbisyo, libreng sakyanan sa pasyente, panglawas, pabalay, ug edukasyon."*
+  - [x] Removed redundant "Apply for Assistance / Track Ticket" button from the hero, establishing "Explore 7 Flagship Programs" as the single primary hero CTA guiding visitors down the page while the mobile sticky bar serves as the dedicated immediate action hub.
+- [x] **56.3 Non-Distracting Video Background Architecture (`HomePage.tsx`, `sw.js`)**:
+  - [x] Implemented `<video>` background layer with `autoPlay loop muted playsInline preload="none" poster="/images/hero_poster.webp"`.
+  - [x] Provided dual sources (`/videos/bohol_district3_aerial.webm` and `.mp4`) and static poster image fallback for `prefers-reduced-motion` and slow network conditions.
+  - [x] Applied heavy scrim overlay (`bg-gradient-to-b from-slate-950/85 via-slate-950/70 to-orange-950/90`) to maintain razor-sharp white typography contrast across all video frames.
+  - [x] Added `hero_poster.webp` to `PRECACHE_ASSETS` in `public/sw.js` and bumped cache version to `ekumbati-cache-v3` for offline resilience.
+- [x] **56.4 Verification & Production Build**:
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 17.24s).
+
 
 
 

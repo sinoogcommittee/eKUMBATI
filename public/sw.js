@@ -3,7 +3,7 @@
  * Hybrid Offline-First Architecture & Asset Caching
  */
 
-const CACHE_NAME = 'ekumbati-cache-v2';
+const CACHE_NAME = 'ekumbati-cache-v3';
 
 // Critical core assets cached immediately upon installation
 const PRECACHE_ASSETS = [
@@ -16,6 +16,7 @@ const PRECACHE_ASSETS = [
   '/images/kumbati_logo_sm.webp',
   '/images/kumbati_logo.webp',
   '/images/cong_alexie.webp',
+  '/images/hero_poster.webp',
   '/pwa-192x192.png',
   '/pwa-512x512.png',
   '/pwa-maskable-512x512.png',

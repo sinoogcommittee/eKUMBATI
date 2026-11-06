@@ -32,53 +32,58 @@ export const HomePage: React.FC = () => {
       {/* =====================================================================
           1. HERO SECTION
          ===================================================================== */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-orange-50/70 via-amber-50/20 to-[#FFFDF9] pt-8 sm:pt-14 pb-12 sm:pb-20 border-b border-orange-100/60">
-        {/* Subtle Decorative Ambient Background Elements */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-tr from-orange-200/30 via-amber-100/20 to-transparent blur-3xl pointer-events-none rounded-full" />
+      <section className="relative overflow-hidden bg-slate-950 pt-10 sm:pt-16 pb-14 sm:pb-22 border-b border-orange-950/40">
+        {/* Video Background Layer with graceful image poster fallback */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            poster="/images/hero_poster.webp"
+            className="w-full h-full object-cover object-center scale-105 motion-reduce:hidden opacity-45 mix-blend-luminosity"
+          >
+            <source src="/videos/bohol_district3_aerial.webm" type="video/webm" />
+            <source src="/videos/bohol_district3_aerial.mp4" type="video/mp4" />
+          </video>
+          {/* Static poster for prefers-reduced-motion */}
+          <img
+            src="/images/hero_poster.webp"
+            alt="Bohol 3rd District Landscape"
+            className="hidden motion-reduce:block w-full h-full object-cover object-center opacity-45"
+            loading="eager"
+          />
+        </div>
+
+        {/* Heavy Scrim Overlay - Ensures razor-sharp white typography */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/70 to-orange-950/90 pointer-events-none z-1" />
+
+        {/* Subtle Ambient Warm Glow */}
+        <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-full max-w-4xl h-96 bg-gradient-to-tr from-orange-600/20 via-amber-500/10 to-transparent blur-3xl pointer-events-none rounded-full z-1" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
-            {/* Left Column: Copy & Primary CTAs */}
+            {/* Left Column: Copy & Single Hero CTA */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              {/* Pill Badge */}
-              <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-white border border-orange-200 text-orange-800 text-xs font-bold shadow-2xs">
-                <span>
-                  {t(
-                    'Official Constituent Portal • 3rd District of Bohol',
-                    'Opisyal nga Portal sa Katawhan • Ikatulong Distrito sa Bohol'
-                  )}
-                </span>
-              </div>
-
               {/* Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1] text-balance">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] text-balance drop-shadow-md">
                 {t(INITIAL_SITE_SETTINGS.hero_headline_en, INITIAL_SITE_SETTINGS.hero_headline_ceb)}
               </h1>
 
               {/* Subtext */}
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              <p className="text-base sm:text-lg text-orange-100/90 leading-relaxed max-w-2xl mx-auto lg:mx-0 drop-shadow-xs font-normal">
                 {t(INITIAL_SITE_SETTINGS.hero_subtext_en, INITIAL_SITE_SETTINGS.hero_subtext_ceb)}
               </p>
 
-              {/* Action Buttons: 2 focused, high-contrast CTAs */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 pt-2">
-                <Link to="/action-center" className="w-full sm:w-auto shrink-0">
-                  <Button
-                    variant="primary"
-                    size="md"
-                    icon={<ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />}
-                    className="w-full sm:w-auto px-5 sm:px-6 py-3 text-xs sm:text-sm whitespace-nowrap min-h-[46px] shadow-sinoog"
-                  >
-                    {t('Apply for Assistance / Track Ticket', 'Pag-apply og Hinabang / Susiha ang Ticket')}
-                  </Button>
-                </Link>
-
+              {/* Single Hero CTA: Guides visitors smoothly to flagship programs */}
+              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start">
                 <a href="#flagship-programs" className="w-full sm:w-auto shrink-0">
                   <Button
-                    variant="outline"
-                    size="md"
-                    icon={<Layers className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />}
-                    className="w-full sm:w-auto px-5 sm:px-6 py-3 text-xs sm:text-sm whitespace-nowrap min-h-[46px] bg-white/90"
+                    variant="primary"
+                    size="lg"
+                    icon={<Layers className="w-5 h-5 shrink-0" />}
+                    className="w-full sm:w-auto px-7 py-3.5 text-sm sm:text-base font-black whitespace-nowrap min-h-[50px] shadow-lg shadow-orange-950/50 hover:shadow-orange-500/30 border border-orange-400/40 hover:scale-102 transition-transform"
                   >
                     {t('Explore 7 Flagship Programs', 'Susiha ang 7 ka Programa')}
                   </Button>

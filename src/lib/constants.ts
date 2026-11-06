@@ -46,9 +46,9 @@ export const INITIAL_SITE_SETTINGS: SiteSettings = {
   hero_headline_en: 'Serbisyo Diretso sa Katawhan: Padayon ang Kumbati!',
   hero_headline_ceb: 'Serbisyo Diretso sa Katawhan: Padayon ang Kumbati!',
   hero_subtext_en:
-    'Empowering the 19 municipalities of Bohol District 3 through transparent governance, life-saving patient transport, free clinic consultations, dignified shelter, and transformative education.',
+    "Empowering all 19 municipalities of Bohol's 3rd District with transparent governance, emergency patient transport, healthcare, shelter, and education.",
   hero_subtext_ceb:
-    'Paghatag og gahum ug pag-alagad sa 19 ka mga lungsod sa Ikatulong Distrito sa Bohol pinaagi sa matinud-anong pagdumala, libreng sakyanan sa pasyente, libreng tambal ug klinika, desenteng pabalay, ug edukasyon para sa tanan.',
+    'Pagpalig-on sa 19 ka mga lungsod sa Ikatulong Distrito sa Bohol pinaagi sa matinud-anong pagserbisyo, libreng sakyanan sa pasyente, panglawas, pabalay, ug edukasyon.',
   bio_summary_en:
     'Congresswoman Kristine Alexie Besas Tutor is a dedicated legislator, licensed physical therapist, and law graduate serving as the Representative of Bohol\'s 3rd Congressional District in the House of Representatives of the Philippines (18th & 19th Congress). Known passionately as "Congw. Kumbati", she serves as Chairperson of the Committee on Civil Service and Professional Regulation and Vice Chairperson of the Committee on Health, championing rural healthcare access, hospital modernization, civil service worker protections, resilient socialized shelter, cooperative livelihood, and transformative education.',
   bio_summary_ceb:
