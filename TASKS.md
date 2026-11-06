@@ -1222,6 +1222,22 @@
 - [x] **70.4 Verification & Production Build**:
   - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 19.38s).
 
+---
+
+### Phase 71: Typography Breathing Room & Vertical Space Utilization for Desktop & Tablet (`HomePage.tsx`)
+- [x] **71.1 Title Line-Height & Letter Breathing Room (`HomePage.tsx`)**:
+  - [x] Increased headline line-height from tight `1.14` to generous `md:leading-[1.26] lg:leading-[1.24]` on tablet and desktop, giving ample breathing room between title lines ("Serbisyo Diretso sa Katawhan: Padayon ang Kumbati!").
+  - [x] Added `md:tracking-normal` removing cramped letter compression.
+- [x] **71.2 Subheadline & Action Button Spatial Expansion (`HomePage.tsx`)**:
+  - [x] Enhanced subheadline typography to `md:text-xl md:leading-[1.75] lg:leading-[1.65]` with `md:mb-10` margin below, providing comfortable reading cadence.
+  - [x] Sized tablet CTA buttons to `md:min-h-[56px] md:py-4 md:px-9` with `md:gap-5` and `md:mb-12` clearance above the 4 stat cards.
+- [x] **71.3 Tablet Top & Lower Vertical Space Utilization (`HomePage.tsx`)**:
+  - [x] Expanded hero container padding to `md:pt-16 md:pb-28`, and inner content padding to `md:py-6`, utilizing the tall canvas on Galaxy Tab S7 and Tab S11 Ultra.
+  - [x] Enlarged 4 stat cards on tablet with `md:p-5 md:text-3xl` numbers and `md:gap-5`, replacing excessive dead voids with rich civic presentation while preserving clean clearance above the floating emergency dock.
+- [x] **71.4 Verification & Production Build**:
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 11.67s).
+
+
 
 
 

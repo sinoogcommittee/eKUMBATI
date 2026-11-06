@@ -109,35 +109,35 @@ export const HomePage: React.FC = () => {
         {/* Subtle Ambient Warm Glow */}
         <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-full max-w-4xl h-96 bg-gradient-to-tr from-orange-600/20 via-amber-500/10 to-transparent blur-3xl pointer-events-none rounded-full z-1" />
 
-        <div className="w-full max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center flex-1 justify-between pt-6 sm:pt-8 md:pt-12 lg:pt-8 pb-4 sm:pb-6 md:pb-24 lg:pb-8">
-          {/* Main Hero Content Block (Balanced & Centered with Breathing Room) */}
-          <div className="w-full max-w-4xl flex flex-col items-center my-auto py-2 sm:py-4">
+        <div className="w-full max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center flex-1 justify-between pt-6 sm:pt-8 md:pt-16 lg:pt-8 pb-4 sm:pb-6 md:pb-28 lg:pb-8">
+          {/* Main Hero Content Block (Balanced & Centered with Generous Breathing Room) */}
+          <div className="w-full max-w-4xl flex flex-col items-center my-auto py-2 sm:py-4 md:py-6">
             {/* Headline:
-                - Tablet: Scaled bigger (md:text-[3.25rem]) to occupy space, wraps gracefully across 2-3 lines
-                - Desktop: Balanced across 2-3 lines (lg:text-[2.85rem] xl:text-[3.25rem])
+                - Tablet: Scaled up (md:text-[3.4rem]) with generous leading-[1.26] between lines to utilize top/bottom space
+                - Desktop: Generous leading-[1.24] so title lines breathe without crowding
                 - Mobile: Fluid typography without edge clipping (Untouched)
             */}
-            <h1 className="text-3xl sm:text-4xl md:text-[3.25rem] lg:text-[2.85rem] xl:text-[3.25rem] font-black text-white tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto leading-[1.14] mb-3 sm:mb-4 md:mb-5 text-balance">
+            <h1 className="text-3xl sm:text-4xl md:text-[3.4rem] lg:text-[2.75rem] xl:text-[3.25rem] font-black text-white tracking-tight md:tracking-normal drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] max-w-xl md:max-w-3xl lg:max-w-4xl mx-auto leading-[1.18] md:leading-[1.26] lg:leading-[1.24] mb-3 sm:mb-4 md:mb-8 lg:mb-5 text-balance">
               {t('Serbisyo Diretso sa Katawhan: Padayon ang Kumbati!', 'Serbisyo Diretso sa Katawhan: Padayon ang Kumbati!')}
             </h1>
 
-            {/* Subheadline: Scaled slightly larger on tablet to occupy space elegantly */}
-            <p className="text-xs sm:text-sm md:text-lg lg:text-base xl:text-lg text-white/85 md:text-white/90 leading-relaxed max-w-md sm:max-w-lg md:max-w-2xl mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] mb-5 sm:mb-6 md:mb-8 font-normal">
+            {/* Subheadline: Enhanced line-height and generous margins for comfortable breathing room */}
+            <p className="text-xs sm:text-sm md:text-xl lg:text-base xl:text-lg text-white/85 md:text-white/90 leading-relaxed md:leading-[1.75] lg:leading-[1.65] max-w-md sm:max-w-lg md:max-w-2xl mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] mb-5 sm:mb-6 md:mb-10 lg:mb-7 font-normal">
               {t(INITIAL_SITE_SETTINGS.hero_subtext_en, INITIAL_SITE_SETTINGS.hero_subtext_ceb)}
             </p>
 
             {/* Dual Hero CTAs:
                 - Mobile: Stacked with comfortable touch targets and breathing space (Untouched)
-                - Tablet: Larger tactile buttons (md:py-4 md:px-8 md:text-base)
+                - Tablet: Larger tactile buttons (md:py-4 md:px-9 md:text-base)
                 - Desktop: Side-by-side solid + glassmorphic outline
             */}
-            <div className="w-full max-w-md sm:max-w-none flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-0 sm:px-4 mb-6 md:mb-8">
+            <div className="w-full max-w-md sm:max-w-none flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-5 px-0 sm:px-4 mb-6 md:mb-12 lg:mb-7">
               <a href="#flagship-programs" className="w-full sm:w-auto shrink-0">
                 <Button
                   variant="primary"
                   size="lg"
                   icon={<Layers className="w-5 h-5 shrink-0" />}
-                  className="w-full sm:w-auto px-6 sm:px-8 md:px-9 py-3.5 md:py-4 rounded-xl md:rounded-2xl text-xs sm:text-sm md:text-base font-black whitespace-normal sm:whitespace-nowrap min-h-[48px] md:min-h-[54px] shadow-xl shadow-orange-950/60 hover:shadow-orange-500/40 border border-orange-400/40 hover:scale-105 transition-all text-center flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-6 sm:px-8 md:px-9 py-3.5 md:py-4 rounded-xl md:rounded-2xl text-xs sm:text-sm md:text-base font-black whitespace-normal sm:whitespace-nowrap min-h-[48px] md:min-h-[56px] shadow-xl shadow-orange-950/60 hover:shadow-orange-500/40 border border-orange-400/40 hover:scale-105 transition-all text-center flex items-center justify-center gap-2"
                 >
                   {t('Explore 7 Flagship Programs', 'Susiha ang 7 ka Programa')}
                 </Button>
@@ -147,7 +147,7 @@ export const HomePage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => triggerHaptic('light')}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-7 md:px-8 py-3.5 md:py-4 rounded-xl md:rounded-2xl bg-white/[0.08] hover:bg-white/[0.15] active:scale-95 text-white font-bold border border-white/[0.28] hover:border-white/50 backdrop-blur-md shadow-lg shadow-black/40 hover:shadow-white/10 text-xs sm:text-sm md:text-base min-h-[48px] md:min-h-[54px] transition-all cursor-pointer whitespace-normal sm:whitespace-nowrap"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-7 md:px-8 py-3.5 md:py-4 rounded-xl md:rounded-2xl bg-white/[0.08] hover:bg-white/[0.15] active:scale-95 text-white font-bold border border-white/[0.28] hover:border-white/50 backdrop-blur-md shadow-lg shadow-black/40 hover:shadow-white/10 text-xs sm:text-sm md:text-base min-h-[48px] md:min-h-[56px] transition-all cursor-pointer whitespace-normal sm:whitespace-nowrap"
                 >
                   <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-orange-400 shrink-0" />
                   <span>{t('Track Request / Apply', 'Subaya ang Hangyo / Pag-apply')}</span>
@@ -155,23 +155,23 @@ export const HomePage: React.FC = () => {
               </Link>
             </div>
 
-            {/* 4 Impact Stat Cards (Placed DIRECTLY BELOW buttons for Desktop & Tablet) */}
-            <div className="hidden md:grid grid-cols-4 gap-3 sm:gap-3.5 md:gap-4 lg:gap-3.5 w-full max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto">
-              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-3.5 lg:p-3 text-center shadow-xl hover:border-orange-500/40 transition-all">
-                <div className="text-base sm:text-xl md:text-2xl lg:text-2xl font-black text-white">4 PTVs</div>
-                <div className="text-[10px] sm:text-xs md:text-xs text-orange-300 font-bold uppercase truncate mt-0.5">{t('24/7 Dispatch', '24/7 Biyahe')}</div>
+            {/* 4 Impact Stat Cards (Placed DIRECTLY BELOW buttons with expansive padding on tablet) */}
+            <div className="hidden md:grid grid-cols-4 gap-3.5 sm:gap-4 md:gap-5 lg:gap-4 w-full max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto">
+              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-5 lg:p-3.5 text-center shadow-xl hover:border-orange-500/40 transition-all">
+                <div className="text-base sm:text-xl md:text-3xl lg:text-2xl font-black text-white mb-1 md:mb-1.5">4 PTVs</div>
+                <div className="text-[10px] sm:text-xs md:text-xs text-orange-300 font-bold uppercase tracking-wider">{t('24/7 Dispatch', '24/7 Biyahe')}</div>
               </div>
-              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-3.5 lg:p-3 text-center shadow-xl hover:border-orange-500/40 transition-all">
-                <div className="text-base sm:text-xl md:text-2xl lg:text-2xl font-black text-white">3,200+</div>
-                <div className="text-[10px] sm:text-xs md:text-xs text-orange-300 font-bold uppercase truncate mt-0.5">{t('Clinic Patients', 'Pasyente')}</div>
+              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-5 lg:p-3.5 text-center shadow-xl hover:border-orange-500/40 transition-all">
+                <div className="text-base sm:text-xl md:text-3xl lg:text-2xl font-black text-white mb-1 md:mb-1.5">3,200+</div>
+                <div className="text-[10px] sm:text-xs md:text-xs text-orange-300 font-bold uppercase tracking-wider">{t('Clinic Patients', 'Pasyente')}</div>
               </div>
-              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-3.5 lg:p-3 text-center shadow-xl hover:border-orange-500/40 transition-all">
-                <div className="text-base sm:text-xl md:text-2xl lg:text-2xl font-black text-white">310+</div>
-                <div className="text-[10px] sm:text-xs md:text-xs text-orange-300 font-bold uppercase truncate mt-0.5">{t('Housing Units', 'Pabahay')}</div>
+              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-5 lg:p-3.5 text-center shadow-xl hover:border-orange-500/40 transition-all">
+                <div className="text-base sm:text-xl md:text-3xl lg:text-2xl font-black text-white mb-1 md:mb-1.5">310+</div>
+                <div className="text-[10px] sm:text-xs md:text-xs text-orange-300 font-bold uppercase tracking-wider">{t('Housing Units', 'Pabahay')}</div>
               </div>
-              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-3.5 lg:p-3 text-center shadow-xl hover:border-orange-500/40 transition-all">
-                <div className="text-base sm:text-xl md:text-2xl lg:text-2xl font-black text-white">4,500+</div>
-                <div className="text-[10px] sm:text-xs md:text-xs text-orange-300 font-bold uppercase truncate mt-0.5">{t('Scholars', 'Iskolar')}</div>
+              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-5 lg:p-3.5 text-center shadow-xl hover:border-orange-500/40 transition-all">
+                <div className="text-base sm:text-xl md:text-3xl lg:text-2xl font-black text-white mb-1 md:mb-1.5">4,500+</div>
+                <div className="text-[10px] sm:text-xs md:text-xs text-orange-300 font-bold uppercase tracking-wider">{t('Scholars', 'Iskolar')}</div>
               </div>
             </div>
           </div>

@@ -512,6 +512,11 @@
   - **Tablet Typography Scaling & 3-Line Headline**: Removed *"Bohol 3rd District Action Center"* pill, scaled H1 to `md:text-[3.25rem]` wrapping naturally into 3 lines, and enlarged subtext to `md:text-lg max-w-2xl` to fill the vertical space with balance.
   - **Mobile Preservation**: Maintained mobile views 100% untouched (`block md:hidden` on pills ticker, full-width edge-to-edge sticky dock at `bottom-0`).
   - Verified `npm run build` completed with code 0 (1985 modules transformed in 19.38s).
+- **2026-11-06**: Typography Breathing Room & Vertical Space Utilization for Desktop & Tablet (`HomePage.tsx`):
+  - **Generous Headline Line-Height**: Increased H1 line-height from `1.14` to `md:leading-[1.26] lg:leading-[1.24]` with `md:tracking-normal`, giving clean, elegant vertical separation between title lines (*"Serbisyo Diretso sa Katawhan: Padayon ang Kumbati!"*).
+  - **Enhanced Subheadline & Button Spacing**: Upgraded subheadline to `md:text-xl md:leading-[1.75] lg:leading-[1.65]` with `md:mb-10` margin below, and CTA buttons to `md:py-4 md:px-9` with `md:mb-12` clearance above the stat cards.
+  - **Utilized Tablet Top & Lower Canvas Space**: Sized tablet hero wrapper padding to `md:pt-16 md:pb-28` and content padding to `md:py-6`, enlarging the 4 stat cards with `md:p-5 md:text-3xl` numbers, successfully utilizing the tall canvas on Galaxy Tab S7 & Tab S11 Ultra while keeping ample clearance above the bottom dock.
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 11.67s).
 
 
 
