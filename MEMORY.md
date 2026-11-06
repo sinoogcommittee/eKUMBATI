@@ -466,6 +466,14 @@
   - **Programmatic Autoplay & Native DOM Properties**: In [`src/pages/public/HomePage.tsx`](file:///e:/Programs/e-KUMBATI/src/pages/public/HomePage.tsx), attached `videoRef` with a dedicated `useEffect` setting `video.muted = true`, `video.defaultMuted = true`, and HTML attributes `'muted'`, `'playsinline'`, `'webkit-playsinline'`. Handled Promise-based `.play()` with a one-shot touch/click gesture fallback for devices in aggressive battery-saver mode.
   - **Hardware Blend Mode & Accessibility Conflict Fix**: Removed `mix-blend-luminosity` (which can cause Adreno/Mali GPU compositing failures or black boxes) and removed `motion-reduce:hidden` so that Samsung Galaxy Tab S7 / OneUI "Remove animations" accessibility mode does not forcefully suppress the background video. Enabled `preload="auto"` for rapid buffer initiation.
   - Verified `npm run build` completed with code 0 (1985 modules transformed in 13.07s).
+- **2026-11-06**: Desktop Hero Quick-Action Dock & Dual Action Buttons (`HomePage.tsx`):
+  - **Secondary Glassmorphic Action Button**: Paired the solid orange *"Explore 7 Flagship Programs"* CTA with a secondary glassmorphic outline button (*"Track Request / Apply"* / *"Subaya ang Hangyo / Pag-apply"*) in [`src/pages/public/HomePage.tsx`](file:///e:/Programs/e-KUMBATI/src/pages/public/HomePage.tsx), routing constituents directly to `/action-center` with `ShieldCheck` icon, bilingual copy, and haptic feedback.
+  - **Desktop 3-Card Quick-Action Dock**: Brought the critical constituent tools to desktop by introducing a horizontal 3-card dock straddling the bottom edge of the hero section (`hidden lg:block relative -mt-14 z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8`):
+    1. **Call PTV 24/7** (`tel:+639178326284`): Red-to-orange gradient, animated bounce phone icon, *"24/7"* badge, and emergency patient transport subtitle.
+    2. **Action Desk Tracker** (`/action-center`): Orange-to-amber gradient, `ShieldCheck` icon, *"Tracker"* badge, and reference code lookup description.
+    3. **Hotlines 19 Towns** (`setIsHotlineModalOpen(true)`): Light gray tactile gradient (`bg-gradient-to-b from-slate-100 via-slate-200 to-slate-300`), orange `MapPin` icon, *"19 Towns"* badge, and MDRRMO/Police/Hospitals modal launcher.
+  - **Desktop 1-Screen View Offset Sync**: Sized desktop hero height to `lg:h-[calc(100dvh-156px)]`, ensuring the straddling dock rests completely above the fold on initial load without requiring user scrolling.
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 12.03s).
 
 
 

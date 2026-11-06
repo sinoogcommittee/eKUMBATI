@@ -1079,6 +1079,23 @@
 - [x] **62.4 Verification & Production Build**:
   - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 13.07s).
 
+---
+
+### Phase 63: Desktop Hero Quick-Action Dock & Dual Action Buttons (`HomePage.tsx`)
+- [x] **63.1 Secondary Glassmorphic Action Button (`HomePage.tsx`)**:
+  - [x] Paired the primary solid orange *"Explore 7 Flagship Programs"* button with a secondary glassmorphic outline button (*"Track Request / Apply"* / *"Subaya ang Hangyo / Pag-apply"*) linked to `/action-center` with `ShieldCheck` icon, bilingual copy, and tactile feedback.
+  - [x] Enables returning constituents to immediately check ticket status or submit an inquiry without hunting the navbar or scrolling.
+- [x] **63.2 Desktop Horizontal 3-Card Quick-Action Dock (`HomePage.tsx`)**:
+  - [x] Introduced a dedicated desktop-only dock (`hidden lg:block relative -mt-14 z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8`) straddling the bottom edge of the hero section over the border into Section 2.
+  - [x] Engineered 3 rich interactive cards mirroring the constituent critical actions from the mobile/tablet dock:
+    1. **Call PTV 24/7** (`tel:+639178326284`): Red-to-orange gradient, animated bounce phone icon, *"24/7"* badge, and emergency patient transport subtitle.
+    2. **Action Desk Tracker** (`/action-center`): Orange-to-amber gradient, `ShieldCheck` icon, *"Tracker"* badge, and reference code lookup description.
+    3. **Hotlines 19 Towns** (`setIsHotlineModalOpen(true)`): Light gray tactile gradient (`bg-gradient-to-b from-slate-100 via-slate-200 to-slate-300`), orange `MapPin` icon, *"19 Towns"* badge, and MDRRMO/Police/Hospitals modal launcher.
+- [x] **63.3 1-Screen View Precision on Desktop**:
+  - [x] Sized desktop hero height to `lg:h-[calc(100dvh-156px)]`, ensuring that the straddling dock rests completely above the fold on initial load without requiring user scrolling.
+- [x] **63.4 Verification & Production Build**:
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 12.03s).
+
 
 
 

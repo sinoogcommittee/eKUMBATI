@@ -11,6 +11,7 @@ import StatCounter from '../../components/common/StatCounter';
 import Button from '../../components/common/Button';
 import Badge from '../../components/common/Badge';
 import HotlineModal from '../../components/common/HotlineModal';
+import { triggerHaptic } from '../../lib/haptics';
 import {
   ShieldCheck,
   ChevronRight,
@@ -18,6 +19,8 @@ import {
   Heart,
   Layers,
   Image as ImageIcon,
+  PhoneCall,
+  MapPin,
 } from 'lucide-react';
 
 const FLAGSHIP_QUICK_PILLS = [
@@ -80,7 +83,7 @@ export const HomePage: React.FC = () => {
       {/* =====================================================================
           1. HERO SECTION (1-Screen View on Mobile, Tablet & Desktop)
          ===================================================================== */}
-      <section className="relative overflow-hidden bg-slate-950 w-full h-[calc(100svh-82px)] sm:h-[calc(100svh-92px)] lg:h-[calc(100dvh-112px)] flex items-center justify-center border-b border-orange-950/40">
+      <section className="relative overflow-hidden bg-slate-950 w-full h-[calc(100svh-82px)] sm:h-[calc(100svh-92px)] lg:h-[calc(100dvh-156px)] flex items-center justify-center border-b border-orange-950/40">
         {/* Ambient Video Background Layer with graceful image poster fallback */}
         <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
           <video
@@ -104,7 +107,7 @@ export const HomePage: React.FC = () => {
         {/* Subtle Ambient Warm Glow */}
         <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-full max-w-4xl h-96 bg-gradient-to-tr from-orange-600/20 via-amber-500/10 to-transparent blur-3xl pointer-events-none rounded-full z-1" />
 
-        <div className="w-full h-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col justify-center items-center text-center pb-24 sm:pb-28 lg:pb-0 pt-2 sm:pt-4">
+        <div className="w-full h-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col justify-center items-center text-center pb-24 sm:pb-28 lg:pb-6 pt-2 sm:pt-4">
           <div className="space-y-3.5 sm:space-y-5 max-w-3xl flex flex-col items-center">
             {/* Context Pill above Headline with pulsing live indicator */}
             <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs font-bold shadow-lg shadow-black/40 ring-1 ring-white/10 shrink-0">
@@ -124,18 +127,29 @@ export const HomePage: React.FC = () => {
               {t(INITIAL_SITE_SETTINGS.hero_subtext_en, INITIAL_SITE_SETTINGS.hero_subtext_ceb)}
             </p>
 
-            {/* Single Hero CTA: Guides visitors smoothly to flagship programs */}
-            <div className="pt-1 sm:pt-2 flex justify-center">
+            {/* Dual Hero CTAs: Primary Flagship Explorer + Secondary Glassmorphic Action Desk Tracker */}
+            <div className="pt-1 sm:pt-2 flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3.5 w-full sm:w-auto">
               <a href="#flagship-programs" className="w-full sm:w-auto shrink-0">
                 <Button
                   variant="primary"
                   size="lg"
                   icon={<Layers className="w-5 h-5 shrink-0" />}
-                  className="w-full sm:w-auto px-7 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-sm font-black whitespace-nowrap min-h-[46px] shadow-xl shadow-orange-950/60 hover:shadow-orange-500/40 border border-orange-400/40 hover:scale-105 transition-transform"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-sm font-black whitespace-nowrap min-h-[46px] shadow-xl shadow-orange-950/60 hover:shadow-orange-500/40 border border-orange-400/40 hover:scale-105 transition-transform"
                 >
                   {t('Explore 7 Flagship Programs', 'Susiha ang 7 ka Programa')}
                 </Button>
               </a>
+
+              <Link to="/action-center" className="w-full sm:w-auto shrink-0">
+                <button
+                  type="button"
+                  onClick={() => triggerHaptic('light')}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-slate-900/60 hover:bg-slate-800/80 active:scale-95 text-white font-bold border border-white/25 hover:border-white/50 backdrop-blur-md shadow-lg shadow-black/40 hover:shadow-white/10 text-xs sm:text-sm min-h-[46px] transition-all cursor-pointer"
+                >
+                  <ShieldCheck className="w-4 h-4 text-orange-400 shrink-0" />
+                  <span>{t('Track Request / Apply', 'Subaya ang Hangyo / Pag-apply')}</span>
+                </button>
+              </Link>
             </div>
 
             {/* Tablet-Specific Grid (Galaxy Tab S7 / iPad Portrait) - Eliminates cavernous middle space */}
@@ -176,6 +190,93 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* =====================================================================
+          DESKTOP QUICK-ACTION DOCK (Straddling bottom edge of Hero Section)
+         ===================================================================== */}
+      <div className="hidden lg:block relative -mt-14 z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-slate-950/85 backdrop-blur-xl border border-white/20 rounded-3xl p-3 shadow-2xl shadow-black/80 ring-1 ring-white/10">
+          <div className="grid grid-cols-3 gap-3.5">
+            {/* Card 1: One-touch Emergency Call to PTV Dispatch */}
+            <a
+              href="tel:+639178326284"
+              onClick={() => triggerHaptic('emergency')}
+              className="group relative flex items-center gap-3.5 p-3.5 rounded-2xl bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-500 hover:to-orange-500 text-white font-black shadow-sinoog hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all border border-red-400/40"
+            >
+              <div className="w-11 h-11 rounded-xl bg-white/15 backdrop-blur-md flex items-center justify-center shrink-0 border border-white/20 group-hover:scale-105 transition-transform">
+                <PhoneCall className="w-5 h-5 text-white animate-bounce" />
+              </div>
+              <div className="text-left flex-1 min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xs font-black uppercase tracking-wider text-white">
+                    {t('Call PTV', 'Tawag PTV')}
+                  </span>
+                  <span className="px-1.5 py-0.5 rounded-full bg-white/20 text-[9px] font-bold uppercase tracking-wider">
+                    24/7
+                  </span>
+                </div>
+                <p className="text-[11px] text-red-100 font-medium truncate mt-0.5">
+                  {t('Emergency Patient Transport', 'Sakyanan sa Pasyente')}
+                </p>
+              </div>
+              <ChevronRight className="w-4 h-4 text-white/70 group-hover:text-white group-hover:translate-x-0.5 transition-all shrink-0" />
+            </a>
+
+            {/* Card 2: Action Center Tracker */}
+            <Link
+              to="/action-center"
+              onClick={() => triggerHaptic('light')}
+              className="group relative flex items-center gap-3.5 p-3.5 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-400 hover:to-amber-500 text-white font-black shadow-sinoog hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all border border-orange-300/40"
+            >
+              <div className="w-11 h-11 rounded-xl bg-white/15 backdrop-blur-md flex items-center justify-center shrink-0 border border-white/20 group-hover:scale-105 transition-transform">
+                <ShieldCheck className="w-5 h-5 text-white" />
+              </div>
+              <div className="text-left flex-1 min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xs font-black uppercase tracking-wider text-white">
+                    {t('Action Desk', 'Aksyon Desk')}
+                  </span>
+                  <span className="px-1.5 py-0.5 rounded-full bg-white/20 text-[9px] font-bold uppercase tracking-wider">
+                    {t('Tracker', 'Tracker')}
+                  </span>
+                </div>
+                <p className="text-[11px] text-orange-100 font-medium truncate mt-0.5">
+                  {t('Track Ticket & Request Aid', 'Subaya ang Reference Code')}
+                </p>
+              </div>
+              <ChevronRight className="w-4 h-4 text-white/70 group-hover:text-white group-hover:translate-x-0.5 transition-all shrink-0" />
+            </Link>
+
+            {/* Card 3: All 19 Towns & Hotlines Dialog - Light Gray Gradient Button */}
+            <button
+              type="button"
+              onClick={() => {
+                triggerHaptic('light');
+                setIsHotlineModalOpen(true);
+              }}
+              className="group relative flex items-center gap-3.5 p-3.5 rounded-2xl bg-gradient-to-b from-slate-100 via-slate-200 to-slate-300 hover:from-slate-200 hover:to-slate-400 text-slate-900 font-black shadow-sinoog hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all border border-slate-300/90 border-t-white text-left cursor-pointer"
+            >
+              <div className="w-11 h-11 rounded-xl bg-white/80 shadow-xs flex items-center justify-center shrink-0 border border-slate-300/60 group-hover:scale-105 transition-transform">
+                <MapPin className="w-5 h-5 text-orange-600 drop-shadow-2xs" />
+              </div>
+              <div className="text-left flex-1 min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xs font-black uppercase tracking-wider text-slate-900">
+                    {t('Hotlines', 'Hotlines')}
+                  </span>
+                  <span className="px-1.5 py-0.5 rounded-full bg-orange-500/15 text-orange-700 text-[9px] font-black uppercase tracking-wider">
+                    {t('19 Towns', '19 Lungsod')}
+                  </span>
+                </div>
+                <p className="text-[11px] text-slate-600 font-medium truncate mt-0.5">
+                  {t('MDRRMO, Police & Hospitals', 'MDRRMO, Pulis ug Ospital')}
+                </p>
+              </div>
+              <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-slate-800 group-hover:translate-x-0.5 transition-all shrink-0" />
+            </button>
+          </div>
+        </div>
+      </div>
 
       {/* =====================================================================
           2. FEATURED FLAGSHIP PROGRAMS OF TEAM KUMBATI (Immediate Utility)
