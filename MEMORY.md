@@ -461,6 +461,11 @@
   - **Proportionate Mobile Assets**: Scaled logo circle from `w-10 h-10` down to `w-8 h-8 sm:w-9 sm:h-9 lg:w-11 lg:h-11`, tuned brand text to `text-base font-black` / `text-[9px]`, and compact hamburger toggle to `p-1 sm:p-1.5`. Streamlined top institutional strip typography to `text-[10px] sm:text-xs`.
   - **Hero Viewport Offset Sync**: Updated hero container in [`src/pages/public/HomePage.tsx`](file:///e:/Programs/e-KUMBATI/src/pages/public/HomePage.tsx) to `h-[calc(100svh-82px)] sm:h-[calc(100svh-92px)] lg:h-[calc(100dvh-112px)]`, maintaining perfect 1-screen view alignment above the fold.
   - Verified `npm run build` completed with code 0 (1985 modules transformed in 8.39s).
+- **2026-11-06**: Tablet & Mobile Video Background Playback Engineering (`HomePage.tsx`, `public/videos/`):
+  - **Faststart Moov Atom Repositioning**: Processed `public/videos/background_video_portrait.mp4` with `ffmpeg -c copy -movflags +faststart` to place the `moov` metadata index at byte 0. Tablets and mobile browsers no longer need to download the full 7.2 MB file before initiating playback.
+  - **Programmatic Autoplay & Native DOM Properties**: In [`src/pages/public/HomePage.tsx`](file:///e:/Programs/e-KUMBATI/src/pages/public/HomePage.tsx), attached `videoRef` with a dedicated `useEffect` setting `video.muted = true`, `video.defaultMuted = true`, and HTML attributes `'muted'`, `'playsinline'`, `'webkit-playsinline'`. Handled Promise-based `.play()` with a one-shot touch/click gesture fallback for devices in aggressive battery-saver mode.
+  - **Hardware Blend Mode & Accessibility Conflict Fix**: Removed `mix-blend-luminosity` (which can cause Adreno/Mali GPU compositing failures or black boxes) and removed `motion-reduce:hidden` so that Samsung Galaxy Tab S7 / OneUI "Remove animations" accessibility mode does not forcefully suppress the background video. Enabled `preload="auto"` for rapid buffer initiation.
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 13.07s).
 
 
 

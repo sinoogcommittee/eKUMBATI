@@ -1065,6 +1065,20 @@
 - [x] **61.4 Verification & Production Build**:
   - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 8.39s).
 
+---
+
+### Phase 62: Tablet & Mobile Video Background Playback Engineering (`HomePage.tsx`, `public/videos/`)
+- [x] **62.1 MP4 Streamability & `+faststart` Moov Atom Relocation**:
+  - [x] Repositioned the MP4 `moov` atom header to byte 0 via `ffmpeg -c copy -movflags +faststart` on `public/videos/background_video_portrait.mp4`, enabling instantaneous stream playback on tablet devices without requiring the browser to buffer the entire 7.2 MB file first.
+- [x] **62.2 Programmatic Autoplay & Gesture Fallback Hook**:
+  - [x] In `HomePage.tsx`, implemented a `useRef<HTMLVideoElement>` and `useEffect` hook that explicitly enforces DOM-level properties (`video.muted = true`, `video.defaultMuted = true`, `video.setAttribute('muted', '')`, `video.setAttribute('playsinline', '')`, `video.setAttribute('webkit-playsinline', '')`).
+  - [x] Added `loadeddata` and `canplay` readiness checks with a gentle `touchstart` / `click` / `scroll` one-shot gesture fallback, ensuring immediate video initialization even on devices running aggressive battery-saver modes or restricted tablet autoplay heuristics.
+- [x] **62.3 Mobile GPU Optimization & Accessibility Safeguard**:
+  - [x] Upgraded `<video>` attributes to `preload="auto"` and removed `mix-blend-luminosity` (which previously forced software compositing or blank surface drops on Android Adreno/Mali GPUs).
+  - [x] Removed `motion-reduce:hidden` that was inadvertently hiding the video behind a static fallback image when Samsung Galaxy Tab S7 / OneUI "Remove animations" accessibility mode is active.
+- [x] **62.4 Verification & Production Build**:
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 13.07s).
+
 
 
 

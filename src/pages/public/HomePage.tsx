@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import {
@@ -33,6 +33,44 @@ const FLAGSHIP_QUICK_PILLS = [
 export const HomePage: React.FC = () => {
   const { t } = useLanguage();
   const [isHotlineModalOpen, setIsHotlineModalOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Strict muted and playsinline DOM attributes for Android/iOS/iPadOS autoplay policies
+    video.muted = true;
+    video.defaultMuted = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+
+    const attemptPlay = () => {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay fallback: Listen for first touch/click/scroll gesture
+          const onFirstInteraction = () => {
+            video.play().catch(() => {});
+            window.removeEventListener('touchstart', onFirstInteraction);
+            window.removeEventListener('click', onFirstInteraction);
+            window.removeEventListener('scroll', onFirstInteraction);
+          };
+          window.addEventListener('touchstart', onFirstInteraction, { passive: true, once: true });
+          window.addEventListener('click', onFirstInteraction, { passive: true, once: true });
+          window.addEventListener('scroll', onFirstInteraction, { passive: true, once: true });
+        });
+      }
+    };
+
+    if (video.readyState >= 2) {
+      attemptPlay();
+    } else {
+      video.addEventListener('loadeddata', attemptPlay, { once: true });
+      video.addEventListener('canplay', attemptPlay, { once: true });
+    }
+  }, []);
 
   const featuredPrograms = INITIAL_PROGRAMS.slice(0, 3);
   const recentAlbums = INITIAL_ALBUMS.slice(0, 3);
@@ -46,25 +84,18 @@ export const HomePage: React.FC = () => {
         {/* Ambient Video Background Layer with graceful image poster fallback */}
         <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
           <video
+            ref={videoRef}
+            src="/videos/background_video_portrait.mp4"
             autoPlay
             loop
             muted
             playsInline
-            preload="none"
+            preload="auto"
             poster="/images/hero_poster.webp"
-            className="w-full h-full object-cover object-center scale-105 motion-reduce:hidden opacity-35 mix-blend-luminosity"
+            className="w-full h-full object-cover object-center scale-105 opacity-35"
           >
             <source src="/videos/background_video_portrait.mp4" type="video/mp4" />
-            <source src="/videos/bohol_district3_aerial.webm" type="video/webm" />
-            <source src="/videos/bohol_district3_aerial.mp4" type="video/mp4" />
           </video>
-          {/* Static poster for prefers-reduced-motion */}
-          <img
-            src="/images/hero_poster.webp"
-            alt="Bohol 3rd District Landscape"
-            className="hidden motion-reduce:block w-full h-full object-cover object-center opacity-35"
-            loading="eager"
-          />
         </div>
 
         {/* Heavy Scrim Overlay - Ensures razor-sharp white typography */}
