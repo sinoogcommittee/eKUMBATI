@@ -1096,6 +1096,18 @@
 - [x] **63.4 Verification & Production Build**:
   - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 12.03s).
 
+---
+
+### Phase 64: Mobile Sticky Hotline Bar Reversion to Clean Frosted White Architecture (`StickyHotlineBar.tsx`, `BackToTop.tsx`)
+- [x] **64.1 Elimination of Dark Floating Capsule Clash (`StickyHotlineBar.tsx`)**:
+  - [x] Reverted mobile sticky bar container from the dark floating capsule (`bg-slate-950/85 rounded-3xl`) back to the clean, full-width frosted white bottom sheet (`fixed bottom-0 left-0 right-0 z-30 lg:hidden bg-white/95 backdrop-blur-md border-t border-orange-200/80 px-3 py-2 shadow-2xl pb-[max(0.5rem,env(safe-area-inset-bottom))]`).
+  - [x] Eliminates visual dissonance against white page sections (Impact, Programs, Directory, News, etc.) while preserving native thumb-reach access.
+- [x] **64.2 Buttons Integrity & Back-to-Top Offset Sync (`StickyHotlineBar.tsx`, `BackToTop.tsx`)**:
+  - [x] Preserved high-contrast 3-action buttons (Call PTV 24/7 red-orange gradient, Action Desk orange-amber gradient, and tactile light-gray Hotlines button with orange `MapPin`).
+  - [x] Re-aligned `BackToTop.tsx` offset to `bottom-20 lg:bottom-6` for clean, unclipped placement directly above the frosted white bar.
+- [x] **64.3 Verification & Production Build**:
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 9.40s).
+
 
 
 

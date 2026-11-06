@@ -474,6 +474,11 @@
     3. **Hotlines 19 Towns** (`setIsHotlineModalOpen(true)`): Light gray tactile gradient (`bg-gradient-to-b from-slate-100 via-slate-200 to-slate-300`), orange `MapPin` icon, *"19 Towns"* badge, and MDRRMO/Police/Hospitals modal launcher.
   - **Desktop 1-Screen View Offset Sync**: Sized desktop hero height to `lg:h-[calc(100dvh-156px)]`, ensuring the straddling dock rests completely above the fold on initial load without requiring user scrolling.
   - Verified `npm run build` completed with code 0 (1985 modules transformed in 12.03s).
+- **2026-11-06**: Mobile Sticky Hotline Bar Reversion to Clean Frosted White Architecture (`StickyHotlineBar.tsx`, `BackToTop.tsx`):
+  - **Eliminated Dark Floating Capsule Clash**: Reverted mobile sticky bar container in [`src/components/layout/StickyHotlineBar.tsx`](file:///e:/Programs/e-KUMBATI/src/components/layout/StickyHotlineBar.tsx) from the dark floating capsule (`bg-slate-950/85 rounded-3xl`) back to the clean, full-width frosted white bottom sheet (`fixed bottom-0 left-0 right-0 z-30 lg:hidden bg-white/95 backdrop-blur-md border-t border-orange-200/80 px-3 py-2 shadow-2xl pb-[max(0.5rem,env(safe-area-inset-bottom))]`).
+  - **Seamless White Section Blending**: Eliminates visual discordance and card clipping over white page sections (Impact, Programs, Directory, News, etc.) while keeping PTV emergency dispatch, Action Desk tracker, and 19 Towns hotlines immediately accessible.
+  - **Back-to-Top Offset Alignment**: Sized [`src/components/common/BackToTop.tsx`](file:///e:/Programs/e-KUMBATI/src/components/common/BackToTop.tsx) offset to `bottom-20 lg:bottom-6`, cleanly floating directly above the bottom bar.
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 9.40s).
 
 
 

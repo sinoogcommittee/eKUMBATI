@@ -33,7 +33,7 @@ export const BackToTop: React.FC = () => {
       onClick={scrollToTop}
       aria-label={t('Scroll back to top of page', 'Balik sa ibabaw sa panid')}
       title={t('Back to Top', 'Balik sa Ibabaw')}
-      className="fixed bottom-24 sm:bottom-28 lg:bottom-6 right-4 sm:right-6 z-30 flex items-center gap-1.5 px-3.5 py-2.5 rounded-full bg-white/95 text-orange-600 border border-orange-200/90 shadow-sinoog hover:shadow-sinoog-hover hover:border-orange-300 hover:bg-orange-50/90 active:scale-95 transition-all duration-300 backdrop-blur-md cursor-pointer group"
+      className="fixed bottom-20 lg:bottom-6 right-4 sm:right-6 z-30 flex items-center gap-1.5 px-3.5 py-2.5 rounded-full bg-white/95 text-orange-600 border border-orange-200/90 shadow-sinoog hover:shadow-sinoog-hover hover:border-orange-300 hover:bg-orange-50/90 active:scale-95 transition-all duration-300 backdrop-blur-md cursor-pointer group"
     >
       <ArrowUp className="w-4 h-4 text-orange-600 group-hover:-translate-y-0.5 transition-transform" />
       <span className="text-xs font-black uppercase tracking-wider text-slate-700 group-hover:text-orange-600 hidden xs:inline">
