@@ -1206,6 +1206,23 @@
 - [x] **69.5 Verification & Production Build**:
   - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 12.01s).
 
+---
+
+### Phase 70: Desktop & Tablet 4 Stat Cards Integration Below CTAs & Balanced Screen Flow (`HomePage.tsx`)
+- [x] **70.1 Relocated 4 Stat Cards Directly Below Action Buttons (`HomePage.tsx`)**:
+  - [x] Moved the 4 stat cards (4 PTVs, 3,200+ Patients, 310+ Housing, 4,500+ Scholars) directly below the *"Explore 7 Flagship Programs"* and *"Track Request / Apply"* CTAs on desktop and tablet (`hidden md:grid`).
+  - [x] On Acer Chromebook 314 (1366×768), this prevents the cards from being pushed below the fold and cut off by the bottom bezel, fitting the entire hero cleanly within the viewport.
+  - [x] On Tablet (Galaxy Tab S7 & Tab S11 Ultra), placing cards directly below buttons eliminates any possibility of collision with the bottom floating emergency dock, leaving ~250px+ of clear viewing space between the cards and the dock.
+- [x] **70.2 Tablet Typography Scaling & Natural 3-Line Headline (`HomePage.tsx`)**:
+  - [x] Removed the *"Bohol 3rd District Action Center"* status pill from all viewports.
+  - [x] Scaled headline to `md:text-[3.25rem]` with `max-w-2xl text-balance`, wrapping gracefully into 3 lines on tablet as requested.
+  - [x] Scaled subheadline to `md:text-lg max-w-2xl` on tablet to naturally occupy vertical whitespace.
+- [x] **70.3 Mobile Viewport Protection (`HomePage.tsx`)**:
+  - [x] Preserved mobile views with zero changes (`block md:hidden` on bottom ticker, stacked CTAs, full-width edge-to-edge sticky dock at `bottom-0`).
+- [x] **70.4 Verification & Production Build**:
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 19.38s).
+
+
 
 
 

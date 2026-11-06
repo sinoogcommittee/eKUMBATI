@@ -109,46 +109,29 @@ export const HomePage: React.FC = () => {
         {/* Subtle Ambient Warm Glow */}
         <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-full max-w-4xl h-96 bg-gradient-to-tr from-orange-600/20 via-amber-500/10 to-transparent blur-3xl pointer-events-none rounded-full z-1" />
 
-        <div className="w-full max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center flex-1 justify-between pt-6 sm:pt-8 md:pt-[72px] min-[900px]:pt-[96px] lg:pt-8 pb-4 sm:pb-6 md:pb-[120px] lg:pb-4">
-          {/* Main Hero Content Block:
-              - Mobile: my-auto centers the text block in upper-middle view with balanced breathing space
-              - Tablet: md:my-0 md:py-0 anchors strictly at controlled top offset (72px on Tab S7, 96px on Tab S11 Ultra)
-              - Desktop: balanced placement above the fold
-          */}
-          <div className="w-full max-w-4xl flex flex-col items-center my-auto md:my-0 md:py-0">
-            {/* Status Pill: Restored for tablet viewports (Galaxy Tab S7 & Tab S11 Ultra) as crucial visual anchor */}
-            <div className="hidden md:inline-flex lg:hidden items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-xs font-bold shadow-lg shadow-black/40 ring-1 ring-white/10 shrink-0 mb-[14px]">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-              <span className="tracking-wide">
-                {t('Bohol 3rd District Action Center', 'Sentro sa Aksyon sa Ikatulong Distrito sa Bohol')}
-              </span>
-            </div>
-
-            {/* Fluid & Responsive Headline:
-                - Desktop: Exactly 2 lines (Line 1: "Serbisyo Diretso sa Katawhan:", Line 2: "Padayon ang Kumbati!")
-                - Tablet: Scaled UP with commanding text size (md:text-5xl) and rich civic presence
-                - Mobile: Fluid typography wrapping naturally without edge clipping
+        <div className="w-full max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center flex-1 justify-between pt-6 sm:pt-8 md:pt-12 lg:pt-8 pb-4 sm:pb-6 md:pb-24 lg:pb-8">
+          {/* Main Hero Content Block (Balanced & Centered with Breathing Room) */}
+          <div className="w-full max-w-4xl flex flex-col items-center my-auto py-2 sm:py-4">
+            {/* Headline:
+                - Tablet: Scaled bigger (md:text-[3.25rem]) to occupy space, wraps gracefully across 2-3 lines
+                - Desktop: Balanced across 2-3 lines (lg:text-[2.85rem] xl:text-[3.25rem])
+                - Mobile: Fluid typography without edge clipping (Untouched)
             */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] font-black text-white tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] max-w-5xl mx-auto leading-[1.16] mb-3 sm:mb-4 md:mb-6 text-balance">
-              <span className="md:block whitespace-normal md:whitespace-nowrap">
-                {t('Serbisyo Diretso sa Katawhan:', 'Serbisyo Diretso sa Katawhan:')}
-              </span>
-              <span className="md:block whitespace-normal md:whitespace-nowrap mt-1 md:mt-2 text-white">
-                {t('Padayon ang Kumbati!', 'Padayon ang Kumbati!')}
-              </span>
+            <h1 className="text-3xl sm:text-4xl md:text-[3.25rem] lg:text-[2.85rem] xl:text-[3.25rem] font-black text-white tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto leading-[1.14] mb-3 sm:mb-4 md:mb-5 text-balance">
+              {t('Serbisyo Diretso sa Katawhan: Padayon ang Kumbati!', 'Serbisyo Diretso sa Katawhan: Padayon ang Kumbati!')}
             </h1>
 
-            {/* Subheadline with balanced breathing space and scaled typography for tablet */}
-            <p className="text-xs sm:text-sm md:text-lg lg:text-xl text-white/85 md:text-white/90 leading-relaxed max-w-md sm:max-w-lg md:max-w-2xl mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] mb-5 sm:mb-6 md:mb-8 font-normal">
+            {/* Subheadline: Scaled slightly larger on tablet to occupy space elegantly */}
+            <p className="text-xs sm:text-sm md:text-lg lg:text-base xl:text-lg text-white/85 md:text-white/90 leading-relaxed max-w-md sm:max-w-lg md:max-w-2xl mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] mb-5 sm:mb-6 md:mb-8 font-normal">
               {t(INITIAL_SITE_SETTINGS.hero_subtext_en, INITIAL_SITE_SETTINGS.hero_subtext_ceb)}
             </p>
 
             {/* Dual Hero CTAs:
-                - Mobile: Stacked with comfortable touch targets and breathing space
-                - Tablet: Larger tactile buttons (md:py-4 md:px-8 md:text-base) filling space naturally
+                - Mobile: Stacked with comfortable touch targets and breathing space (Untouched)
+                - Tablet: Larger tactile buttons (md:py-4 md:px-8 md:text-base)
                 - Desktop: Side-by-side solid + glassmorphic outline
             */}
-            <div className="w-full max-w-md sm:max-w-none flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-0 sm:px-4">
+            <div className="w-full max-w-md sm:max-w-none flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-0 sm:px-4 mb-6 md:mb-8">
               <a href="#flagship-programs" className="w-full sm:w-auto shrink-0">
                 <Button
                   variant="primary"
@@ -171,37 +154,32 @@ export const HomePage: React.FC = () => {
                 </button>
               </Link>
             </div>
-          </div>
 
-          {/* Unobstructed Video Showcase Zone:
-              Controlled top offset on tablet leaves the middle-to-lower third open for field action footage
-          */}
-
-          {/* Bottom Anchor: 4 Impact Stat Cards (Tablet & Desktop) / Masked Program Pills (Mobile) */}
-          <div className="w-full mt-auto pt-2 sm:pt-4 pb-20 sm:pb-24 md:pb-0">
-            {/* 4 Impact Stat Cards (Tablet & Desktop Trust Signals scaled with Glass Effect) */}
-            <div className="hidden md:grid grid-cols-4 gap-3 sm:gap-3.5 md:gap-4 w-full max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto">
-              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-4 text-center shadow-xl hover:border-orange-500/40 transition-all">
-                <div className="text-base sm:text-xl md:text-2xl lg:text-3xl font-black text-white">4 PTVs</div>
-                <div className="text-[10px] sm:text-xs md:text-sm text-orange-300 font-bold uppercase truncate mt-0.5">{t('24/7 Dispatch', '24/7 Biyahe')}</div>
+            {/* 4 Impact Stat Cards (Placed DIRECTLY BELOW buttons for Desktop & Tablet) */}
+            <div className="hidden md:grid grid-cols-4 gap-3 sm:gap-3.5 md:gap-4 lg:gap-3.5 w-full max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto">
+              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-3.5 lg:p-3 text-center shadow-xl hover:border-orange-500/40 transition-all">
+                <div className="text-base sm:text-xl md:text-2xl lg:text-2xl font-black text-white">4 PTVs</div>
+                <div className="text-[10px] sm:text-xs md:text-xs text-orange-300 font-bold uppercase truncate mt-0.5">{t('24/7 Dispatch', '24/7 Biyahe')}</div>
               </div>
-              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-4 text-center shadow-xl hover:border-orange-500/40 transition-all">
-                <div className="text-base sm:text-xl md:text-2xl lg:text-3xl font-black text-white">3,200+</div>
-                <div className="text-[10px] sm:text-xs md:text-sm text-orange-300 font-bold uppercase truncate mt-0.5">{t('Clinic Patients', 'Pasyente')}</div>
+              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-3.5 lg:p-3 text-center shadow-xl hover:border-orange-500/40 transition-all">
+                <div className="text-base sm:text-xl md:text-2xl lg:text-2xl font-black text-white">3,200+</div>
+                <div className="text-[10px] sm:text-xs md:text-xs text-orange-300 font-bold uppercase truncate mt-0.5">{t('Clinic Patients', 'Pasyente')}</div>
               </div>
-              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-4 text-center shadow-xl hover:border-orange-500/40 transition-all">
-                <div className="text-base sm:text-xl md:text-2xl lg:text-3xl font-black text-white">310+</div>
-                <div className="text-[10px] sm:text-xs md:text-sm text-orange-300 font-bold uppercase truncate mt-0.5">{t('Housing Units', 'Pabahay')}</div>
+              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-3.5 lg:p-3 text-center shadow-xl hover:border-orange-500/40 transition-all">
+                <div className="text-base sm:text-xl md:text-2xl lg:text-2xl font-black text-white">310+</div>
+                <div className="text-[10px] sm:text-xs md:text-xs text-orange-300 font-bold uppercase truncate mt-0.5">{t('Housing Units', 'Pabahay')}</div>
               </div>
-              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-4 text-center shadow-xl hover:border-orange-500/40 transition-all">
-                <div className="text-base sm:text-xl md:text-2xl lg:text-3xl font-black text-white">4,500+</div>
-                <div className="text-[10px] sm:text-xs md:text-sm text-orange-300 font-bold uppercase truncate mt-0.5">{t('Scholars', 'Iskolar')}</div>
+              <div className="bg-slate-900/65 md:bg-slate-900/75 backdrop-blur-[10px] md:backdrop-blur-xl border border-white/[0.14] md:border-white/20 rounded-2xl p-2.5 sm:p-3 md:p-3.5 lg:p-3 text-center shadow-xl hover:border-orange-500/40 transition-all">
+                <div className="text-base sm:text-xl md:text-2xl lg:text-2xl font-black text-white">4,500+</div>
+                <div className="text-[10px] sm:text-xs md:text-xs text-orange-300 font-bold uppercase truncate mt-0.5">{t('Scholars', 'Iskolar')}</div>
               </div>
             </div>
+          </div>
 
-            {/* Mobile Swipeable Ticker with Right-Side Fade Mask */}
+          {/* Mobile Bottom Anchor: Swipeable Program Pills Ticker (Mobile Views Only - Untouched) */}
+          <div className="block md:hidden w-full mt-auto pt-2 sm:pt-4 pb-20 sm:pb-24">
             <div
-              className="block md:hidden w-full overflow-hidden"
+              className="w-full overflow-hidden"
               style={{
                 maskImage: 'linear-gradient(to right, #000 82%, transparent 100%)',
                 WebkitMaskImage: 'linear-gradient(to right, #000 82%, transparent 100%)',

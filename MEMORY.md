@@ -505,6 +505,13 @@
   - **Restored Status Pill for Tablets**: Re-introduced the green-dot *"Bohol 3rd District Action Center"* pill exclusively on tablet viewports (`hidden md:inline-flex lg:hidden`) with `mb-[14px]` right above the H1 as a vital visual anchor.
   - **Refined Floating Pill Dock Styling**: Styled tablet dock as a floating pill container (`sm:bottom-4 sm:w-max sm:max-w-[520px] sm:mx-auto sm:p-2 sm:rounded-[18px] sm:bg-[#0c1017]/85 sm:backdrop-blur-[16px] sm:border-white/[0.12] sm:shadow-2xl`), while preserving edge-to-edge flush coverage on mobile phones.
   - Verified `npm run build` completed with code 0 (1985 modules transformed in 12.01s).
+- **2026-11-06**: Desktop & Tablet 4 Stat Cards Integration Below CTAs & Balanced Screen Flow (`HomePage.tsx`):
+  - **Relocated 4 Stat Cards Directly Below Buttons**: Placed the 4 stat cards (4 PTVs, 3,200+ Patients, 310+ Housing, 4,500+ Scholars) directly below the CTA buttons in the central content stack on desktop and tablet (`hidden md:grid`).
+  - **Eliminated Desktop Cutoff (Acer Chromebook 314)**: The entire hero presentation (H1 + Subtext + Buttons + 4 Cards) now comfortably fits above the 768px fold with zero bottom card truncation.
+  - **Eliminated Tablet Collision & Opened Viewing Space**: By moving the cards up under the CTAs on tablet (Galaxy Tab S7 & Tab S11 Ultra), the cards sit far above the floating emergency dock (`sm:bottom-4`), opening a wide, clear field action video window between the cards and the dock.
+  - **Tablet Typography Scaling & 3-Line Headline**: Removed *"Bohol 3rd District Action Center"* pill, scaled H1 to `md:text-[3.25rem]` wrapping naturally into 3 lines, and enlarged subtext to `md:text-lg max-w-2xl` to fill the vertical space with balance.
+  - **Mobile Preservation**: Maintained mobile views 100% untouched (`block md:hidden` on pills ticker, full-width edge-to-edge sticky dock at `bottom-0`).
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 19.38s).
 
 
 
