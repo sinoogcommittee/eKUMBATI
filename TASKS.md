@@ -1119,6 +1119,26 @@
 - [x] **65.3 Verification & Production Build**:
   - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 11.58s).
 
+---
+
+### Phase 66: Responsive Overflow Eradication, Radial Scrim & Video Showcase Architecture (`HomePage.tsx`, `Header.tsx`, `StickyHotlineBar.tsx`)
+- [x] **66.1 Critical Mobile Overflow Fix & Fluid Typography (`HomePage.tsx`)**:
+  - [x] Enforced strict container bounds (`w-full max-w-[100vw] overflow-x-hidden`) with 20px horizontal inset (`px-5 sm:px-6 lg:px-8`).
+  - [x] Replaced fixed font sizes with fluid CSS clamp: `text-[clamp(1.85rem,5vw,3.75rem)] leading-[1.15]` (`max-w-[18ch]` on desktop for 2 majestic lines, `max-w-full` on mobile for 3 lines with zero truncation).
+  - [x] Sized mobile CTAs to `w-full rounded-xl py-3.5 px-6 gap-3` within the padded 20px margin so buttons feel tactile rather than full-bleed edge-to-edge banners.
+- [x] **66.2 Dynamic Radial Scrim & Enhanced Video Visibility (`HomePage.tsx`)**:
+  - [x] Replaced flat 90% dark overlay with a multi-stop radial and linear scrim (`radial-gradient(circle at 50% 40%, rgba(10, 12, 18, 0.72) 0%, rgba(10, 12, 18, 0.30) 75%), linear-gradient(180deg, rgba(10, 12, 18, 0.60) 0%, rgba(10, 12, 18, 0.20) 40%, rgba(25, 12, 5, 0.85) 100%)`).
+  - [x] Boosted video opacity to `opacity-60` and applied high-contrast text shadows (`drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]` on H1 and `drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]` on paragraph) to maintain WCAG AA contrast.
+- [x] **66.3 Video Showcase Zone & Viewport-by-Viewport Hierarchy (`HomePage.tsx`)**:
+  - [x] Shifted hero content block upward (`pt-8 sm:pt-10 lg:pt-12`), opening 48px–80px of clear vertical clearance below the CTAs so the background video footage is directly visible.
+  - [x] Anchored the 4 verified Impact Stat cards (4 PTVs, 3,200+ Clinic Patients, 310+ Housing, 4,500+ Scholars) across both Tablet and Desktop (`hidden md:grid`).
+  - [x] Aligned mobile program pills carousel flush with the 20px margin and added a right-side CSS fade mask (`[mask-image:linear-gradient(to_right,black_85%,transparent_100%)]`).
+- [x] **66.4 Navbar Translucency & Tablet Glassmorphic Dock (`Header.tsx`, `StickyHotlineBar.tsx`)**:
+  - [x] Added subtle navbar translucency (`bg-gradient-to-r from-orange-600/95 via-orange-500/95 to-amber-600/95 backdrop-blur-md`).
+  - [x] Sized tablet sticky hotline bar to a centered floating glassmorphic dock (`max-w-[480px] sm:rounded-2xl sm:bottom-3 shadow-2xl backdrop-blur-xl`) preventing stretched mobile appearance.
+- [x] **66.5 Verification & Production Build**:
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 8.39s).
+
 
 
 

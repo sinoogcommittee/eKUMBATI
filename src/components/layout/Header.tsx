@@ -107,7 +107,7 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Main Navbar - Compact on Mobile (h-14), Fluid on Tablet (h-16), Majestic on Desktop (h-20) */}
-      <div className="bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 border-b border-orange-700/40">
+      <div className="bg-gradient-to-r from-orange-600/95 via-orange-500/95 to-amber-600/95 backdrop-blur-md border-b border-orange-700/40">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-14 sm:h-16 lg:h-20 flex items-center justify-between gap-2 lg:gap-3 2xl:gap-4 w-full min-w-0">
           {/* Brand Logo & Representative Tagline */}
           <Link to="/" className="flex items-center gap-2 sm:gap-2.5 group shrink-0 min-w-0">
