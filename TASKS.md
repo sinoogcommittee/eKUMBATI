@@ -1242,16 +1242,28 @@
 ### Phase 72: OpenGraph & Twitter Card Absolute Image URL Resolution & Social Sharing Previews (`index.html`, `vite.config.ts`, `DEPLOYMENT.md`)
 - [x] **72.1 Absolute OpenGraph & Twitter Image URL Architecture (`index.html`, `vite.config.ts`)**:
   - [x] Identified that social crawlers (Facebook Scraper, Messenger, WhatsApp, Viber, Twitterbot, LinkedIn, Telegram) reject relative paths (`/images/og_preview.png`) and drop image previews, displaying only text.
-  - [x] Engineered Vite HTML build plugin in `vite.config.ts` replacing `%VITE_SITE_URL%` and `%VITE_SITE_DOMAIN%` dynamically at build time, with default fallback to `https://e-kumbati.onrender.com`.
+  - [x] Engineered Vite HTML build plugin in `vite.config.ts` replacing `%VITE_SITE_URL%` and `%VITE_SITE_DOMAIN%` dynamically at build time, with live domain `https://ekumbatidemo.onrender.com`.
   - [x] Injected canonical link (`<link rel="canonical">`), `og:url`, `og:image`, `og:image:secure_url`, `twitter:url`, `twitter:domain`, and `twitter:image` with absolute HTTPS URLs in `index.html`.
 - [x] **72.2 Environment & Crawler Protection (`.env`, `.env.example`, `public/robots.txt`)**:
-  - [x] Configured `VITE_SITE_URL=https://e-kumbati.onrender.com` in `.env` and `.env.example`.
+  - [x] Configured `VITE_SITE_URL=https://ekumbatidemo.onrender.com` in `.env` and `.env.example`.
   - [x] Created `public/robots.txt` ensuring all social bots and web scrapers are explicitly allowed to index `/` and `/images/`.
 - [x] **72.3 Documentation & Cache Invalidation Protocol (`DEPLOYMENT.md`)**:
   - [x] Documented step-by-step instructions for refreshing Facebook/Messenger/WhatsApp scraped cache via the Facebook Sharing Debugger (`https://developers.facebook.com/tools/debug/`).
 - [x] **72.4 Verification & Production Build**:
-  - [x] Verified `dist/index.html` renders full `https://e-kumbati.onrender.com/images/og_preview.png` with zero build warnings.
-  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 6.58s).
+  - [x] Verified `dist/index.html` renders full `https://ekumbatidemo.onrender.com/images/og_preview.png` with zero build warnings.
+  - [x] Executed `npm run build` with exit code 0.
+
+---
+
+### Phase 73: Node Types Resolution & Configuration Type-Safety (`vite.config.ts`, `tsconfig.node.json`, `package.json`)
+- [x] **73.1 TypeScript Type Definitions for Vite Configuration**:
+  - [x] Installed `@types/node` into `devDependencies` in `package.json`.
+  - [x] Configured `"types": ["node"]` and `"lib": ["ES2022"]` in `tsconfig.node.json`.
+  - [x] Eliminated TS2591 (`Cannot find name 'process'`, `Cannot find name 'node:url'`) and TS2550 (`Property 'replaceAll' does not exist on type 'string'`) in `vite.config.ts`.
+  - [x] Swapped `replaceAll` with global regex `.replace(/.../g, ...)` for broad TypeScript and runtime compatibility.
+- [x] **73.2 Verification**:
+  - [x] Executed `npx.cmd tsc -p tsconfig.node.json --noEmit` with exit code 0 and 0 errors.
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 20.32s).
 
 
 

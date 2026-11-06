@@ -519,11 +519,16 @@
   - Verified `npm run build` completed with code 0 (1985 modules transformed in 11.67s).
 - **2026-11-06**: OpenGraph & Twitter Card Absolute Image URL Resolution & Social Previews (`index.html`, `vite.config.ts`, `DEPLOYMENT.md`):
   - **Absolute URL Resolution for Social Scrapers**: Identified that social crawlers (Facebook, Messenger, WhatsApp, Viber, Twitter/X, Telegram, LinkedIn) cannot resolve relative image URLs (`/images/og_preview.png`) and drop image previews, falling back to text-only links.
-  - **Dynamic Vite Build Transform Plugin**: Configured `vite.config.ts` with `loadEnv` and an automated HTML transform plugin replacing `%VITE_SITE_URL%` and `%VITE_SITE_DOMAIN%` during build, with default fallback to `https://e-kumbati.onrender.com`.
+  - **Dynamic Vite Build Transform Plugin**: Configured `vite.config.ts` with `loadEnv` and an automated HTML transform plugin replacing `%VITE_SITE_URL%` and `%VITE_SITE_DOMAIN%` during build, with live domain `https://ekumbatidemo.onrender.com`.
   - **Comprehensive Meta Tags**: Added canonical URL (`<link rel="canonical">`), `og:url`, `og:image`, `og:image:secure_url`, `twitter:url`, `twitter:domain`, and `twitter:image` with full absolute HTTPS paths.
   - **Crawler Access (`robots.txt`)**: Created `public/robots.txt` ensuring social scrapers have unrestricted access to `/` and `/images/`.
   - **Facebook Scraper Cache Clearing Guide**: Documented instructions in `DEPLOYMENT.md` explaining how to bust previously cached text-only previews via the Facebook Sharing Debugger (`https://developers.facebook.com/tools/debug/`).
-  - Verified `npm run build` completed with code 0 (1985 modules transformed in 6.58s).
+  - Verified `npm run build` completed with code 0.
+- **2026-11-06**: Node Types Resolution & Configuration Type-Safety (`vite.config.ts`, `tsconfig.node.json`, `package.json`):
+  - **Installed `@types/node`**: Added `@types/node` to `devDependencies`, resolving TS2591 (`Cannot find name 'process'`, `Cannot find name 'node:url'`) in developer IDEs.
+  - **Configured `tsconfig.node.json`**: Added `"types": ["node"]` and `"lib": ["ES2022"]` to compiler options.
+  - **Regex Safe String Replacement**: Swapped `.replaceAll(...)` in `vite.config.ts` with global `.replace(/.../g, ...)` avoiding TS2550 target version warnings.
+  - Verified `npx.cmd tsc -p tsconfig.node.json --noEmit` and `npm run build` completed with 0 errors.
 
 
 
