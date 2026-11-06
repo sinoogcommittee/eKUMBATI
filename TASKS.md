@@ -987,6 +987,29 @@
 - [x] **56.4 Verification & Production Build**:
   - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 17.24s).
 
+---
+
+### Phase 57: 1-Screen View Hero Revamp & Representative Spotlight Relocation (`HomePage.tsx`, `StickyHotlineBar.tsx`, `BackToTop.tsx`)
+- [x] **57.1 Strict 1-Screen View Hero Architecture (`HomePage.tsx`)**:
+  - [x] Configured exact viewport calculation `h-[calc(100svh-112px)] lg:h-[calc(100dvh-112px)]` considering top institutional trust strip (~32px) and header (~80px).
+  - [x] Applied `pb-20 lg:pb-0` bottom padding on the hero content container, vertically centering the content in the exact viewable space above the mobile and tablet sticky hotline bar without requiring any scrolling.
+  - [x] Responsive 2-column desktop grid (`lg:grid lg:grid-cols-12 items-center`):
+    - Left column (`lg:col-span-7`): Fluid scaled typography (`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black`), concise subtext, and single primary hero CTA button (*"Explore 7 Flagship Programs"*).
+    - Right column (`lg:col-span-5`): Featured portrait video player (`background_video_portrait.mp4`), **vertically aligned center** (`hidden lg:flex items-center justify-center h-full my-auto`) in a sleek rounded device frame (`rounded-3xl border-2 border-white/20 aspect-[9/16] max-h-[calc(100dvh-180px)]`) with ambient glow and playback controls.
+  - [x] Provided ambient muted video background with heavy scrim overlay (`bg-gradient-to-b from-slate-950/90 via-slate-950/75 to-orange-950/90`) ensuring razor-sharp white text contrast on all devices.
+- [x] **57.2 Mobile & Tablet Sticky Hotline Bar Coordination (`StickyHotlineBar.tsx`, `BackToTop.tsx`)**:
+  - [x] Expanded sticky bottom bar visibility from `md:hidden` to `lg:hidden` with `max-w-xl mx-auto` touch console alignment, ensuring Call PTV (24/7), Action Desk (Tracker), and Hotlines (19 Towns) are readily accessible on both mobile (< 768px) and tablet (768px - 1023px) screens.
+  - [x] Updated floating `BackToTop` button offset to `bottom-20 lg:bottom-6 right-4 sm:right-6` to avoid overlapping the hotline bar on tablets.
+- [x] **57.3 Relocated Representative Spotlight to Last Section Before Footer (`HomePage.tsx`)**:
+  - [x] Created Section 6 as the final section before the footer, faithfully replicating the exact card from the constituent brief (`media_1793928072886_a5c5c803.jpg`):
+    - Warm golden ivory halo border (`bg-gradient-to-b from-amber-100/90 via-orange-50 to-amber-200/90 rounded-3xl p-3.5 sm:p-4 shadow-2xl border border-amber-300/60`).
+    - Inner square frame with photo of Congw. Alexie Besas Tutor and dark studio backdrop.
+    - Official vignette: *"19TH CONGRESS OF THE PHILIPPINES"*, *"Congw. Alexie Besas Tutor"*, and *"3rd Congressional District of Bohol"*.
+    - Bottom action row with *"Read Full Biography & Bills >"* link and *"Team KUMBATI"*.
+  - [x] Paired with executive district leadership summary, legislative credentials, and quick action buttons.
+- [x] **57.4 Verification & Production Build**:
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 16.53s).
+
 
 
 

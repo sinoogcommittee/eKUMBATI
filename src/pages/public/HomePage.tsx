@@ -30,10 +30,10 @@ export const HomePage: React.FC = () => {
   return (
     <div className="space-y-16 sm:space-y-24 pb-32 sm:pb-36 w-full max-w-full overflow-x-hidden">
       {/* =====================================================================
-          1. HERO SECTION
+          1. HERO SECTION (1-Screen View on Mobile, Tablet & Desktop)
          ===================================================================== */}
-      <section className="relative overflow-hidden bg-slate-950 pt-10 sm:pt-16 pb-14 sm:pb-22 border-b border-orange-950/40">
-        {/* Video Background Layer with graceful image poster fallback */}
+      <section className="relative overflow-hidden bg-slate-950 w-full h-[calc(100svh-112px)] lg:h-[calc(100dvh-112px)] flex items-center justify-center border-b border-orange-950/40">
+        {/* Ambient Video Background Layer with graceful image poster fallback */}
         <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
           <video
             autoPlay
@@ -42,49 +42,49 @@ export const HomePage: React.FC = () => {
             playsInline
             preload="none"
             poster="/images/hero_poster.webp"
-            className="w-full h-full object-cover object-center scale-105 motion-reduce:hidden opacity-45 mix-blend-luminosity"
+            className="w-full h-full object-cover object-center scale-105 motion-reduce:hidden opacity-35 mix-blend-luminosity"
           >
+            <source src="/videos/background_video_portrait.mp4" type="video/mp4" />
             <source src="/videos/bohol_district3_aerial.webm" type="video/webm" />
             <source src="/videos/bohol_district3_aerial.mp4" type="video/mp4" />
-            <source src="/videos/background_video_portrait.mp4" type="video/mp4" />
           </video>
           {/* Static poster for prefers-reduced-motion */}
           <img
             src="/images/hero_poster.webp"
             alt="Bohol 3rd District Landscape"
-            className="hidden motion-reduce:block w-full h-full object-cover object-center opacity-45"
+            className="hidden motion-reduce:block w-full h-full object-cover object-center opacity-35"
             loading="eager"
           />
         </div>
 
         {/* Heavy Scrim Overlay - Ensures razor-sharp white typography */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/70 to-orange-950/90 pointer-events-none z-1" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/75 to-orange-950/90 pointer-events-none z-1" />
 
         {/* Subtle Ambient Warm Glow */}
         <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-full max-w-4xl h-96 bg-gradient-to-tr from-orange-600/20 via-amber-500/10 to-transparent blur-3xl pointer-events-none rounded-full z-1" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
+        <div className="w-full h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col justify-center pb-20 lg:pb-0">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 xl:gap-14 items-center w-full">
             {/* Left Column: Copy & Single Hero CTA */}
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div className="lg:col-span-7 xl:col-span-7 space-y-4 sm:space-y-6 text-center lg:text-left flex flex-col justify-center">
               {/* Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] text-balance drop-shadow-md">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-[1.1] text-balance drop-shadow-md">
                 {t(INITIAL_SITE_SETTINGS.hero_headline_en, INITIAL_SITE_SETTINGS.hero_headline_ceb)}
               </h1>
 
               {/* Subtext */}
-              <p className="text-base sm:text-lg text-orange-100/90 leading-relaxed max-w-2xl mx-auto lg:mx-0 drop-shadow-xs font-normal">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-orange-100/90 leading-relaxed max-w-2xl mx-auto lg:mx-0 drop-shadow-xs font-normal">
                 {t(INITIAL_SITE_SETTINGS.hero_subtext_en, INITIAL_SITE_SETTINGS.hero_subtext_ceb)}
               </p>
 
               {/* Single Hero CTA: Guides visitors smoothly to flagship programs */}
-              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start">
+              <div className="pt-1 sm:pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start">
                 <a href="#flagship-programs" className="w-full sm:w-auto shrink-0">
                   <Button
                     variant="primary"
                     size="lg"
                     icon={<Layers className="w-5 h-5 shrink-0" />}
-                    className="w-full sm:w-auto px-7 py-3.5 text-sm sm:text-base font-black whitespace-nowrap min-h-[50px] shadow-lg shadow-orange-950/50 hover:shadow-orange-500/30 border border-orange-400/40 hover:scale-102 transition-transform"
+                    className="w-full sm:w-auto px-6 sm:px-7 py-3 text-xs sm:text-sm font-black whitespace-nowrap min-h-[46px] shadow-lg shadow-orange-950/50 hover:shadow-orange-500/30 border border-orange-400/40 hover:scale-102 transition-transform"
                   >
                     {t('Explore 7 Flagship Programs', 'Susiha ang 7 ka Programa')}
                   </Button>
@@ -92,48 +92,29 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right Column: Representative Spotlight Card */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full max-w-md">
-                {/* Decorative Frame */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-orange-500 to-amber-400 rounded-3xl rotate-2 shadow-sinoog -z-10 opacity-75" />
+            {/* Right Column (Desktop Only): Video Vertically Aligned Center */}
+            <div className="hidden lg:flex items-center justify-center h-full my-auto lg:col-span-5 xl:col-span-5">
+              <div className="relative w-full max-w-[280px] xl:max-w-[320px] aspect-[9/16] max-h-[calc(100dvh-180px)] rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 bg-slate-900 group">
+                {/* Ambient Glow behind video */}
+                <div className="absolute -inset-1 bg-gradient-to-tr from-orange-500 to-amber-500 rounded-3xl blur-md opacity-40 group-hover:opacity-60 transition-opacity -z-10" />
 
-                <div className="bg-gradient-to-b from-white via-white/98 to-amber-50/25 backdrop-blur-md rounded-3xl p-6 sm:p-7 border border-orange-200/80 border-t-white shadow-sinoog hover:shadow-sinoog-hover hover:border-orange-400 hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
-                  <div className="relative h-72 sm:h-80 w-full rounded-2xl overflow-hidden mb-5 bg-slate-100 shadow-sinoog-inner border border-orange-100/60 border-t-white">
-                    <img
-                      src="/images/cong_alexie.webp"
-                      alt={INITIAL_SITE_SETTINGS.congresswoman_name}
-                      width={448}
-                      height={320}
-                      {...({ fetchpriority: 'high' } as any)}
-                      decoding="async"
-                      className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950/85 via-slate-950/45 to-transparent p-4 text-white">
-                      <div className="text-xs font-black uppercase tracking-wider text-orange-400">
-                        {t('19th Congress of the Philippines', 'Ika-19 nga Kongreso sa Pilipinas')}
-                      </div>
-                      <div className="text-xl font-black">
-                        {INITIAL_SITE_SETTINGS.congresswoman_name}
-                      </div>
-                      <div className="text-xs text-slate-300 font-medium">
-                        {t(INITIAL_SITE_SETTINGS.district_title_en, INITIAL_SITE_SETTINGS.district_title_ceb)}
-                      </div>
-                    </div>
-                  </div>
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  controls
+                  poster="/images/hero_poster.webp"
+                  className="w-full h-full object-cover object-center"
+                >
+                  <source src="/videos/background_video_portrait.mp4" type="video/mp4" />
+                </video>
 
-                  <div className="flex items-center justify-between border-t border-orange-100/70 pt-3 text-xs">
-                    <Link
-                      to="/about"
-                      className="inline-flex items-center gap-1.5 font-bold text-orange-600 hover:text-orange-700 transition-colors"
-                    >
-                      <span>{t('Read Full Biography & Bills', 'Basaha ang Tibuok Kasaysayan')}</span>
-                      <ChevronRight className="w-4 h-4" />
-                    </Link>
-                    <span className="text-[11px] font-bold text-slate-400">
-                      Team KUMBATI
-                    </span>
-                  </div>
+                {/* Micro Top Tag */}
+                <div className="absolute top-3 left-3 pointer-events-none">
+                  <span className="px-2.5 py-1 rounded-full bg-slate-950/75 backdrop-blur-md text-[10px] font-black uppercase tracking-wider text-orange-400 border border-orange-500/30">
+                    KUMBATI Highlights
+                  </span>
                 </div>
               </div>
             </div>
@@ -419,6 +400,100 @@ export const HomePage: React.FC = () => {
                 <span className="truncate">{t('Browse 19 Municipalities', 'Susiha ang 19 ka Lungsod')}</span>
                 <ChevronRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================================================
+          6. DISTRICT REPRESENTATIVE SPOTLIGHT (Last section before footer)
+         ===================================================================== */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-gradient-to-br from-slate-900 via-slate-950 to-orange-950 rounded-3xl p-6 sm:p-10 lg:p-12 border border-orange-500/20 shadow-2xl overflow-hidden relative">
+          {/* Subtle Ambient Glow */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Column: Leadership Narrative & Committee Leadership */}
+            <div className="lg:col-span-7 space-y-4 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/20 border border-orange-400/30 text-orange-300 text-xs font-bold uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
+                <span>{t('District Leadership', 'Pagpangulo sa Distrito')}</span>
+              </div>
+
+              <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight text-balance leading-tight">
+                {t('Serbisyo Diretso sa Katawhan: Padayon ang Kumbati!', 'Serbisyo Diretso sa Katawhan: Padayon ang Kumbati!')}
+              </h2>
+
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                {t(INITIAL_SITE_SETTINGS.bio_summary_en, INITIAL_SITE_SETTINGS.bio_summary_ceb)}
+              </p>
+
+              <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                <Link to="/about">
+                  <Button
+                    variant="primary"
+                    size="md"
+                    icon={<ChevronRight className="w-4 h-4" />}
+                    iconPosition="right"
+                    className="shadow-lg shadow-orange-950/50"
+                  >
+                    {t('Read Full Biography & Legislative Bills', 'Basaha ang Tibuok Kasaysayan ug mga Balaodnon')}
+                  </Button>
+                </Link>
+                <Link to="/action-center">
+                  <Button
+                    variant="outline"
+                    size="md"
+                    className="bg-white/10 text-white border-white/20 hover:bg-white/20"
+                  >
+                    {t('Connect with Office', 'Pakigkita sa Opisina')}
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Column: The Exact Representative Spotlight Card from user upload */}
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="w-full max-w-sm rounded-3xl p-3.5 sm:p-4 bg-gradient-to-b from-amber-100/90 via-orange-50 to-amber-200/90 shadow-2xl border border-amber-300/60 transition-transform duration-300 hover:scale-[1.02]">
+                <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-slate-900 shadow-inner border border-black/10">
+                  <img
+                    src="/images/cong_alexie.webp"
+                    alt={INITIAL_SITE_SETTINGS.congresswoman_name}
+                    width={400}
+                    height={400}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover object-top"
+                  />
+                  {/* Bottom Vignette Overlay */}
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-transparent p-4 text-white">
+                    <p className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-orange-400">
+                      {t('19th Congress of the Philippines', 'Ika-19 nga Kongreso sa Pilipinas')}
+                    </p>
+                    <h3 className="text-lg sm:text-xl font-black text-white leading-tight">
+                      {INITIAL_SITE_SETTINGS.congresswoman_name}
+                    </h3>
+                    <p className="text-[11px] sm:text-xs text-slate-300 font-medium">
+                      {t(INITIAL_SITE_SETTINGS.district_title_en, INITIAL_SITE_SETTINGS.district_title_ceb)}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between pt-3 px-1 text-xs border-t border-orange-300/60 mt-3">
+                  <Link
+                    to="/about"
+                    className="inline-flex items-center gap-1 font-bold text-orange-600 hover:text-orange-700 transition-colors"
+                  >
+                    <span>{t('Read Full Biography & Bills', 'Basaha ang Tibuok Kasaysayan')}</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </Link>
+                  <span className="text-[11px] font-black text-amber-700 tracking-wide">
+                    Team KUMBATI
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -14,8 +14,8 @@ export const StickyHotlineBar: React.FC<StickyHotlineBarProps> = ({
   const { t } = useLanguage();
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-30 md:hidden bg-white/95 backdrop-blur-md border-t border-orange-200/80 px-3 py-2 shadow-2xl">
-      <div className="grid grid-cols-3 gap-2">
+    <div className="fixed bottom-0 left-0 right-0 z-30 lg:hidden bg-white/95 backdrop-blur-md border-t border-orange-200/80 px-3 py-2 shadow-2xl pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+      <div className="max-w-xl mx-auto grid grid-cols-3 gap-2 sm:gap-3">
         {/* Button 1: One-touch Emergency Call to PTV Dispatch */}
         <a
           href="tel:+639178326284"
