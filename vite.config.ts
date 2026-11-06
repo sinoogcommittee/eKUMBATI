@@ -22,8 +22,8 @@ export default defineConfig(({ mode }) => {
     name: 'html-meta-transform',
     transformIndexHtml(html: string) {
       return html
-        .replaceAll('%VITE_SITE_URL%', siteUrl)
-        .replaceAll('%VITE_SITE_DOMAIN%', siteDomain);
+        .replace(/%VITE_SITE_URL%/g, siteUrl)
+        .replace(/%VITE_SITE_DOMAIN%/g, siteDomain);
     },
   };
 
