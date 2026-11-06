@@ -446,6 +446,10 @@
 - **2026-11-06**: Sticky Hotline Bar Button Styling Polish (`StickyHotlineBar.tsx`):
   - **Light Gray Gradient Definition**: Upgraded the 3rd button (*"Hotlines / 19 Towns"*) in [`src/components/layout/StickyHotlineBar.tsx`](file:///e:/Programs/e-KUMBATI/src/components/layout/StickyHotlineBar.tsx) with a distinct light-gray gradient (`bg-gradient-to-b from-slate-100 via-slate-200 to-slate-300 hover:from-slate-200 hover:to-slate-400`), 3D shadow (`shadow-sinoog`), and tactile border highlight (`border border-slate-300/90 border-t-white`) to eliminate blending against the white bar container and ensure uniform depth alongside the Call PTV and Action Desk buttons.
   - Verified `npm run build` completed with code 0 (1985 modules transformed in 17.76s).
+- **2026-11-06**: Pure Background Video Hero Architecture (`HomePage.tsx`):
+  - **Removed Desktop Right-Side Video**: In [`src/pages/public/HomePage.tsx`](file:///e:/Programs/e-KUMBATI/src/pages/public/HomePage.tsx), eliminated the foreground video player card from the desktop hero section, strictly adhering to the architectural standard that videos in the hero section are exclusively for the full-bleed ambient background.
+  - **Centered 1-Screen View Presentation**: Re-architected the hero content as an executive centered presentation with fluid typography, trimmed subheadline, and single focused CTA, keeping the background video vertically and horizontally centered (`object-cover object-center`) with zero scroll required above the fold across mobile, tablet, and desktop viewports.
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 16.80s).
 
 
 

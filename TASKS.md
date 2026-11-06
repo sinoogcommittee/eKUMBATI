@@ -1020,6 +1020,18 @@
 - [x] **58.2 Verification & Production Build**:
   - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 17.76s).
 
+---
+
+### Phase 59: Pure Background Video Hero Architecture (`HomePage.tsx`)
+- [x] **59.1 Foreground Video Removal & Dedicated Background Alignment**:
+  - [x] Removed the right-side foreground video card from the desktop hero grid, enforcing the rule that videos in the hero section are exclusively ambient background elements.
+  - [x] Retained the ambient full-bleed background video (`/videos/background_video_portrait.mp4`, `/videos/bohol_district3_aerial.webm`, `.mp4`) vertically and horizontally centered with `object-cover object-center` beneath the dark scrim overlay.
+- [x] **59.2 Centered Executive Hero Layout (1-Screen View)**:
+  - [x] Structured hero content as a centered, high-contrast institutional presentation (`max-w-5xl mx-auto flex flex-col justify-center items-center text-center pb-20 lg:pb-0`).
+  - [x] Sized fluid headline (`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black`), 2-3 line subtext, and single centered hero CTA button (*"Explore 7 Flagship Programs"*), maintaining strict 1-screen view above the fold across mobile, tablet, and desktop viewports.
+- [x] **59.3 Verification & Production Build**:
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 16.80s).
+
 
 
 

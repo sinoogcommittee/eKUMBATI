@@ -63,60 +63,30 @@ export const HomePage: React.FC = () => {
         {/* Subtle Ambient Warm Glow */}
         <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-full max-w-4xl h-96 bg-gradient-to-tr from-orange-600/20 via-amber-500/10 to-transparent blur-3xl pointer-events-none rounded-full z-1" />
 
-        <div className="w-full h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col justify-center pb-20 lg:pb-0">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 xl:gap-14 items-center w-full">
-            {/* Left Column: Copy & Single Hero CTA */}
-            <div className="lg:col-span-7 xl:col-span-7 space-y-4 sm:space-y-6 text-center lg:text-left flex flex-col justify-center">
-              {/* Headline */}
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-[1.1] text-balance drop-shadow-md">
-                {t(INITIAL_SITE_SETTINGS.hero_headline_en, INITIAL_SITE_SETTINGS.hero_headline_ceb)}
-              </h1>
+        <div className="w-full h-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col justify-center items-center text-center pb-20 lg:pb-0">
+          <div className="space-y-4 sm:space-y-6 max-w-3xl">
+            {/* Headline */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white tracking-tight leading-[1.1] text-balance drop-shadow-md">
+              {t(INITIAL_SITE_SETTINGS.hero_headline_en, INITIAL_SITE_SETTINGS.hero_headline_ceb)}
+            </h1>
 
-              {/* Subtext */}
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-orange-100/90 leading-relaxed max-w-2xl mx-auto lg:mx-0 drop-shadow-xs font-normal">
-                {t(INITIAL_SITE_SETTINGS.hero_subtext_en, INITIAL_SITE_SETTINGS.hero_subtext_ceb)}
-              </p>
+            {/* Subtext */}
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-orange-100/90 leading-relaxed max-w-2xl mx-auto drop-shadow-xs font-normal">
+              {t(INITIAL_SITE_SETTINGS.hero_subtext_en, INITIAL_SITE_SETTINGS.hero_subtext_ceb)}
+            </p>
 
-              {/* Single Hero CTA: Guides visitors smoothly to flagship programs */}
-              <div className="pt-1 sm:pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start">
-                <a href="#flagship-programs" className="w-full sm:w-auto shrink-0">
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    icon={<Layers className="w-5 h-5 shrink-0" />}
-                    className="w-full sm:w-auto px-6 sm:px-7 py-3 text-xs sm:text-sm font-black whitespace-nowrap min-h-[46px] shadow-lg shadow-orange-950/50 hover:shadow-orange-500/30 border border-orange-400/40 hover:scale-102 transition-transform"
-                  >
-                    {t('Explore 7 Flagship Programs', 'Susiha ang 7 ka Programa')}
-                  </Button>
-                </a>
-              </div>
-            </div>
-
-            {/* Right Column (Desktop Only): Video Vertically Aligned Center */}
-            <div className="hidden lg:flex items-center justify-center h-full my-auto lg:col-span-5 xl:col-span-5">
-              <div className="relative w-full max-w-[280px] xl:max-w-[320px] aspect-[9/16] max-h-[calc(100dvh-180px)] rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 bg-slate-900 group">
-                {/* Ambient Glow behind video */}
-                <div className="absolute -inset-1 bg-gradient-to-tr from-orange-500 to-amber-500 rounded-3xl blur-md opacity-40 group-hover:opacity-60 transition-opacity -z-10" />
-
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  controls
-                  poster="/images/hero_poster.webp"
-                  className="w-full h-full object-cover object-center"
+            {/* Single Hero CTA: Guides visitors smoothly to flagship programs */}
+            <div className="pt-2 sm:pt-4 flex justify-center">
+              <a href="#flagship-programs" className="w-full sm:w-auto shrink-0">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  icon={<Layers className="w-5 h-5 shrink-0" />}
+                  className="w-full sm:w-auto px-8 py-3.5 text-sm sm:text-base font-black whitespace-nowrap min-h-[48px] shadow-xl shadow-orange-950/60 hover:shadow-orange-500/40 border border-orange-400/40 hover:scale-105 transition-transform"
                 >
-                  <source src="/videos/background_video_portrait.mp4" type="video/mp4" />
-                </video>
-
-                {/* Micro Top Tag */}
-                <div className="absolute top-3 left-3 pointer-events-none">
-                  <span className="px-2.5 py-1 rounded-full bg-slate-950/75 backdrop-blur-md text-[10px] font-black uppercase tracking-wider text-orange-400 border border-orange-500/30">
-                    KUMBATI Highlights
-                  </span>
-                </div>
-              </div>
+                  {t('Explore 7 Flagship Programs', 'Susiha ang 7 ka Programa')}
+                </Button>
+              </a>
             </div>
           </div>
         </div>
