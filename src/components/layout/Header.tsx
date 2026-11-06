@@ -55,14 +55,14 @@ export const Header: React.FC<HeaderProps> = ({
       <header className="sticky top-0 z-40 shadow-md transition-all w-full max-w-full overflow-hidden">
       {/* Top Institutional Trust Strip - Auto-hides on scroll */}
       <div
-        className={`bg-slate-950 text-slate-200 text-[11px] sm:text-xs font-semibold w-full border-b border-slate-800/90 shadow-2xs transition-all duration-300 ease-in-out overflow-hidden ${
+        className={`bg-slate-950 text-slate-200 text-[10px] sm:text-xs font-semibold w-full border-b border-slate-800/90 shadow-2xs transition-all duration-300 ease-in-out overflow-hidden ${
           isScrolled
             ? 'max-h-0 opacity-0 -translate-y-2 py-0 border-b-0'
             : 'max-h-12 opacity-100 translate-y-0 py-1 sm:py-1.5 px-3 sm:px-4'
         }`}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 min-w-0">
-          <div className="flex items-center gap-2 min-w-0">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-1.5 sm:gap-2 min-w-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
             {/* Crisp Philippine Flag SVG */}
             <svg
               className="w-4 h-2.5 sm:w-5 sm:h-3 rounded-xs shadow-xs shrink-0 ring-1 ring-white/10"
@@ -77,7 +77,7 @@ export const Header: React.FC<HeaderProps> = ({
             </svg>
 
             {/* Official Portal Text */}
-            <span className="font-bold tracking-wide truncate text-white">
+            <span className="font-bold tracking-wide truncate text-white text-[10px] sm:text-xs">
               {t(
                 'Official Constituent Portal of the 3rd District of Bohol',
                 'Opisyal nga Portal sa Katawhan sa Ikatulong Distrito sa Bohol'
@@ -89,29 +89,29 @@ export const Header: React.FC<HeaderProps> = ({
             </span>
           </div>
 
-          <div className="flex items-center gap-2.5 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             <span className="hidden md:inline text-[10px] uppercase tracking-wider text-orange-400 font-black">
               House of Representatives
             </span>
             <button
               onClick={onOpenHotlineModal}
-              className="inline-flex items-center gap-1 text-slate-300 hover:text-white text-[11px] font-bold transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1 text-slate-300 hover:text-white text-[10px] sm:text-[11px] font-bold transition-colors cursor-pointer py-0.5"
               title={t('View Emergency Lines', 'Tan-awa ang mga Hotline')}
             >
-              <PhoneCall className="w-3 h-3 text-orange-400 animate-pulse" />
+              <PhoneCall className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-orange-400 animate-pulse" />
               <span className="hidden xs:inline">{t('24/7 Hotlines', '24/7 Hotlines')}</span>
-              <ChevronRight className="w-3 h-3 text-slate-400" />
+              <ChevronRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-slate-400" />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Main Navbar - Vibrant KUMBATI Orange Background */}
+      {/* Main Navbar - Compact on Mobile (h-14), Fluid on Tablet (h-16), Majestic on Desktop (h-20) */}
       <div className="bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 border-b border-orange-700/40">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2 lg:gap-3 2xl:gap-4 w-full min-w-0">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-14 sm:h-16 lg:h-20 flex items-center justify-between gap-2 lg:gap-3 2xl:gap-4 w-full min-w-0">
           {/* Brand Logo & Representative Tagline */}
-          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0 min-w-0">
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white p-1 shadow-md border-2 border-white/95 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:shadow-lg transition-all duration-300 ring-2 ring-black/5">
+          <Link to="/" className="flex items-center gap-2 sm:gap-2.5 group shrink-0 min-w-0">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-11 lg:h-11 rounded-full bg-white p-0.5 sm:p-1 shadow-md border-2 border-white/95 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:shadow-lg transition-all duration-300 ring-2 ring-black/5">
               <img
                 src="/images/kumbati_logo_sm.webp"
                 alt="e-KUMBATI Official Logo"
@@ -121,13 +121,13 @@ export const Header: React.FC<HeaderProps> = ({
               />
             </div>
             <div className="flex flex-col min-w-0">
-              <span className="text-lg sm:text-xl font-black tracking-tight text-white group-hover:text-amber-100 transition-colors leading-tight drop-shadow-xs">
+              <span className="text-base sm:text-lg lg:text-xl font-black tracking-tight text-white group-hover:text-amber-100 transition-colors leading-tight drop-shadow-xs">
                 e-KUMBATI
               </span>
               <span className="hidden 2xl:block text-[11px] text-orange-100/90 font-semibold leading-tight -mt-0.5 truncate max-w-[280px]">
                 {INITIAL_SITE_SETTINGS.congresswoman_name} &bull; Bohol 3rd District
               </span>
-              <span className="block 2xl:hidden text-[10px] sm:text-[11px] text-orange-100/90 font-semibold leading-tight -mt-0.5 truncate">
+              <span className="block 2xl:hidden text-[9px] sm:text-[10px] lg:text-[11px] text-orange-100/90 font-semibold leading-tight -mt-0.5 truncate">
                 Bohol 3rd District
               </span>
             </div>
@@ -249,10 +249,10 @@ export const Header: React.FC<HeaderProps> = ({
                 e.stopPropagation();
                 onOpenMobileMenu();
               }}
-              className="p-2 rounded-xl text-white hover:bg-white/20 transition-colors focus:outline-none cursor-pointer"
+              className="p-1 sm:p-1.5 rounded-lg text-white hover:bg-white/20 active:scale-95 transition-all focus:outline-none cursor-pointer"
               aria-label="Open navigation menu"
             >
-              <Menu className="w-6 h-6" />
+              <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>
         </div>

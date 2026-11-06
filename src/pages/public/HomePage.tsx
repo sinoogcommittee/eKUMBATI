@@ -42,7 +42,7 @@ export const HomePage: React.FC = () => {
       {/* =====================================================================
           1. HERO SECTION (1-Screen View on Mobile, Tablet & Desktop)
          ===================================================================== */}
-      <section className="relative overflow-hidden bg-slate-950 w-full h-[calc(100svh-112px)] lg:h-[calc(100dvh-112px)] flex items-center justify-center border-b border-orange-950/40">
+      <section className="relative overflow-hidden bg-slate-950 w-full h-[calc(100svh-82px)] sm:h-[calc(100svh-92px)] lg:h-[calc(100dvh-112px)] flex items-center justify-center border-b border-orange-950/40">
         {/* Ambient Video Background Layer with graceful image poster fallback */}
         <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
           <video

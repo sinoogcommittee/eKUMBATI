@@ -1050,6 +1050,21 @@
 - [x] **60.5 Verification & Production Build**:
   - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 9.32s).
 
+---
+
+### Phase 61: Mobile Header Vertical Space Compression (`Header.tsx`, `HomePage.tsx`)
+- [x] **61.1 Compact Mobile Navbar Architecture (`Header.tsx`)**:
+  - [x] Reduced navbar height on mobile from `h-20` (80px) down to `h-14` (56px) on mobile and `h-16` (64px) on tablet, preserving `h-20` on desktop (`h-14 sm:h-16 lg:h-20`).
+  - [x] Resized mobile logo badge to `w-8 h-8 sm:w-9 sm:h-9 lg:w-11 lg:h-11`, eliminating bloated orange top and bottom margins.
+  - [x] Tuned mobile typography (`text-base font-black` title, `text-[9px]` subtitle) and scaled hamburger toggle to `p-1 sm:p-1.5` with `w-5 h-5 sm:w-6 sm:h-6` icon.
+- [x] **61.2 Top Institutional Strip Streamlining (`Header.tsx`)**:
+  - [x] Sized text to `text-[10px] sm:text-xs` with `py-1 sm:py-1.5`, keeping the full portal title and hotline trigger sleek and unobtrusive.
+  - [x] Lowered total header height on mobile from ~112px down to ~82px (~30px of vertical space reclaimed for constituent content).
+- [x] **61.3 Hero 1-Screen View Offset Sync (`HomePage.tsx`)**:
+  - [x] Updated hero viewport offset to `h-[calc(100svh-82px)] sm:h-[calc(100svh-92px)] lg:h-[calc(100dvh-112px)]`, maintaining pixel-perfect 1-screen view above the fold across all device classes.
+- [x] **61.4 Verification & Production Build**:
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 8.39s).
+
 
 
 

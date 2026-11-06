@@ -456,6 +456,11 @@
   - **Tablet Grid Optimization (Galaxy Tab S7 / iPad Portrait)**: Added a 4-card glassmorphic highlights grid on portrait tablets (`hidden md:grid lg:hidden grid-cols-4 gap-2.5 sm:gap-3`) highlighting 4 PTVs, 3,200+ Clinic Patients, 310+ Housing, and 4,500+ Scholars, preventing empty cavernous center screens on 16:10 and 4:3 tablets.
   - **Floating Glassmorphic Bottom Dock**: Converted the mobile/tablet sticky bar into a floating glassmorphic dock (`bottom-3 sm:bottom-4 left-3 right-3 sm:left-4 sm:right-4 bg-slate-950/85 backdrop-blur-xl border border-white/20 rounded-3xl p-2 sm:p-2.5 shadow-2xl ring-1 ring-white/10`) that seamlessly integrates with the dark hero gradient and floats over all page sections. Raised [`BackToTop.tsx`](file:///e:/Programs/e-KUMBATI/src/components/common/BackToTop.tsx) to `bottom-24 sm:bottom-28 lg:bottom-6`.
   - Verified `npm run build` completed with code 0 (1985 modules transformed in 9.32s).
+- **2026-11-06**: Mobile Header Vertical Space Compression (`Header.tsx`, `HomePage.tsx`):
+  - **Compressed Mobile Header Height**: Reduced mobile navbar height in [`src/components/layout/Header.tsx`](file:///e:/Programs/e-KUMBATI/src/components/layout/Header.tsx) from `h-20` (80px) down to `h-14` (56px) on mobile and `h-16` (64px) on tablet, preserving `h-20` on desktop (`h-14 sm:h-16 lg:h-20`). Reclaimed ~30px of vertical height across all mobile viewports.
+  - **Proportionate Mobile Assets**: Scaled logo circle from `w-10 h-10` down to `w-8 h-8 sm:w-9 sm:h-9 lg:w-11 lg:h-11`, tuned brand text to `text-base font-black` / `text-[9px]`, and compact hamburger toggle to `p-1 sm:p-1.5`. Streamlined top institutional strip typography to `text-[10px] sm:text-xs`.
+  - **Hero Viewport Offset Sync**: Updated hero container in [`src/pages/public/HomePage.tsx`](file:///e:/Programs/e-KUMBATI/src/pages/public/HomePage.tsx) to `h-[calc(100svh-82px)] sm:h-[calc(100svh-92px)] lg:h-[calc(100dvh-112px)]`, maintaining perfect 1-screen view alignment above the fold.
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 8.39s).
 
 
 
