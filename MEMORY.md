@@ -443,6 +443,9 @@
   - **Mobile & Tablet Sticky Bar Coordination**: In [`src/components/layout/StickyHotlineBar.tsx`](file:///e:/Programs/e-KUMBATI/src/components/layout/StickyHotlineBar.tsx), expanded visibility to `lg:hidden` with `max-w-xl mx-auto` to provide immediate access to Call PTV (24/7), Action Desk (Tracker), and Hotlines (19 Towns) across all mobile and tablet viewports. Adjusted [`BackToTop.tsx`](file:///e:/Programs/e-KUMBATI/src/components/common/BackToTop.tsx) offset to `bottom-20 lg:bottom-6`.
   - **Representative Spotlight Relocated to Final Section**: Added Section 6 as the last section before the footer, faithfully replicating the exact card from the constituent brief (`media_1793928072886_a5c5c803.jpg`) with warm golden gradient border, square photo of Congw. Alexie, 19th Congress badge, and biography links alongside district leadership manifesto.
   - Verified `npm run build` completed with code 0 (1985 modules transformed in 16.53s).
+- **2026-11-06**: Sticky Hotline Bar Button Styling Polish (`StickyHotlineBar.tsx`):
+  - **Light Gray Gradient Definition**: Upgraded the 3rd button (*"Hotlines / 19 Towns"*) in [`src/components/layout/StickyHotlineBar.tsx`](file:///e:/Programs/e-KUMBATI/src/components/layout/StickyHotlineBar.tsx) with a distinct light-gray gradient (`bg-gradient-to-b from-slate-100 via-slate-200 to-slate-300 hover:from-slate-200 hover:to-slate-400`), 3D shadow (`shadow-sinoog`), and tactile border highlight (`border border-slate-300/90 border-t-white`) to eliminate blending against the white bar container and ensure uniform depth alongside the Call PTV and Action Desk buttons.
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 17.76s).
 
 
 

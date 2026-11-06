@@ -44,19 +44,19 @@ export const StickyHotlineBar: React.FC<StickyHotlineBarProps> = ({
           </span>
         </Link>
 
-        {/* Button 3: All 19 Towns & Hotlines Dialog */}
+        {/* Button 3: All 19 Towns & Hotlines Dialog - Light Gray Gradient Button */}
         <button
           onClick={() => {
             triggerHaptic('light');
             onOpenHotlineModal();
           }}
-          className="flex flex-col items-center justify-center py-2 px-1 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold shadow-xs active:scale-95 transition-all text-center cursor-pointer"
+          className="flex flex-col items-center justify-center py-2 px-1 rounded-2xl bg-gradient-to-b from-slate-100 via-slate-200 to-slate-300 hover:from-slate-200 hover:to-slate-400 text-slate-900 font-black shadow-sinoog border border-slate-300/90 border-t-white active:scale-95 transition-all text-center cursor-pointer"
         >
-          <MapPin className="w-4 h-4 mb-0.5 text-orange-600" />
-          <span className="text-[10px] uppercase tracking-wider leading-none">
+          <MapPin className="w-4 h-4 mb-0.5 text-orange-600 drop-shadow-2xs" />
+          <span className="text-[10px] uppercase tracking-wider leading-none text-slate-900 font-black">
             {t('Hotlines', 'Hotlines')}
           </span>
-          <span className="text-[9px] text-slate-500 font-normal">
+          <span className="text-[9px] text-slate-600 font-bold">
             {t('19 Towns', '19 Lungsod')}
           </span>
         </button>

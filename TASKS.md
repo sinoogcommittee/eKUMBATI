@@ -1010,6 +1010,16 @@
 - [x] **57.4 Verification & Production Build**:
   - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 16.53s).
 
+---
+
+### Phase 58: Sticky Hotline Bar Button Styling Polish (`StickyHotlineBar.tsx`)
+- [x] **58.1 Light Gray Gradient Definition for Hotlines Button**:
+  - [x] Replaced washed-out flat `bg-slate-100` with high-contrast tactile gradient `bg-gradient-to-b from-slate-100 via-slate-200 to-slate-300 hover:from-slate-200 hover:to-slate-400`.
+  - [x] Added `border border-slate-300/90 border-t-white` and `shadow-sinoog` matching the 3D elevation of the Call PTV and Action Desk buttons, preventing it from blending into the white bar background.
+  - [x] Upgraded typography to `text-slate-900 font-black` and `text-slate-600 font-bold` with vibrant orange `MapPin` icon drop shadow.
+- [x] **58.2 Verification & Production Build**:
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 17.76s).
+
 
 
 
