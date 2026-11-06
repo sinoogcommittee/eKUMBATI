@@ -46,6 +46,7 @@ export const HomePage: React.FC = () => {
           >
             <source src="/videos/bohol_district3_aerial.webm" type="video/webm" />
             <source src="/videos/bohol_district3_aerial.mp4" type="video/mp4" />
+            <source src="/videos/background_video_portrait.mp4" type="video/mp4" />
           </video>
           {/* Static poster for prefers-reduced-motion */}
           <img
