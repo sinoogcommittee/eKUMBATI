@@ -83,7 +83,7 @@ export const HomePage: React.FC = () => {
       {/* =====================================================================
           1. HERO SECTION (1-Screen View on Mobile, Tablet & Desktop)
          ===================================================================== */}
-      <section className="relative overflow-hidden bg-slate-950 w-full max-w-[100vw] min-h-[calc(100svh-82px)] sm:min-h-[calc(100svh-92px)] lg:min-h-[calc(100dvh-156px)] flex flex-col justify-between border-b border-orange-950/40">
+      <section className="relative overflow-hidden bg-slate-950 w-full max-w-[100vw] min-h-[calc(100svh-82px)] sm:min-h-[calc(100svh-92px)] lg:min-h-[calc(100vh-76px)] lg:h-[calc(100dvh-76px)] flex flex-col justify-between border-b border-orange-950/40">
         {/* Ambient Video Background Layer with graceful image poster fallback */}
         <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
           <video
@@ -113,7 +113,7 @@ export const HomePage: React.FC = () => {
         {/* Subtle Ambient Warm Glow */}
         <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-full max-w-4xl h-96 bg-gradient-to-tr from-orange-600/20 via-amber-500/10 to-transparent blur-3xl pointer-events-none rounded-full z-1" />
 
-        <div className="w-full max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center pt-8 sm:pt-10 lg:pt-12 pb-4 sm:pb-6 flex-1 justify-between">
+        <div className="w-full max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center pt-6 sm:pt-8 lg:pt-8 pb-4 sm:pb-6 flex-1 justify-between">
           {/* Upper Content Stack (Shifted upward to open video showcase zone below) */}
           <div className="w-full max-w-4xl flex flex-col items-center">
             {/* Context Pill above Headline with pulsing live indicator */}
@@ -124,18 +124,18 @@ export const HomePage: React.FC = () => {
               </span>
             </div>
 
-            {/* Fluid Headline: 2 lines on desktop (18ch), wraps cleanly into 3 lines on mobile without overflow */}
-            <h1 className="text-[clamp(1.85rem,5vw,3.75rem)] leading-[1.15] font-black text-white tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] max-w-full lg:max-w-[18ch] mx-auto mb-3 sm:mb-4 text-balance">
+            {/* Fluid Headline: 2 lines on desktop (20ch / 780px), wraps cleanly into 3 lines on mobile without overflow */}
+            <h1 className="text-[clamp(1.85rem,5vw,3.75rem)] leading-[1.15] font-black text-white tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] max-w-full md:max-w-[780px] lg:max-w-[20ch] xl:max-w-[780px] mx-auto mb-3 sm:mb-4 text-balance">
               {t(INITIAL_SITE_SETTINGS.hero_headline_en, INITIAL_SITE_SETTINGS.hero_headline_ceb)}
             </h1>
 
             {/* Lead Paragraph with subtle text shadow */}
-            <p className="text-xs sm:text-sm md:text-base text-white/85 leading-relaxed max-w-[58ch] mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] mb-6 sm:mb-7 font-normal">
+            <p className="text-xs sm:text-sm md:text-base text-white/85 leading-relaxed max-w-[58ch] mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] mb-4 sm:mb-6 font-normal">
               {t(INITIAL_SITE_SETTINGS.hero_subtext_en, INITIAL_SITE_SETTINGS.hero_subtext_ceb)}
             </p>
 
             {/* Dual Hero CTAs: Stacked with 12px gap on narrow mobile, side-by-side from 480px up */}
-            <div className="w-full max-w-md sm:max-w-none flex flex-col sm:flex-row items-center justify-center gap-3 px-0 sm:px-4 mb-6 sm:mb-8">
+            <div className="w-full max-w-md sm:max-w-none flex flex-col sm:flex-row items-center justify-center gap-3 px-0 sm:px-4 mb-3 sm:mb-4">
               <a href="#flagship-programs" className="w-full sm:w-auto shrink-0">
                 <Button
                   variant="primary"
@@ -151,7 +151,7 @@ export const HomePage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => triggerHaptic('light')}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 active:scale-95 text-white font-black border border-white/25 hover:border-white/50 backdrop-blur-md shadow-lg shadow-black/40 hover:shadow-white/10 text-xs sm:text-sm min-h-[48px] transition-all cursor-pointer whitespace-normal sm:whitespace-nowrap"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.15] active:scale-95 text-white font-bold border border-white/[0.28] hover:border-white/50 backdrop-blur-md shadow-lg shadow-black/40 hover:shadow-white/10 text-xs sm:text-sm min-h-[48px] transition-all cursor-pointer whitespace-normal sm:whitespace-nowrap"
                 >
                   <ShieldCheck className="w-4 h-4 text-orange-400 shrink-0" />
                   <span>{t('Track Request / Apply', 'Subaya ang Hangyo / Pag-apply')}</span>
@@ -163,29 +163,35 @@ export const HomePage: React.FC = () => {
           {/* Unobstructed Video Showcase Zone (~48px-80px vertical clearance) */}
 
           {/* Bottom Anchor: 4 Impact Stat Cards (Tablet & Desktop) / Masked Program Pills (Mobile) */}
-          <div className="w-full mt-auto pt-4 pb-20 sm:pb-24 lg:pb-0">
-            {/* 4 Impact Stat Cards (Tablet & Desktop Trust Signals) */}
+          <div className="w-full mt-4 sm:mt-8 lg:mt-14 pt-1 sm:pt-2 pb-16 sm:pb-20 lg:pb-0">
+            {/* 4 Impact Stat Cards (Tablet & Desktop Trust Signals with Glass Effect) */}
             <div className="hidden md:grid grid-cols-4 gap-2.5 sm:gap-3 w-full max-w-2xl lg:max-w-4xl mx-auto">
-              <div className="bg-slate-900/65 backdrop-blur-md border border-white/15 rounded-2xl p-2.5 sm:p-3 text-center shadow-lg hover:border-orange-500/40 transition-colors">
+              <div className="bg-slate-900/65 backdrop-blur-[10px] border border-white/[0.14] rounded-2xl p-2.5 sm:p-3 text-center shadow-xl hover:border-orange-500/40 transition-all">
                 <div className="text-base sm:text-xl font-black text-white">4 PTVs</div>
                 <div className="text-[10px] sm:text-xs text-orange-300 font-bold uppercase truncate">{t('24/7 Dispatch', '24/7 Biyahe')}</div>
               </div>
-              <div className="bg-slate-900/65 backdrop-blur-md border border-white/15 rounded-2xl p-2.5 sm:p-3 text-center shadow-lg hover:border-orange-500/40 transition-colors">
+              <div className="bg-slate-900/65 backdrop-blur-[10px] border border-white/[0.14] rounded-2xl p-2.5 sm:p-3 text-center shadow-xl hover:border-orange-500/40 transition-all">
                 <div className="text-base sm:text-xl font-black text-white">3,200+</div>
                 <div className="text-[10px] sm:text-xs text-orange-300 font-bold uppercase truncate">{t('Clinic Patients', 'Pasyente')}</div>
               </div>
-              <div className="bg-slate-900/65 backdrop-blur-md border border-white/15 rounded-2xl p-2.5 sm:p-3 text-center shadow-lg hover:border-orange-500/40 transition-colors">
+              <div className="bg-slate-900/65 backdrop-blur-[10px] border border-white/[0.14] rounded-2xl p-2.5 sm:p-3 text-center shadow-xl hover:border-orange-500/40 transition-all">
                 <div className="text-base sm:text-xl font-black text-white">310+</div>
                 <div className="text-[10px] sm:text-xs text-orange-300 font-bold uppercase truncate">{t('Housing Units', 'Pabahay')}</div>
               </div>
-              <div className="bg-slate-900/65 backdrop-blur-md border border-white/15 rounded-2xl p-2.5 sm:p-3 text-center shadow-lg hover:border-orange-500/40 transition-colors">
+              <div className="bg-slate-900/65 backdrop-blur-[10px] border border-white/[0.14] rounded-2xl p-2.5 sm:p-3 text-center shadow-xl hover:border-orange-500/40 transition-all">
                 <div className="text-base sm:text-xl font-black text-white">4,500+</div>
                 <div className="text-[10px] sm:text-xs text-orange-300 font-bold uppercase truncate">{t('Scholars', 'Iskolar')}</div>
               </div>
             </div>
 
             {/* Mobile Swipeable Ticker with Right-Side Fade Mask (Aligned with 20px padding) */}
-            <div className="block md:hidden w-full overflow-hidden [mask-image:linear-gradient(to_right,black_85%,transparent_100%)]">
+            <div
+              className="block md:hidden w-full overflow-hidden"
+              style={{
+                maskImage: 'linear-gradient(to right, #000 82%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to right, #000 82%, transparent 100%)',
+              }}
+            >
               <div className="flex items-center justify-start gap-2 overflow-x-auto no-scrollbar scroll-smooth px-1 py-1">
                 {FLAGSHIP_QUICK_PILLS.map((pill) => (
                   <a
@@ -206,7 +212,7 @@ export const HomePage: React.FC = () => {
       {/* =====================================================================
           DESKTOP QUICK-ACTION DOCK (Straddling bottom edge of Hero Section)
          ===================================================================== */}
-      <div className="hidden lg:block relative -mt-14 z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="hidden lg:block relative -mt-7 z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-slate-950/85 backdrop-blur-xl border border-white/20 rounded-3xl p-3 shadow-2xl shadow-black/80 ring-1 ring-white/10">
           <div className="grid grid-cols-3 gap-3.5">
             {/* Card 1: One-touch Emergency Call to PTV Dispatch */}

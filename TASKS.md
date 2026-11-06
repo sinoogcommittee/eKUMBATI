@@ -1139,6 +1139,28 @@
 - [x] **66.5 Verification & Production Build**:
   - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 8.39s).
 
+---
+
+### Phase 67: Multi-Viewport Polish & Video Centerpiece Framing (`HomePage.tsx`, `StickyHotlineBar.tsx`)
+- [x] **67.1 Desktop White Gap Elimination & 2-Line Headline (`HomePage.tsx`)**:
+  - [x] Sized hero container on desktop to `lg:min-h-[calc(100vh-76px)] lg:h-[calc(100dvh-76px)]`, ensuring the video background fills down to the exact bottom edge with zero white strip on 1366x768 laptop screens (Acer Chromebook 314).
+  - [x] Widened H1 to `md:max-w-[780px] lg:max-w-[20ch] xl:max-w-[780px]` so "Serbisyo Diretso sa Katawhan: / Padayon ang Kumbati!" wraps cleanly into 2 lines, preventing text from covering the video centerpiece logo.
+- [x] **67.2 Center Video Frame Clearance & Balanced Vertical Split (`HomePage.tsx`)**:
+  - [x] Pulled the top content block higher (`pt-6 lg:pt-8`) and pushed the 4 stat cards down (`lg:mt-14`), revealing the "TAMBAYAN NI KUMBATI!" video centerpiece with generous breathing space.
+  - [x] On Tablet, balanced the vertical split by reducing the gap between CTAs and stats, eliminating cavernous empty space on Galaxy Tab S7.
+- [x] **67.3 Mobile & Tablet Dark Translucent Dock Unification (`StickyHotlineBar.tsx`)**:
+  - [x] Changed mobile dock container background to `#0f141c` at 90% opacity with `border-t border-white/10` and `backdrop-blur-xl`.
+  - [x] Sized tablet dock to a dark glassmorphic pill (`sm:bg-slate-900/85 sm:border sm:border-white/15 sm:rounded-2xl sm:p-2 sm:max-w-[480px]`).
+  - [x] Enhanced button gradients (richer red-rose-orange on PTV, orange-amber on Action Desk) to pop with outstanding contrast against the dark bar.
+- [x] **67.4 Mobile Program Pills Right-Edge Fade & Spacer Tightening (`HomePage.tsx`)**:
+  - [x] Reduced vertical gap above pills by 24px (`mb-3 sm:mb-4`) to provide 16px of breathing room above the mobile dock.
+  - [x] Applied exact right-edge CSS scroll fade mask: `linear-gradient(to right, #000 82%, transparent 100%)`.
+- [x] **67.5 Micro-Polish: Tactile Secondary Button & Glass Stat Cards (`HomePage.tsx`)**:
+  - [x] Added `bg-white/[0.08] hover:bg-white/[0.15] border border-white/[0.28] backdrop-blur-md` on the secondary CTA button (*"Track Request / Apply"*).
+  - [x] Applied `backdrop-blur-[10px] border border-white/[0.14] bg-slate-900/65` to the 4 stat cards on Desktop and Tablet for a tactile, layered glass effect.
+- [x] **67.6 Verification & Production Build**:
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 19.98s).
+
 
 
 
