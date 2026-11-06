@@ -517,6 +517,13 @@
   - **Enhanced Subheadline & Button Spacing**: Upgraded subheadline to `md:text-xl md:leading-[1.75] lg:leading-[1.65]` with `md:mb-10` margin below, and CTA buttons to `md:py-4 md:px-9` with `md:mb-12` clearance above the stat cards.
   - **Utilized Tablet Top & Lower Canvas Space**: Sized tablet hero wrapper padding to `md:pt-16 md:pb-28` and content padding to `md:py-6`, enlarging the 4 stat cards with `md:p-5 md:text-3xl` numbers, successfully utilizing the tall canvas on Galaxy Tab S7 & Tab S11 Ultra while keeping ample clearance above the bottom dock.
   - Verified `npm run build` completed with code 0 (1985 modules transformed in 11.67s).
+- **2026-11-06**: OpenGraph & Twitter Card Absolute Image URL Resolution & Social Previews (`index.html`, `vite.config.ts`, `DEPLOYMENT.md`):
+  - **Absolute URL Resolution for Social Scrapers**: Identified that social crawlers (Facebook, Messenger, WhatsApp, Viber, Twitter/X, Telegram, LinkedIn) cannot resolve relative image URLs (`/images/og_preview.png`) and drop image previews, falling back to text-only links.
+  - **Dynamic Vite Build Transform Plugin**: Configured `vite.config.ts` with `loadEnv` and an automated HTML transform plugin replacing `%VITE_SITE_URL%` and `%VITE_SITE_DOMAIN%` during build, with default fallback to `https://e-kumbati.onrender.com`.
+  - **Comprehensive Meta Tags**: Added canonical URL (`<link rel="canonical">`), `og:url`, `og:image`, `og:image:secure_url`, `twitter:url`, `twitter:domain`, and `twitter:image` with full absolute HTTPS paths.
+  - **Crawler Access (`robots.txt`)**: Created `public/robots.txt` ensuring social scrapers have unrestricted access to `/` and `/images/`.
+  - **Facebook Scraper Cache Clearing Guide**: Documented instructions in `DEPLOYMENT.md` explaining how to bust previously cached text-only previews via the Facebook Sharing Debugger (`https://developers.facebook.com/tools/debug/`).
+  - Verified `npm run build` completed with code 0 (1985 modules transformed in 6.58s).
 
 
 

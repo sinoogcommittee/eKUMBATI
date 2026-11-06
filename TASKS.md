@@ -1237,6 +1237,22 @@
 - [x] **71.4 Verification & Production Build**:
   - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 11.67s).
 
+---
+
+### Phase 72: OpenGraph & Twitter Card Absolute Image URL Resolution & Social Sharing Previews (`index.html`, `vite.config.ts`, `DEPLOYMENT.md`)
+- [x] **72.1 Absolute OpenGraph & Twitter Image URL Architecture (`index.html`, `vite.config.ts`)**:
+  - [x] Identified that social crawlers (Facebook Scraper, Messenger, WhatsApp, Viber, Twitterbot, LinkedIn, Telegram) reject relative paths (`/images/og_preview.png`) and drop image previews, displaying only text.
+  - [x] Engineered Vite HTML build plugin in `vite.config.ts` replacing `%VITE_SITE_URL%` and `%VITE_SITE_DOMAIN%` dynamically at build time, with default fallback to `https://e-kumbati.onrender.com`.
+  - [x] Injected canonical link (`<link rel="canonical">`), `og:url`, `og:image`, `og:image:secure_url`, `twitter:url`, `twitter:domain`, and `twitter:image` with absolute HTTPS URLs in `index.html`.
+- [x] **72.2 Environment & Crawler Protection (`.env`, `.env.example`, `public/robots.txt`)**:
+  - [x] Configured `VITE_SITE_URL=https://e-kumbati.onrender.com` in `.env` and `.env.example`.
+  - [x] Created `public/robots.txt` ensuring all social bots and web scrapers are explicitly allowed to index `/` and `/images/`.
+- [x] **72.3 Documentation & Cache Invalidation Protocol (`DEPLOYMENT.md`)**:
+  - [x] Documented step-by-step instructions for refreshing Facebook/Messenger/WhatsApp scraped cache via the Facebook Sharing Debugger (`https://developers.facebook.com/tools/debug/`).
+- [x] **72.4 Verification & Production Build**:
+  - [x] Verified `dist/index.html` renders full `https://e-kumbati.onrender.com/images/og_preview.png` with zero build warnings.
+  - [x] Executed `npm run build` with exit code 0 (1985 modules transformed in 6.58s).
+
 
 
 

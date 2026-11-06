@@ -34,14 +34,30 @@ In your hosting platform's Environment Variables dashboard (or local `.env`), su
 
 | Variable Name | Required | Description | Example Value |
 | :--- | :--- | :--- | :--- |
+| `VITE_SITE_URL` | Recommended | Deployed canonical production site URL for OpenGraph / Twitter social media cards | `https://e-kumbati.onrender.com` |
 | `VITE_SUPABASE_URL` | Optional | Your Supabase project REST URL | `https://xyzprojectid.supabase.co` |
 | `VITE_SUPABASE_ANON_KEY` | Optional | Supabase public anonymous API key | `eyJhbGciOiJIUzI1NiIsInR5cCI...` |
 
-> **Note on Resilient Fallback**: If either variable is omitted or left empty, `e-KUMBATI` will automatically boot in high-fidelity offline mode, loading verified seed data from `src/lib/constants.ts` and activating local storage for constituent ticket tracking.
+> **Note on Resilient Fallback**: If either Supabase variable is omitted or left empty, `e-KUMBATI` will automatically boot in high-fidelity offline mode, loading verified seed data from `src/lib/constants.ts` and activating local storage for constituent ticket tracking. If `VITE_SITE_URL` is omitted, it defaults safely to `https://e-kumbati.onrender.com`.
 
 ---
 
-## 3. Supabase Storage Setup (`kumbati-media`)
+## 3. Social Media Sharing & Open Graph Cache Invalidation
+
+When sharing your deployed website URL on Facebook, Messenger, WhatsApp, Viber, Twitter/X, or LinkedIn:
+1. **Absolute Image URL Requirement**: Crawlers require a fully-qualified `https://` image URL (`og:image`). The build automatically replaces `%VITE_SITE_URL%` with your production domain into `dist/index.html`.
+2. **Clearing Scraper Caches (Facebook / WhatsApp / Messenger)**:
+   - Social networks cache previews indefinitely upon the first paste/share.
+   - If you previously shared your link and only saw text without an image card, open the [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/).
+   - Paste your deployed URL (e.g. `https://e-kumbati.onrender.com/`).
+   - Click **"Debug"**, then click **"Scrape Again"**.
+   - Facebook will instantly refresh its cache and display the rich 1200×630 image card with the official seal and logo.
+3. **Twitter / X Card Validator**:
+   - Preview card generation can also be validated via the Twitter Card validator or by tweeting/DMing the URL in a test draft.
+
+---
+
+## 4. Supabase Storage Setup (`kumbati-media`)
 
 If connecting to a live Supabase backend:
 1. Log in to your [Supabase Dashboard](https://supabase.com/dashboard).
